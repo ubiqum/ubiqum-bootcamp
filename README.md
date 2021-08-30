@@ -1,5 +1,9 @@
-![Alt Ubiqum](https://ubiqum.com/faqs/wp-content/uploads/2018/03/logo-ubiqum-color.svg "Ubiqum")
-
-# Ubiqum BootCamp
-
-Hello, World!
+Learned so far 
+git commit
+git status
+git log
+git branch
+git init
+git add .
+git rm -rf file name
+git clone 
