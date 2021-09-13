@@ -1,0 +1,25 @@
+p{
+    color: blue;
+    font-style:bold;
+    font-size: x-larlarge;
+    
+}
+p1{
+    font-style: italic;
+}
+
+
+
+
+h1{
+    text-align: left;
+    color: brown;
+    font-size: x-large;
+}
+img{
+    height: 100px;
+    width: 100px;
+    float: left;
+}
+
+
