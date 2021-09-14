@@ -1,0 +1,84 @@
+/* GangnamStyle.css */
+
+img {
+    float: left;
+    margin: 5px;
+    width: 150px;
+    height: 150px;  
+}
+.pic1 {
+    margin-top: 15px;
+    height: 200px;
+}
+
+.pic2 {
+    margin-top: -10px;
+    height: 200px;
+}
+
+.pic3 {
+    height: 200px;
+    margin-top: -20px;
+}
+a {
+    margin: 30px;
+    font-size: 20px;
+}
+
+
+a:visited {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(75, 153, 95);
+    text-decoration: none;
+}
+
+a:active {
+    color: rgb(24, 24, 119);
+    text-decoration: none;
+  }
+
+.linkactual {
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    margin-left: 200px;
+}
+
+.p1 {
+    margin-top: 30px;
+    margin-left: 200px; 
+    font-size: 20px;
+}
+
+
+
+h1 {
+    font-size: 60px;
+}
+
+h3 {
+    margin-top: 120px;
+    margin-left: 190px;
+}
+
+h4 {
+    margin-top: 60px;
+    margin-left: 190px;
+    font-style: italic;
+}
+
+
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-bottom: 0cm;
+    border-top: 0cm;
+    border-left: 0cm;
+    
+}
