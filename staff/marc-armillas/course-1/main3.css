@@ -1,5 +1,5 @@
 body {
-    
+
 }
 
 img {
@@ -18,7 +18,7 @@ a {
     padding: 0px 15px 0px 15px;
 }
 
-.link1 {
+.link3 {
     text-decoration: none;
     color: black;
 }
@@ -26,30 +26,16 @@ a {
 hr {
     border:none;
     border-left:1px solid hsla(200, 10%, 50%,100);
-    /* hsla es una forma para escoger el color com rgb */
     height:30px;
     width:1px;
     display: inline;   
 }
 
-h2 {
-    margin-left: 230px;
-    font-size: 40px;
-}
-
-.time {
+div {
     margin-left: 250px;
-    font-style: italic;
+    margin-top: 30px;
 }
 
-.ex {
-    margin-left: 270px;
-}
-
-.time2 {
-    margin-top: 25px;
-}
-
-.ex2 {
-    margin-bottom: 25px;
+.div1 {
+    margin-top: 77px;
 }
