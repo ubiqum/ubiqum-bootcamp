@@ -1,0 +1,65 @@
+body{
+    margin-top: 150px;
+}
+
+header{
+    background-image: url(images/design1_image1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: top;
+    padding: 0px 0px 100px 5px;
+    color: white;
+}
+
+h2{
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-top: 0px;
+    font-size: 30px;
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 50px;
+    justify-content: space-around;
+}
+
+nav a{
+    margin: 28px 0px;
+
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+}
+
+p{
+    margin: 0px 0px 13px 25px;
+}
+
+.underHeader{
+    display: flex;
+    flex-direction: row;
+}
+
+div article{
+    padding: 20px 0px 6px 0px;
+}
+
+#link{
+    font-weight: bold;
+}
+
+#unlink {
+    text-decoration: none;
+}
+
+.logo{
+    margin: -45px 0px 0px 1100px;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+}
