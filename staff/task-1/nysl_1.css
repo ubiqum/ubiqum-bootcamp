@@ -5,6 +5,7 @@ img {
     margin: 5px;
     width: 150px;
     height: 150px;  
+    filter: blur(2px);
 }
 .pic1 {
     margin-top: 15px;

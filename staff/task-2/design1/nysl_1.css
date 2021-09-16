@@ -1,0 +1,122 @@
+/* GangnamStyle.css */
+
+/*links*/
+
+a {
+    margin: 30px;
+    font-size: 20px;
+}
+
+
+
+.linkactual {
+    text-decoration: underline;
+    color: rgb(50, 58, 156);
+}
+
+.flex-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+    text-decoration: none;
+}
+
+/*Formato texto*/
+
+p {
+    margin-left: 200px;
+    font-size: 20px
+}
+
+.p1 {
+    margin-top: -220px;
+    margin-left: 200px; 
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 60px;
+   
+}
+
+h2 {
+    width: 100%;
+    color: white;
+    background-color: black;
+    margin-top: 31px;
+    text-align: center;
+    font-size: 40px;
+}
+
+
+h3 {
+    width: 1400px;
+    color: white;
+    background-color: black;
+    margin-top: 350px;
+    text-align: center;
+    font-size: 40px;
+}  
+
+h4 {
+    font-style: bold;
+    font-size: 25px;
+    margin-left: 180px;
+   
+}
+
+
+h5 {
+    margin-top: 60px;
+    margin-left: 190px;
+    font-style: italic;
+    font-size: 20px;
+}
+.textojustificado {
+    margin-top: -260px;
+
+}
+
+.flex-events {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: -280px;
+    
+}
+
+/*Imagenes y portada*/
+
+.imagendetitulo {
+    width: 1400px;
+    height: 350px;
+    position:absolute;
+    margin-left: 0%;
+    float:inherit;
+}
+
+
+.leaguelogo {
+    width: 100;
+    height: 100px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 326px;
+    margin-left: 1200px;
+    
+}
+
+.northside {   
+    position: absolute;
+    z-index: 2;
+    margin-top: 0px;
+    
+
+}
+
+
+.flex-tittle {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
