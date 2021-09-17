@@ -37,6 +37,7 @@ h2 {
 
 .flex {
     position: absolute;
+    margin-top: -14px;
     margin-left: 1200px;
     width: 280px;
     display: flex;
