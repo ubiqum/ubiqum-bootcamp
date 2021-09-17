@@ -23,7 +23,6 @@ nav{
     display: flex;
     flex-direction: column;
     padding: 0px 50px;
-    justify-content: space-around;
 }
 
 nav a{
