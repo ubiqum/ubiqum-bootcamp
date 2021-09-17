@@ -1,0 +1,110 @@
+body {
+    margin: 0 0 0 0;
+}
+.boxp {
+    margin: 250px 20px 20px 20px;
+}
+
+h1 {
+    position: absolute;
+    font-size: 75px;
+    margin-top: -86px;
+}
+
+.img1 {
+    width: 100%;
+    height: 350px;
+}
+
+.box1 {
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    position: relative;
+}
+
+h2 {
+    color: white;
+    font-size: 50px;
+    margin-top: -4px;
+}
+
+.logo {
+    position: absolute;
+    height: 113px;
+    margin-left: -740px;
+}
+
+.flex {
+    position: absolute;
+    margin-left: 1200px;
+    width: 280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+a {
+    margin-bottom: 40px;
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    border: solid black;
+    box-shadow: 6px 0px black;
+
+}
+
+.a-bold {
+    background-color: green;
+}
+
+.timetable {
+    margin-top: 50px;
+}
+
+.time {
+    margin-left: 250px;
+    font-style: italic;
+}
+
+.ex {
+    margin-left: 270px;
+}
+
+.time2 {
+    margin-top: 18px;
+}
+
+.ex2 {
+    margin-bottom: 25px;
+}
+
+
+h3 {
+    color: black;
+    margin-bottom: -17px;
+    font-size: 20px;
+}
+
+.text-contact {
+    margin: -32px 200px 0px 153px;
+}
+
+p {
+    margin: 20px 0 24px 15px;
+}
+
+.mail {
+    text-decoration: underline;
+    background-color: transparent;
+    color: blue;
+    border: none;
+    box-shadow: none;
+}
+
+.boxtext {
+    margin: -14px 400px 0 149px;
+    position: absolute;
+}
+
