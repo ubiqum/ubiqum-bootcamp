@@ -50,13 +50,16 @@ nav a{
     border: 2px solid darkslategray;
     padding: 5px;
     box-shadow: 2px 2px darkslategray;
-    background-color: rgba(0, 255, 0, 0.1);
+    background-color: rgb(0, 150, 200);
+    color: white;
 
 }
 
 #link{
     font-weight: bold;
     text-decoration: underline;
+    background-color: rgba(0, 100, 255, 1);
+    color: white;
 }
 
 section{
