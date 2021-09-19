@@ -31,7 +31,7 @@ nav a{
 
 }
 
-div{
+section{
     display: flex;
     flex-direction: column;
 }
@@ -45,7 +45,7 @@ p{
     flex-direction: row;
 }
 
-div article{
+section article{
     padding: 20px 0px 6px 0px;
 }
 
