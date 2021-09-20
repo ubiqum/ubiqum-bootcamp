@@ -1,0 +1,59 @@
+
+/* .pictures img {
+    height: 100%;
+    width: 100%;
+ } */
+ .subheader .logo {
+
+    float: right;  
+    margin-right: 50px;
+    width:100px;
+    margin:-62px 20px -50px 0px;
+    position:relative;
+    z-index:2;
+    
+    
+ }
+
+ 
+.subheader h2 {
+    background-color: black;
+    color:white;
+    text-align:center;
+   
+    position:relative;
+    z-index:0;
+    margin: 0px 0px 0px 0px;
+    font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    font-size: 10px;
+    } 
+
+header {
+        background-image: url("./assets/design1_image1.jpg");
+        background-size: cover;
+        background-repeat:no-repeat;
+        padding: 200px 300px 200px 200px;
+        font-family: "Lucida handwriting", Helvetica, Sans-serif;
+        font-size: 10px;
+    }
+  
+
+.section{
+   /*  margin-left: 150px; */
+    font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    font-size: 10px;
+    
+}
+
+
+
+.menu {
+    font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    font-size: 10px;
+    display:flex;
+ 
+}
+.container{
+    display:flex;
+    flex-direction:flex-start;
+}
