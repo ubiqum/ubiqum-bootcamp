@@ -1,0 +1,189 @@
+body {
+    margin: 0 0 0 0;
+    background-color: #eee;
+}
+
+.flex {
+    z-index: 1;
+    width: 100%;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+    justify-content: space-around;
+    background-color: green;
+    margin-top: -156px;
+}
+
+a {    
+    padding: 20px;
+    margin: 0 35px 0 35px;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: 'sriracha', sans-serif;
+    /* sriracha es la fuente que he cargado desde google font a html, 
+    se escribe entre comillas simples'' */
+}
+
+a:hover {
+    color: #000;
+}
+
+.logo {
+    position: fixed;
+    z-index: 2;
+    height: 60px;
+    margin: -138px 0 0 24px;
+}
+
+.img1 {
+    float: left;
+    margin: 95px 0 0 30px;
+}
+
+h1 {
+    font-size: 30px;
+    margin: 155px 0 0 0;
+    text-align: center;
+}
+
+.box1 {
+    margin: 121px 0 0 1100px;
+}
+
+.timetable {
+    margin: -75px 0 0 937px;
+    padding-top: 100px;
+    padding-left: 20px;
+    width: 540px;
+    background-color: white;
+    height: 300px;
+    z-index: 3;
+    border: 5px groove;
+    border-radius: 3px;
+}
+
+.time {
+    margin-top: 10px;
+    padding-top: 20px;
+}
+.ex {
+    margin-left: 20px;
+}
+
+.boxtext {
+    height: 532px;
+    margin: -75px 0 0 920px;
+    padding-top: 60px;
+    padding-left: 20px;
+    width: 550px;
+    background-color: white;
+    z-index: 3;
+    border: 5px groove;
+    border-radius: 3px;
+}
+
+h3 {
+    margin-top: 10px;
+    padding-top: 20px;
+}
+
+p {
+    margin-left: 20px;
+    margin-right: 15px;
+}
+
+.text-contact {
+    margin: -75px 0 0 965px;
+    padding-top: 100px;
+    height: 130px;
+    width: 442px;
+    background-color: white;
+    height: 300px;
+    z-index: 3;
+    border: 5px groove;
+    border-radius: 3px;
+}
+
+.mail {
+    font-size: 16px;
+    color: green;
+    padding: 0;
+    margin: 0;
+}
+
+.mail:hover {
+    color: blue;
+}
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* página de la tabla */
+
+
+.table-body {
+    margin: 7%;
+    padding-left: 10%;
+}
+
+header {
+    text-align: center;
+    margin-left: -11%;
+}
+
+article{
+    text-decoration: underline;
+}
+
+.table1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.date {
+    margin-left: 10%;
+}
+h3 {
+    margin-bottom: 0px;
+    text-decoration: underline;
+}
+
+.table2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 3%;
+}
+
+.table3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 3%;
+}
+
+h2 {
+    font-size: 1.17em;
+}
+
+.table3 h2 {
+    margin-bottom: 0;
+}
+
+.table-p {
+    margin-top: 60px;
+}
+
+.table-p p {
+    margin-left: 0;
+}
+
+.p3 {
+    margin-top: 36px;
+}
+.email {
+    display: inline;
+    /* text-align: end; no se porque no funciona tirare de margin */
+    margin-left: 45%;
+}
