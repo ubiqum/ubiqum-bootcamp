@@ -1,26 +1,29 @@
 body {
     margin: 0 0 0 0;
     background-color: #eee;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .flex {
-    width: 100%;
-    margin-top: -81px;
-    position: fixed;
     z-index: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between ;
+    width: 100%;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    justify-content: space-around;
     background-color: green;
+    margin-top: -156px;
 }
 
 a {    
     padding: 20px;
+    margin: 0 35px 0 35px;
     text-align: center;
     font-size: 30px;
     text-decoration: none;
     color: whitesmoke;
+    font-family: 'sriracha', sans-serif;
+    /* sriracha es la fuente que he cargado desde google font a html, 
+    se escribe entre comillas simples'' */
 }
 
 a:hover {
@@ -31,7 +34,7 @@ a:hover {
     position: fixed;
     z-index: 2;
     height: 60px;
-    margin: -70px 0 0 148px;
+    margin: -147px 0 0 80px;
 }
 
 .img1 {
@@ -41,22 +44,24 @@ a:hover {
 
 h1 {
     font-size: 30px;
-    margin: 81px 0 0 0;
+    margin: 155px 0 0 0;
     text-align: center;
 }
 
 .box1 {
-    margin: 121px 0 0 1210px;
+    margin: 121px 0 0 1100px;
 }
 
 .timetable {
-    margin: -75px 0 0 1060px;
+    margin: -75px 0 0 937px;
     padding-top: 100px;
     padding-left: 20px;
-    width: 588px;
+    width: 540px;
     background-color: white;
     height: 300px;
     z-index: 3;
+    border: 5px groove;
+    border-radius: 3px;
 }
 
 .time {
@@ -68,31 +73,20 @@ h1 {
 }
 
 .boxtext {
-    margin: -75px 0 0 1060px;
-    padding-top: 100px;
+    height: 532px;
+    margin: -75px 0 0 920px;
+    padding-top: 60px;
     padding-left: 20px;
-    height: 500px;
-    width: 690px;
+    width: 550px;
     background-color: white;
-    height: 300px;
     z-index: 3;
+    border: 5px groove;
+    border-radius: 3px;
 }
 
 h3 {
     margin-top: 10px;
     padding-top: 20px;
-}
-.h3problem{
-    background-color: white;
-    padding-left: 20px;
-    margin-left: -20px;
-    height: 200px;
-}
-
-.p-problem {
-    background-color: white;
-    margin-top: -170px;
-    z-index: 4
 }
 
 p {
@@ -101,14 +95,15 @@ p {
 }
 
 .text-contact {
-    margin: -75px 0 0 1060px;
+    margin: -75px 0 0 965px;
     padding-top: 100px;
     height: 130px;
     width: 442px;
     background-color: white;
     height: 300px;
     z-index: 3;
-
+    border: 5px groove;
+    border-radius: 3px;
 }
 
 .mail {
@@ -118,4 +113,8 @@ p {
 
 .mail:hover {
     color: blue;
+}
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
