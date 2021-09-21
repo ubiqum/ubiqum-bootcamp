@@ -3,82 +3,82 @@ body {
 }
 
 h1 {
-    margin: 150px 0px 25px 50px;
     font-family: Verdana;
     font-size: 50px;
+    margin: 150px 0px 25px 50px;
 }
 
 .logo {
+    float: left;
+    height: 120px;
     margin: 0px 10px 0px 50px;
     width: 120px;
-    height: 120px;
-    float: left;
 }
 
 nav {
     margin: 20px 0px 15px 0px;
 }
 
-li{
-    list-style: none;
-    padding: 10px;
+li {
     display: inline-block;
     font-size: 20px;
+    list-style: none;
+    padding: 10px;
 }
 
 #unlink {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
 }
 
 h2 {
-    margin: 15px 0px 0px 230px;
     font-family: Verdana;
     font-size: 35px;
+    margin: 15px 0px 0px 230px;
     text-align: center;
 }
 
 .image1 {
+    float: left ;
+    height: 120px;
     margin: 0px 10px 0px 50px;
     width: 120px;
-    height: 120px;
-    float: left ;
 }
 
 .image2 {
+    float: left ;
+    height: 120px;
     margin: 20px 0px 0px 50px;
     width: 120px;
-    height: 120px;
-    float: left ;
 }
 
 .image3 {
+    float: left ;
+    height: 120px;
     margin: 10px 10px 0px 50px;
     width: 120px;
-    height: 120px;
-    float: left ;
 }
 
 h3 {
-    margin: 25px 0px 0px 0px;
     font-family: Verdana;
+    margin: 25px 0px 0px 0px;
 }
 
 div {
     margin: 35px 0px 0px 270px;
 }
 
-em{
+em {
     font-family: sans-serif;
     margin: 15px 0px 0px -10px;
 }
 
 p{
-    margin: 0px 0px 0px 20px;
     font-family: sans-serif;
+    margin: 0px 0px 0px 20px;
 }
 
 #unlink {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
 }

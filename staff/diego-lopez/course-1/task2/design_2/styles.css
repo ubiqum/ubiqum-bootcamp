@@ -1,76 +1,76 @@
-body{
+body {
     margin-top: 125px;
 }
 
-h1{
+h1 {
     font-family: Verdana;
     font-size: 50px;
 }
 
-.banner{
-    width: 100%;
+.banner {
     height: 200px;
+    width: 100%;
     z-index: -1;
 }
 
-h2{
+h2 {
     background-color: black;
     color: white;
+    font-size: 30px;
     text-align: center;
     margin-top: -4px;
-    font-size: 30px;
 }
 
-div{
+div {
     display: flex;
     flex-direction: column;
 }
 
-p{
+p {
     margin: 0px 0px 13px 25px;
 }
 
-.underHeader{
+.underHeader {
     display: flex;
     flex-direction: row;
 }
 
-div article{
+div article {
     padding: 5px 0px 25px 100px;
 }
 
-.logo{
-    width: 120px;
+.logo {
     height: 120px;
     margin: 0px 5px 0 0px;
+    width: 120px;
 }
 
-nav{
+nav {
     text-align: right;
     margin: -15px 0px 0px 80%;
     position: absolute;
   
 }
 
-a{
+a {
     background-color: blue;
     border: 3px solid black;
+    box-shadow: 3px 3px black;
+    color: white;
     margin: 0px 20px 0px 0px;
     padding: 5px;
-    text-decoration: none;
     text-align: center;
-    color: white;
-    box-shadow: 3px 3px black;
+    text-decoration: none;
 }
 
-#mailto{
+#mailto {
     background-color: white;
     border: none;
-    text-decoration: underline;
-    color: blue;
     box-shadow: none;
+    color: blue;
+    text-decoration: underline;
 }
 
-#currentPosition{
+#currentPosition {
     background-color: darkgreen;
 }
