@@ -1,10 +1,12 @@
-#navigation {
+.navigation {
     width: 500px;
     margin-left: 10px;
     position: absolute;
-    left: 120px;
-    top: 100px;
-    z-index: -1;
+    left: 150px;
+    top: 150px;
+}
+.navigation li{
+    display:inline;
 }
 #logo {
     position: absolute;
@@ -54,6 +56,14 @@ h2 {
     text-align: left;
     float: left;
 }
+
+#design_image1 {
+display: none;
+}
+
+#design_image2 {
+    display: none;
+}
 .bodycontent {
     position: relative;
     width: 600px; 
@@ -68,5 +78,7 @@ h2 {
 #secondtab {
     margin-inline-start:225px;
 }
+#headertitle {
+    display: none;
 
-
+}
