@@ -1,3 +1,19 @@
+header {
+    /* background-image: url("./assets/design1_image1.jpg");
+    background-size: cover;
+    background-repeat:no-repeat; */
+    height:185px;
+    width:100%;
+    /* padding: 200px 300px 200px 200px; */
+    font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    font-size: 10px;
+    margin:0px 0px 0px 0px;
+    position:relative;
+
+}
+
+
+
 .pictures {
     height:100%;
     width: 100%;
@@ -29,19 +45,7 @@
     font-size: 10px;
     } 
 
-header {
-    /* background-image: url("./assets/design1_image1.jpg");
-    background-size: cover;
-    background-repeat:no-repeat; */
-    height:185px;
-    width:100%;
-    /* padding: 200px 300px 200px 200px; */
-    font-family: "Lucida handwriting", Helvetica, Sans-serif;
-    font-size: 10px;
-    margin:0px 0px 0px 0px;
-    position:relative;
 
-}
 
 .subheader {
     position:relative;
@@ -106,3 +110,5 @@ header {
 .button3{
     background-color:blue;
 }
+
+
