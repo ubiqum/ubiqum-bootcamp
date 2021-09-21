@@ -3,7 +3,7 @@ body {
     background-color: #eee;
 }
 
-.flex {
+nav {
     z-index: 1;
     width: 100%;
     position: fixed;
@@ -186,4 +186,61 @@ h2 {
     display: inline;
     /* text-align: end; no se porque no funciona tirare de margin */
     margin-left: 45%;
+}
+
+
+/* pagina de la lista  */
+
+
+.header-list {
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.29em;
+}
+
+hgroup {
+    font-size: 1.29em;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.list-body {
+    margin: 7%;
+}
+
+.list-father {
+    margin-top: 15px;
+}
+ul {
+    margin-top: 0;
+}
+
+ol {
+    margin-top: 0;
+}
+
+.li-change {
+    margin-bottom: 15px;
+}
+
+ul li {
+    list-style-type: square;
+    }
+
+.change-type-d {
+    list-style-type: circle;
+}
+
+.change-type {
+    list-style-type: decimal;
+}
+
+.bold ::marker {
+    font-weight: bold;
+}
+
+.bold li ::marker {
+    font-weight: normal;
 }
