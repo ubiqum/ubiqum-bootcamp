@@ -1,0 +1,121 @@
+.navigation {
+    width: 500px;
+    margin-left: 700px;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    z-index: 1;
+    
+}
+
+.navigation li{
+    padding: 20px;
+    display:inline;
+   
+}
+#logo {
+    position: relative;
+    width: 100px; 
+    height: 100px; 
+    left:10px;
+    top: 200px;
+    z-index: 1;
+
+    }
+
+#nameleague {
+        position: absolute;   
+        width: 600px; 
+        height: 10px; 
+        left:10px;
+        left: 120px;
+        top: 25px;
+      
+    }
+h2 {
+    margin-left: 170px;
+}
+
+#image1 {
+    position: relative;
+    width: 125px; 
+    height: 186px; 
+    top: 25px;
+    text-align: left;
+    float: left;
+    display: none;
+}
+
+#image2 {
+    position: relative;
+    width: 125px; 
+    height: 145px; 
+    top: 25px;
+    text-align: left;
+    float: left;
+    display: none;
+}
+
+#image3 {
+    position: relative;
+    width: 125px; 
+    height: 186px; 
+    top: 25px;
+    text-align: left;
+    float: left;
+    display: none;
+}
+
+#design_image1 {
+    display: none;
+    
+}
+
+#design_image2 {
+    top: 100px;
+    width: 1000px; 
+    height: 154px;
+}
+.bodycontent {
+    position: relative;
+    width: 600px; 
+    height: 10px;
+    top: 50px;
+    left: 10px;
+    }
+#firsttab {
+    margin-inline-start:200px;
+}
+
+#secondtab {
+    margin-inline-start:225px;
+}
+#headertitle {
+    position: absolute;
+    width: 1000px; 
+    height: 50px; 
+    left:0px;
+    text-align: center;
+    margin-left: auto;
+    
+}
+
+#headertitle {
+    border: 1px #070707;
+    border-style:solid ;
+    padding: 2px;
+    margin-bottom: 2px;
+    top: 100px;
+  }
+#activepagetitle {
+    display: none;
+}
+
+#nameleague {
+    position:   absolute;
+    color: black;
+    width: 1000px; 
+    height: 50px; 
+    top:        0px;
+    left:       10px;
+}
