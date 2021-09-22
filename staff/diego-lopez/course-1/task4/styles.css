@@ -21,6 +21,12 @@ html, body {
     width: 200px;
 }
 
+iframe{
+    border: none;
+    width: 100px;
+    height: 100px;
+}
+
 /*HEADER*/
 
 .top-margin {
@@ -92,10 +98,11 @@ aside {
     display: grid;
     grid-column: 1/2;
     margin: 10px;
-    position: fixed;
+    max-height: 20px;
+    max-width: 8vw;
 }
 
-a {
+.link {
     background-color: rgb(0, 150, 200);
     border: 2px solid darkslategray;
     box-shadow: 2px 2px darkslategray;
@@ -106,17 +113,12 @@ a {
     padding: 5px;
 }
 
-a:hover {
+.link:hover {
     background-color: rgba(0, 100, 255, 1);
     text-decoration: underline;
 }
 
-#link {
-    background-color: white;
-    border: none;
-    box-shadow: none;
-    color: blue;
-    text-decoration: underline;
+#email {
     text-align: right;
     margin: 0;
     padding: 0;
