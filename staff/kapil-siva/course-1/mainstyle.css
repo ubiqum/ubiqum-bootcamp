@@ -20,7 +20,7 @@
   height: 200px;
   width: 200px;
 }
-.mainbody > div {
+.main-body > div {
   background-color: #f1f1f1;
   margin: 50px;
   padding: 50px;
@@ -28,13 +28,13 @@
   text-align: center;
 }
 
-.firstimage {
+.first-image {
   float: left;
   height: 200px;
   width: 200px;
 }
-.second {
-  text-indent: 100px;
+.second-heading {
+  text-indent: 195px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: green;
   
@@ -44,8 +44,8 @@
   text-indent:450px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.firstpara {
-  text-indent: 100px;
+.first-para {
+  text-indent: 200px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: green;
   
@@ -54,14 +54,15 @@
   text-align: center;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
-.secondpara{
-  text-indent: 400px;
+.second-para{
+  text-indent: 500px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: green;
 }
-.third{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: center;
+.third-para{
+  text-indent: 500px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: green;
 }
 
 
