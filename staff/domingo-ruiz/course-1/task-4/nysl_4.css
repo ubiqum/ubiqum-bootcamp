@@ -17,7 +17,7 @@ body {
     z-index: 3;
     position: fixed;
     top: 30px;
-    margin-left: 350px;   
+    margin-left: 120px;   
 }
 
 .estilolinks {
@@ -30,7 +30,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     text-decoration: none;
-    margin-left: 30px;
+    margin-left: 60px;
     word-spacing: -2px;
     
     
@@ -52,7 +52,7 @@ body {
     position: fixed;
     z-index: 1;
     margin-top: 6px;
-    margin-left: 250px;
+    margin-left: 50px;
     
 }
 
@@ -324,3 +324,7 @@ input {
     border-radius: 5px;
 }
 
+.maps {
+    margin-left: 25%;
+    margin-right: 25%;
+}
