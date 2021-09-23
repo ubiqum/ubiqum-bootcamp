@@ -8,6 +8,7 @@ body {
     
 }
 
+
 .height {
     height: 625px;
 }
@@ -277,8 +278,8 @@ table {
 
 /*form*/
 
-.section--flex {
-    margin-top: 7%;
+.section--column {
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -293,5 +294,33 @@ table {
 
 .section--grid {
     display: grid;
-    grid-template-columns: 20% 20%;
+    grid-template-columns: auto auto;
 }
+
+.grid--columns55 {
+        display: grid;
+        grid-template-columns: 55% 55%;
+       
+}
+    
+
+.input--margin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input--margintop {
+    margin-top: 5%;
+}
+
+.input--margintop20 {
+    margin-top: 20%;
+}
+
+
+
+input {
+    border: 2px solid #043c4c;
+    border-radius: 5px;
+}
+
