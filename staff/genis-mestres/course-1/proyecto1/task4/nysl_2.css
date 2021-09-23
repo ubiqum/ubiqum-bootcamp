@@ -129,7 +129,6 @@ button {
  }
 .section-game-info h3 {
     /*  margin-left: 150px; */
-
      font-style:italic;
  }
 
@@ -142,9 +141,20 @@ button {
  }
 
 
- table {
+ .game-info-tables {
     font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    border-collapse: separate;
+    border-spacing: 50px 0;
+
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+ .game-info-tables thead th {
+    padding: 10px 0;
+
  }
+ 
  .section-game-info p:nth-child(2) {
     /*  margin-left: 150px; */
 
@@ -162,13 +172,17 @@ button {
  .section-game-info p:nth-child(8) {
      display:inline;
      margin-inline-start:200px;
+
      
    
  }
  
-.second-column {
-    display:inline;
-    margin-inline-start:200px;
-    
-  
-}
+
+ .locations {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    column-gap: 10px;
+    row-gap:10px;
+ }
+

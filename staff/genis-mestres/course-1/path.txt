@@ -1,0 +1,8 @@
+cd /mnt/c/Users/genis/Documents/ESTUDIS/UBIQUM/projects/ubiqum-bootcamp/staff/genis-mestres/course-1
+
+
+
+feature/course-1
+
+personal token
+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
