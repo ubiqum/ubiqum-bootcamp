@@ -45,7 +45,7 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .first-para {
-  text-indent: 200px;
+  text-indent: 300px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: green;
   
@@ -55,12 +55,12 @@
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 .second-para{
-  text-indent: 500px;
+  text-indent: 600px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: green;
 }
 .third-para{
-  text-indent: 500px;
+  text-indent: 600px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: green;
 }
