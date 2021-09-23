@@ -1,0 +1,44 @@
+body {
+    
+}
+
+img {
+    float: left;
+    height: 200px;
+    width: 200px;
+}
+
+h1 {
+    font-size: 72px;
+    margin-bottom: 30px;
+    margin-top: 72px;
+}
+
+a {
+    padding: 0px 15px 0px 15px;
+}
+
+.link2 {
+    text-decoration: none;
+    color: black;
+}
+
+hr {
+    border:none;
+    border-left:1px solid hsla(200, 10%, 50%,100);
+    height:30px;
+    width:1px;
+    display: inline;   
+}
+
+h2 {
+    margin-left: 230px;
+    margin-top: 59px;
+    margin-bottom: 0px;
+    font-size: 30px;
+    }
+p {
+    margin-left: 250px;
+    margin-top: 0px;
+}
+

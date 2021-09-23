@@ -1,0 +1,94 @@
+body {
+    margin: 0 0 0 0;
+}
+.boxp {
+    margin: 130px 20px 20px 20px;
+}
+
+h1 {
+    position: absolute;
+    font-size: 75px;
+}
+
+.img1 {
+    width: 100%;
+    height: 350px;
+}
+
+.box1 {
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    position: relative;
+}
+
+h2 {
+    color: white;
+    font-size: 50px;
+    margin-top: -4px;
+}
+
+.logo {
+    position: absolute;
+    height: 113px;
+    margin-left: 393px;
+    margin-top: -113px;
+}
+
+.flex {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    margin-bottom: 40px;
+    text-decoration: none;
+}
+
+.a-bold {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.timetable {
+    margin-top: -170px;
+}
+
+.time {
+    margin-left: 250px;
+    font-style: italic;
+}
+
+.ex {
+    margin-left: 270px;
+}
+
+.time2 {
+    margin-top: 18px;
+}
+
+.ex2 {
+    margin-bottom: 25px;
+}
+
+
+h3 {
+    color: black;
+    margin-bottom: -17px;
+    font-size: 20px;
+}
+
+.text-contact {
+    margin: -187px 200px 0px 153px;
+}
+
+p {
+    margin: 20px 0 24px 15px;
+}
+
+.boxtext {
+    margin: -208px 400px 0 149px;
+    position: absolute;
+}
+
