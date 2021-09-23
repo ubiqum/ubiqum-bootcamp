@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>games</title>
-    <link rel="stylesheet" href="main-style2.css" type="text/css" />
-    <link rel="stylesheet" href="main-style2.css" type="text/css" />
+    <title>registration</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
@@ -14,12 +13,12 @@
 <body>
     <img class="logo" src="https://s3.amazonaws.com/gbstool/emails/2027/nysl_logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210912T155845Z&X-Amz-SignedHeaders=host&X-Amz-Expires=180900&X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20210912%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=05603368a1b50a3f1dfa8c00f169b93eadb450d7b786dc8ed840dfe779572473" alt="logo" />
     <nav>
-        <a class="a-bold" href="home-style2.html">Home</a>        
-        <a href="about-nysl-style2.html">About NYSL</a>
+        <a class="a-bold" href="home.html">Home</a>        
+        <a href="about.html">About NYSL</a>
         <a href="table.html">Games</a>
         <a href="list.html">Rules</a>
         <a href="registration-form.html">Registration</a> 
-        <a href="contact-style2.html">Contact</a>
+        <a href="contact.html">Contact</a>
     </nav>
     <div class="table-body">
         <header>
@@ -27,43 +26,43 @@
         </header>
         <form action="show-data.html" method="GET">
             <!-- tipo 1 -->
-            <div class="form form1">
+            <fieldset class="form form1">
                 <div>        
                     <label>Player's First Name:</label>
-                    <input class="input-box1" type="text" name="first-name">
+                    <input class="input-box1" placeholder= "First Name" type="text" name="first-name">
                 </div>
                 <div>
                     <label>Last Name:</label>
-                    <input class="input-box1" type="text" name="last-name">
+                    <input class="input-box1" placeholder="Last Name" type="text" name="last-name">
                 </div>
-            </div>
+            </fieldset>
             <!-- tipo 2 -->
-            <div class="form form2">   
+            <fieldset class="form form2">   
                 <label>Street Address:</label>
-                <input type="text" name="adress">
-            </div>
-            <div class="form form1">
+                <input placeholder="Adress" type="text" name="adress">
+            </fieldset>
+            <fieldset class="form form1">
                 <div>
                     <label>City:</label>
-                    <input class="input-box1" type="text" name="city">
+                    <input class="input-box1" placeholder="City" type="text" name="city">
                 </div>
                 <div>
                     <label>Zip Code:</label>
-                    <input class="input-box1" type="number" name="zip-code">
+                    <input class="input-box1" placeholder="Zip Code" type="number" name="zip-code">
                 </div>
-            </div> 
-            <div class="form form3">   
+            </fieldset> 
+            <fieldset class="form form3">   
                 <div>
                     <label>Birth Date (mm/dd/yyyy)</label>
                     <input  type="date" name="birth-date">
                 </div>
                 <div>
-                    <label  for="">Gender</label>
+                    <label  for="">Gender:</label>
                     <input  type="checkbox" name="gender" value="female">Female
                     <input  type="checkbox" name="gender" value="male">Male
                 </div>
-            </div>
-            <div class="form">   
+            </fieldset>
+            <fieldset class="form">   
                 <label class="checkbox" for="">Grade:</label>
                     <input class="grade-checkbox" name="grade" type="checkbox" value="pre-school">Pre-School
                     <input class="grade-checkbox" name="grade" type="checkbox" value="1">1st
@@ -71,26 +70,26 @@
                     <input class="grade-checkbox" name="grade" type="checkbox" value="3">3rd
                     <input class="grade-checkbox" name="grade" type="checkbox" value="4">4th
                     <input class="grade-checkbox" name="grade" type="checkbox" value="5">5th
-            </div> 
-            <div class="form form2">   
+            </fieldset> 
+            <fieldset class="form form2">   
                 <label class="label-space" for="">Parent/Guardian:</label>
-                <input type="text" name="parents">
-            </div>
-            <div class="form form1">   
+                <input placeholder="Parent/Guardian Name" type="text" name="parents">
+            </fieldset>
+            <fieldset class="form form1">   
                 <div>
                     <label for="">Contact Phone:</label>
-                    <input class="input-box1" type="tel" name="phone">
+                    <input class="input-box1" placeholder="Phone Number" type="tel" name="phone">
                 </div>
                 <div>
                     <label for="">Contact Email:</label>
-                    <input class="input-box1" type="email" name="mail">
+                    <input class="input-box1" placeholder="Email" type="email" name="mail">
                 </div>
-            </div>
+            </fieldset>
 
     
                 <!-- mirar de usar flex o grid ej:1 inicio -->
             <strong>Which elementary schools do you live near?</strong>                 
-            <div class="form form4">   
+            <fieldset class="form form4">   
                 <label for=""><b>First Closest School:</b></label>
                 <div class="school2-title">
                     <label for=""><b>Second Closest School:</b></label>
@@ -135,11 +134,11 @@
                         <input type="checkbox" name="1closest" value="south-elementary">South Elementary
                     </div>
                 </div>
-            </div>
+            </fieldset>
                 <!-- mirar de usar flex o grid ej:1 fin -->
 
 
-            <div class="form form5">   
+            <fieldset class="form form5">   
                 <b>What position(s) do you normally play?</b>
                 <label for="">(check all that apply)</label> </label>
                 <br>
@@ -148,9 +147,9 @@
                 <br>   
                 <input type="checkbox" name="n-position" value="defense">Defense
                 <input class="checkbox-form5-6" type="checkbox" name="n-position" value="goalkeeper">Goalkeeper         
-            </div>
-            <div class="form form6"> 
-            <b>What position(s) do you want play?</b>
+            </fieldset>
+            <fieldset class="form form6"> 
+                <b>What position(s) do you want play?</b>
                 <label for="">(check all that apply)</label>
                 <br>
                 <input type="checkbox" name="w-position" value="forward">Forward
@@ -158,8 +157,8 @@
                 <br>
                 <input type="checkbox" name="w-position" value="defense">Defense
                 <input class="checkbox-form5-6" type="checkbox" name="w-position" value="goalkeeper">Goalkeeper
-            </div>
-            <div class="form">   
+            </fieldset>
+            <fieldset class="form">   
                 <input type="checkbox" name="uniform" value="h-uniform"><b>Already Have a Uniform</b>
                 <br>
                 <label for=""><b>Jersey Size:</b></label>
@@ -214,7 +213,7 @@
                         <input type="checkbox" name="s-size" value="s">Small
                     </div>
                 </div>
-            </div>
+            </fieldset>
             <div class="permission-text">
                 <strong>Permission to Play</strong>
                 <article>I, the parent or guardian of the minor registrant, agree that the registrant and I will abide by all the rules of the Northside Youth

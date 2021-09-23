@@ -135,7 +135,7 @@ header {
 }
 
 article{
-    text-decoration: underline;
+    font-style: italic;
 }
 
 .table1 {
@@ -172,6 +172,10 @@ div .map {
 
 div .adress {
     margin-top: 0px;
+}
+
+.sc-name {
+    font-weight: bold;
 }
 
 h2 {
@@ -265,6 +269,7 @@ ul li {
 .form {
     width: 100%;
     margin-bottom: 2rem;
+    border: none;
 }
 
 .form1 {
@@ -321,7 +326,7 @@ ul li {
     color: white;
     width: 140px;
     height: 60px;
-    border-radius: 5px;
+    border-radius: 35px;
     font-family: 'sriracha', sans-serif;
     padding: 0 0 0 0;
     font-size: 17px;
