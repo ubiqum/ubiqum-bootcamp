@@ -1,12 +1,18 @@
-ul li { 
+.navigation {
+    font-size: 170%;
+    padding: 0;
+
+}
+
+.navigation  ul li { 
     display:inline-block; 
-    padding:0 7px; 
+    padding:0 20px; 
     position:relative;
 
 }
 
 /*This introduce tha vertical lines betwen the elements of the navigation */
-ul li:not(:last-child)::after{
+.navigation  ul li:not(:last-child)::after{
   content:""; 
   border:1px solid black;
   border-width: 5px 5px 0 0;
@@ -16,24 +22,56 @@ ul li:not(:last-child)::after{
   height:100%;
 }
 
-.nameoftheevent { font-size: 300% 
+.nameoftheevent { font-size: 300% }
 
-}
-.navigation {
-    font-size: 170%;
-
-}
-.columnimages logo {
-    height: 217px;
+.logo {
+    height: 216px;
     width: 201px;
     float: left;
+    padding: 0px;
 }
-.image2 {
-    height: 217px;
-    width: 201px;
-    float: left;
+
+
+.design_image1 {
     position: relative;
-    top: 270px;
-    position:inline; 
-    left:-200px;
+    width: 216px; 
+    height: 201px; 
+
+    text-align: left;
+    float: left;
+}
+
+.design_image2 {
+    position: relative;
+    width: 216px; 
+    height: 201px; 
+
+    text-align: left;
+    float: left;
+}
+
+.design_image3 {
+    position: relative;
+    width: 216px; 
+    height: 201px; 
+
+    text-align: left;
+    float: left;
+}
+.homepage_title {
+    margin-left: 220px;
+
+}
+.contact_title {
+    visibility: hidden;
+}
+
+.about_title {
+    visibility: hidden;
+}
+.information {
+    padding-left: 2em;
+    text-indent: -2em;
+    display: inline-block
+    
 }
