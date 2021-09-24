@@ -58,7 +58,7 @@
     text-align: left;
     float: left;
 }
-.homepage_title {
+.index_title {
     margin-left: 220px;
 
 }
@@ -69,9 +69,23 @@
 .about_title {
     visibility: hidden;
 }
-.information {
+.information_index {
     padding-left: 2em;
     text-indent: -2em;
-    display: inline-block
+    display: inline-block;
+    
+}
+.information_about {
+    display: table-cell;
+    width: 500px;
+    height: 200px;
+    vertical-align: middle;
+    text-indent: 1em;
+    
+}
+.information_contact {
+    padding-left: 2em;
+    text-indent: -2em;
+    display: inline-block;
     
 }
