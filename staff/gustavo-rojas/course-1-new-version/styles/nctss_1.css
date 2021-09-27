@@ -3,3 +3,71 @@
     padding: 0;
     box-sizing: border-box;
   }
+  
+  .logo-container {
+    display: flex;
+    height: 216px;
+    width: 300px;
+    border: 1px solid rgb(12, 12, 12);  /* For debugging */
+
+  }
+
+  .image-design-container {
+    display: flex;
+    width: 216px; 
+    height: 201px; 
+    position: absolute;
+    top:250px;
+  }
+  
+  .menu-container {
+    color: rgb(14, 13, 13);
+    background-color: #5995DA;  /* Blue */
+    display: flex;
+    position: absolute;
+    top:150px;
+    left:310px;
+  }
+  
+  .menu {
+    border: 1px solid rgb(12, 12, 12);  /* For debugging */
+    width: 900px;
+  }
+  .menu li {
+    border: 1px solid rgb(12, 12, 12);  /* For debugging */
+    display: inline;
+  }
+  .menu li a {
+    font-size: 35px;
+  }
+  .nameofthevent-container {
+    display: flex;
+    border: 1px solid rgb(12, 12, 12);  /* For debugging */
+    position: absolute;
+    top:20px;
+    left: 310px;
+  }
+  .nameofthevent-container p{
+    font-size: 70px
+    
+  }
+  .actual_page .about_title {
+    visibility: collapse;
+  }
+  .actual_page .contact_title {
+    visibility: collapse;
+  }
+  .actual_page .index_title {
+    display: flex;
+    position: absolute;
+    left: 310px;
+    border: 1px solid rgb(12, 12, 12);  /* For debugging */
+   
+    
+  }
+  .information-container {
+    position: absolute;
+    top: 270px;
+    left: 310px;
+    width: 750px;
+  }
