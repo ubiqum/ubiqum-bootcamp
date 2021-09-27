@@ -83,3 +83,6 @@
     left: 310px;
     width: 750px;
 }
+.horizontal-image-container{
+    visibility:hidden;
+}
