@@ -1,0 +1,90 @@
+body {
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+    margin-left: 0px; 
+    margin-right: 0px;
+    padding: 0;
+    color: black; 
+    font-size: 10pt; 
+
+}
+
+
+.front{
+    margin-left: 560px;
+    margin-top: -40px;
+
+}
+.container{
+
+    margin-left: 10px;
+    margin-top: -2px;
+    background-image: url("./assets/design1_image1.jpg");
+    background-size: 900px;
+    height: 215px;
+    width: 880px;
+    
+    }
+
+    .container2{
+
+        margin-left: 20px;
+        margin-top: -5px;
+        text-align: center;
+    
+    }
+
+    h1{
+        margin-left: 10px;
+        margin-top: 170px;
+        font-size: 30pt;
+        width: 700px;    
+        
+        }
+
+    h2{
+        color: black;
+        background-color: white;
+        border: black 5px solid;
+        margin-left: -10px;
+        margin-top: 5px;
+        width: 870px;
+    
+    }
+        
+    img{
+            margin-top: -2px;
+            margin-left: 8px;
+            width: 140px;
+            height: 115px;
+            position:static;
+            
+        }
+
+
+    .container3{
+
+    margin-left: 10px;
+    margin-top: -70px;
+
+
+    }
+
+    .event-date{
+        display: flex;
+        flex-direction: column;
+        margin-left: 180px;
+        margin-top: -10px;
+    
+    }
+    
+    .event-description{
+        display: flex;
+        flex-direction: column;
+        margin-top: -12px;
+        margin-left: 189px;
+        text-align: justify;
+    }
+
+
+
