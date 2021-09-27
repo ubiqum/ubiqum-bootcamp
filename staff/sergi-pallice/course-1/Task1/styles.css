@@ -1,0 +1,45 @@
+.logo {
+  /*
+  background-size: cover;
+  color: lightgreen;
+  */
+  font: bold 14px arial;
+  width: 140px;
+  height: 140px;
+  border: 2px solid #999999;
+}
+
+body {
+  font-family: "Cambria";
+}
+
+.index-frame1 img {
+  float: left;
+  margin-right: 20px;
+}
+
+.index-frame1 {
+  height: 140px;
+}
+
+.index-frame2 img {
+  float: left;
+  margin-right: 20px;
+  /* width: 180px; */
+}
+
+.index-frame2 {
+  height: 250px;
+}
+
+.index-frame2 dl {
+  padding-left: 20px;
+  float: right;
+  width: calc(100% - 184px);
+}
+
+.about-frame2 img {
+  float: left;
+  margin-right: 20px;
+  width: 400px;
+}
