@@ -141,3 +141,9 @@
 .information-container-general-info span {
     font-weight: bold;
 }
+.information-container-general-info .headings {
+    font-weight: bold;
+}
+.information-container-general-info th {
+    text-align: left;
+}
