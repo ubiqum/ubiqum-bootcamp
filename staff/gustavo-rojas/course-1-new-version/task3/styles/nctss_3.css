@@ -29,14 +29,18 @@
     position: absolute;
     top: 75px;
     left: 650px;
+    width: 350px;
     z-index: 1;
+}
+.menu-container ul {
+    text-align:center;width:350px;
 }
 
 .menu {
     width: 900px;
 }
 
-.menu li {
+ li {
     display: inline;
 
 }
