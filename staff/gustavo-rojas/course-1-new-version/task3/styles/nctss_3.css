@@ -32,18 +32,16 @@
     width: 350px;
     z-index: 1;
 }
-.menu-container ul {
-    text-align:center;width:350px;
-}
 
 .menu {
     width: 900px;
 }
 
- li {
+.menu-container li {
     display: inline;
 
 }
+.menu-container { text-align:center} 
 
 .menu li a {
     font-size: 25px;
