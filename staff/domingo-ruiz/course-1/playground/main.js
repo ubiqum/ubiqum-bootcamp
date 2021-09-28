@@ -70,3 +70,30 @@ function ex5(list, index){
 }
 
 ex5();
+
+//exercise 6
+
+function ex6(array){
+    var array = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
+    for(var i=0; i < array.length; i++){
+        for(var j=i+1; j < array.length; j++){
+            if(array[i] == array[j]){
+            console.log(array[j]);
+            }
+        }
+    }
+}
+
+ex6();
+
+//exercise 7
+
+
+function ex7(myColor){
+    var myColor = ["Red","Green","White","Black"];
+    var myColorinline = myColor.join(", ");
+    console.log(myColorinline);
+}
+
+ex7();
+
