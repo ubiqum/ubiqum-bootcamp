@@ -28,7 +28,7 @@
     display: flex;
     position: absolute;
     top: 75px;
-    left: 690px;
+    left: 650px;
     z-index: 1;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .nameofthevent-container p {
-    font-size: 65px
+    font-size: 60px
 }
 
 .actual_page .about_title {
