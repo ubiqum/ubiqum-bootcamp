@@ -63,15 +63,15 @@
     font-size: 70px
 }
 
-.actual-page.about-title {
+.about-title {
     visibility: collapse;
 }
 
-.actual-page.contact-title {
+.contact-title {
     visibility: collapse;
 }
 
-.actual-page.index-title {
+.index-title {
     position: absolute;
     left: 300px;
     top:200px;
