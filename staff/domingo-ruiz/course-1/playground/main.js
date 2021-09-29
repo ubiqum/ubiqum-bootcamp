@@ -46,35 +46,31 @@ for(let i = 0; i <1; i++){
 
 
 function ex3(numbers){
-    var numbers = [1, 2, 3];
     console.log(Math.min(...numbers));   
 }
- 
-ex3();
+var numbers = [1, 2, 3];
+ex3(numbers);
 
 //exercise 4
 function ex4(numbers){
-    var numbers = [1, 2, 3];
     console.log(Math.max(...numbers));   
 }
-
-ex4();
+var numbers = [1, 2, 3];
+ex4(numbers);
 
 //exercise 5
 
 function ex5(list, index){
-    var list = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
     var index = 1;
     console.log(list[index]);
 
 }
-
-ex5();
+var list = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
+ex5(list);
 
 //exercise 6
 
 function ex6(array){
-    var array = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
     for(var i=0; i < array.length; i++){
         for(var j=i+1; j < array.length; j++){
             if(array[i] == array[j]){
@@ -84,16 +80,34 @@ function ex6(array){
     }
 }
 
-ex6();
+var array = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
+ex6(array);
 
 //exercise 7
 
 
 function ex7(myColor){
-    var myColor = ["Red","Green","White","Black"];
-    var myColorinline = myColor.join(", ");
-    console.log(myColorinline);
+    var myColor = myColor.join(", ");
+    return myColor;
 }
 
-ex7();
+var myColor = ["Red","Green","White","Black"]
+var another = ["black", "yellow"]
+console.log(ex7(another));
+console.log(ex7(myColor));
 
+
+
+//string functions 
+
+//ex1
+function ex1(x){
+    var reversedNumber = x.toString().split("");
+    var xReverse = reversedNumber.reverse().join("");
+    return xReverse;        
+}
+console.log(ex1(1234));
+
+//or 
+x = (3456);
+console.log(ex1(x))
