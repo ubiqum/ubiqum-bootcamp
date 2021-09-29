@@ -52,26 +52,26 @@
     margin: 2em
 }
 
-.nameofthevent-container {
+.name-of-the-event-container {
   
     position: absolute;
     top: 20px;
     left: 310px;
 }
 
-.nameofthevent-container p {
+.name-of-the-event-container p {
     font-size: 70px
 }
 
-.actual_page .about_title {
+.actual-page.about-title {
     visibility: collapse;
 }
 
-.actual_page .contact_title {
+.actual-page.contact-title {
     visibility: collapse;
 }
 
-.actual_page .index_title {
+.actual-page.index-title {
     position: absolute;
     left: 300px;
     top:200px;
@@ -82,7 +82,4 @@
     top: 270px;
     left: 310px;
     width: 750px;
-}
-.horizontal-image-container{
-    visibility:hidden;
 }
