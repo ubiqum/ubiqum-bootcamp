@@ -19,5 +19,11 @@ if (age === ignasiAge) {
 } else {
     console.log("Ignasi is younger than you");
 }
+let names = ["kapil", "one", "two", "three"];
+console.log(names[0]);
+console.log(names[3]);
 
+for (i = 0; i < 4; i++){
+    console.log(names);
+}
 
