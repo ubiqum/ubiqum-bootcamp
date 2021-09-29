@@ -77,7 +77,6 @@
     left: 0px;
     width: 1000px;
     top: 225px;
-    
 }
 
 .information-container {
@@ -86,13 +85,31 @@
     left: 310px;
     width: 750px;
 }
+
 .horizontal-image-container {
-    visibility:hidden;
+    visibility: hidden;
+}
+.information-container {
+    width: 700px;
+}
+.information-container-general-info li {
+    list-style-type: none;
 }
 
-.information-container-general-info li {
-    list-style-type: none; 
-}
 .information-container-general-info span {
     font-weight: bold;
+}
+
+.information-container-general-info th {
+    text-align: left;
+}
+
+.rules-document-title {
+    text-align: center;
+}
+
+.rules_header_text {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2em;
 }

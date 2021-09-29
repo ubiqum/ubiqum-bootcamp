@@ -20,7 +20,7 @@
     height: 201px;
     position: absolute;
     top: 250px;
-    visibility:hidden;
+    visibility: hidden;
 }
 
 .menu-container {
@@ -37,7 +37,7 @@
 }
 
 .menu li {
-    list-style-type: none; 
+    list-style-type: none;
 }
 
 .menu li a {
@@ -68,7 +68,7 @@
     border: 1px solid black;
     top: 225px;
     background-color: gray;
-    color:white;
+    color: white;
 }
 
 .actual_page .contact_title {
@@ -79,7 +79,7 @@
     border: 1px solid black;
     top: 225px;
     background-color: gray;
-    color:white;
+    color: white;
 }
 
 .actual_page .index_title {
@@ -90,7 +90,7 @@
     border: 1px solid black;
     top: 225px;
     background-color: gray;
-    color:white;
+    color: white;
 }
 
 .information-container {
@@ -99,18 +99,45 @@
     left: 310px;
     width: 750px;
 }
+
 .horizontal-image-container {
     display: flex;
     position: absolute;
     top: 10px;
 }
+
 .horizontal-image-container img {
     height: 216px;
     width: 1000px;
 }
-.information-container-general-info li {
-    list-style-type: none; 
+
+.information-container {
+    width: 700px;
 }
+
+.information-container-general-info li {
+    list-style-type: none;
+}
+
 .information-container-general-info span {
     font-weight: bold;
+}
+
+.information-container-general-info th {
+    text-align: left;
+}
+
+.rules-document-title {
+    text-align: center;
+    z-index: 1;
+}
+
+.rules_header_text {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2em;
+}
+.information-container-rules {
+    position: relative;
+    top:350px;
 }
