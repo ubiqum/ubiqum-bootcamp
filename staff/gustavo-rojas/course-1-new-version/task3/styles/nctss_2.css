@@ -60,7 +60,7 @@
     font-size: 70px
 }
 
-.actual_page .about_title {
+.about_title {
     text-align: center;
     position: absolute;
     left: 0px;
@@ -71,7 +71,7 @@
     color: white;
 }
 
-.actual_page .contact_title {
+.contact_title {
     text-align: center;
     position: absolute;
     left: 0px;
@@ -82,7 +82,7 @@
     color: white;
 }
 
-.actual_page .index_title {
+.index_title {
     text-align: center;
     position: absolute;
     left: 0px;
@@ -140,4 +140,7 @@
 .information-container-rules {
     position: relative;
     top:350px;
+}
+.top-level-sl1, .top-level-sl2,.top-level-sl3, .top-level-acl, .top-level-vdgsi  {
+    font-weight: bold;
 }
