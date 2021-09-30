@@ -1,0 +1,91 @@
+
+
+console.log("Exercise 1: Write a JavaScript function that reverses a number. For example, if x = 32443 then the output should be 34423");
+
+/* Save your JavaScript file and reload the page. Make sure you see the correct output.  If not, investigate and fix.*/
+function reverseNum(n) {
+  
+    let r = n.toString().split('') /*  creates an array from strings, 
+    le indicas en como se separan los elementos. Si fueran palabras le indicaríamos que cada espacio hace un elemento nuevo, cada palabra es un elemento. 
+    Aqí sólo hay números con lo que todoes un elemento
+    -*/
+                        .reverse()
+                        .join('');  
+    
+    return parseInt(r);
+                    }
+
+num = reverseNum(123);
+console.log(num);
+console.log(typeof num);
+
+
+console.log("Exercise 2: Write a JavaScript function that returns a string in alphabetical order.");
+/* For example, if x = 'webmaster' then the output should be 'abeemrstw'. 
+ Punctuation and numbers aren't passed in the string.
+Save your JavaScript file and reload the page. Make sure you see the correct output.  
+If not, investigate and fix. */
+
+function orderLetters(l) {
+  
+    let r = l.split('') /*  creates an array from strings, 
+    le indicas en como se separan los elementos. Si fueran palabras le indicaríamos que cada espacio hace un elemento nuevo, cada palabra es un elemento. 
+    Aquí sólo hay números con lo que todoes un elemento
+    -*/
+                        .sort()
+                        .join('')
+
+    return r;
+                    }
+
+
+console.log(orderLetters('webmaster'));
+console.log(typeof orderLetters('webmaster'));
+
+
+console.log("Exercise 3: Write a JavaScript function that converts the first letter of every word to uppercase. ")
+/* 
+For example, if x = "prince of persia" then the output should be "Prince Of Persia".
+
+Save your JavaScript file and reload the page. Make sure you see the correct output.  If not, investigate and fix.
+
+  */
+
+
+var sentence = "prince of persia";
+function capital_letter(phrase){
+
+    let new_array =  phrase.toLowerCase()
+                        .split(" ")
+                        .map(x=>{
+        return x.substring(0,1).toUpperCase()+x.substring(1)
+    })
+                        .join(" ");      
+   /*  console.log(map.join(" ")); */
+    return new_array;
+//substring
+
+/* let map = new_array.map(x=>{
+    return x.replace(x.charAt(0),x.charAt(0).toUpperCase());
+})                 
+console.log(map.join(" "));
+return new_array; */
+}
+
+console.log(capital_letter(sentence));
+
+/*let miscolores = ["Red", "Green", "White", "Black"];
+
+miscolores = miscolores.map();
+console.log(miscolores[0]);
+console.log(miscolores[1]);
+console.log(miscolores[2]);
+console.log(miscolores[3]);
+ 
+console.log(typeof miscolores[1]);
+
+
+
+Exercise 4: Write a JavaScript function that finds the longest word in a phrase. For example, if x = "Web Development Tutorial", then the output should be "Development".
+
+Save your JavaScript file and reload the page. Make sure you see the correct output.  If not, investigate and fix. */

@@ -177,13 +177,27 @@ SUBMIT:
 Submit all your JavaScript code for the above exercises.   Use the "code" option for submitting.  */
 
 myColor = ["Red", "Green", "White", "Black"];
+myColor = myColor.join();
 
+console.log(myColor);
+
+console.log(typeof myColor);
 document.getElementById("first_p").innerHTML = myColor;
 
+/* console.log("Otra forma de hacer el ejercicio");
 
-/* 
-Exercise 1: Write a JavaScript function that reverses a number. For example, if x = 32443 then the output should be 34423.
+let miscolores = ["Red", "Green", "White", "Black"];
 
-Save your JavaScript file and reload the page. Make sure you see the correct output.  If not, investigate and fix.
- */
+miscolores = miscolores.map();
+console.log(miscolores[0]);
+console.log(miscolores[1]);
+console.log(miscolores[2]);
+console.log(miscolores[3]);
  
+console.log(typeof miscolores[1]);
+
+/* for (i=0;  i< miscolores.length; i++){
+
+} */
+/*  */
+console.log(typeof miscolores[1]);
