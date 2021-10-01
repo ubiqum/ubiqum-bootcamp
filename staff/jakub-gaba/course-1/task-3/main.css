@@ -1,7 +1,9 @@
 .bigboss{
   width: 1280px;
+  border: 2px solid black;
   margin-left: auto;
   margin-right: auto;
+  
 }
 .container {
   padding: 1rem;
@@ -15,6 +17,13 @@
   align-items: center;
   justify-content: center;
   margin-top: 20em;
+  border: 2px solid black;
+}
+.container_safety{
+  border: 2px solid black;
+  margin-top: 10em;
+  text-align: center;
+  font-size: 30px;
 }
 .nav{
   font-size: 2rem;
@@ -33,10 +42,11 @@
   max-width: 15rem;
   margin-right: 2rem;  
 }
-.text_logo {
+.text_logo  {
   font-size: 40px;
   display: flex;
   text-align: center;
+  border: 2px solid black;
 }
 .contact_text {
   font-size: 35px;
@@ -52,7 +62,60 @@
   font-size: 1.5rem; 
   font-weight: bold;
 }
+.container_safety_subtext{
+  font-size: 1.8rem;
+  border: 2px solid black;
+}
+.safety_text{
+  font-size: 1.3rem;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+}
+.safety_subtext{
+  font-size: 1.3rem;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+  line-height: normal;
+}
+.safety_levels{
+  font-size: 2rem;
+  border: 2px solid black;
+  line-height: 50px;
+  font-weight: bold;
+  
+}
+.car_diff{
+  font-size:1.5rem;
+  border: 2px solid black;
+}
+.car_sub{
+  font-size:1.3rem;
+  border: 2px solid black;
+  line-height: 30px;
+}
+.car_text{
+  font-size: 1.1rem;
+  border: 2px solid black;
+  font-weight: normal;
+  line-height: 50px;
+}
+.car_text__long{
+  line-height:normal;
+}
+.ol_countdelete{
+  list-style-type: none;
+}
+.car_table{
+  width: 444px;
+  border: 2px solid black;
+  border-right: 2px solid black;
+}
 .line{
 color:deepskyblue;
 font-size: 2.5rem;
 }
+
