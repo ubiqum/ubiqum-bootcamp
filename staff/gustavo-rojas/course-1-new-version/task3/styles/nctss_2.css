@@ -377,3 +377,9 @@
 .rules-tables th:last-child {
             border-right: 0px solid;
             }
+            .nobold {
+                font-weight:normal;
+            }
+.nobold {
+         font-weight: normal;
+            }

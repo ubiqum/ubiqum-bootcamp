@@ -291,61 +291,6 @@
     padding-left: 40px;
     list-style-type:upper-alpha;
 }
-
-
-.second-level-lai {
-    padding-left: 40px;
+.nobold {
+    font-weight: normal;
 }
-.second-level-lai-alpha {
-    padding-left: 40px;
-    list-style-type:upper-alpha;
-}
-
-.thrid-level-lai {
-    padding-left: 40px;
-}
-.thrid-level-lai-alpha {
-    padding-left: 40px;
-    list-style-type:upper-alpha;
-}
-
-.four-level-lai {
-    padding-left: 40px;
-      
-}
-.four-level-alpha-lai {
-    padding-left: 40px;
-    list-style-type:upper-alpha;
-      
-}
-.five-level-lai {
-    padding-left: 40px;
-}
-.six-level-lai {
-    padding-left: 40px;
-    list-style-type:lower-alpha;
-}
-.six-level-lai-upper-alpha {
-    padding-left: 40px;
-    list-style-type:upper-alpha;
-}
-.seven-level-lai {
-    padding-left: 40px;
-}
-.seven-level-lai-upper-alpha {
-    padding-left: 40px;
-    list-style-type:upper-alpha;
-}
-
-.rules-tables {
-    border-collapse: collapse; 
-}
-.rules-tables th , .rules-tables td {
-        border: 1px solid black;
-           }
-.rules-tables tr, .rules-tables td:last-child {
-            border-right: 0px solid;
-            }
-.rules-tables th:last-child {
-            border-right: 0px solid;
-            }

@@ -377,19 +377,11 @@
 .seven-level-lai {
     padding-left: 40px;
 }
-.seven-level-lai-upper-alpha {
+.seven-level-lai
+-upper-alpha {
     padding-left: 40px;
     list-style-type:upper-alpha;
 }
-.rules-tables {
-    border-collapse: collapse; 
+.nobold {
+    font-weight: normal;
 }
-.rules-tables th , .rules-tables td {
-        border: 1px solid black;
-           }
-.rules-tables tr, .rules-tables td:last-child {
-            border-right: 0px solid;
-            }
-.rules-tables th:last-child {
-            border-right: 0px solid;
-            }
