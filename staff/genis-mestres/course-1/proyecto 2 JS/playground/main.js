@@ -184,20 +184,3 @@ console.log(myColor);
 console.log(typeof myColor);
 document.getElementById("first_p").innerHTML = myColor;
 
-/* console.log("Otra forma de hacer el ejercicio");
-
-let miscolores = ["Red", "Green", "White", "Black"];
-
-miscolores = miscolores.map();
-console.log(miscolores[0]);
-console.log(miscolores[1]);
-console.log(miscolores[2]);
-console.log(miscolores[3]);
- 
-console.log(typeof miscolores[1]);
-
-/* for (i=0;  i< miscolores.length; i++){
-
-} */
-/*  */
-/* console.log(typeof miscolores[1]); */

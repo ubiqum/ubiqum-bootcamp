@@ -7,7 +7,7 @@ function reverseNum(n) {
   
     let r = n.toString().split('') /*  creates an array from strings, 
     le indicas en como se separan los elementos. Si fueran palabras le indicaríamos que cada espacio hace un elemento nuevo, cada palabra es un elemento. 
-    Aqí sólo hay números con lo que todoes un elemento
+    Aquí sólo hay números con lo que todo es un elemento
     -*/
                         .reverse()
                         .join('');  
@@ -58,34 +58,17 @@ function capital_letter(phrase){
     let new_array =  phrase.toLowerCase()
                         .split(" ")
                         .map(x=>{
-        return x.substring(0,1).toUpperCase()+x.substring(1)
+        return x.substring(0,1).toUpperCase()+x.substring(1) //.substring gets the reset of the characters of the word.
     })
                         .join(" ");      
-   /*  console.log(map.join(" ")); */
-    return new_array;
-//substring
 
-/* let map = new_array.map(x=>{
-    return x.replace(x.charAt(0),x.charAt(0).toUpperCase());
-})                 
-console.log(map.join(" "));
-return new_array; */
+    return new_array;
+
 }
 
 console.log(capital_letter(sentence));
 
-/*let miscolores = ["Red", "Green", "White", "Black"];
-
-miscolores = miscolores.map();
-console.log(miscolores[0]);
-console.log(miscolores[1]);
-console.log(miscolores[2]);
-console.log(miscolores[3]);
- 
-console.log(typeof miscolores[1]);
-
-
-
+/*
 Exercise 4: Write a JavaScript function that finds the longest word in a phrase. For example, 
 if x = "Web Development Tutorial", then the output should be "Development".
 
@@ -107,18 +90,24 @@ function longest_word(phrase){
     console.log(array_of_words[index_longest_w]); 
     return array_of_words[index_longest_w]; 
                                
-                                }       
-                            
-
-                               
+   }       
                            
+                        
  longest_word(sentence_longest);
 
- 
+ // Another way to solve exercise 7 
 
-                                
-            
-                            
+console.log("Solution II");
+ function longest_word_II(phrase){
+    let array_of_words =  phrase.split(" ");
+    let result = ""; 
+    for(var i = 0; i<array_of_words.length; i++){
+        if(array_of_words[i].length > result.length){
+             result = array_of_words[i];
+            }
+        }
+    return result;
+ }
 
-    
+ console.log(longest_word_II(sentence_longest));
 
