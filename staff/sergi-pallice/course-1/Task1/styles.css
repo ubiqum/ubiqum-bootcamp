@@ -25,7 +25,9 @@ body {
 .index-frame2 img {
   float: left;
   margin-right: 20px;
-  /* width: 180px; */
+  width: 140px;
+  height: 140px;
+  border: 2px solid #999999;
 }
 
 .index-frame2 {
