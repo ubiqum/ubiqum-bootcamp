@@ -86,6 +86,39 @@ console.log(typeof miscolores[1]);
 
 
 
-Exercise 4: Write a JavaScript function that finds the longest word in a phrase. For example, if x = "Web Development Tutorial", then the output should be "Development".
+Exercise 4: Write a JavaScript function that finds the longest word in a phrase. For example, 
+if x = "Web Development Tutorial", then the output should be "Development".
 
 Save your JavaScript file and reload the page. Make sure you see the correct output.  If not, investigate and fix. */
+sentence_longest = "Web Development Tutorial";
+function longest_word(phrase){
+    let array_of_words =  phrase.split(" ");
+    /* console.log(array_of_words); */
+    let num_characters_a =  array_of_words.map(x=>{
+                                return x.length;
+                                });
+                            
+    let max_character = Math.max(...num_characters_a);
+
+
+    /* console.log(max_character); */
+    let index_longest_w = num_characters_a.indexOf(max_character)
+    /* console.log(index_longest_w); */
+    console.log(array_of_words[index_longest_w]); 
+    return array_of_words[index_longest_w]; 
+                               
+                                }       
+                            
+
+                               
+                           
+ longest_word(sentence_longest);
+
+ 
+
+                                
+            
+                            
+
+    
+

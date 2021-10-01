@@ -200,4 +200,4 @@ console.log(typeof miscolores[1]);
 
 } */
 /*  */
-console.log(typeof miscolores[1]);
+/* console.log(typeof miscolores[1]); */
