@@ -50,7 +50,7 @@ h2 {
   border: 2px solid #999999;
 }
 
-.events {
+.bottom-frame {
   float: left;
   margin-left: 30px;
 }
@@ -59,14 +59,8 @@ h2 {
   float: left;
 }
 
-.index-frame2 dl {
+.bottom-frame2 dl {
   padding-left: 20px;
   float: right;
   width: calc(100% - 184px);
-}
-
-.about-frame2 img {
-  float: left;
-  margin-right: 20px;
-  width: 400px;
 }
