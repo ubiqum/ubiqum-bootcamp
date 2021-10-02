@@ -71,8 +71,7 @@
     color: white;
 }
 
-.general-information-title 
-{
+.general-information-title {
     text-align: center;
     position: absolute;
     left: 0px;
@@ -82,6 +81,7 @@
     background-color: gray;
     color: white;
 }
+
 .contact-title {
     text-align: center;
     position: absolute;
@@ -148,11 +148,13 @@
     font-style: italic;
     font-size: 1.2em;
 }
+
 .information-container-rules {
     position: relative;
-    top:350px;
+    top: 350px;
 }
-.top-level-sl1, .top-level-sl2,.top-level-sl3, .top-level-acl, .top-level-vdgsi, .top-level-lai  {
+
+.top-level-sl1, .top-level-sl2, .top-level-sl3, .top-level-acl, .top-level-vdgsi, .top-level-lai {
     font-weight: bold;
 }
 
@@ -163,16 +165,19 @@
 .thrid-level-sl1 {
     padding-left: 40px;
 }
+
 .four-level-sl1 {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
+
 .five-level-sl1 {
     padding-left: 40px;
 }
+
 .six-level-sl1 {
     padding-left: 40px;
-    list-style-type:lower-alpha;
+    list-style-type: lower-alpha;
 }
 
 .second-level-sl2 {
@@ -182,32 +187,37 @@
 .thrid-level-sl2 {
     padding-left: 40px;
 }
+
 .four-level-sl2 {
     padding-left: 40px;
-      
 }
+
 .four-level-alpha-sl2 {
     padding-left: 40px;
-    list-style-type:upper-alpha;
-      
+    list-style-type: upper-alpha;
 }
+
 .five-level-sl2 {
     padding-left: 40px;
 }
+
 .six-level-sl2 {
     padding-left: 40px;
-    list-style-type:lower-alpha;
+    list-style-type: lower-alpha;
 }
+
 .six-level-sl2-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
+
 .seven-level-sl2 {
     padding-left: 40px;
 }
+
 .seven-level-sl2-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .second-level-sl3 {
@@ -217,37 +227,42 @@
 .thrid-level-sl3 {
     padding-left: 40px;
 }
+
 .thrid-level-sl3-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .four-level-sl3 {
     padding-left: 40px;
-      
 }
+
 .four-level-alpha-sl3 {
     padding-left: 40px;
-    list-style-type:upper-alpha;
-      
+    list-style-type: upper-alpha;
 }
+
 .five-level-sl3 {
     padding-left: 40px;
 }
+
 .six-level-sl3 {
     padding-left: 40px;
-    list-style-type:lower-alpha;
+    list-style-type: lower-alpha;
 }
+
 .six-level-sl3-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
+
 .seven-level-sl3 {
     padding-left: 40px;
 }
+
 .seven-level-sl3-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .second-level-acl {
@@ -257,140 +272,178 @@
 .thrid-level-acl {
     padding-left: 40px;
 }
+
 .thrid-level-acl-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .four-level-acl {
     padding-left: 40px;
-      
 }
+
 .four-level-alpha-acl {
     padding-left: 40px;
-    list-style-type:upper-alpha;
-      
+    list-style-type: upper-alpha;
 }
+
 .five-level-acl {
     padding-left: 40px;
 }
+
 .six-level-acl {
     padding-left: 40px;
-    list-style-type:lower-alpha;
+    list-style-type: lower-alpha;
 }
+
 .six-level-acl-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
+
 .seven-level-acl {
     padding-left: 40px;
 }
+
 .seven-level-acl-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
-
 
 .second-level-vdgsi {
     padding-left: 40px;
 }
 
+.second-level-vdgsi-upper-alpha {
+    padding-left: 40px;
+    list-style-type: upper-alpha;
+}
+
 .thrid-level-vdgsi {
     padding-left: 40px;
 }
+
 .thrid-level-vdgsi-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .four-level-vdgsi {
     padding-left: 40px;
-      
 }
+
 .four-level-alpha-vdgsi {
     padding-left: 40px;
-    list-style-type:upper-alpha;
-      
+    list-style-type: upper-alpha;
 }
+
 .five-level-vdgsi {
     padding-left: 40px;
 }
+
 .six-level-vdgsi {
     padding-left: 40px;
-    list-style-type:lower-alpha;
+    list-style-type: lower-alpha;
 }
+
 .six-level-vdgsi-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
+
 .seven-level-vdgsi {
     padding-left: 40px;
 }
+
 .seven-level-vdgsi-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
-
 
 .second-level-lai {
     padding-left: 40px;
 }
+
 .second-level-lai-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .thrid-level-lai {
     padding-left: 40px;
 }
+
 .thrid-level-lai-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .four-level-lai {
     padding-left: 40px;
-      
 }
+
 .four-level-alpha-lai {
     padding-left: 40px;
-    list-style-type:upper-alpha;
-      
+    list-style-type: upper-alpha;
 }
+
 .five-level-lai {
     padding-left: 40px;
 }
+
 .six-level-lai {
     padding-left: 40px;
-    list-style-type:lower-alpha;
+    list-style-type: lower-alpha;
 }
+
 .six-level-lai-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
+
 .seven-level-lai {
     padding-left: 40px;
 }
+
 .seven-level-lai-upper-alpha {
     padding-left: 40px;
-    list-style-type:upper-alpha;
+    list-style-type: upper-alpha;
 }
 
 .rules-tables {
-    border-collapse: collapse; 
+    border-collapse: collapse;
 }
-.rules-tables th , .rules-tables td {
-        border: 1px solid black;
-           }
+
+.rules-tables th, .rules-tables td {
+    border: 1px solid black;
+}
+
 .rules-tables tr, .rules-tables td:last-child {
-            border-right: 0px solid;
-            }
+    border-right: 0px solid;
+}
+
 .rules-tables th:last-child {
-            border-right: 0px solid;
-            }
-            .nobold {
-                font-weight:normal;
-            }
+    border-right: 0px solid;
+}
+
 .nobold {
-         font-weight: normal;
-            }
+    font-weight: normal;
+}
+
+.nobold {
+    font-weight: normal;
+}
+
+.table-vehicle-weight {
+    border-collapse: collapse;
+}
+
+.table-vehicle-weight th, .table-vehicle-weight td {
+    border: 1px solid black;
+    border-right: 0px solid;
+    padding: 10px 15px;
+}
+
+.to_skip_the_numeration {
+    display: block; 
+}

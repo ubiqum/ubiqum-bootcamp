@@ -259,6 +259,11 @@
     padding-left: 40px;
 }
 
+.second-level-vdgsi-upper-alpha {
+    padding-left: 40px;
+    list-style-type: upper-alpha;
+}
+
 .thrid-level-vdgsi {
     padding-left: 40px;
 }
@@ -281,6 +286,7 @@
 }
 .six-level-vdgsi {
     padding-left: 40px;
+
     list-style-type:lower-alpha;
 }
 .six-level-vdgsi-upper-alpha {
@@ -296,4 +302,18 @@
 }
 .nobold {
     font-weight: normal;
+}
+
+.table-vehicle-weight {
+    border-collapse: collapse;
+}
+
+.table-vehicle-weight th, .table-vehicle-weight td {
+    border: 1px solid black;
+    border-right: 0px solid;
+    padding: 10px 15px;
+}
+
+.to_skip_the_numeration {
+    display: block; 
 }
