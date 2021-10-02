@@ -1,8 +1,4 @@
 .logo {
-  /*
-  background-size: cover;
-  color: lightgreen;
-  */
   font: bold 14px arial;
   width: 140px;
   height: 140px;
@@ -13,9 +9,33 @@ body {
   font-family: "Cambria";
 }
 
+div.top-frame {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+div.top-frame img {
+  width: 100%;
+  background-color: grey;
+}
+
+.text-in-image {
+  position: absolute;
+  top: 20px;
+  margin-left: 20px;
+}
+
+h2 {
+  margin: 0px;
+  color: white;
+  background-color: #2565ae;
+}
+
 .index-frame1 img {
   float: left;
   margin-right: 20px;
+  width: 50%;
 }
 
 .index-frame1 {
@@ -30,8 +50,13 @@ body {
   border: 2px solid #999999;
 }
 
+.events {
+  float: left;
+  margin-left: 30px;
+}
+
 .index-frame2 {
-  height: 250px;
+  float: left;
 }
 
 .index-frame2 dl {
