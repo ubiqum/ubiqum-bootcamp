@@ -1,7 +1,6 @@
 .logo {
   position: absolute;
-  top: 330px;
-  left: 450px;
+  top: 430px;
   /* width: 120px; */
   height: 120px;
   border: 2px solid #999999;
@@ -29,9 +28,21 @@ div.top-frame img {
 }
 
 h2 {
-  margin: 0px;
+  margin: 0;
+  /* color: white; */
+  /* background-color: #2565ae; */
+  border: 2px solid black;
+}
+
+.button {
+  background-color: rgb(58, 58, 247); /* Blue */
+  border: 2px solid black;
   color: white;
-  background-color: #2565ae;
+  padding: 5px 20px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  width: 60%;
 }
 
 .index-frame1 img {
@@ -44,6 +55,13 @@ h2 {
   height: 140px;
 }
 
+.menu {
+  position: absolute;
+  top: 0;
+  left: 470px;
+  float: left;
+}
+
 .menu img {
   float: left;
   margin-right: 20px;
@@ -54,12 +72,8 @@ h2 {
 
 .bottom-frame {
   float: none;
-  margin-left: 100px;
+  margin-left: 150px;
   max-width: 550px;
-}
-
-.menu {
-  float: left;
 }
 
 .bottom-frame2 dl {
