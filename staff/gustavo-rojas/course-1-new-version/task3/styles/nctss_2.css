@@ -154,6 +154,10 @@
     top: 350px;
 }
 
+li::marker {
+    font-weight: bold;
+  }
+
 .top-level-sl1, .top-level-sl2, .top-level-sl3, .top-level-acl, .top-level-vdgsi, .top-level-lai {
     font-weight: bold;
 }
@@ -436,6 +440,10 @@
     border: 1px solid black;
     border-right: 0px solid;
     padding: 10px 15px;
+}
+
+.table-vehicle-weight th {
+    text-align:center;
 }
 .to_skip_the_numeration {
     display: block; 
