@@ -7,23 +7,31 @@ console.log(age);
 let ageDiff = age - ignasiAge;
 console.log(ageDiff);
 
-if (age >= 21) {
-    console.log("You are older than 21");
-} else {
-    console.log("You are not older that 21");
-}
-if (age === ignasiAge) {
-    console.log("You have the same age as Ignasi");
-} else if (age < ignasiAge){
-    console.log("Ignasi is older than you")
-} else {
-    console.log("Ignasi is younger than you");
-}
+ age >= 21 ? console.log("You are older than 21") : console.log("You are not older that 21");
+    
+
+age === ignasiAge ? console.log("You have the same age as Ignasi") : age < ignasiAge ? console.log("Ignasi is older than you") : console.log("Ignasi is younger than you");
+
 let names = ["kapil", "one", "two", "three"];
 console.log(names[0]);
 console.log(names[3]);
 
-for (i = 0; i < 4; i++){
-    console.log(names);
+
+for (let i = 0; i < names.length; i++){
+    console.log(names[i]);
 }
+
+let ages = [21, 32, 45, 35, 28, 47];
+
+let i = 0;
+while (i < ages.length) {
+    if (ages[i]%2 == 0)
+    console.log(ages[i]);   
+    i++;
+    
+}
+for (i = 0; i < ages.length; i++){
+    console.log(ages[i]);
+}
+
 
