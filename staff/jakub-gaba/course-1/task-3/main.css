@@ -35,7 +35,8 @@
 }
 
 .logo {
-  max-width: 17rem;
+  max-width: 18rem;
+  border: 2px solid black;
   padding-right: 2rem;
 }
 .images {
@@ -112,7 +113,8 @@
 .car_table{
   width: 444px;
   border: 2px solid black;
-  border-right: 2px solid black;
+  background-color: whitesmoke;
+  border-radius: .5rem;
 }
 .line{
 color:deepskyblue;
