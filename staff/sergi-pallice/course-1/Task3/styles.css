@@ -45,6 +45,17 @@ h2 {
   width: 60%;
 }
 
+.color-button {
+  background-color: rgb(8, 192, 8); /* Green */
+  border: 2px solid black;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  width: 60%;
+}
+
 .index-frame1 img {
   float: left;
   margin-right: 20px;
@@ -73,7 +84,7 @@ h2 {
 .bottom-frame {
   float: none;
   margin-left: 150px;
-  max-width: 550px;
+  max-width: 480px; /* calc(x - y); ??? */
 }
 
 .bottom-frame2 dl {
