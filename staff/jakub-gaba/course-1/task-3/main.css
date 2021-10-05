@@ -1,6 +1,6 @@
 .bigboss{
   width: 1280px;
-  border: 2px solid black;
+  
   margin-left: auto;
   margin-right: auto;
   
@@ -17,10 +17,10 @@
   align-items: center;
   justify-content: center;
   margin-top: 20em;
-  border: 2px solid black;
+  
 }
 .container_safety{
-  border: 2px solid black;
+  
   margin-top: 10em;
   text-align: center;
   font-size: 30px;
@@ -36,7 +36,7 @@
 
 .logo {
   max-width: 18rem;
-  border: 2px solid black;
+  
   padding-right: 2rem;
 }
 .images {
@@ -47,7 +47,7 @@
   font-size: 40px;
   display: flex;
   text-align: center;
-  border: 2px solid black;
+  
 }
 .contact_text {
   font-size: 35px;
@@ -65,18 +65,18 @@
 }
 .container_safety_subtext{
   font-size: 1.8rem;
-  border: 2px solid black;
+  
 }
 .safety_text{
   font-size: 1.3rem;
-  border: 2px solid black;
+  
   background-color: whitesmoke;
   border-radius: .5rem;
   font-weight: normal;
 }
 .safety_subtext{
   font-size: 1.3rem;
-  border: 2px solid black;
+  
   background-color: whitesmoke;
   border-radius: .5rem;
   font-weight: normal;
@@ -84,35 +84,36 @@
 }
 .safety_levels{
   font-size: 2rem;
-  border: 2px solid black;
+  
   line-height: 50px;
   font-weight: bold;
   
 }
 .car_diff{
   font-size:1.5rem;
-  border: 2px solid black;
+  
 }
 .car_sub{
   font-size:1.3rem;
-  border: 2px solid black;
+  
   line-height: 30px;
 }
 .car_text{
   font-size: 1.1rem;
-  border: 2px solid black;
+  
   font-weight: normal;
   line-height: 50px;
 }
 .car_text__long{
   line-height:normal;
+  padding-bottom: 10px;
 }
 .ol_countdelete{
   list-style-type: none;
 }
 .car_table{
   width: 444px;
-  border: 2px solid black;
+  
   background-color: whitesmoke;
   border-radius: .5rem;
 }
