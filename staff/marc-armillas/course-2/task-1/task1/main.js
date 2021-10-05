@@ -2,7 +2,7 @@
 
 //Ex1 print a string
 var myName = "Marc Armillas Olius";
-console.log(myName);
+console.log("my name is", myName);
 //Ex2 print a number
 let age = 29;
 console.log(age);
@@ -38,7 +38,7 @@ console.log(namesOfClass)
 //Ex1-b print first element of the array
 console.log(namesOfClass[0]);
 //Ex1-c print last element of the array
-console.log(namesOfClass[5]);
+console.log(namesOfClass[namesOfClass.length-1]);
 // Ex1-d print all elements of the array using a FOR LOOP
 for (let i = 0; i < namesOfClass.length; i++) {
     console.log(namesOfClass[i]);
@@ -154,15 +154,18 @@ capitalizeEachWord (x)
 let a = "Web Development Tutorial";
 function longestWord(a){
     let array = a.split(" ");
+    console.log(array);
     let result = '';
     for (i=0; i<array.length; i++){
         let currentItem = array[i];
-        if(currentItem.length > result.length) {
-            result = array[i];
+        if(currentItem.length > result.length){
+            result = array[i];         
             }
         }
         console.log(result);
     }        
 longestWord(a);
 
+KEY: nIOJ5TasiAgDOn2oHi10bimLFstNcL0TbUWWYJmt
+URL https://api.propublica.org/congress/v1/{congress}/{chamber}/members.json
 

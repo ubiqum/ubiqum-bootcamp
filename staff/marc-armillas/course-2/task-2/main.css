@@ -1,0 +1,19 @@
+body {
+    background-color: #eee;
+}
+
+table {
+    width: 100%;
+}
+tr {
+    width: 100%;
+    padding: 12px;
+}
+
+th {
+    padding: 12px;
+}
+td {
+    text-align: center;
+    padding: 10px;
+}
