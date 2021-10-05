@@ -1,7 +1,7 @@
 .logo {
   position: absolute;
   top: 430px;
-  /* width: 120px; */
+  width: 120px;
   height: 120px;
   border: 2px solid #999999;
 }
@@ -91,4 +91,15 @@ h2 {
   padding-left: 20px;
   float: right;
   width: calc(100% - 184px);
+}
+
+div.everything {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
