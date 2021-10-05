@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="styles/nctss_3.css">
 </head>
 <body>
-  <div class=logo-container>
+  <div class="logo-container">
     <img class="logo" src="images/logo.png" alt="The Logo of NorCal Time Trial Series">
   </div>
-  <div class=name-of-the-event-container>
+  <div class="name-of-the-event-container">
     <p class="name-of-the-event"> NorCal Time Trial Series</p>
   </div>
   <div class="horizontal-image-container">
@@ -33,7 +33,7 @@
   
     <h1 class="index-title">Registration</h1>
 
-  <div class="image-design-container">
+  <div class=""image-design-container"">
     <img class="image-design" src="images/image_1.png" alt="Image ilustration">
   </div>
   <div class="information-container">
@@ -47,7 +47,10 @@
         <label for='first-name'>First Name</label>
         <input id='first-name' name='first-name' type='text' />
       </div>
-
+      <div class='form-row'>
+        <label for='last-name'>Last Name</label>
+        <input id='last-name' name='last-name' type='text' />
+      </div>
       <div class='form-row'>
         <label for='street-address'>Street Address</label>
         <input id='street-address' name='street-address' type='text' />
@@ -65,6 +68,13 @@
         <label for='age'>Age</label>
         <input id='age' name='age' type='text' />
       </div>
+      <fieldset class='legacy-form-row'>
+        <legend>Gender</legend>
+        <input id='gender-type-2' name='gender-type' type='radio' value='Female' checked />
+        <label for='gender-type-2' class='radio-label'>Female</label>
+        <input id='gender-type-1' name='gender-type' type='radio' value='Male' />
+        <label for='gender-type-1' class='radio-label'>Male</label>
+      </fieldset>
       <div class='form-row'>
         <label for='contact-phone'>Contact Phone</label>
         <input id='contact-phone' name='contact-phone' type='text' />
