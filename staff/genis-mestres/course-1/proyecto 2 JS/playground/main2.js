@@ -11,13 +11,11 @@ function reverseNum(n) {
     -*/
                         .reverse()
                         .join('');  
-    
     return parseInt(r);
                     }
 
-num = reverseNum(123);
-console.log(num);
-console.log(typeof num);
+console.log(reverseNum(123));
+
 
 
 console.log("Exercise 2: Write a JavaScript function that returns a string in alphabetical order.");
