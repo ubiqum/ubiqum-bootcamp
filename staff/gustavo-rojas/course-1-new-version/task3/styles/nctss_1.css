@@ -139,7 +139,7 @@ ol > li::marker {
     padding-left: 40px;
     list-style-type: lower-alpha;
 }
-
+/* end of Formating of <ol> in rules.html */
 
 .nobold {
     font-weight: normal;
