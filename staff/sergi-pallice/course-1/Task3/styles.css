@@ -1,9 +1,13 @@
-.logo {
-  position: absolute;
-  top: 430px;
+.logo img {
   width: 120px;
   height: 120px;
   border: 2px solid #999999;
+}
+
+div.logo {
+  float: left;
+  padding-right: 10px;
+  height: 10000px;
 }
 
 body {
@@ -13,7 +17,6 @@ body {
 div.top-frame {
   text-align: center;
   width: 100%;
-  max-width: 600px;
 }
 
 div.top-frame img {
@@ -69,8 +72,7 @@ h2 {
 .menu {
   position: absolute;
   top: 0;
-  left: 470px;
-  float: left;
+  left: calc(100% / 1.4);
 }
 
 .menu img {
@@ -82,9 +84,7 @@ h2 {
 }
 
 .bottom-frame {
-  float: none;
-  margin-left: 150px;
-  max-width: 480px; /* calc(x - y); ??? */
+  margin-top: 10px;
 }
 
 .bottom-frame2 dl {
@@ -93,8 +93,15 @@ h2 {
   width: calc(100% - 184px);
 }
 
+/* Center website*/
 div.everything {
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  max-width: 960px;
+}
+
+div.sides {
+  width: 5%;
 }
 
 table,
@@ -102,4 +109,18 @@ th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+/* #show,
+#content {
+  display: none;
+}
+
+#show:checked ~ #content {
+  display: block;
+} */
+
+.bottom-text {
+  float: none;
+  margin: 10px;
 }
