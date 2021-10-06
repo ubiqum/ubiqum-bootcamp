@@ -5060,33 +5060,39 @@ var data =
 
  //HTML  46 filas fila por cada miembro, columna por cada propiedad
 
-/*  ------------------------variables------------------------------------ */
-
-
-
 
 /* ----------------------------functions--------------------------------------------*/
 
 
 function build_table(){
-  let table = document.getElementById("senate-data");
-  /* document.getElementById("senate-data").innerHTML = ""; */ //deletes previous tables. 
+// deleting previous tables in 'senate-data'
+
+  document.getElementById("senate-data").innerHTML = "";
+
+  /* .innerHTML? we set the table  in 'senate-data'*/
+  //We indicate where the table will be, that is inside div 'senate-data'
+
+  let table = document.getElementById("senate-data")
   
-  
-  let row = document.createElement('tr');//row
-  let cell = document.createElement('td');//cell
-  
-  //-------------------header----------------
+
+
+
+
+
+  //-------------------header---------------------------------//
+
+
+
+// creating the header cells 
   let head_cell1 = document.createElement('th');//heading cell
   let head_cell2 = document.createElement('th');
   let head_cell3 = document.createElement('th');
   let head_cell4 = document.createElement('th');
   let head_cell5 = document.createElement('th');
-//-------tbody------------// 
-let body =  document.createElement('tbody');
+//----------------------// 
 
-  let cell_heading_row = document.createElement('tr'); // heading row
 
+let tr = document.createElement('tr');
   
   let text_h_1 =   document.createTextNode("Full name");
   let text_h_2 =  document.createTextNode("Party (D, R, or I)");
@@ -5095,63 +5101,89 @@ let body =  document.createElement('tbody');
   let text_h_5 =  document.createTextNode("% votes");
 
 
-
-  head_cell1.appendChild(text_h_1);//tdrow
+//adding text to the cells
+  head_cell1.appendChild(text_h_1);
   head_cell2.appendChild(text_h_2);
   head_cell3.appendChild(text_h_3);
   head_cell4.appendChild(text_h_4);
   head_cell5.appendChild(text_h_5);
   
+  // adding cells to the rows
+  tr.appendChild(head_cell1);
+  tr.appendChild(head_cell2);
+  tr.appendChild(head_cell3);
+  tr.appendChild(head_cell4);
+  tr.appendChild(head_cell5);
 
-  cell_heading_row.appendChild(head_cell1);// td row
-  cell_heading_row.appendChild(head_cell2);
-  cell_heading_row.appendChild(head_cell3);
-  cell_heading_row.appendChild(head_cell4);
-  cell_heading_row.appendChild(head_cell5);
+  table.appendChild(tr);
 
-  table.appendChild(cell_heading_row);
-//--------------------------------
-console.log("longitud del members length");
-console.log(data.results[0].members[0])
-console.log("ciao genis che fai");
+/*  ------------------------variables for the loop------------------------------------ */
+
+
+/* var row = table.insertRow(0);
+var cell = row.insertCell(0); */
+
+
+let row = document.createElement('tr'); // create row elements
+let td =  document.createElement('td'); //create cells  element
+
 //--------------loop-----------------------
+//data.results[0].members.length;  indica la cantidad de miembros del senado
+
   for (let i=0; i < data.results[0].members.length; i++) {
-      console.log('ciao');
-         let tr = row;
-         let td1 = cell;
-         let td2 = cell;
-         let td3 = cell;
-         let td4 = cell;
-         let td5 = cell;
+    
+  /*   var row = document.createElement("tr");*/
+  /*porqué let tr = row   no funciona?*/ 
+         let tr = document.createElement('tr');
+         let td1 =  document.createElement('td');;
+         let td2 =  document.createElement('td');;
+         let td3 =  document.createElement('td');;
+         let td4 =  document.createElement('td');;
+         let td5 =  document.createElement('td');;
 
 
-         let text1 =  document.createTextNode(data.results[0].members[i].first_name);
+         let text1 =  document.createTextNode(data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || "")  +" "+ data.results[0].members[i].last_name);
          // aquí text1 hay que añadir un if para construir el nombre
          let text2 =  document.createTextNode(data.results[0].members[i].party);
          let text3 =  document.createTextNode(data.results[0].members[i].state);
          let text4 =  document.createTextNode(data.results[0].members[i].seniority);
          let text5 =  document.createTextNode(data.results[0].members[i].votes_with_party_pct);
-          td1.appendChild(text1);
-
-          td2.appendChild(text2);
-          td3.appendChild(text3);
-          td4.appendChild(text4);
-          td5.appendChild(text5);
-          body.appendChild(text1);
-          tr.appendChild(td1);
-          tr.appendChild(td2);
-          tr.appendChild(td3);
-          tr.appendChild(td4);
-          tr.appendChild(td5);
           
-          table.appendChild(tr);
+        td1.appendChild(text1);
+        td2.appendChild(text2);
+        td3.appendChild(text3);
+        td4.appendChild(text4);
+        td5.appendChild(text5);
+       
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+          
+        table.appendChild(tr);
+       }
 
-          }
-      
+
+
 }
+
+
+
 build_table();
 
 
+
+
+
+
+/*   
+  var row = table.insertRow(i)
+
+ 
+  var a = row.insertCell(0);
+  x.innerHTML = "cell a"; */ 
+  
 
 /* let table = document.getElementById("senate-data-id"); */
 /* let table = document.getElementById("senate-data");  // we create the tag table in html
