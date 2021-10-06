@@ -5096,24 +5096,27 @@ function buildTable() {
 
   
     for (var i = 0; i < numFilas; i++) {
+      let link = document.createElement("a");
+      link.setAttribute("href", data.results[0].members[i].url)
+
+
       let tr = document.createElement("tr")
       let td1 = document.createElement("td");
       let td2 = document.createElement("td");
       let td3 = document.createElement("td");
       let td4 = document.createElement("td");
       let td5 = document.createElement("td");
-//link propiedad object
-      const link = data.results[0].members[i].url
-      
-    
-      let text1 = document.createTextNode(data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || "") + " " + data.results[0].members[i].last_name + link)
+
+      let text1 = document.createTextNode(data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || "") + " " + data.results[0].members[i].last_name);
+      link.appendChild(text1);
+
       let text2 = document.createTextNode(data.results[0].members[i].party);
       let text3 = document.createTextNode(data.results[0].members[i].state);
       let text4 = document.createTextNode(data.results[0].members[i].seniority);
       let text5 = document.createTextNode(data.results[0].members[i].votes_with_party_pct + "%");
     
       
-      td1.appendChild(text1);
+      td1.appendChild(link);
       td2.appendChild(text2);
       td3.appendChild(text3);
       td4.appendChild(text4);
