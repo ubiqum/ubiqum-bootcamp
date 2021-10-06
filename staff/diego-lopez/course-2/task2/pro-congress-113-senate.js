@@ -5096,23 +5096,28 @@ for (let i = 0; i < membersLength; i++){
 
     let tr = document.createElement('tr');
 
+    let link = document.createElement('a');
     let td1 = document.createElement('td');
     let td2 = document.createElement('td');
     let td3 = document.createElement('td');
     let td4 = document.createElement('td');
     let td5 = document.createElement('td');
+    
+    link.setAttribute('href', data.results[0].members[i].url);
+
     let text1 = document.createTextNode(data.results[0].members[i].last_name + " " + data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || ""));
     let text2 = document.createTextNode(data.results[0].members[i].party);
     let text3 = document.createTextNode(data.results[0].members[i].state);
     let text4 = document.createTextNode(data.results[0].members[i].seniority);
     let text5 = document.createTextNode(data.results[0].members[i].votes_with_party_pct + "%");
     
-    td1.appendChild(text1);
+    td1.appendChild(link)
+    link.appendChild(text1);
     td2.appendChild(text2);
     td3.appendChild(text3);
     td4.appendChild(text4);
     td5.appendChild(text5);
-
+    
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
@@ -5122,4 +5127,3 @@ for (let i = 0; i < membersLength; i++){
     table.appendChild(tr);
 }
 document.body.appendChild(table);
-bodyTable(table)
