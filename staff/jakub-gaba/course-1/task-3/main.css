@@ -1,9 +1,7 @@
 .bigboss{
   width: 1280px;
-  
   margin-left: auto;
   margin-right: auto;
-  
 }
 .container {
   padding: 1rem;
@@ -36,7 +34,6 @@
 
 .logo {
   max-width: 18rem;
-  
   padding-right: 2rem;
 }
 .images {
@@ -113,7 +110,7 @@
 }
 .car_table{
   width: 444px;
-  
+
   background-color: whitesmoke;
   border-radius: .5rem;
 }
@@ -121,4 +118,23 @@
 color:deepskyblue;
 font-size: 2.5rem;
 }
-
+.table_row{
+  justify-content: center;
+  padding: 20px;
+  display: flex;
+}
+.table_main_rules{
+  font-size: 20px;
+  border: 2px solid black;
+}
+.table_addiction-informations{
+  font-size: 20px;
+  border: 2px solid black;
+  width: 25rem;
+}
+th{
+  border: 2px solid black;
+}
+table{
+  margin: 1px;
+}
