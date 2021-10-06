@@ -21615,4 +21615,82 @@ var data =
        }
     ]
  }
- document.getElementById("house-data").innerHTML = JSON.stringify(data);
+//  document.getElementById("house-data").innerHTML = JSON.stringify(data);
+const membersNumber = data.results[0].members.length;
+let membersArr = data.results[0].members;
+let table = document.getElementById("house-data");
+function bodyTable(table){
+  let trHeader = document.createElement("tr");
+  let tHead = document.createElement("thead");
+  let tBody = document.createElement("tbody");
+  let th1 = document.createElement("th");
+  let th2 = document.createElement("th");
+  let th3 = document.createElement("th");
+  let th4 = document.createElement("th");
+  let th5 = document.createElement("th");
+
+  let textTh1 = document.createTextNode("Full Name");
+  let textTh2 = document.createTextNode("Party");
+  let textTh3 = document.createTextNode("State");
+  let textTh4 = document.createTextNode("Seniority");
+  let textTh5 = document.createTextNode("Percentage V.W.P");
+
+  th1.appendChild(textTh1);
+  th2.appendChild(textTh2);
+  th3.appendChild(textTh3);
+  th4.appendChild(textTh4);
+  th5.appendChild(textTh5);
+
+  trHeader.appendChild(th1);
+  trHeader.appendChild(th2);
+  trHeader.appendChild(th3);
+  trHeader.appendChild(th4);
+  trHeader.appendChild(th5);
+
+  tHead.appendChild(trHeader);
+  table.appendChild(tHead);
+
+  for(i = 0; i < membersNumber ; i++){
+
+   
+
+    let link = document.createElement("a");
+    let tr = document.createElement("tr");
+    let td1 = document.createElement("td");
+    let td2 = document.createElement("td");
+    let td3 = document.createElement("td");
+    let td4 = document.createElement("td");
+    let td5 = document.createElement("td");
+    link.setAttribute("href", membersArr[i].url);
+  
+
+    let text1 = document.createTextNode(membersArr[i].first_name + " " + (membersArr[i].middle_name || "") + " " + membersArr[i].last_name);
+    let text2 = document.createTextNode(membersArr[i].party);
+    let text3 = document.createTextNode(membersArr[i].state);
+    let text4 = document.createTextNode(membersArr[i].seniority);
+    let text5 = document.createTextNode(membersArr[i].votes_with_party_pct + "%");
+  
+    
+    
+    link.appendChild(text1);
+    td2.appendChild(text2);
+    td3.appendChild(text3);
+    td4.appendChild(text4);
+    td5.appendChild(text5);
+  
+    td1.appendChild(link);
+
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    
+
+    tBody.appendChild(tr);    
+    table.appendChild(tBody);
+  }
+}
+document.body.appendChild(table);
+
+bodyTable(table);

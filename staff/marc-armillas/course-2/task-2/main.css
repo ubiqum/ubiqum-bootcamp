@@ -4,15 +4,12 @@ body {
 
 .logo-mail {
     padding: 2em;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/c1/Visual_of_USA_Flag_stars_and_stripes_FJM88NL.jpg ");
+    background-size: 1296px  170px;
 }
 
 .header-logo{
     height: 100px;
-}
-
-.header-mail {
-    float: right;
-    margin-top: 2em ;
 }
 
 .container-fluid {
@@ -25,10 +22,22 @@ body {
 }
 
 .text-box {
-    margin: 4em 0 2em 0;
+    margin: 2em 0 2em 0;
 }
 
 footer {
     text-align: center;
     padding: 2em;
+}
+
+thead {
+    text-align: center;
+}
+
+tbody {
+    text-align: center;
+}
+
+.footer-p {
+    display: inline;
 }
