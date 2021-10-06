@@ -21615,3 +21615,80 @@ var data =
        }
     ]
 };
+
+
+document.getElementById("house-data").innerHTML = "";
+let membersLength = data.results[0].members.length;
+
+let table = document.getElementById("house-data");
+let tr = document.createElement('tr');
+let thead = document.createElement('thead');
+
+let th1 = document.createElement('th');
+let th2 = document.createElement('th');
+let th3 = document.createElement('th');
+let th4 = document.createElement('th');
+let th5 = document.createElement('th');
+
+let head1 = document.createTextNode("Congressman/woman");
+let head2 = document.createTextNode("Party");
+let head3 = document.createTextNode("State");
+let head4 = document.createTextNode("Seniority");
+let head5 = document.createTextNode("% votes with party");
+
+thead.appendChild(tr);
+table.appendChild(thead);
+
+th1.appendChild(head1);
+th2.appendChild(head2);
+th3.appendChild(head3);
+th4.appendChild(head4);
+th5.appendChild(head5);
+
+tr.appendChild(th1);
+tr.appendChild(th2);
+tr.appendChild(th3);
+tr.appendChild(th4);
+tr.appendChild(th5);
+
+
+
+let tbody = document.createElement('tbody');
+for (let i = 0; i < membersLength; i++){
+
+    let tr = document.createElement('tr');
+    
+
+
+    let link = document.createElement('a');
+    let td1 = document.createElement('td');
+    let td2 = document.createElement('td');
+    let td3 = document.createElement('td');
+    let td4 = document.createElement('td');
+    let td5 = document.createElement('td');
+    
+    link.setAttribute('href', data.results[0].members[i].url);
+
+    let text1 = document.createTextNode(data.results[0].members[i].last_name + " " + data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || ""));
+    let text2 = document.createTextNode(data.results[0].members[i].party);
+    let text3 = document.createTextNode(data.results[0].members[i].state);
+    let text4 = document.createTextNode(data.results[0].members[i].seniority);
+    let text5 = document.createTextNode(data.results[0].members[i].votes_with_party_pct + "%");
+    
+    td1.appendChild(link);
+    link.appendChild(text1);
+    td2.appendChild(text2);
+    td3.appendChild(text3);
+    td4.appendChild(text4);
+    td5.appendChild(text5);
+    
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
+}
+document.body.appendChild(table);

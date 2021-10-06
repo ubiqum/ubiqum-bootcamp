@@ -1,7 +1,33 @@
-td{
-    text-align: center;
+.nav {
+    background-color: gainsboro;
+    border: 1px solid black;
 }
 
-table{
-    width: 100%;
+#actualPosition {
+    background-color: darkgrey;
+    border-bottom: 1px solid black;
+    color: black;
+}
+
+.homeLink {
+    border-bottom: 1px solid black;
+    margin-left: 10px;
+}
+
+.logo {
+    height: 80px;
+    width: 80px;
+    margin: 10px 0px;
+}
+
+.email {
+    float: right;
+    margin: 40px 0px
+}
+
+.footer {
+    background-color: gray;
+    border: 1px solid black;
+    text-align: center;
+    padding: 15px 0px;
 }

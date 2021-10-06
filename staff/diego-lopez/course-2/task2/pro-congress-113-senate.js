@@ -5060,8 +5060,9 @@ var data =
 document.getElementById("senate-data").innerHTML = "";
 let membersLength = data.results[0].members.length;
 
-let table = document.getElementById("senate-data")
+let table = document.getElementById("senate-data");
 let tr = document.createElement('tr');
+let thead = document.createElement('thead');
 
 let th1 = document.createElement('th');
 let th2 = document.createElement('th');
@@ -5073,9 +5074,10 @@ let head1 = document.createTextNode("Senator");
 let head2 = document.createTextNode("Party");
 let head3 = document.createTextNode("State");
 let head4 = document.createTextNode("Seniority");
-let head5 = document.createTextNode("% with party");
+let head5 = document.createTextNode("% votes with party");
 
-table.appendChild(tr);
+thead.appendChild(tr);
+table.appendChild(thead);
 
 th1.appendChild(head1);
 th2.appendChild(head2);
@@ -5091,10 +5093,12 @@ tr.appendChild(th5);
 
 
 
-
+let tbody = document.createElement('tbody');
 for (let i = 0; i < membersLength; i++){
 
     let tr = document.createElement('tr');
+    
+
 
     let link = document.createElement('a');
     let td1 = document.createElement('td');
@@ -5111,7 +5115,7 @@ for (let i = 0; i < membersLength; i++){
     let text4 = document.createTextNode(data.results[0].members[i].seniority);
     let text5 = document.createTextNode(data.results[0].members[i].votes_with_party_pct + "%");
     
-    td1.appendChild(link)
+    td1.appendChild(link);
     link.appendChild(text1);
     td2.appendChild(text2);
     td3.appendChild(text3);
@@ -5124,6 +5128,7 @@ for (let i = 0; i < membersLength; i++){
     tr.appendChild(td4);
     tr.appendChild(td5);
 
-    table.appendChild(tr);
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
 }
 document.body.appendChild(table);
