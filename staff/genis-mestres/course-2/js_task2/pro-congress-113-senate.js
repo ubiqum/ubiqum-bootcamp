@@ -5072,7 +5072,7 @@ function build_table(){
   /* .innerHTML? we set the table  in 'senate-data'*/
   //We indicate where the table will be, that is inside div 'senate-data'
 
-  let table = document.getElementById("senate-data")
+  let table = document.getElementById("senate-data");
   
 
 
@@ -5081,7 +5081,7 @@ function build_table(){
 
   //-------------------header---------------------------------//
 
-
+  let thead = document.createElement('thead');
 
 // creating the header cells 
   let head_cell1 = document.createElement('th');//heading cell
@@ -5115,7 +5115,8 @@ let tr = document.createElement('tr');
   tr.appendChild(head_cell4);
   tr.appendChild(head_cell5);
 
-  table.appendChild(tr);
+  thead.appendChild(tr);
+  table.appendChild(thead);
 
 /*  ------------------------variables for the loop------------------------------------ */
 
@@ -5126,7 +5127,7 @@ var cell = row.insertCell(0); */
 
 let row = document.createElement('tr'); // create row elements
 let td =  document.createElement('td'); //create cells  element
-
+let tbody = document.createElement("tbody");
 //--------------loop-----------------------
 //data.results[0].members.length;  indica la cantidad de miembros del senado
 
@@ -5166,7 +5167,8 @@ let td =  document.createElement('td'); //create cells  element
         tr.appendChild(td4);
         tr.appendChild(td5);
           
-        table.appendChild(tr);
+        tbody.appendChild(tr);
+        table.appendChild(tbody);
        }
 
 
