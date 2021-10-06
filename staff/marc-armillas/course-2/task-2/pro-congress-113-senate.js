@@ -5090,28 +5090,36 @@ function bodyTable(table){
   table.appendChild(trHeader);
 
   for(i = 0; i < membersNumber ; i++){
-    let tr = document.createElement("tr")
+
+   
+
+    let link = document.createElement("a");
+    let tr = document.createElement("tr");
     let td1 = document.createElement("td");
     let td2 = document.createElement("td");
     let td3 = document.createElement("td");
     let td4 = document.createElement("td");
     let td5 = document.createElement("td");
+    link.setAttribute("href", membersArr[i].url)
   
-  
-    let text1 = document.createTextNode(membersArr[i].first_name + " " + (membersArr[i].middle_name || "") + " " + membersArr[i].last_name);
+
+    let atext = document.createTextNode(membersArr[i].first_name + " " + (membersArr[i].middle_name || "") + " " + membersArr[i].last_name);
+    // let text1 = document.createTextNode(membersArr[i].first_name + " " + (membersArr[i].middle_name || "") + " " + membersArr[i].last_name);
     let text2 = document.createTextNode(membersArr[i].party);
     let text3 = document.createTextNode(membersArr[i].state);
     let text4 = document.createTextNode(membersArr[i].seniority);
     let text5 = document.createTextNode(membersArr[i].votes_with_party_pct + "%");
   
     
-    td1.appendChild(text1);
+    link.appendChild(atext);
+    // td1.appendChild(text1);
     td2.appendChild(text2);
     td3.appendChild(text3);
     td4.appendChild(text4);
     td5.appendChild(text5);
   
-    
+    td1.appendChild(link);
+
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
