@@ -1,4 +1,23 @@
-table {
-    text-align: left;
-    margin-top: 2%;
+#navbarDropdownMenuLink{
+    color: #000009;
+    font-size: 1.50em;
+}
+
+.logo--size{
+    width: 15%;
+    height: 15%;
+    margin-top: 1%;
+}
+
+.margin--right{
+    font-size: 1.50em;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 1%;
+    
+}
+
+.audio {
+    margin-left: 25%;
 }

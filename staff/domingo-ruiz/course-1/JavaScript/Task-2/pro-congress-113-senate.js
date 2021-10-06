@@ -5063,24 +5063,24 @@ const data =
 const numFilas = data.results[0].members.length;
 
 function buildTable() {
-  const body = document.getElementsByTagName("body")[0];
-  let table   = document.createElement("table");
+  const table = document.getElementById("senate-data");
   let tblBody = document.createElement("tbody");
+  let thead = document.createElement("thead");
 
 //HEADER
   for (var i=0; i<5; i++){
-    let th = document.createElement("th")
-    let th2 = document.createElement("th")
-    let th3 = document.createElement("th")
-    let th4 = document.createElement("th")
-    let th5 = document.createElement("th")
+    let th = document.createElement("th");
+    let th2 = document.createElement("th");
+    let th3 = document.createElement("th");
+    let th4 = document.createElement("th");
+    let th5 = document.createElement("th");
 
 
-    let textHeader = document.createTextNode("First Name")
-    let textHeader2 = document.createTextNode("Party")
-    let textHeader3 = document.createTextNode("State")
-    let textHeader4 = document.createTextNode("Seniority")
-    let textHeader5 = document.createTextNode("Percentage of votes with party")
+    let textHeader = document.createTextNode("First Name");
+    let textHeader2 = document.createTextNode("Party");
+    let textHeader3 = document.createTextNode("State");
+    let textHeader4 = document.createTextNode("Seniority");
+    let textHeader5 = document.createTextNode("Percentage of votes with party");
 
     th.appendChild(textHeader);
     th2.appendChild(textHeader2);
@@ -5088,11 +5088,11 @@ function buildTable() {
     th4.appendChild(textHeader4);
     th5.appendChild(textHeader5);
 
-    table.appendChild(th)
-    table.appendChild(th2)
-    table.appendChild(th3)
-    table.appendChild(th4)
-    table.appendChild(th5)
+    thead.appendChild(th)
+    thead.appendChild(th2)
+    thead.appendChild(th3)
+    thead.appendChild(th4)
+    thead.appendChild(th5)
 
   
     for (var i = 0; i < numFilas; i++) {
@@ -5130,15 +5130,14 @@ function buildTable() {
       tr.appendChild(td5);
   
     
-    table.appendChild(tr);
+    tblBody.appendChild(tr);
 
     }
   }
 
   
-
+  table.appendChild(thead);
   table.appendChild(tblBody);
-  body.appendChild(table);
 }
 
 buildTable();
