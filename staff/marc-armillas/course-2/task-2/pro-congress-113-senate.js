@@ -5063,6 +5063,8 @@ let membersArr = data.results[0].members;
 let table = document.getElementById("senate-data");
 function bodyTable(table){
   let trHeader = document.createElement("tr");
+  let tHead = document.createElement("thead");
+  let tBody = document.createElement("tbody");
   let th1 = document.createElement("th");
   let th2 = document.createElement("th");
   let th3 = document.createElement("th");
@@ -5087,7 +5089,8 @@ function bodyTable(table){
   trHeader.appendChild(th4);
   trHeader.appendChild(th5);
 
-  table.appendChild(trHeader);
+  tHead.appendChild(trHeader);
+  table.appendChild(tHead);
 
   for(i = 0; i < membersNumber ; i++){
 
@@ -5100,19 +5103,18 @@ function bodyTable(table){
     let td3 = document.createElement("td");
     let td4 = document.createElement("td");
     let td5 = document.createElement("td");
-    link.setAttribute("href", membersArr[i].url)
+    link.setAttribute("href", membersArr[i].url);
   
 
-    let atext = document.createTextNode(membersArr[i].first_name + " " + (membersArr[i].middle_name || "") + " " + membersArr[i].last_name);
-    // let text1 = document.createTextNode(membersArr[i].first_name + " " + (membersArr[i].middle_name || "") + " " + membersArr[i].last_name);
+    let text1 = document.createTextNode(membersArr[i].first_name + " " + (membersArr[i].middle_name || "") + " " + membersArr[i].last_name);
     let text2 = document.createTextNode(membersArr[i].party);
     let text3 = document.createTextNode(membersArr[i].state);
     let text4 = document.createTextNode(membersArr[i].seniority);
     let text5 = document.createTextNode(membersArr[i].votes_with_party_pct + "%");
   
     
-    link.appendChild(atext);
-    // td1.appendChild(text1);
+    
+    link.appendChild(text1);
     td2.appendChild(text2);
     td3.appendChild(text3);
     td4.appendChild(text4);
@@ -5125,9 +5127,10 @@ function bodyTable(table){
     tr.appendChild(td3);
     tr.appendChild(td4);
     tr.appendChild(td5);
-  
     
-    table.appendChild(tr);
+
+    tBody.appendChild(tr);    
+    table.appendChild(tBody);
   }
 }
 document.body.appendChild(table);
