@@ -5131,25 +5131,30 @@ let td =  document.createElement('td'); //create cells  element
 //data.results[0].members.length;  indica la cantidad de miembros del senado
 
   for (let i=0; i < data.results[0].members.length; i++) {
-    
+
   /*   var row = document.createElement("tr");*/
   /*porqué let tr = row   no funciona?*/ 
-         let tr = document.createElement('tr');
-         let td1 =  document.createElement('td');;
-         let td2 =  document.createElement('td');;
-         let td3 =  document.createElement('td');;
-         let td4 =  document.createElement('td');;
-         let td5 =  document.createElement('td');;
 
+         let link1 = document.createElement("a");
+        
+         let tr =   document.createElement('tr');
+         let td1 =  document.createElement('td');
+         let td2 =  document.createElement('td');
+         let td3 =  document.createElement('td');
+         let td4 =  document.createElement('td');
+         let td5 =  document.createElement('td');
 
-         let text1 =  document.createTextNode(data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || "")  +" "+ data.results[0].members[i].last_name);
+         link1.setAttribute("href", data.results[0].members[i].api_uri);
+
+         let linktext1 =  document.createTextNode(data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || "")  +" "+ data.results[0].members[i].last_name);
          // aquí text1 hay que añadir un if para construir el nombre
          let text2 =  document.createTextNode(data.results[0].members[i].party);
          let text3 =  document.createTextNode(data.results[0].members[i].state);
          let text4 =  document.createTextNode(data.results[0].members[i].seniority);
          let text5 =  document.createTextNode(data.results[0].members[i].votes_with_party_pct);
-          
-        td1.appendChild(text1);
+
+        link1.appendChild(linktext1);
+        td1.appendChild(link1);
         td2.appendChild(text2);
         td3.appendChild(text3);
         td4.appendChild(text4);
