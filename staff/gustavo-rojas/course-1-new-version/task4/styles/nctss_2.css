@@ -198,7 +198,81 @@ li::marker {
 }
 
 /*Formating of <form> in registration.html */
-.form-row button {
+.form-row {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .form-row input[type='text'] {
+    background-color: #FFFFFF;
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+    width: 100%;
+    padding: 7px;
+    font-size: 14px;
+  }
+  
+  .form-row label {
+    margin-bottom: 15px;
+  }
+  .form-row textarea {
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 14px;
+  
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+  
+    min-height: 200px;
+    margin-bottom: 10px;
+    padding: 7px;
+    resize: none;
+  }
+  
+  @media only screen and (min-width: 700px) {
+    .form-row {
+      flex-direction: row;
+      align-items: flex-start; 
+      margin-bottom: 20px;
+    }
+    .form-row input[type='text'],
+    .form-row input[type='email'],
+    .form-row select,             
+    .form-row textarea {          
+      width: 250px;
+      height: initial;
+    }
+    .form-row label {
+      text-align: right;
+      width: 120px;
+      margin-top: 7px;
+      padding-right: 20px;
+    }
+    .form-row .instructions {
+      margin-left: 120px;
+    }
+    .form-row .checkbox-label {
+      margin-left: 120px;
+      width: auto;
+    }
+    .form-row button {
+      margin-left: 120px;
+    }
+  }
+  
+  .form-row input[type='text']:invalid,
+  .form-row input[type='email']:invalid {
+    border: 1px solid #D55C5F;
+    color: #D55C5F;
+    box-shadow: none; /* Remove default red glow in Firefox */
+  }
+  .form-row .checkbox-label {
+    margin-bottom: 0;
+  }
+  
+  .form-row button {
     font-size: 16px;
     font-weight: bold;
   
@@ -218,4 +292,20 @@ li::marker {
   
   .form-row button:active {
     background-color: #407FC7;
+  }
+
+  .legacy-form-row {
+    margin-bottom: 10px;
+  }
+  .legacy-form-row legend {
+    width: 120px;
+    text-align: right;
+    padding-right: 20px;
+  }
+  .legacy-form-row legend {
+    float: left;
+  }
+
+  .legacy-form-row{ 
+    border: 0px;
   }

@@ -40,7 +40,7 @@
 
   <div class="information-container">
     <header class='registration'>
-      <p><em>Do you what be part of this amanzing events? Fill out this form.</em></p>
+      <p><em>Do you want be part of this amanzing events? Fill out this form.</em></p>
    </header>
    <br>
    <form action='show_data.html' method='get' class='registration-form'>
@@ -79,20 +79,65 @@
      </fieldset>
      <div class='form-row'>
        <label for='contact-phone'>Contact Phone</label>
-       <input id='contact-phone' name='contact-phone' type='text' />
+       <input id='contact-phone' name='contact-phone' type='tel' />
      </div>
      <div class='form-row'>
        <label for='email'>Contact Email</label>
        <input id='email' name='email' type='email' placeholder='joe@example.com' />
       </div>
+      <div class='form-row'>
+        <h4>Motorsports Organization Membership?</h4>
+       </div>
+         
+      
 
+      <div class='form-row'>
+        
+        <select name="mom" id="mom">
+          <option value="SCCA">Sports Car Club of America (SCCA)</option>
+        <option value="NASA">National Autosport Association (NASA)</option>
+        <option value="none">None</option>
+        </select>
+      </div>
+
+      
+      <div class='form-row'>
+        <h4>Previous Competitive Experience</h4>
+       </div>
+       <div class='form-row'>
+        ​<select name="pce" id="pce">
+          <option value="none">None</option>
+          <option value="htd">HPDE/Track Days</option>
+          <option value="autocross">Autocross</option>
+          <option value="one-year">One Year</option>
+          <option value="two-year">Two Years</option>
+          <option value="over-two-year">Over two years</option>
+          </select>
+      </div>
+
+      
+      <div class='form-row'>
+        <h4>Racing License</h4>
+       </div>
+       <div class='form-row'>
+        <select name="rl" id="rl">
+          <option value="none">None</option>
+          <option value="scca">SCCA</option>
+          <option value="nasa">NASA</option>
+          <option value="fia">FIA</option>
+          
+            </select>
+      </div>
+      
+      <p>I agree that I will abide by all the rules of the NorCal Time Trial Series (NCTTS). I recognize that Motorsports are inherently dangerous. 
+        I hereby release, discharge, and/or otherwise indemnify NCTTS, their employees and associated personnel and volunteers, including the facilities 
+        used for events, against any claim by or on behalf of the registrant as a result of my participation in the series. </p>
+        <br>
+        <p>By entering your name below, I hereby agree and authorize the above. </p>
+        <br>
+        <p><label for='signature-name'>Registrant’s Name:</label> <input id='signature-name' name='signature-name' type='text' /><label for='signature-date'>Date:</label> <input id='signature-date' name='signature-date' type='date' /> </p>
+      <br>
      <br>
-     <br>
-     
-     
-     
-     
-     
      <div class='form-row'>
        <button>Submit</button>
      </div>
