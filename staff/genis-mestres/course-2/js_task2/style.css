@@ -22,5 +22,20 @@
   padding-left:25px;
   padding-top: 25px;
   padding-bottom: 25px;
+
     
+}
+
+
+.footer{
+text-align: center;
+padding: 0px  0px 15px 15px;
+background-color:#7d6ceb;
+color: white;
+border:solid;
+border-color:black;
+border-width:thin;
+margin-bottom:30px;
+text-align:center;
+
 }
