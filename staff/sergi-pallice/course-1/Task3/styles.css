@@ -124,3 +124,11 @@ td {
   float: none;
   margin: 10px;
 }
+
+.table1 {
+  float: left;
+}
+
+.table2 {
+  float: right;
+}
