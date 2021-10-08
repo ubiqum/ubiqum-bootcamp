@@ -5060,7 +5060,7 @@ const data =
 
 
 //VARIABLE TO KNOW HOW MANY OBJECTS WE WORK WITH
-const numFilas = data.results[0].members.length;
+const senatArr = data.results[0].members;
 
 function buildTable() {
   const table = document.getElementById("senate-data");
@@ -5095,7 +5095,7 @@ function buildTable() {
     thead.appendChild(th5)
 
   
-    for (var i = 0; i < numFilas; i++) {
+    for (var i = 0; i < senatArr.length; i++) {
       let link = document.createElement("a");
       link.setAttribute("href", data.results[0].members[i].url)
 
@@ -5141,3 +5141,17 @@ function buildTable() {
 }
 
 buildTable();
+
+
+//every US state
+
+var select = document.getElementById("usstates"); 
+var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+
+  for(var i = 0; i < states.length; i++) {
+    var opt = states[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select.add(el);
+  }
