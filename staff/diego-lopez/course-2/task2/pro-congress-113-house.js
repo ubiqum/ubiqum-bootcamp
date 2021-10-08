@@ -21630,7 +21630,7 @@ let th3 = document.createElement('th');
 let th4 = document.createElement('th');
 let th5 = document.createElement('th');
 
-let head1 = document.createTextNode("Congressman/woman");
+let head1 = document.createTextNode("Member of Congress");
 let head2 = document.createTextNode("Party");
 let head3 = document.createTextNode("State");
 let head4 = document.createTextNode("Seniority");

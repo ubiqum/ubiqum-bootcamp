@@ -26,8 +26,18 @@
 }
 
 .footer {
-    background-color: gray;
+    background-color: gainsboro;
     border: 1px solid black;
     text-align: center;
     padding: 15px 0px;
 }
+
+.accordion-button{
+    background-color: white;
+    border: none;
+    color: royalblue;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+#more {display: none;}

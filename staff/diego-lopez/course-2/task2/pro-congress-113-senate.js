@@ -5132,3 +5132,14 @@ for (let i = 0; i < membersLength; i++){
     table.appendChild(tbody);
 }
 document.body.appendChild(table);
+
+
+document.getElementById("democratic").addEventListener("click", function () {
+  filter_party(data.results[0].members)
+});
+
+/*
+function filter_party(data.results[0].members){
+  console.log(filter_party)
+}
+*/
