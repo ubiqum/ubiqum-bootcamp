@@ -5,9 +5,14 @@
 }
 
 div.logo {
+  margin-top: 10px;
   float: left;
   padding-right: 10px;
-  height: 10000px;
+}
+
+div.top-text {
+  margin: 30px;
+  float: right;
 }
 
 body {
@@ -121,8 +126,8 @@ td {
 } */
 
 .bottom-text {
-  float: none;
-  margin: 10px;
+  float: left;
+  margin-top: 10px;
 }
 
 .table1 {
@@ -130,5 +135,19 @@ td {
 }
 
 .table2 {
-  float: right;
+  float: left;
+  margin: 0 10px 0 10px;
+}
+
+.table3 {
+  float: left;
+}
+
+.index-bottom-text {
+  float: left;
+}
+
+div.middle-frame {
+  float: left;
+  font-size: large;
 }
