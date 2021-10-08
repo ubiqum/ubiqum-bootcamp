@@ -64,3 +64,96 @@ function maxNum(numbers) {
 }
 var numbers = [1, 2, 3];
 maxNum(numbers);
+
+// Array Exercise 5
+
+function twoPara(array, index) {
+    var index = 4;
+    console.log(array[index]);
+}
+
+let array = [3, 6, 67, 6, 23, 11, 100, 8, 93, 0, 17, 24, 7, 1, 33, 45, 28, 33, 23, 12, 99, 100];
+twoPara(array);
+
+// Array Exercise 6
+
+
+
+
+//sort the array; 
+
+
+let array1 = [3, 4, 5, 6, 5];
+
+function reapeatedElements(array1) {
+    for (i = 0; i < array1.length; i++){
+        for (j = i + 1; j < array1.length; j++){
+            if (array1[i] == array1[j]) {
+                console.log(array1[j]);
+            }
+        }
+    }
+}
+reapeatedElements(array1);
+
+// Exercise 7
+
+function color(myColor) {
+    return myColor;
+    
+}
+myColor = ["Red", "Green", "White", "Black"];
+console.log(myColor.join());
+
+// String
+
+function reverseNum(number1) {
+    let arr = number1.toString().split("");
+    let reversed = arr.reverse().join("");
+    return reversed;
+}
+console.log(reverseNum(32443));
+
+//Execise 2
+
+function alphabet_order(str)
+  {
+return str.split('').sort().join('');
+  }
+console.log(alphabet_order("webmaster"));
+
+// Exercise 3
+
+function uppercase(str) {
+  var array2 = str.split(' ');
+  var newarray1 = [];
+    
+  for(var x = 0; x < array2.length; x++){
+      newarray1.push(array2[x].charAt(0).toUpperCase()+array2[x].slice(1));
+  }
+  return newarray1.join(' ');
+}
+console.log(uppercase("prince of persia"));
+
+// Execise 4
+
+function find_longest_word(str)
+{
+  var array3 = str.match(/\w[a-z]{0,}/gi);
+  var result = array3[0];
+
+  for(var x = 1 ; x < array3.length ; x++)
+  {
+    if(result.length < array3[x].length)
+    {
+    result = array3[x];
+    } 
+  }
+  return result;
+}
+console.log(find_longest_word('Web Development Tutorial'));
+
+
+    
+
+
