@@ -1,0 +1,170 @@
+.bigboss{
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid black;
+}
+.container {
+  padding: 1rem;
+  border-radius: .5rem;
+  margin-left: 4rem;
+  display: flex;
+  
+}
+
+.container_safety{
+  
+  margin-top: 10em;
+  text-align: center;
+  font-size: 30px;
+}
+.nav{
+  font-size: 2rem;
+  
+  margin-top: 3rem;
+  
+  border: 2px solid black;
+}
+.nav__item {
+  color: rgb(61, 92, 194);
+}
+
+.logo {
+  float: left;
+  max-width: 17rem;
+  padding-left: 60px;
+  border: 2px solid black;
+  
+}
+.images {
+  max-width: 15rem;
+  margin-right: 2rem;  
+}
+.text_logo  {
+  font-size: 40px;
+  text-align: center;
+  border: 2px solid black;  
+}
+.contact_text {
+  font-size: 35px;
+}
+.date{
+  font-size: 1.5rem;
+}
+.date_text{
+  margin-left: 1.5rem;
+  font-size: 1.2rem; 
+}
+.about_text{
+  font-size: 1.5rem; 
+  font-weight: bold;
+}
+.container_safety_subtext{
+  font-size: 1.8rem;
+  
+}
+.safety_text{
+  font-size: 1.3rem;
+  
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+}
+.safety_subtext{
+  font-size: 1.3rem;
+  
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+  line-height: normal;
+}
+.safety_levels{
+  font-size: 2rem;
+  
+  line-height: 50px;
+  font-weight: bold;
+  
+}
+.car_diff{
+  font-size:1.5rem;
+  
+}
+.car_sub{
+  font-size:1.3rem;
+  
+  line-height: 30px;
+}
+.car_text{
+  font-size: 1.1rem;
+  
+  font-weight: normal;
+  line-height: 50px;
+}
+.car_text__long{
+  line-height:normal;
+  padding-bottom: 10px;
+}
+.ol_countdelete{
+  list-style-type: none;
+}
+.car_table{
+  width: 444px;
+
+  background-color: whitesmoke;
+  border-radius: .5rem;
+}
+.line{
+color:deepskyblue;
+font-size: 2.5rem;
+}
+.table_row{
+  justify-content: center;
+  padding: 20px;
+  display: flex;
+}
+.table_main_rules{
+  font-size: 25px;
+  border: 2px solid black;
+  
+}
+.table_addiction-informations{
+  font-size: 20px;
+  border: 2px solid black;
+  width: 25rem;
+}
+th{
+  border: 2px solid black;
+}
+table{
+  margin: 1px;
+}
+sup{
+  border-bottom: 1px solid black;
+}
+.register_title{
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+}
+.register_form{
+  padding-top: 5rem;
+ text-align: center;
+}
+.register_labels{
+  font-size: 30px;
+  font-weight: bold;
+}
+input[id=fname_input]{   
+  font-size: 30px;
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+input[id=fname_input]:focus{
+font-size: 30px;
+border-radius: 0%;
+width: 250px;
+border: none;
+}
