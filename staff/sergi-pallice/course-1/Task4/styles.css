@@ -35,10 +35,9 @@ div.top-frame img {
   margin-left: 20px;
 }
 
+/* Tab Name Border */
 h2 {
   margin: 0;
-  /* color: white; */
-  /* background-color: #2565ae; */
   border: 2px solid black;
 }
 
