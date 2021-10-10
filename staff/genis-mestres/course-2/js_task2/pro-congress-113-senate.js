@@ -5059,12 +5059,70 @@ var data =
 
 
  //HTML  46 filas fila por cada miembro, columna por cada propiedad
+//---------------------variables-----------------------------
+/* var selected_state = document.getElementById("state_list").value;
+ */
+let members_array = data.results[0].members;
+let states = ["All", "AK",
+"AL",
+"AR",
+"AS",
+"AZ",
+"CA",
+"CO",
+"CT",
+"DC",
+"DE",
+"FL",
+"GA",
+"GU",
+"HI",
+"IA",
+"ID",
+"IL",
+"IN",
+"KS",
+"KY",
+"LA",
+"MA",
+"MD",
+"ME",
+"MI",
+"MN",
+"MO",
+"MS",
+"MT",
+"NC",
+"ND",
+"NE",
+"NH",
+"NJ",
+"NM",
+"NV",
+"NY",
+"OH",
+"OK",
+"OR",
+"PA",
+"PR",
+"RI",
+"SC",
+"SD",
+"TN",
+"TX",
+"UT",
+"VA",
+"VI",
+"VT",
+"WA",
+"WI",
+"WV",
+"WY"]
+
+/* ----------------------------function build_table()--------------------------------------------*/
 
 
-/* ----------------------------functions--------------------------------------------*/
-
-
-function build_table(){
+function build_table(members_array){
 // deleting previous tables in 'senate-data'
 
   document.getElementById("senate-data").innerHTML = "";
@@ -5074,10 +5132,6 @@ function build_table(){
 
   let table = document.getElementById("senate-data");
   
-
-
-
-
 
   //-------------------header---------------------------------//
 
@@ -5115,7 +5169,7 @@ let tr = document.createElement('tr');
   tr.appendChild(head_cell4);
   tr.appendChild(head_cell5);
 
-  thead.appendChild(tr);
+  thead.appendChild(tr);2
   table.appendChild(thead);
 
 /*  ------------------------variables for the loop------------------------------------ */
@@ -5129,9 +5183,9 @@ let row = document.createElement('tr'); // create row elements
 let td =  document.createElement('td'); //create cells  element
 let tbody = document.createElement("tbody");
 //--------------loop-----------------------
-//data.results[0].members.length;  indica la cantidad de miembros del senado
+//members_array.length;  indica la cantidad de miembros del senado
 
-  for (let i=0; i < data.results[0].members.length; i++) {
+  for (let i=0; i < members_array.length; i++) {
 
   /*   var row = document.createElement("tr");*/
   /*porqué let tr = row   no funciona?*/ 
@@ -5145,14 +5199,14 @@ let tbody = document.createElement("tbody");
          let td4 =  document.createElement('td');
          let td5 =  document.createElement('td');
 
-         link1.setAttribute("href", data.results[0].members[i].api_uri);
+         link1.setAttribute("href", members_array[i].api_uri);
 
-         let linktext1 =  document.createTextNode(data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || "")  +" "+ data.results[0].members[i].last_name);
+         let linktext1 =  document.createTextNode(members_array[i].first_name + " " + (members_array[i].middle_name || "")  +" "+ members_array[i].last_name);
          // aquí text1 hay que añadir un if para construir el nombre
-         let text2 =  document.createTextNode(data.results[0].members[i].party);
-         let text3 =  document.createTextNode(data.results[0].members[i].state);
-         let text4 =  document.createTextNode(data.results[0].members[i].seniority);
-         let text5 =  document.createTextNode(data.results[0].members[i].votes_with_party_pct);
+         let text2 =  document.createTextNode(members_array[i].party);
+         let text3 =  document.createTextNode(members_array[i].state);
+         let text4 =  document.createTextNode(members_array[i].seniority);
+         let text5 =  document.createTextNode(members_array[i].votes_with_party_pct);
 
         link1.appendChild(linktext1);
         td1.appendChild(link1);
@@ -5171,13 +5225,149 @@ let tbody = document.createElement("tbody");
         table.appendChild(tbody);
        }
 
-
-
 }
 
 
+build_table(members_array);
 
-build_table();
+
+
+//---------function. create a form for all states------------
+function states_form(){
+
+  let form = document.getElementById("div_form");
+  let select =  document.createElement("select");
+  select.setAttribute('id', 'state_form');
+
+// the loop should start here
+      for (i=0; i < states.length; i++){
+        
+          let option =document.createElement('option');
+          option.setAttribute('value', states[i]);
+
+          /* option2.setAttribute('selected'); */
+          let text_form_states =   document.createTextNode(states[i]);
+          option.appendChild(text_form_states);
+
+          select.appendChild(option);
+
+      }
+        form.appendChild(select);
+}
+
+
+states_form();
+
+//--------------------Listeners from checkboxes and value from state form---------------------
+
+
+//if Democrat is selected
+document.getElementById("democrat").addEventListener("click", function () {
+ 
+/*   filter_party(members_array) */
+  if (document.getElementById("democrat").checked === true){
+         console.log(document.getElementById("democrat").value);
+         filter_party(members_array);
+        }
+  });
+//if Republican is selected
+document.getElementById("republican").addEventListener("click", function () {
+   /*   filter_party(members_array) */
+   if (document.getElementById("republican").checked === true){
+    console.log(document.getElementById("republican").value );
+    filter_party(members_array);
+    }
+});
+//if Independent is selected
+  document.getElementById("independent").addEventListener("click", function () {
+     /*   filter_party(members_array) */
+     if (document.getElementById("independent").checked === true){
+      console.log(document.getElementById("independent").value );
+      filter_party(members_array);
+      }
+});
+    
+
+// Selecting state. (state_form is the id of select).
+
+let selected_State_Value = document.getElementById("state_form").value;
+
+document.getElementById("state_form").addEventListener("input",  function () {
+  selected_State_Value = document.getElementById("state_form").value;
+  console.log(selected_State_Value);
+  filter_party(members_array);
+});
+
+
+
+
+//---------------filters------------------------------------------------
+
+
+function filter_party(){
+
+ /*variables we'll work with:
+ 
+ selected_members_filter   that is the members the filter formula will show
+
+selected_State_Value
+
+members_array = data.results[0].members;
+
+*/
+  let selected_members_filter = []
+          for (var i = 0; i < members_array.length; i++) {
+            //democrats
+             if ((document.getElementById("democrat").checked && members_array[i].party === 'D') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+              selected_members_filter.push(members_array[i]);
+              } 
+            // republicans
+            if ((document.getElementById("republican").checked && members_array[i].party === 'R') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+             
+              selected_members_filter.push(members_array[i]);
+              } 
+            //independents
+            if ((document.getElementById("independent").checked && members_array[i].party === 'I') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+              
+              selected_members_filter.push(members_array[i]);
+              } 
+         }    
+
+      console.log(selected_members_filter);  
+
+      build_table(selected_members_filter);
+               
+    }
+
+ 
+
+
+    
+/* Summary:How does this work?
+
+build_table() will build a table based on the objects  data.results[0].members;
+
+The selectors:
+The 'listeners' will update its value when the event of 'click' occur in each checkbox or the event 'input' occur in the select dropdown. 
+They also trigger the filter formula again. 
+
+What does the filter formula do?
+It has a loop that goes through each member of  'members_array' and checks:
+    - how many  party checkbox have been 'checked', and filters the element if  its member_array[i].party values that match that party checkbox
+    - Checks the member_array[i].state and filters the element if it's equal to the selected_State_Value, or if the selected_State_Value is equal to 'All'
+  These filtered elements are stored in the selected_members_filter array
+  Then we  build new table with this selection, using build_table(selected_members_filter);
+  
+*/
+    
+
+
+
+
+
+
+
+
 
 
 
