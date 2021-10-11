@@ -1,4 +1,4 @@
-var data =
+let data =
 {
     "status":"OK",
     "copyright":" Copyright (c) 2021 Pro Publica Inc. All Rights Reserved.",
@@ -5061,42 +5061,48 @@ let membersLength = data.results[0].members.length;
 let membersArr = data.results[0].members;
 let table = document.getElementById("senate-data");
 
-//build table
-  let tr = document.createElement('tr');
-  let thead = document.createElement('thead');
+
+
+
+
+//build table header
+let tr = document.createElement('tr');
+let thead = document.createElement('thead');
   
-  let th1 = document.createElement('th');
-  let th2 = document.createElement('th');
-  let th3 = document.createElement('th');
-  let th4 = document.createElement('th');
-  let th5 = document.createElement('th');
+let th1 = document.createElement('th');
+let th2 = document.createElement('th');
+let th3 = document.createElement('th');
+let th4 = document.createElement('th');
+let th5 = document.createElement('th');
   
-  let head1 = document.createTextNode("Senator");
-  let head2 = document.createTextNode("Party");
-  let head3 = document.createTextNode("State");
-  let head4 = document.createTextNode("Seniority");
-  let head5 = document.createTextNode("% votes with party");
+let head1 = document.createTextNode("Senator");
+let head2 = document.createTextNode("Party");
+let head3 = document.createTextNode("State");
+let head4 = document.createTextNode("Seniority");
+let head5 = document.createTextNode("% votes with party");
   
-  thead.appendChild(tr);
-  table.appendChild(thead);
+thead.appendChild(tr);
+table.appendChild(thead);
   
-  th1.appendChild(head1);
-  th2.appendChild(head2);
-  th3.appendChild(head3);
-  th4.appendChild(head4);
-  th5.appendChild(head5);
+th1.appendChild(head1);
+th2.appendChild(head2);
+th3.appendChild(head3);
+th4.appendChild(head4);
+th5.appendChild(head5);
   
-  tr.appendChild(th1);
-  tr.appendChild(th2);
-  tr.appendChild(th3);
-  tr.appendChild(th4);
-  tr.appendChild(th5);
+tr.appendChild(th1);
+tr.appendChild(th2);
+tr.appendChild(th3);
+tr.appendChild(th4);
+tr.appendChild(th5);
   
+
+//build table body
+let tbody = document.createElement('tbody');
+function buildTableBody(membersArr){
+  document.getElementById("senate-data").innerHTML = "";
   
-  let tbody = document.createElement('tbody');
-function buildTableBody(table) {
-  
-  for (let i = 0; i < membersLength; i++){
+  for (let i = 0; i < membersArr.length; i++){
   
     let tr = document.createElement('tr');
       
@@ -5135,28 +5141,35 @@ function buildTableBody(table) {
   }
 };
 
-document.body.appendChild(table);
-buildTableBody(table);
+buildTableBody(membersArr);
+
+
+
 
 
 //filters
 document.getElementById("republican").addEventListener("click", function () {
-  filter_party(membersArr);
-  console.log("r")
+  if (document.getElementById("republican").checked === true){
+    filter_party(membersArr);
+    console.log("r")
+  }
 });
 
 document.getElementById("democrat").addEventListener("click", function () {
-  filter_party(membersArr);
-  console.log("d")
+  if (document.getElementById("democrat").checked === true){
+    filter_party(membersArr);
+    console.log("d")
+  }
 });
 
 document.getElementById("independent").addEventListener("click", function () {
-  filter_party(membersArr);
-  console.log("i")
+  if (document.getElementById("independent").checked === true){
+    filter_party(membersArr);
+    console.log("i")
+  }
 });
 
-function filter_party(membersArr){
-  console.log(filter_party);
+function filter_party(){
   let selectedPartyMembers = [];
 
   for (i = 0; i < membersArr.length; i++){
@@ -5164,6 +5177,5 @@ function filter_party(membersArr){
       selectedPartyMembers.push(membersArr[i]);
     }
   }
-  console.log(selectedPartyMembers)
-  buildTableBody(selectedPartyMembers)
+  buildTableBody(selectedPartyMembers);
 };
