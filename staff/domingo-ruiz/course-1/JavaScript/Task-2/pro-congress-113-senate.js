@@ -1543,8 +1543,8 @@ const data =
                   "state": "IL",
                   "senate_class": "2",
                   "state_rank": "",
-                  "lis_id": "S253"
-                  ,"missed_votes_pct": 0.30,
+                  "lis_id": "S253",
+                  "missed_votes_pct": 0.30,
                   "votes_with_party_pct": 98.93,
                   "votes_against_party_pct": 1.07
                 },
@@ -5059,16 +5059,15 @@ const data =
 
 
 
-//VARIABLE TO KNOW HOW MANY OBJECTS WE WORK WITH
+//VARIABLE TO KNOW HOW MANY OBJECTS WE ARE WORKING WITH
 const senatArr = data.results[0].members;
 
-function buildTable() {
-  const table = document.getElementById("senate-data");
+function buildTable(senatArr) {
+  let table = document.getElementById("senate-data");
   let tblBody = document.createElement("tbody");
   let thead = document.createElement("thead");
-
+  document.getElementById("senate-data").innerHTML = "";
 //HEADER
-  for (var i=0; i<5; i++){
     let th = document.createElement("th");
     let th2 = document.createElement("th");
     let th3 = document.createElement("th");
@@ -5094,10 +5093,10 @@ function buildTable() {
     thead.appendChild(th4)
     thead.appendChild(th5)
 
-  
+  //cells 
     for (var i = 0; i < senatArr.length; i++) {
       let link = document.createElement("a");
-      link.setAttribute("href", data.results[0].members[i].url)
+      link.setAttribute("href", senatArr[i].url)
 
 
       let tr = document.createElement("tr")
@@ -5107,13 +5106,13 @@ function buildTable() {
       let td4 = document.createElement("td");
       let td5 = document.createElement("td");
 
-      let text1 = document.createTextNode(data.results[0].members[i].first_name + " " + (data.results[0].members[i].middle_name || "") + " " + data.results[0].members[i].last_name);
+      let text1 = document.createTextNode(senatArr[i].first_name + " " + (senatArr[i].middle_name || "") + " " + senatArr[i].last_name);
       link.appendChild(text1);
 
-      let text2 = document.createTextNode(data.results[0].members[i].party);
-      let text3 = document.createTextNode(data.results[0].members[i].state);
-      let text4 = document.createTextNode(data.results[0].members[i].seniority);
-      let text5 = document.createTextNode(data.results[0].members[i].votes_with_party_pct + "%");
+      let text2 = document.createTextNode(senatArr[i].party);
+      let text3 = document.createTextNode(senatArr[i].state);
+      let text4 = document.createTextNode(senatArr[i].seniority);
+      let text5 = document.createTextNode(senatArr[i].votes_with_party_pct + "%");
     
       
       td1.appendChild(link);
@@ -5133,18 +5132,15 @@ function buildTable() {
     tblBody.appendChild(tr);
 
     }
-  }
-
   
   table.appendChild(thead);
   table.appendChild(tblBody);
 }
 
-buildTable();
+buildTable(senatArr);
 
 
-//every US state
-
+//every US state in the dropdown
 var select = document.getElementById("usstates"); 
 var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
 
@@ -5155,3 +5151,26 @@ var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','Californ
     el.value = opt;
     select.add(el);
   }
+
+
+
+//checkboxes 
+
+document.getElementById("checks").addEventListener("click", function (){
+
+  let partyselected = [];
+
+  for ( i=0; i < senatArr.length; i++) {
+    if ((document.getElementById("dem").checked && senatArr[i].party === "D")){
+       partyselected.push(senatArr[i]);     
+    }
+       if (document.getElementById("rep").checked && senatArr[i].party === "R"){
+        partyselected.push(senatArr[i]);
+       }
+         if (document.getElementById("ind").checked && senatArr[i].party === "ID"){
+          partyselected.push(senatArr[i]);
+      }
+    }
+    buildTable(partyselected);
+  })
+
