@@ -4,12 +4,18 @@ body {
 
 .logo-mail {
     padding: 2em;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/c1/Visual_of_USA_Flag_stars_and_stripes_FJM88NL.jpg ");
-    background-size: 1296px  170px;
+}
+
+#flag {
+    height: 170px;
+    width: 100%;
+    z-index: 0;
 }
 
 .header-logo{
     height: 100px;
+    z-index: 1;
+    margin: -197px 0 0 25px;
 }
 
 .container-fluid {
@@ -25,17 +31,67 @@ body {
     margin: 2em 0 2em 0;
 }
 
-footer {
-    text-align: center;
-    padding: 2em;
-}
-
 thead {
     text-align: center;
 }
 
 tbody {
     text-align: center;
+}
+
+.accordion-button {
+    background-color: rgb(248, 247, 247);
+}      
+
+.accordion-button::after {
+    background-image: none;
+}
+
+.accordion-item {
+    border: 0px;
+}
+
+.accordion-item a {
+    text-decoration: none;
+}
+
+.accordion-body {
+    background-color: rgb(248, 247, 247);
+}
+
+.accordion-body p {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#filters {
+    display: flex;                  
+    flex-direction: row;            
+    justify-content: space-between
+}
+
+.checkbox-p {
+    display: inline;
+}
+/* .checkbox-div {
+    display: inline;
+}
+
+
+.text-input-div {
+    display: inline;
+}
+
+.selector-div{
+    float: right;
+} */
+
+.selector-p {
+    display: inline;
+}
+footer {
+    text-align: center;
+    padding: 2em;
 }
 
 .footer-p {
