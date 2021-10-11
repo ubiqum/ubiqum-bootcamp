@@ -5059,11 +5059,10 @@ let data =
 
 let membersLength = data.results[0].members.length;
 let membersArr = data.results[0].members;
-let table = document.getElementById("senate-data");
+let selectedPartyMembers = [];
 
 
-
-
+/*
 
 //build table header
 let tr = document.createElement('tr');
@@ -5095,12 +5094,19 @@ tr.appendChild(th2);
 tr.appendChild(th3);
 tr.appendChild(th4);
 tr.appendChild(th5);
-  
+  */
 
 //build table body
 let tbody = document.createElement('tbody');
 function buildTableBody(membersArr){
+
+  
+  
   document.getElementById("senate-data").innerHTML = "";
+
+  let table = document.getElementById("senate-data");
+  tbody.innerHTML = "";
+
   
   for (let i = 0; i < membersArr.length; i++){
   
@@ -5140,9 +5146,7 @@ function buildTableBody(membersArr){
     table.appendChild(tbody);
   }
 };
-
-buildTableBody(membersArr);
-
+buildTableBody(membersArr)
 
 
 
@@ -5170,12 +5174,20 @@ document.getElementById("independent").addEventListener("click", function () {
 });
 
 function filter_party(){
-  let selectedPartyMembers = [];
+  tbody.innerHTML = "";
+  
 
   for (i = 0; i < membersArr.length; i++){
     if ((document.getElementById("democrat").checked && membersArr[i].party == "D")){
       selectedPartyMembers.push(membersArr[i]);
     }
+    if ((document.getElementById("republican").checked && membersArr[i].party == "R")){
+      selectedPartyMembers.push(membersArr[i]);
+    }
+    if ((document.getElementById("independent").checked && membersArr[i].party == "ID")){
+      selectedPartyMembers.push(membersArr[i]);
+    }
   }
+  console.log(selectedPartyMembers)
   buildTableBody(selectedPartyMembers);
 };
