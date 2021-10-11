@@ -52,3 +52,7 @@ text-align:center;
 #state_form_div{
   display: inline;
 }
+
+tbody a{
+  color:black;
+}

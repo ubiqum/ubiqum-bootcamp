@@ -5064,7 +5064,7 @@ var data =
  */
 let members_array = data.results[0].members;
 let states = [
-"All",
+  "All",
 "AK",
 "AL",
 "AR",
@@ -5201,7 +5201,7 @@ let tbody = document.createElement("tbody");
          let td4 =  document.createElement('td');
          let td5 =  document.createElement('td');
 
-         link1.setAttribute("href", members_array[i].api_uri);
+         link1.setAttribute("href", members_array[i].url);
 
          let linktext1 =  document.createTextNode(members_array[i].first_name + " " + (members_array[i].middle_name || "")  +" "+ members_array[i].last_name);
          // aquí text1 hay que añadir un if para construir el nombre
@@ -5373,19 +5373,11 @@ members_array = data.results[0].members;
               selected_members_filter.push(members_array[i]);
               } 
             //independents
-            if ((document.getElementById("independent").checked && members_array[i].party === 'I') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+            if ((document.getElementById("independent").checked && members_array[i].party === 'ID') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
               
               selected_members_filter.push(members_array[i]);
               }
-             //independents
-            if ((document.getElementById("independent").checked && members_array[i].party === 'I') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
-              selected_members_filter.push(members_array[i]);
-              }   
-      
-              
-
-
-              
+                  
          }    
          
 
