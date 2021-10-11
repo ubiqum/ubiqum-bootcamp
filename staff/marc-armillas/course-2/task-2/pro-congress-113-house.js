@@ -21694,16 +21694,3 @@ function bodyTable(table){
 document.body.appendChild(table);
 
 bodyTable(table);
-
-
-// select options dropdown
-let selectorList = document.getElementById("state-list");
-let statesArr = ["All","Alabama","Alaska","American Samoa","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Federated States of Micronesia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Marshall Islands","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Northern Mariana Islands","Ohaio","Oklahoma","Oregon","Palau","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virgin Island","Virginia","Washington","West Virginia","Wisconcin","Wyoming"];
-
-for(i = 0; i < statesArr.length; i++){
-  let option = document.createElement("option");
-  option.value = statesArr[i];
-  option.text = statesArr[i];
-  selectorList.appendChild(option);
-}
-

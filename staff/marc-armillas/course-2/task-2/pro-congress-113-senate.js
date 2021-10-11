@@ -1,5 +1,5 @@
-var data = 
-{
+
+var data = {
     "status":"OK",
     "copyright":" Copyright (c) 2021 Pro Publica Inc. All Rights Reserved.",
     "results":[
@@ -5054,21 +5054,44 @@ var data =
        }
     ]
  }
-
 // document.getElementById("senate-data").innerHTML = JSON.stringify(data);
 
-
-
-// ///////////////////////////////////// Building the Table ////////////////////////////////////////////////////////////
+// console.log(data.results[0].members.length);
 
 const membersNumber = data.results[0].members.length;
 let membersArr = data.results[0].members;
-let tableBody = document.getElementById("senate-data");
+let table = document.getElementById("senate-data");
+function bodyTable(table){
+  let trHeader = document.createElement("tr");
+  let tHead = document.createElement("thead");
+  let tBody = document.createElement("tbody");
+  let th1 = document.createElement("th");
+  let th2 = document.createElement("th");
+  let th3 = document.createElement("th");
+  let th4 = document.createElement("th");
+  let th5 = document.createElement("th");
 
-bodyTable();
+  let textTh1 = document.createTextNode("Full Name");
+  let textTh2 = document.createTextNode("Party");
+  let textTh3 = document.createTextNode("State");
+  let textTh4 = document.createTextNode("Seniority");
+  let textTh5 = document.createTextNode("Percentage V.W.P");
 
+  th1.appendChild(textTh1);
+  th2.appendChild(textTh2);
+  th3.appendChild(textTh3);
+  th4.appendChild(textTh4);
+  th5.appendChild(textTh5);
 
-function bodyTable(){
+  trHeader.appendChild(th1);
+  trHeader.appendChild(th2);
+  trHeader.appendChild(th3);
+  trHeader.appendChild(th4);
+  trHeader.appendChild(th5);
+
+  tHead.appendChild(trHeader);
+  table.appendChild(tHead);
+
   for(i = 0; i < membersNumber ; i++){
 
    
@@ -5106,133 +5129,12 @@ function bodyTable(){
     tr.appendChild(td5);
     
 
-    tableBody.appendChild(tr);    
+    tBody.appendChild(tr);    
+    table.appendChild(tBody);
   }
 }
-bodyTable();
+document.body.appendChild(table);
 
-
-
-/////////////////////////////////////////////////////// select options dropdown///////////////////////////
-
-// let selectorList = document.getElementById("state-list");
-// let statesArr = ['AL','AK','AS','AZ','AR','CA','CO','CT','DE','DC','FM','FL','GA','GU','HI','ID','IL','IN','IA','KS','KY','LA','ME','MH','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','MP','OH','OK','OR','PW','PA','PR','RI','SC','SD','TN','TX','UT','VT','VI','VA','WA','WV','WI','WY'];
-// let statesFullNameArray = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
-
-// for(i = 0; i < statesArr.length; i++){
-//   let option = document.createElement("option")
-//   option.value = statesArr[i];
-//   option.text = statesFullNameArray[i];
-//   selectorList.appendChild(option);
-// }
-
-
-
-//////////////////////////////////////////// checkbox and selector listeners//////////////////////////////////////////////
-document.getElementById("republican").addEventListener("click", function () {
-  filter_party(membersArr)
-  console.log("r");
-});
-document.getElementById("democrat").addEventListener("click", function () {
-    filter_party(membersArr)
-    console.log("d");
-});
-document.getElementById("independent").addEventListener("click", function () {
-    filter_party(membersArr)
-    console.log("i");
-});
-// document.getElementById("state-list").addEventListener("change", function () {
-//     filter_party(membersArr)
-//     console.log("selector");
-// });
-
-
-// party filters
-// const rep = membersArr.filter(x => x.party == "R")
-// console.log(rep);
-// const dem = membersArr.filter(x => x.party == "D")
-// console.log(dem);
-// const ind = membersArr.filter(x => x.party == "I")
-// console.log(ind);
-
-// states filters
-// const all = membersArr.filter(x => x.state == 'AL' ||'AK' ||'AS' || 'AZ'|| 'AR' || 'CA' || 'CO' || 'CT' || 'DE' || 'DC' || 'FM' || 'FL' || 'GA' || 'GU' || 'HI' || 'ID' || 'IL' || 'IN' || 'IA' || 'KS' || 'KY' || 'LA' || 'ME' || 'MH' || 'MD' || 'MA' || 'MI' || 'MN' || 'MS' ||'MO' ||'MT' ||'NE' ||'NV' ||'NH' ||'NJ' ||'NM' ||'NY' ||'NC' ||'ND' ||'MP' ||'OH' ||'OK' ||'OR' ||'PW' ||'PA' ||'PR' ||'RI' ||'SC' ||'SD' ||'TN' ||'TX' ||'UT' ||'VT' ||'VI' ||'VA' ||'WA' ||'WV' ||'WI' ||'WY')
-// console.log(all);
-
-
-
-
-
-
-
-//////////////////////////////////////////// filtros/////////////////////////////////
-
-function filter_party(membersArr) {
-  console.log(membersArr)
-
-      var selectedState = document.getElementById("state-list").value;
-      
-      for (var i = 0; i < membersArr.length; i++) {
-          if ((document.getElementById("republican").checked && membersArr[i].party === "R") && (selectedState === membersArr[i].state || selectedState == "All")) {
-              console.log(document.getElementById("republican").value,'prova')
-              selectedPartyMembers.push(membersArr[i]);
-          }
-          if ((document.getElementById("democrat").checked && membersArr[i].party == "D") && (selectedState === membersArr[i].state || selectedState == "All")) {
-              console.log("2")
-  
-              selectedPartyMembers.push(membersArr[i]);
-          }
-  
-  
-          if ((document.getElementById("independent").checked && membersArr[i].party == "ID") && (selectedState === membersArr[i].state || selectedState == "All")) {
-              console.log("3")
-  
-              selectedPartyMembers.push(membersArr[i]);
-          }
-  
-          if (document.getElementById("democrat").checked == false && (document.getElementById("independent").checked === false) && (document.getElementById("republican").checked == false) && (selectedState == "All")
-  
-  
-          ) {
-  
-              console.log("33")
-  
-              selectedPartyMembers = membersArr;
-  
-          }
-          if (document.getElementById("democrat").checked == false && (document.getElementById("independent").checked === false) && (document.getElementById("republican").checked == false) && (selectedState == membersArr[i].state)) {
-              selectedPartyMembers.push(membersArr[i]);
-          }
-      }
-  
-      console.log("check")
-  
-      // cambiar la tabla con los aplicando los filtros
-      console.log(selectedPartyMembers)
-  return selectedPartyMembers;
-      
-}
-bodyTable(selectedPartyMembers)
-
-
-
-// //////////////////////////////////////////// filtro input de tipo texto///////////////////////
-
-// function textFilter(){
-//   let input = document.getElementById("search");
-//   let filter = input.value.toUpperCase();
-//   let tr = document.getElementsByTagName("tr");
-
-//   for(i = 0; i < tr.length; i++) {
-//     td = tr[i].getElementsByTagName("td")[0];
-//     if (td) {
-//       let txtValue = td.innerText;
-//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//         tr[i].style.display = "";
-//       } else {
-//         tr[i].style.display = "none";
-//       }
-//     }
-//   }
-// }
-    
+bodyTable(table);
+// crear la cabecera 
+// poner filtro para que si el middle name es null no se imprima 
