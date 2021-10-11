@@ -5235,7 +5235,7 @@ build_table(members_array);
 //---------function. create a form for all states------------
 function states_form(){
 
-  let form = document.getElementById("div_form");
+  let form = document.getElementById("state_form_div");
   let select =  document.createElement("select");
   select.setAttribute('id', 'state_form');
 
@@ -5301,6 +5301,76 @@ document.getElementById("state_form").addEventListener("input",  function () {
 
 
 
+
+
+
+//-------------------search by name--------------------
+
+let name_search = document.getElementById("name_search");
+let filter =name_search.value.toLowerCase().trim();
+
+  let table = document.getElementById("senate-data");
+  let tr = table.getElementsByTagName("tr")
+ console.log(filter)
+
+ /name_search.addEventListener('keyup', function(parametro) {
+
+  //We obtain the text we write in the 'input' textbox. 
+  let text_searcher = parametro.target.value;
+  console.log(text_searcher);
+ });
+ 
+
+
+
+//Cómo selecciono td[1] dentro de tr?
+
+  //------listener------
+
+
+
+  /*   let text = filter; */
+
+  //reg constructor
+   // var pat = new RegExp(text_searcher, 'i'); // la i es por case insensitive. 
+
+// How will we check if the our text matches the constructor done with the input? RegExpt(input, 'i').test(the_whole_text)
+
+//hasta aquí bien...
+//mirko mi problema es que tr incluye las del head!!!
+// como puedo seleccionar table.tbody?????
+
+/*
+  for (var i=0; i < tr.length; i++) {
+    var td1 = tr[i].td1;
+    console.log((td1.link1.textlink1));
+
+    
+
+    if (pat.test(td1.link1.textlink1)) {
+      console.log('Sí que existe')
+    }
+    else{
+      console.log("No existe");
+    }
+  }
+  
+});
+
+console.log('print name_search');
+
+console.log(filter);
+
+
+ */
+
+
+
+
+
+
+
+
 //---------------filters------------------------------------------------
 
 
@@ -5342,7 +5412,20 @@ members_array = data.results[0].members;
  
 
 
-    
+
+/* tr = table.getElementsByTagName("tr");
+for (i = 0; i < tr.length; i++) {
+  td = tr[i].getElementsByTagName("td")[0];
+  if (td) {
+    txtValue = td.textContent || td.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }       */
+
+
 /* Summary:How does this work?
 
 build_table() will build a table based on the objects  data.results[0].members;
