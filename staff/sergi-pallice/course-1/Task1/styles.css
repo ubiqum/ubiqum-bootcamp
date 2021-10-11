@@ -1,8 +1,4 @@
 .logo {
-  /*
-  background-size: cover;
-  color: lightgreen;
-  */
   font: bold 14px arial;
   width: 140px;
   height: 140px;
@@ -11,6 +7,10 @@
 
 body {
   font-family: "Cambria";
+}
+
+.top-image {
+  width: 50%;
 }
 
 .index-frame1 img {
