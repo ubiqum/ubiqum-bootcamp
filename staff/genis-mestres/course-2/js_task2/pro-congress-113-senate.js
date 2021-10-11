@@ -5063,7 +5063,9 @@ var data =
 /* var selected_state = document.getElementById("state_list").value;
  */
 let members_array = data.results[0].members;
-let states = ["All", "AK",
+let states = [
+"All",
+"AK",
 "AL",
 "AR",
 "AS",
@@ -5307,64 +5309,38 @@ document.getElementById("state_form").addEventListener("input",  function () {
 //-------------------search by name--------------------
 
 let name_search = document.getElementById("name_search");
-let filter =name_search.value.toLowerCase().trim();
-
-  let table = document.getElementById("senate-data");
-  let tr = table.getElementsByTagName("tr")
- console.log(filter)
-
- /name_search.addEventListener('keyup', function(parametro) {
-
+//let filter_by_name =name_search.value.toLowerCase();
+let filter_by_name; /* We cannot give value here because it'll 
+be static. We declare the variable, but we'll assign value in the listener, below.*
+A dinamic variable should be given value in an eventListener */
+ name_search.addEventListener('keyup', function(item_search) {
   //We obtain the text we write in the 'input' textbox. 
-  let text_searcher = parametro.target.value;
-  console.log(text_searcher);
+  filter_by_name = item_search.target.value;
+  filter_by_name = filter_by_name.toLowerCase();
+
  });
  
 
 
+function textFilter(){
+  console.log('el textfilter se inicia')
+   let tr = document.getElementsByTagName("tr");
 
-//Cómo selecciono td[1] dentro de tr?
-
-  //------listener------
-
-
-
-  /*   let text = filter; */
-
-  //reg constructor
-   // var pat = new RegExp(text_searcher, 'i'); // la i es por case insensitive. 
-
-// How will we check if the our text matches the constructor done with the input? RegExpt(input, 'i').test(the_whole_text)
-
-//hasta aquí bien...
-//mirko mi problema es que tr incluye las del head!!!
-// como puedo seleccionar table.tbody?????
-
-/*
-  for (var i=0; i < tr.length; i++) {
-    var td1 = tr[i].td1;
-    console.log((td1.link1.textlink1));
-
+   for(i = 0; i < tr.length; i++) {
+     td = tr[i].getElementsByTagName("td")[0];
     
+     if (td) {
+       let txtValue = td.innerText;
 
-    if (pat.test(td1.link1.textlink1)) {
-      console.log('Sí que existe')
-    }
-    else{
-      console.log("No existe");
-    }
-  }
-  
-});
-
-console.log('print name_search');
-
-console.log(filter);
-
-
- */
-
-
+       if (txtValue.toLowerCase().indexOf(filter_by_name) > -1) {
+        tr[i].style.display = "";
+               
+       } else {
+         tr[i].style.display = "none";
+       }
+     }
+   }
+ }
 
 
 
@@ -5400,8 +5376,18 @@ members_array = data.results[0].members;
             if ((document.getElementById("independent").checked && members_array[i].party === 'I') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
               
               selected_members_filter.push(members_array[i]);
-              } 
+              }
+             //independents
+            if ((document.getElementById("independent").checked && members_array[i].party === 'I') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+              selected_members_filter.push(members_array[i]);
+              }   
+      
+              
+
+
+              
          }    
+         
 
       console.log(selected_members_filter);  
 
@@ -5456,47 +5442,3 @@ It has a loop that goes through each member of  'members_array' and checks:
 
 
 
-
-/*   
-  var row = table.insertRow(i)
-
- 
-  var a = row.insertCell(0);
-  x.innerHTML = "cell a"; */ 
-  
-
-/* let table = document.getElementById("senate-data-id"); */
-/* let table = document.getElementById("senate-data");  // we create the tag table in html
-
-let tr =  document.createElement('tr');//row
- let td1 =  document.createElement('td'); //the cell1
- let td2 =  document.createElement('td'); //the cell2
-
-
-
- 
- let text1 =   document.createTextNode("cell1");
- let text2 =  document.createTextNode("cell2");
-
- td1.appendChild(text1);
- td2.appendChild(text2);
- tr.appendChild(td1);
- tr.appendChild(td2);
- table.appendChild(tr); */
- // we add the table we've created in body
-
-/* document.getElementById('body').appendChild(table); */
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-// for (let i = 0; i <4;i++);
-/* <table>
-<tr>
-   <th></th>
-   <th scope="col">Saturday</th>
-   <th scope="col">Sunday</th>
- </tr>
- <tr>
-   <th scope="row">row1</th>
-  <td> cell1</td>
-  <td> cell2</td>
- </tr>
-</table> */
