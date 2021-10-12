@@ -5059,56 +5059,50 @@ let data =
 
 let membersLength = data.results[0].members.length;
 let membersArr = data.results[0].members;
-let selectedPartyMembers = [];
 let selectedState = [];
 
 
-/*
 
-//build table header
-let tr = document.createElement('tr');
-let thead = document.createElement('thead');
-  
-let th1 = document.createElement('th');
-let th2 = document.createElement('th');
-let th3 = document.createElement('th');
-let th4 = document.createElement('th');
-let th5 = document.createElement('th');
-  
-let head1 = document.createTextNode("Senator");
-let head2 = document.createTextNode("Party");
-let head3 = document.createTextNode("State");
-let head4 = document.createTextNode("Seniority");
-let head5 = document.createTextNode("% votes with party");
-  
-thead.appendChild(tr);
-table.appendChild(thead);
-  
-th1.appendChild(head1);
-th2.appendChild(head2);
-th3.appendChild(head3);
-th4.appendChild(head4);
-th5.appendChild(head5);
-  
-tr.appendChild(th1);
-tr.appendChild(th2);
-tr.appendChild(th3);
-tr.appendChild(th4);
-tr.appendChild(th5);
-  */
+//build table
 
-//build table body
-let tbody = document.createElement('tbody');
-function buildTableBody(membersArr){
+function buildTableWhole(membersArr){
 
-  
+  let table = document.getElementById("senate-data");
+  let thead = document.createElement('thead');
+  let tbody = document.createElement('tbody');
   
   document.getElementById("senate-data").innerHTML = "";
 
-  let table = document.getElementById("senate-data");
-  tbody.innerHTML = "";
 
-  
+  //build table header
+
+  let th1 = document.createElement('th');
+  let th2 = document.createElement('th');
+  let th3 = document.createElement('th');
+  let th4 = document.createElement('th');
+  let th5 = document.createElement('th');
+
+  let head1 = document.createTextNode("Senator");
+  let head2 = document.createTextNode("Party");
+  let head3 = document.createTextNode("State");
+  let head4 = document.createTextNode("Seniority");
+  let head5 = document.createTextNode("% votes with party");
+
+  th1.appendChild(head1);
+  th2.appendChild(head2);
+  th3.appendChild(head3);
+  th4.appendChild(head4);
+  th5.appendChild(head5);
+
+  thead.appendChild(th1);
+  thead.appendChild(th2);
+  thead.appendChild(th3);
+  thead.appendChild(th4);
+  thead.appendChild(th5);
+
+
+//build table body
+
   for (let i = 0; i < membersArr.length; i++){
   
     let tr = document.createElement('tr');
@@ -5144,61 +5138,47 @@ function buildTableBody(membersArr){
     tr.appendChild(td5);
   
     tbody.appendChild(tr);
+    table.appendChild(thead);
     table.appendChild(tbody);
   }
 };
-buildTableBody(membersArr)
+buildTableWhole(membersArr)
 
 
 
 
-//filters
-document.getElementById("republican").addEventListener("click", function () {
-    filter_party(membersArr);
-    console.log("r")
-  
+//listeners
+document.getElementById("democrat").addEventListener("click", function () {
+  return (document.getElementById("democrat").checked ? filter_party(membersArr) : buildTableWhole(membersArr));
 });
 
-document.getElementById("democrat").addEventListener("click", function () {
-    filter_party(membersArr);
-    console.log("d")
-  
+document.getElementById("republican").addEventListener("click", function () {
+  return (document.getElementById("republican").checked ? filter_party(membersArr) : buildTableWhole(membersArr));
 });
 
 document.getElementById("independent").addEventListener("click", function () {
-    filter_party(membersArr);
-    console.log("i")
-  
-});
-document.getElementById("stateDropDown").addEventListener("change", function () {
-    filter_party(membersArr)
-  
+  return (document.getElementById("independent").checked ? filter_party(membersArr) : buildTableWhole(membersArr));
 });
 
+
+//filter function
+//it works, but if you select
 function filter_party(){
-   let originalMember = [...membersArr];
-   console.log(originalMember);
+  document.getElementById("senate-data").innerHTML = "";
+  let selectedPartyMembers = [];
   for (i = 0; i < membersArr.length; i++){
-    if ((document.getElementById("democrat").checked && membersArr[i].party === "D")){
+    if ((document.getElementById("democrat").checked === true && membersArr[i].party === "D")){
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("republican").checked && membersArr[i].party === "R")){
+    if ((document.getElementById("republican").checked === true && membersArr[i].party === "R")){
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("independent").checked===true && membersArr[i].party === "ID")){
+    if ((document.getElementById("independent").checked === true && membersArr[i].party === "ID")){
       console.log(document.getElementById("independent").checked)
 
       selectedPartyMembers.push(membersArr[i]);
     }
-    if (document.getElementById("independent").checked == false  ) {
-            
-            console.log(document.getElementById("independent").checked)
-            console.log(membersArr[i],'io');
-            selectedPartyMembers = originalMember;
-         
-
-        }
   }
   console.log(selectedPartyMembers)
-  buildTableBody(selectedPartyMembers);
+  buildTableWhole(selectedPartyMembers);
 };
