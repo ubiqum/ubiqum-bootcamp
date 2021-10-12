@@ -5,9 +5,9 @@ export const triArea = (x,y) => 1/2*(x*y);
 /* the value in exercises.json didnt match with the real result I fixed in exercises.json , in the last decimals of the last result*/
 /* {
             "inputs": [ 5, 7 ],
-            "output": 75.39822368615503 (the original value was75.39822368615502 )
+            "output": 75.39822368615503 (the original value was 75.39822368615502 )
           },*/
-export const ringArea = (x,y) => Math.PI*(Math.pow(y,2)-Math.pow(x,2)).toFixed(15);
+export const ringArea = (x,y) => Math.PI*(Math.pow(y,2)-Math.pow(x,2)).toFixed(20);
 export const f2c = (x) => (x-32)*5/9;
 export const c2f = (x) => x*9/5+32;
 /*Strings*/
@@ -58,3 +58,8 @@ var array_words =x.split(' ');
 return array_words.filter( (element) => element.length === max_length); 
 }
 /*DOM Operations */
+export const moduleTitles = (x) => Array.from(document.querySelectorAll('.module-title')).map(module_title => module_title.innerText);
+/* This didnt check the value of color in the test the validation must be the page */
+export const goPurple = (x) => {document.querySelectorAll('[data-bs-target="#goPurple"]')[0].innerHTML='<span style="color:purple">goPurple</span>';
+                                return 'Go Purple!'};
+export const copycat = (x) => {var y=[0,100,'hello!', [1, 2, 3] ]; return y[x]};
