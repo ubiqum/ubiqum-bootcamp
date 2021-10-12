@@ -5261,4 +5261,23 @@ document.getElementById("rep").addEventListener("click", function () {
     }
 });
 
+document.getElementById("dem").addEventListener("click", function () {
+  if (document.getElementById("dem").checked === false){
+    console.log(document.getElementById("dem").value);
+    buildTable(senatArr);
+  }
+  });
+document.getElementById("rep").addEventListener("click", function () {
+   if (document.getElementById("rep").checked === false){
+    console.log(document.getElementById("rep").value );
+    buildTable(senatArr);
+    }
+});
+  document.getElementById("ind").addEventListener("click", function () {
+    if (document.getElementById("ind").checked === false){
+    console.log(document.getElementById("ind").value );
+    buildTable(senatArr);
+    }
+});
+
 
