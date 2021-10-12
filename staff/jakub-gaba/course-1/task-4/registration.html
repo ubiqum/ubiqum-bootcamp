@@ -62,14 +62,55 @@
                 <input class="register_input" type="text" id="contact_phone_input" name="phone" autocomplete=""><br>
                 <label class="register_labels" id="email">Contact email:</label>
                 <input class="register_input" type="text" id="contact_email_input" name="email" autocomplete=""><br><br>
-                <label>Motorsports Organization Membership</label><br>
-                <select name="organisation" id=organisation_input>
-                    <option class="first_option"value="SCCA">Sports Car Club of America (SCCA)</option>
-                    <option value="NASA">National Autosport Association (NASA)</option>
-                    <option value="None">None</option>
-                </select>
+                <table style="text-align: left;">
+                    <td style="border-left: 10px solid black; border-radius: 5%;">
+                        <label>Motorsports Organization Membership</label><br>
+                        <select name="organisation" id=organisation_input>
+                            <option value="none">None</option>
+                            <option value="SCCA">Sports Car Club of America (SCCA)</option>
+                            <option value="nasa">National Autosport Association (NASA)</option>
+
+                        </select>
+                    </td>
+                    <td>
+                        <label>Previous Competitive Experience</label><br>
+                        <select name="experience" id=experience_input>
+                            <option value="none">None</option>
+                            <option value="hpde">HPDE/Track Days</option>
+                            <option value="autocross">Autocross</option>
+                            <option value="one">One year</option>
+                            <option value="two">Two years</option>
+                            <option value="over">Over two years</option>
+                        </select>
+                    </td>
+                    <td style="border-right: 10px solid black; border-radius: 10%;">
+                        <label>Racing License</label><br>
+                        <select name="license" id=license_input>
+                            <option>None</option>
+                            <option>SCCA</option>
+                            <option>NASA</option>
+                            <option>FIA</option>
+                        </select>
+                    </td>
+                </table>
             </form>
+            <div class="signature">
+                I agree that I will abide by all the rules of the NorCal Time Trial Series (NCTTS). I recognize that
+                Motorsports are inherently dangerous. I hereby release, discharge, and/or otherwise indemnify NCTTS,
+                their
+                employees and associated personnel and volunteers, including the facilities used for events, against any
+                claim by or on behalf of the registrant as a result of my participation in the series.
+                By signing below, I hereby agree and authorize the above.
+            </div>
+            <div class="signature_sign">
+                Registrant’s Signature:
+            </div>
+            <div class="signature_date">
+                Date:
+            </div>
         </div>
+        <br>
+
 </body>
 
 </html>
