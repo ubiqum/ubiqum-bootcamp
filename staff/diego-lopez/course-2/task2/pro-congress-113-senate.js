@@ -5161,24 +5161,31 @@ document.getElementById("independent").addEventListener("click", function () {
 });
 
 
+let states = "ALL"
+document.getElementById("stateDropDown").addEventListener("change", function () {
+  states = document.getElementById("stateDropDown").value;
+  filter_party(membersArr);
+  console.log(states);
+});
+
 //filter function
-//it works, but if you select
+//it works, but if you select one checkbox, another checkbox and uncheck one the result is an unfiltered table
 function filter_party(){
   document.getElementById("senate-data").innerHTML = "";
   let selectedPartyMembers = [];
   for (i = 0; i < membersArr.length; i++){
-    if ((document.getElementById("democrat").checked === true && membersArr[i].party === "D")){
+    if ((document.getElementById("democrat").checked && membersArr[i].party === "D") && (states === membersArr[i].state || states === "ALL")) {
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("republican").checked === true && membersArr[i].party === "R")){
+    if ((document.getElementById("republican").checked && membersArr[i].party === "R") && (states === membersArr[i].state || states === "ALL")) {
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("independent").checked === true && membersArr[i].party === "ID")){
-      console.log(document.getElementById("independent").checked)
-
+    if ((document.getElementById("independent").checked && membersArr[i].party === "ID") && (states === membersArr[i].state || states === "ALL")) {
+      selectedPartyMembers.push(membersArr[i]);
+    }
+    if (states === membersArr[i].state || states === "ALL"){
       selectedPartyMembers.push(membersArr[i]);
     }
   }
-  console.log(selectedPartyMembers)
   buildTableWhole(selectedPartyMembers);
 };
