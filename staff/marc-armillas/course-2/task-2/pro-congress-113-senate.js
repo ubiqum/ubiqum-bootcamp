@@ -5054,14 +5054,15 @@ var data = {
        }
     ]
  }
-// document.getElementById("senate-data").innerHTML = JSON.stringify(data);
-
-// console.log(data.results[0].members.length);
-
 const membersNumber = data.results[0].members.length;
 let membersArr = data.results[0].members;
-let table = document.getElementById("senate-data");
-function bodyTable(table){
+
+
+function buildTable(membersArr){
+  // borrar tabla
+  document.getElementById("senate-data").innerHTML = "";
+  // creando tabla
+  let table = document.getElementById("senate-data");
   let trHeader = document.createElement("tr");
   let tHead = document.createElement("thead");
   let tBody = document.createElement("tbody");
@@ -5075,7 +5076,7 @@ function bodyTable(table){
   let textTh2 = document.createTextNode("Party");
   let textTh3 = document.createTextNode("State");
   let textTh4 = document.createTextNode("Seniority");
-  let textTh5 = document.createTextNode("Percentage V.W.P");
+  let textTh5 = document.createTextNode("% Vote W Party");
 
   th1.appendChild(textTh1);
   th2.appendChild(textTh2);
@@ -5128,13 +5129,103 @@ function bodyTable(table){
     tr.appendChild(td4);
     tr.appendChild(td5);
     
-
+    
     tBody.appendChild(tr);    
     table.appendChild(tBody);
   }
 }
-document.body.appendChild(table);
+buildTable(membersArr);
 
-bodyTable(table);
-// crear la cabecera 
-// poner filtro para que si el middle name es null no se imprima 
+
+
+/////////////////////////////// dropdown list
+
+
+let statesArr = ['ALL','AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
+let fullStatesArr = ['All','Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+let select = document.getElementById("select")
+
+for(var i = 0; i < statesArr.length; i++){
+  let option = document.createElement("option");
+  option.text = fullStatesArr[i];
+  option.value = statesArr[i];
+  select.appendChild(option);
+}
+
+
+
+// ///////////////////////////////listeners
+
+document.getElementById("republican").addEventListener("click", function () {
+  // console.log(document.getElementById("independent").checked,'value check')
+  filter_party(membersArr);
+});
+
+document.getElementById("democrat").addEventListener("click", function () {
+  filter_party(membersArr);
+});
+
+document.getElementById("independent").addEventListener("click", function () {
+  filter_party(membersArr);
+});
+
+let selectedStateValue = document.getElementById("select").value;
+
+document.getElementById("select").addEventListener("input",  function () {
+  let selectedStateValue = document.getElementById("select").value;
+  console.log(selectedStateValue);
+  filter_party(membersArr);
+});
+
+
+
+
+// ////////////////////////////////filters
+
+// var selected_state = option.value;
+function filter_party(membersArr) {
+  // console.log(membersArr)
+  var selected_party_members = [];
+  let cloneArr = [...membersArr];
+  for (var i = 0; i < membersArr.length; i++) {
+    
+    
+    if (document.getElementById("republican").checked === true && membersArr[i].party === "R" ) {
+      // console.log("s")
+      selected_party_members.push(membersArr[i]);
+    }
+    // if (document.getElementById("republican").checked === false ) {  
+    //   console.log(membersArr)  
+    //   selected_party_members = cloneArr; 
+    // }
+    
+    
+    
+    if (document.getElementById("democrat").checked === true && membersArr[i].party === "D") {
+      selected_party_members.push(membersArr[i]);
+      console.log("check");
+    }
+    // if (document.getElementById("democrat").checked === false) {  
+    //     console.log(document.getElementById("democrat").checked);  
+    //     selected_party_members = cloneArr; 
+    //   }
+      
+      
+      if (document.getElementById("independent").checked === true && membersArr[i].party === "ID" ) {
+        selected_party_members.push(membersArr[i]);
+        console.log(selected_party_members);
+      }
+      // if (document.getElementById("independent").checked === false) {  
+        //    console.log("check");  
+        //   selected_party_members = membersArr; 
+        // }
+        
+        
+        
+      }
+      buildTable(selected_party_members);  
+    }
+    
+    
+    
+    

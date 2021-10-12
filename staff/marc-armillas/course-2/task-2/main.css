@@ -37,6 +37,10 @@ thead {
 tbody {
     text-align: center;
 }
+tbody a {
+    color: black;
+    text-decoration: none;
+}
 
 .footer-p {
     display: inline;
