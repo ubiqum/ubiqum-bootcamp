@@ -27,35 +27,48 @@
                     <element class="line">|</element>
                     <a class="nav__item" href="contact.html">Contact</a>
                     <element class="line">|</element>
+                    <a>Sign-Up !</a>
+                    <element class="line">|</element>
                     <a class="nav__item" href="Safety Rules Page.html">Rules</a>
                     <element class="line">|</element>
                     <a class="nav__item" href="General Information.html">Infos</a>
-                    <element class="line">|</element>
-                    <a>Registration</a>
+
                 </nav>
             </h1>
         </div>
 
-        <div class="bigboss">
-            
-            <p class="register_title">Registration Form</p>
-            <div class="register_wrap">
-            <form class="register_form">
-                <label class="register_labels" id="fname">First name:</label>
-                <input class="register_input" type="text" id="fname_input" autocomplete=""><br>
+        =
+        <p class="register_title">Registration Form</p>
+        <div class="register_wrap">
+            <form class="register_form" action="show_data.html" method="GET">
+                <label class="register_labels" id="fname" name="first_name">First name:</label>
+                <input class="register_input" type="text" id="fname_input" name="first_name" autocomplete=""><br>
                 <label class="register_labels" id="lname">Last name:</label>
-                <input class="register_input" type="text" id="lname_input" autocomplete=""><br>
+                <input class="register_input" type="text" id="lname_input" name="last_name" autocomplete=""><br>
                 <label class="register_labels" id="str_address">Street address:</label>
-                <input class="register_input" type="text" id="lname_input" autocomplete=""><br>
+                <input class="register_input" type="text" id="street_input" name="address" autocomplete=""><br>
                 <label class="register_labels" id="city">City:</label>
-                <input class="register_input" type="text" id="lname_input" autocomplete=""><br>
+                <input class="register_input" type="text" id="city_input" name="city" autocomplete=""><br>
                 <label class="register_labels" id="zip_code">Zip Code:</label>
-                <input class="register_input" type="text" id="lname_input" autocomplete=""><br>
+                <input class="register_input" type="text" id="zip_input" name="zip_code" autocomplete=""><br>
                 <label class="register_labels" id="age">Age:</label>
-                <input class="register_input" type="text" id="lname_input" autocomplete=""><br>
-
+                <input class="register_input" type="text" id="age_input" name="age" autocomplete=""><br><br>
+                <label class="gender">Gender</label><br><br>
+                <label for="male-radio"><img src="men_emote.png" width="70" height="70"></label>
+                <label for="female-radio"><img src="women_emote.png" width="70" height="70"></label><br>
+                <input type="radio" name="gender" id="male-radio" style="margin-left: 5px;">
+                <input type="radio" name="gender" id="female-radio" style="margin-left: 55px;"><br><br><br>
+                <label class="register_labels" name="phone" id="phone">Contact phone:</label>
+                <input class="register_input" type="text" id="contact_phone_input" name="phone" autocomplete=""><br>
+                <label class="register_labels" id="email">Contact email:</label>
+                <input class="register_input" type="text" id="contact_email_input" name="email" autocomplete=""><br><br>
+                <label>Motorsports Organization Membership</label><br>
+                <select name="organisation" id=organisation_input>
+                    <option class="first_option"value="SCCA">Sports Car Club of America (SCCA)</option>
+                    <option value="NASA">National Autosport Association (NASA)</option>
+                    <option value="None">None</option>
+                </select>
             </form>
-        </div>
         </div>
 </body>
 

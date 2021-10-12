@@ -9,11 +9,9 @@
   border-radius: .5rem;
   margin-left: 4rem;
   display: flex;
-  
 }
 
 .container_safety{
-  
   margin-top: 10em;
   text-align: center;
   font-size: 30px;
@@ -148,7 +146,9 @@ sup{
 }
 .register_form{
 padding-top: 2rem;
- text-align: center;
+text-align: center;
+font-size: 25px;
+font-weight: bold;
 }
 .register_labels{
   font-size: 30px;
@@ -160,7 +160,7 @@ input[type=text]{
   width: 25px;
   background-color: #bbb;
   border-radius: 50%;
-  transition: ease-in-out, width .5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: ease-in-out, width .5s cubic-bezier(0.19, .19, .19, .19);
   color: transparent;
 
 }
@@ -173,8 +173,17 @@ color: black;
 text-align: center;
 }
 .register_wrap{
-  margin-right: 25%;
-  margin-left: 25%;
+  margin-right: 15%;
+  margin-left: 15%;
   border-top: 5px solid slategray;
   border-radius: 50%;
+}
+.gender{
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 4px solid black;
+}
+
+select:hover, option{
+  font-size: 20px;
 }
