@@ -5063,10 +5063,11 @@ const data =
 const senatArr = data.results[0].members;
 
 function buildTable(senatArr) {
+  document.getElementById("senate-data").innerHTML = "";
+
   let table = document.getElementById("senate-data");
   let tblBody = document.createElement("tbody");
   let thead = document.createElement("thead");
-  document.getElementById("senate-data").innerHTML = "";
 //HEADER
     let th = document.createElement("th");
     let th2 = document.createElement("th");
@@ -5140,37 +5141,124 @@ function buildTable(senatArr) {
 buildTable(senatArr);
 
 
-//every US state in the dropdown
-var select = document.getElementById("usstates"); 
-var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+//array US states inside the dropdown
 
-  for(var i = 0; i < states.length; i++) {
-    var opt = states[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    select.add(el);
+  var select = document.getElementById("usstates"); 
+  let states = [ 
+  "All",
+  "AK",
+  "AL",
+  "AR",
+  "AS",
+  "AZ",
+  "CA",
+  "CO",
+  "CT",
+  "DC",
+  "DE",
+  "FL",
+  "GA",
+  "GU",
+  "HI",
+  "IA",
+  "ID",
+  "IL",
+  "IN",
+  "KS",
+  "KY",
+  "LA",
+  "MA",
+  "MD",
+  "ME",
+  "MI",
+  "MN",
+  "MO",
+  "MS",
+  "MT",
+  "NC",
+  "ND",
+  "NE",
+  "NH",
+  "NJ",
+  "NM",
+  "NV",
+  "NY",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "PR",
+  "RI",
+  "SC",
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VA",
+  "VI",
+  "VT",
+  "WA",
+  "WI",
+  "WV",
+  "WY"]
+
+    for(var i = 0; i < states.length; i++) {
+      var opt = states[i];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      select.add(el);
   }
 
+//selecting checkboxes
 
+
+
+let statesdrop = document.getElementById("usstates").value;
+document.getElementById("usstates").addEventListener("input", function () {
+statesdrop = document.getElementById("usstates").value;
+console.log(statesdrop);
+  });
 
 //checkboxes 
 
-document.getElementById("checks").addEventListener("click", function (){
-
+function partyFilter(){
   let partyselected = [];
 
   for ( i=0; i < senatArr.length; i++) {
-    if ((document.getElementById("dem").checked && senatArr[i].party === "D")){
+    if ((document.getElementById("dem").checked && senatArr[i].party === "D") && (statesdrop === senatArr[i].state || statesdrop === states[0] || statesdrop === "Select an State")){
        partyselected.push(senatArr[i]);     
     }
-       if (document.getElementById("rep").checked && senatArr[i].party === "R"){
+       if ((document.getElementById("rep").checked && senatArr[i].party === "R") && (statesdrop === senatArr[i].state || statesdrop === states[0] || statesdrop === "Select an State")){
         partyselected.push(senatArr[i]);
        }
-         if (document.getElementById("ind").checked && senatArr[i].party === "ID"){
+         if ((document.getElementById("ind").checked && senatArr[i].party === "ID") && (statesdrop === senatArr[i].state || statesdrop === states[0] || statesdrop === "Select an State")){
           partyselected.push(senatArr[i]);
       }
     }
+    console.log(partyselected)
+    
     buildTable(partyselected);
-  })
+}
+
+
+document.getElementById("dem").addEventListener("click", function () {
+  if (document.getElementById("dem").checked === true){
+    console.log(document.getElementById("dem").value);
+    partyFilter(senatArr);
+  }
+  });
+document.getElementById("rep").addEventListener("click", function () {
+   if (document.getElementById("rep").checked === true){
+    console.log(document.getElementById("rep").value );
+    partyFilter(senatArr);
+    }
+});
+  document.getElementById("ind").addEventListener("click", function () {
+    if (document.getElementById("ind").checked === true){
+    console.log(document.getElementById("ind").value );
+    partyFilter(senatArr);
+    }
+});
+
 
