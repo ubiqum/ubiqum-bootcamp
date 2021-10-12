@@ -5060,6 +5060,7 @@ let data =
 let membersLength = data.results[0].members.length;
 let membersArr = data.results[0].members;
 let selectedPartyMembers = [];
+let selectedState = [];
 
 
 /*
@@ -5153,40 +5154,50 @@ buildTableBody(membersArr)
 
 //filters
 document.getElementById("republican").addEventListener("click", function () {
-  if (document.getElementById("republican").checked === true){
     filter_party(membersArr);
     console.log("r")
-  }
+  
 });
 
 document.getElementById("democrat").addEventListener("click", function () {
-  if (document.getElementById("democrat").checked === true){
     filter_party(membersArr);
     console.log("d")
-  }
+  
 });
 
 document.getElementById("independent").addEventListener("click", function () {
-  if (document.getElementById("independent").checked === true){
     filter_party(membersArr);
     console.log("i")
-  }
+  
+});
+document.getElementById("stateDropDown").addEventListener("change", function () {
+    filter_party(membersArr)
+  
 });
 
 function filter_party(){
-  tbody.innerHTML = "";
-  
-
+   let originalMember = [...membersArr];
+   console.log(originalMember);
   for (i = 0; i < membersArr.length; i++){
-    if ((document.getElementById("democrat").checked && membersArr[i].party == "D")){
+    if ((document.getElementById("democrat").checked && membersArr[i].party === "D")){
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("republican").checked && membersArr[i].party == "R")){
+    if ((document.getElementById("republican").checked && membersArr[i].party === "R")){
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("independent").checked && membersArr[i].party == "ID")){
+    if ((document.getElementById("independent").checked===true && membersArr[i].party === "ID")){
+      console.log(document.getElementById("independent").checked)
+
       selectedPartyMembers.push(membersArr[i]);
     }
+    if (document.getElementById("independent").checked == false  ) {
+            
+            console.log(document.getElementById("independent").checked)
+            console.log(membersArr[i],'io');
+            selectedPartyMembers = originalMember;
+         
+
+        }
   }
   console.log(selectedPartyMembers)
   buildTableBody(selectedPartyMembers);
