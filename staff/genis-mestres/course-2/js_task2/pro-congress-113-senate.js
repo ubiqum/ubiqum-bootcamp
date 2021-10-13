@@ -5056,6 +5056,12 @@ var data =
     ]
  };
 
+//------------------------------------------Fetch Begin------------------------------------------------------------------------------//
+
+
+
+
+//------------------------------------------Fetch End------------------------------------------------------------------------------//
 
 
  //HTML  46 filas fila por cada miembro, columna por cada propiedad
@@ -5269,7 +5275,10 @@ document.getElementById("democrat").addEventListener("click", function () {
 /*   filter_party(members_array) */
   if (document.getElementById("democrat").checked === true){
          console.log(document.getElementById("democrat").value);
-         filter_party(members_array);
+         filter_party();
+        }
+        else{
+          filter_party();
         }
   });
 //if Republican is selected
@@ -5277,7 +5286,10 @@ document.getElementById("republican").addEventListener("click", function () {
    /*   filter_party(members_array) */
    if (document.getElementById("republican").checked === true){
     console.log(document.getElementById("republican").value );
-    filter_party(members_array);
+    filter_party();
+    }
+    else{
+      filter_party();
     }
 });
 //if Independent is selected
@@ -5285,9 +5297,13 @@ document.getElementById("republican").addEventListener("click", function () {
      /*   filter_party(members_array) */
      if (document.getElementById("independent").checked === true){
       console.log(document.getElementById("independent").value );
-      filter_party(members_array);
+      filter_party();
       }
+          else{
+      filter_party();
+    }
 });
+
     
 
 // Selecting state. (state_form is the id of select).
@@ -5297,7 +5313,7 @@ let selected_State_Value = document.getElementById("state_form").value;
 document.getElementById("state_form").addEventListener("input",  function () {
   selected_State_Value = document.getElementById("state_form").value;
   console.log(selected_State_Value);
-  filter_party(members_array);
+  filter_party();
 });
 
 
@@ -5361,29 +5377,43 @@ selected_State_Value
 members_array = data.results[0].members;
 
 */
-  let selected_members_filter = []
-          for (var i = 0; i < members_array.length; i++) {
-            //democrats
-             if ((document.getElementById("democrat").checked && members_array[i].party === 'D') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
-              selected_members_filter.push(members_array[i]);
-              } 
-            // republicans
-            if ((document.getElementById("republican").checked && members_array[i].party === 'R') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
-             
-              selected_members_filter.push(members_array[i]);
-              } 
-            //independents
-            if ((document.getElementById("independent").checked && members_array[i].party === 'ID') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+
+/* I had the following problem. After the using the checkbox, when I unselect all of them, there was not table shown. 
+This first if will trigger the whole table again. */
+if (((document.getElementById("democrat").checked === false) && (document.getElementById("republican").checked === false)
+ && (document.getElementById("independent").checked === false))){
+  build_table(members_array); 
+}
+
+// the filters begin!
+else {
+
+    let selected_members_filter = []
+            for (var i = 0; i < members_array.length; i++) {
+              //democrats
+              if ((document.getElementById("democrat").checked && members_array[i].party === 'D') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+                selected_members_filter.push(members_array[i]);
+                } 
+                
+              // republicans
+              if ((document.getElementById("republican").checked && members_array[i].party === 'R') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
               
-              selected_members_filter.push(members_array[i]);
-              }
-                  
-         }    
+                selected_members_filter.push(members_array[i]);
+                } 
+              //independents
+              if ((document.getElementById("independent").checked && members_array[i].party === 'ID') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+                
+                selected_members_filter.push(members_array[i]);
+                }
+                              
+            }    
          
 
-      console.log(selected_members_filter);  
+        console.log(selected_members_filter);  
 
-      build_table(selected_members_filter);
+        build_table(selected_members_filter);
+
+       }    
                
     }
 
