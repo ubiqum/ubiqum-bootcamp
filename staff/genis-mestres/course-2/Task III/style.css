@@ -1,0 +1,58 @@
+.logo {
+    display: block;
+  /*   height:30%; */
+    max-height:150px;
+    min-height:150px;
+   /*  width:30%; */
+    max-width:150px;
+    min-width:150px;
+    position:relative;
+    z-index: 2;      
+ }
+ 
+ .email{
+   float:right;
+          
+ }
+ 
+ .top_flex{
+  display:flex;
+  justify-content: space-between;
+  padding-right: 25px;
+  padding-left:25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+    
+}
+
+
+.footer{
+text-align: center;
+padding: 0px  0px 15px 15px;
+background-color:#7d6ceb;
+color: white;
+border:solid;
+border-color:black;
+border-width:thin;
+margin-bottom:30px;
+text-align:center;
+
+}
+
+.checkbox{
+  display: inline-block;
+  margin:auto;
+}
+
+#name_search { 
+  display: inline;
+}
+
+#state_form_div{
+  display: inline;
+}
+
+tbody a{
+  color:black;
+}
