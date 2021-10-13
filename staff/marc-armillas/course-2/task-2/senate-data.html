@@ -9,8 +9,8 @@
     <title>Senate</title>
 </head>
 <body class="container">
-    <header class="logo-mail">
-        <img class="header-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Seal_of_the_United_States_Senate.svg"></a></img>
+    <header class="header">
+        <img class="header-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Seal_of_the_United_States_Senate.svg"></img>
     </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -46,14 +46,21 @@
              federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal
              officials impeached by the House.</p>
     </div> 
-    <div>
-      <div class="checkboxInput">        
-        <input type="checkbox" id="republican">Republican
-        <input type="checkbox" id="democrat">Democrat
-        <input type="checkbox" id="independent">Independent
+    <div class="d-flex justify-content-between">
+      <div id="checkboxes" class="d-flex flex-row bd-highlight mb-3">
+        <div>
+          <input type="checkbox" id="republican" class="p-2 bd-highlight">Republican
+        </div>
+        <div>          
+          <input type="checkbox" id="democrat" class="p-2 bd-highlight">Democrat
+        </div>        
+        <div>
+          <input type="checkbox" id="independent" class="p-2 bd-highlight">Independent
+        </div>
       </div>
+      <div class="emptyDiv"></div>
       <div>
-        <select name="" id="select"></select>
+        <select id="select"></select>
       </div>
     </div>      
     
@@ -64,7 +71,7 @@
     <script src="pro-congress-113-senate.js"></script>
 </body>
   <footer>
-    <p class="footer-p" >&copy; 2016 TGIF | All Rights Reserved </p>
+    <p class="footer-p" >&copy; 2016 TGIF | All Rights Reserved</p>
     <a type="email" href="#info@tgif.net">info@tgif.net</a>
   </footer>
 </html>
