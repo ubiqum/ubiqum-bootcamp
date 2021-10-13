@@ -5149,15 +5149,15 @@ buildTableWhole(membersArr)
 
 //listeners
 document.getElementById("democrat").addEventListener("click", function () {
-  return (document.getElementById("democrat").checked ? filter_party(membersArr) : buildTableWhole(membersArr));
+  return (document.getElementById("democrat").checked === true ? filter_party(membersArr) : filter_party(membersArr));
 });
 
 document.getElementById("republican").addEventListener("click", function () {
-  return (document.getElementById("republican").checked ? filter_party(membersArr) : buildTableWhole(membersArr));
+  return (document.getElementById("republican").checked === true ? filter_party(membersArr) : filter_party(membersArr));
 });
 
 document.getElementById("independent").addEventListener("click", function () {
-  return (document.getElementById("independent").checked ? filter_party(membersArr) : buildTableWhole(membersArr));
+  return (document.getElementById("independent").checked === true ? filter_party(membersArr) : filter_party(membersArr));
 });
 
 
@@ -5165,7 +5165,6 @@ let states = "ALL"
 document.getElementById("stateDropDown").addEventListener("change", function () {
   states = document.getElementById("stateDropDown").value;
   filter_party(membersArr);
-  console.log(states);
 });
 
 //filter function
@@ -5177,14 +5176,14 @@ function filter_party(){
     if ((document.getElementById("democrat").checked && membersArr[i].party === "D") && (states === membersArr[i].state || states === "ALL")) {
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("republican").checked && membersArr[i].party === "R") && (states === membersArr[i].state || states === "ALL")) {
+    else if ((document.getElementById("republican").checked && membersArr[i].party === "R") && (states === membersArr[i].state || states === "ALL")) {
       selectedPartyMembers.push(membersArr[i]);
     }
-    if ((document.getElementById("independent").checked && membersArr[i].party === "ID") && (states === membersArr[i].state || states === "ALL")) {
+    else if ((document.getElementById("independent").checked && membersArr[i].party === "ID") && (states === membersArr[i].state || states === "ALL")) {
       selectedPartyMembers.push(membersArr[i]);
     }
-    if (states === membersArr[i].state || states === "ALL"){
-      selectedPartyMembers.push(membersArr[i]);
+    else if((document.getElementById("independent").checked===false) && (document.getElementById("republican").checked === false) && (document.getElementById("democrat").checked===false)){
+      selectedPartyMembers = membersArr;
     }
   }
   buildTableWhole(selectedPartyMembers);
