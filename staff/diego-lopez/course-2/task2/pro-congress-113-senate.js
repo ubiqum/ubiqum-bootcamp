@@ -5182,8 +5182,8 @@ function filter_party(){
     else if ((document.getElementById("independent").checked && membersArr[i].party === "ID") && (states === membersArr[i].state || states === "ALL")) {
       selectedPartyMembers.push(membersArr[i]);
     }
-    else if((document.getElementById("independent").checked===false) && (document.getElementById("republican").checked === false) && (document.getElementById("democrat").checked===false)){
-      selectedPartyMembers = membersArr;
+    else if(((document.getElementById("independent").checked === false) && (document.getElementById("republican").checked === false) && (document.getElementById("democrat").checked===false)) && (states === membersArr[i].state || states === "ALL")){
+      selectedPartyMembers.push(membersArr[i]);
     }
   }
   buildTableWhole(selectedPartyMembers);
