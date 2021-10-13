@@ -21618,8 +21618,15 @@ var data =
 //  document.getElementById("house-data").innerHTML = JSON.stringify(data);
 const membersNumber = data.results[0].members.length;
 let membersArr = data.results[0].members;
-let table = document.getElementById("house-data");
-function bodyTable(table){
+
+// ///////////////////////////////Table
+
+function buildTable(membersArr){
+  // deleating Table
+  document.getElementById("senate-data").innerHTML = "";
+
+  // Header
+  let table = document.getElementById("senate-data");
   let trHeader = document.createElement("tr");
   let tHead = document.createElement("thead");
   let tBody = document.createElement("tbody");
@@ -21633,7 +21640,7 @@ function bodyTable(table){
   let textTh2 = document.createTextNode("Party");
   let textTh3 = document.createTextNode("State");
   let textTh4 = document.createTextNode("Seniority");
-  let textTh5 = document.createTextNode("Percentage V.W.P");
+  let textTh5 = document.createTextNode("% Vote W Party");
 
   th1.appendChild(textTh1);
   th2.appendChild(textTh2);
@@ -21650,9 +21657,8 @@ function bodyTable(table){
   tHead.appendChild(trHeader);
   table.appendChild(tHead);
 
-  for(i = 0; i < membersNumber ; i++){
-
-   
+  // Table Body
+  for(i = 0; i < membersNumber ; i++){   
 
     let link = document.createElement("a");
     let tr = document.createElement("tr");
@@ -21686,11 +21692,118 @@ function bodyTable(table){
     tr.appendChild(td4);
     tr.appendChild(td5);
     
-
+    
     tBody.appendChild(tr);    
     table.appendChild(tBody);
   }
 }
-document.body.appendChild(table);
+buildTable(membersArr);
 
-bodyTable(table);
+
+
+/////////////////////////////// dropdown list and 
+
+
+let statesArr = ['ALL','AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
+let fullStatesArr = ['All','Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+let select = document.getElementById("select")
+
+for(var i = 0; i < statesArr.length; i++){
+  let option = document.createElement("option");
+  option.text = fullStatesArr[i];
+  option.value = statesArr[i];
+  // select.appendChild(option);
+  select.add(option);
+}
+
+
+
+
+// ////////////////////////////////Listener
+
+let selectedState = document.getElementById("select").value;
+document.getElementById("select").addEventListener("input",  function () {
+  selectedState = document.getElementById("select").value;
+  console.log(document.getElementById("select").value);
+  partyFilter(membersArr);
+});
+
+
+let republicanId = document.getElementById("republican");
+let  democratId = document.getElementById("democrat");
+let independentId = document.getElementById("independent");
+
+// checkbox checked
+republicanId.addEventListener("click", function () {
+  if (republicanId.checked === true){
+    console.log(republicanId.value);
+    partyFilter(membersArr);
+  }
+  });
+
+
+democratId.addEventListener("click", function () {
+   if (democratId.checked === true){
+    console.log(democratId.value );
+    partyFilter(membersArr);
+    }
+});
+
+
+  independentId.addEventListener("click", function () {
+    if (independentId.checked === true){
+    console.log(independentId.value );
+    partyFilter(membersArr);
+    }
+});
+
+
+//checkboxes unchecked
+republicanId.addEventListener("click", function () {
+  if (republicanId.checked === false){
+    console.log(republicanId.value);
+    partyFilter(membersArr);
+  }
+});
+
+
+democratId.addEventListener("click", function () {
+  if (democratId.checked === false){
+    console.log(democratId.value );
+    partyFilter(membersArr);
+  }
+});
+
+
+independentId.addEventListener("click", function () {
+  if (independentId.checked === false){
+    console.log(independentId.value );
+    partyFilter(membersArr);
+  }
+});
+
+
+
+
+
+// ////////////////////////////////filters
+
+function partyFilter(){
+  let selectedPartyMembers = [];
+
+  for ( i=0; i < membersArr.length; i++) {
+    if ((republicanId.checked && membersArr[i].party === "R") && (selectedState === membersArr[i].state || selectedState === statesArr[0])){
+       selectedPartyMembers.push(membersArr[i]);     
+    }
+     if ((democratId.checked && membersArr[i].party === "D") && (selectedState === membersArr[i].state || selectedState === statesArr[0])){
+      selectedPartyMembers.push(membersArr[i]);
+     }
+     if ((independentId.checked && membersArr[i].party === "ID") && (selectedState === membersArr[i].state || selectedState === statesArr[0])){
+      selectedPartyMembers.push(membersArr[i]);
+    }
+    if (((republicanId.checked === false)&&(democratId.checked === false)&&(independentId.checked === false))&& (selectedState === membersArr[i].state || selectedState === statesArr[0]))
+      selectedPartyMembers.push(membersArr[i]);
+    }
+    
+    buildTable(selectedPartyMembers);
+};
