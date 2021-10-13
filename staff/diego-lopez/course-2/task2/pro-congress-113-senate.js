@@ -5168,7 +5168,6 @@ document.getElementById("stateDropDown").addEventListener("change", function () 
 });
 
 //filter function
-//it works, but if you select one checkbox, another checkbox and uncheck one the result is an unfiltered table
 function filter_party(){
   document.getElementById("senate-data").innerHTML = "";
   let selectedPartyMembers = [];
