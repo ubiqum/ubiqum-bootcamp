@@ -5368,55 +5368,58 @@ function textFilter(){
 
 function filter_party(){
 
- /*variables we'll work with:
+  /*variables we'll work with:
+  
+  selected_members_filter   that is the members the filter formula will show
  
- selected_members_filter   that is the members the filter formula will show
-
-selected_State_Value
-
-members_array = data.results[0].members;
-
-*/
-
-/* I had the following problem. After the using the checkbox, when I unselect all of them, there was not table shown. 
-This first if will trigger the whole table again. */
-if (((document.getElementById("democrat").checked === false) && (document.getElementById("republican").checked === false)
- && (document.getElementById("independent").checked === false))){
-  build_table(members_array); 
-}
-
-// the filters begin!
-else {
-
-    let selected_members_filter = []
-            for (var i = 0; i < members_array.length; i++) {
-              //democrats
-              if ((document.getElementById("democrat").checked && members_array[i].party === 'D') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
-                selected_members_filter.push(members_array[i]);
-                } 
-                
-              // republicans
-              if ((document.getElementById("republican").checked && members_array[i].party === 'R') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
-              
-                selected_members_filter.push(members_array[i]);
-                } 
-              //independents
-              if ((document.getElementById("independent").checked && members_array[i].party === 'ID') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
-                
-                selected_members_filter.push(members_array[i]);
-                }
-                              
-            }    
-         
-
-        console.log(selected_members_filter);  
-
-        build_table(selected_members_filter);
-
-       }    
+ selected_State_Value
+ 
+ members_array = data.results[0].members;
+ 
+ */
+ 
+ 
+ 
+ 
+ // the filters begin!
+ 
+ 
+     let selected_members_filter = []
+             for (var i = 0; i < members_array.length; i++) {
+               //democrats
+               if ((document.getElementById("democrat").checked && members_array[i].party === 'D') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+                 selected_members_filter.push(members_array[i]);
+                 } 
+                 
+               // republicans
+               if ((document.getElementById("republican").checked && members_array[i].party === 'R') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
                
-    }
-
+                 selected_members_filter.push(members_array[i]);
+                 } 
+               //independents
+               if ((document.getElementById("independent").checked && members_array[i].party === 'ID') && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+                 
+                 selected_members_filter.push(members_array[i]);
+                 }
+ 
+                 
+ 
+               //only states filter
+               /* I had the following problem. After the using the checkbox, when I unselect all of them, there was not table shown. */
+               if (((document.getElementById("democrat").checked === false) && (document.getElementById("republican").checked === false) && (document.getElementById("independent").checked === false)) && (selected_State_Value === members_array[i].state || selected_State_Value === "All")){
+                 
+                 selected_members_filter.push(members_array[i]);
+                 }
+             }    
+          
+ 
+         console.log(selected_members_filter);  
+ 
+         build_table(selected_members_filter);
+ 
+           
+                
+     }
  
 
 
