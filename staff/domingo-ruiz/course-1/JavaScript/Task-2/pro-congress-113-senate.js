@@ -5214,12 +5214,6 @@ buildTable(senatArr);
 
 
 
-let statesdrop = document.getElementById("usstates").value;
-document.getElementById("usstates").addEventListener("input", function () {
-statesdrop = document.getElementById("usstates").value;
-console.log(statesdrop);
-  });
-
 //checkboxes 
 
 function partyFilter(){
@@ -5234,7 +5228,10 @@ function partyFilter(){
        }
          if ((document.getElementById("ind").checked && senatArr[i].party === "ID") && (statesdrop === senatArr[i].state || statesdrop === states[0] || statesdrop === "Select an State")){
           partyselected.push(senatArr[i]);
-      }
+        }
+          if (((document.getElementById("dem").checked===false) && (document.getElementById("rep").checked===false) && (document.getElementById("ind").checked === false)) && (statesdrop === senatArr[i].state || statesdrop === states[0] || statesdrop === "Select an State")){
+            partyselected.push(senatArr[i]);
+          }
     }
     console.log(partyselected)
     
@@ -5247,7 +5244,7 @@ document.getElementById("dem").addEventListener("click", function () {
     console.log(document.getElementById("dem").value);
     partyFilter(senatArr);
   }
-  });
+});
 document.getElementById("rep").addEventListener("click", function () {
    if (document.getElementById("rep").checked === true){
     console.log(document.getElementById("rep").value );
@@ -5264,20 +5261,33 @@ document.getElementById("rep").addEventListener("click", function () {
 document.getElementById("dem").addEventListener("click", function () {
   if (document.getElementById("dem").checked === false){
     console.log(document.getElementById("dem").value);
-    buildTable(senatArr);
+    partyFilter(senatArr);
   }
-  });
+});
 document.getElementById("rep").addEventListener("click", function () {
    if (document.getElementById("rep").checked === false){
     console.log(document.getElementById("rep").value );
-    buildTable(senatArr);
+    partyFilter(senatArr);
     }
 });
   document.getElementById("ind").addEventListener("click", function () {
     if (document.getElementById("ind").checked === false){
     console.log(document.getElementById("ind").value );
-    buildTable(senatArr);
+    partyFilter(senatArr);
     }
 });
+
+let statesdrop = document.getElementById("usstates").value;
+document.getElementById("usstates").addEventListener("change", function () {
+statesdrop = document.getElementById("usstates").value;
+partyFilter(senatArr);
+  });
+
+
+//   document.getElementById('usstates').addEventListener('change', function() {
+//    return partyFilter(senatArr);
+  
+// });
+
 
 
