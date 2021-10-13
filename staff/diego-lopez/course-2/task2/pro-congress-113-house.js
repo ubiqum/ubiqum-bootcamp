@@ -21616,7 +21616,7 @@ var data =
     ]
 };
 
-let membersLength = data.results[0].members.length;
+
 let membersArr = data.results[0].members;
 let selectedState = [];
 

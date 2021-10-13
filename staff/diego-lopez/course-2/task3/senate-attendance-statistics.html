@@ -61,18 +61,18 @@
                 <tbody>
                     <tr>
                         <td>Republican</td>
-                        <td>--</td>
-                        <td>--</td>
+                        <td id="numberRepublicans">--</td>
+                        <td id="democratLoyalty">--</td>
                     </tr>
                     <tr>
                         <td>Democrat</td>
-                        <td>--</td>
-                        <td>--</td>
+                        <td id="numberDemocrats">--</td>
+                        <td id="republicanLoyalty">--</td>
                     </tr>
                     <tr>
                         <td>Independent</td>
-                        <td>--</td>
-                        <td>--</td>
+                        <td id="numberIndependents">--</td>
+                        <td id="independentLoyalty">--</td>
                     </tr>
                 </tbody>
             </table>
@@ -167,7 +167,18 @@
                     </tr>
                 </tbody>
             </table>
-
+            <script id="statistics" src="statistics.js"></script>
+            <script> var staticsObject = {
+                "numberDemocrats":0,
+                "numberRepublicans":0,
+                "numberIndependents":0,
+                "democratVSRepublicanLoyalty":0,
+                "highLoyalty":0,
+                "lowestLoyalty":0,
+                "mostVotesMissed":0,
+                "leastVotesMissed":0
+            }
+            </script>
     	</div>    
 </body>
 </html>
