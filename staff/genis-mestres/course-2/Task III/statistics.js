@@ -5224,13 +5224,13 @@ console.log("voted_with_party_average  IND" + voted_with_party_average_ID);
 
 
 console.log("statistics!!");
-let table_least_engaged = document.getElementById("least_engaged");
-let tbody_tle = document.getElementById('least_engaged').getElementsByTagName('tbody')[0];
+
 
 
 document.getElementById("rep_nreps").textContent = total_Rep.length;
 document.getElementById("dem_nreps").textContent = total_Dem.length;
 document.getElementById("ind_nreps").textContent = total_Ind.length;
+document.getElementById("total_nreps").textContent = members_array.length;
 
 document.getElementById("rep_with_party").textContent = voted_with_party_average_R;
 document.getElementById("dem_with_party").textContent = voted_with_party_average_D;
@@ -5239,58 +5239,144 @@ document.getElementById("ind_with_party").textContent = voted_with_party_average
 
 
 
+//------------Calculate percentile ---------------------------------------------------------
+/* "votes_with_party_pct": 96.96,
+"votes_against_party_pct": 3.04 */
+
+// Here we create a new array of objects, sorted by votes_with_party_pct in an ascending order.
+
+console.log('how many senators?' + members_array.length);
+let lowest_tenth = Math.ceil(members_array.length * 0.10);
+let highest_tenth= members_array.length -lowest_tenth;
+console.log(' total number of senators' + members_array.length);
+console.log('lowest tenth ' + lowest_tenth + '/ highest tenth ' + highest_tenth);
+
+let lowest_tenth_index = lowest_tenth -1;
+let highest_tenth_index = highest_tenth-1;
 
 
+const senators_sort_ascending = members_array.sort(function(a,b) {
+  const lastPerson = a.votes_with_party_pct;
+  const nextPerson = b.votes_with_party_pct;
+  if (lastPerson < nextPerson) {
+    return -1;
+  } else {
+    return 1;
+  }
+});
+
+//--
+let lowest_tenth_value = senators_sort_ascending[lowest_tenth_index].votes_with_party_pct;
+console.log('lowest_tenth_value: ');
+console.log(lowest_tenth_value);
+
+let highest_tenth_value = senators_sort_ascending[highest_tenth_index].votes_with_party_pct;
+console.log('highest_tenth_value: ');
+console.log(highest_tenth_value);
+
+//--
+
+let list_lowest_tenth = senators_sort_ascending.slice(0,lowest_tenth_index);
+let list_highest_tenth =senators_sort_ascending.slice(highest_tenth_index, senators_sort_ascending.length -1);
+console.log('list_lowest_tenth')
+console.log(list_lowest_tenth);
+console.log('list_highest_tenth')
+console.log(list_highest_tenth);
+/* 
+for (i=0; i<senators_sort_ascending.length ; i++){
+console.table(senators_sort_ascending[i].votes_with_party_pct);
+};
+ */
 
 
-//-----------------------table 2---------------------
-for (i=0; i < members_array.length;i++){
+//-----------------------table 2------------------------------------
+//table 2 works with the tenth least loyal array, and list name, num party votes and % of party novtes
+
+// name = (list_lowest_tenth[i].first_name + " " + (list_lowest_tenth[i].middle_name || "")  +" "+ list_lowest_tenth[i].last_name)
+// num party votes  = (list_lowest_tenth[i].votes_with_party_pct/100) * list_lowest_tenth[i].total_votes
+// % party votes   = list_lowest_tenth[i].votes_with_party_pct
+let table_least_loyal = document.getElementById("least_loyal");
+let tbody_tle = document.getElementById('least_loyal').getElementsByTagName('tbody')[0];
+
+for (i=0; i < list_lowest_tenth.length;i++){
   // Create row
+ 
+  let newRow = tbody_tle.insertRow(i);
+  //Create cells
+  let newCell0 = newRow.insertCell(0);
+  let newCell1 = newRow.insertCell(1);
+  let newCell2 = newRow.insertCell(2);
+ 
+// link, create add link and text on cell0
+let link0 = document.createElement("a");
+link0.setAttribute("href", list_lowest_tenth[i].url)
 
-  let newRow = tbody_tle.insertRow(0);
+var linkText = document.createTextNode((list_lowest_tenth[i].first_name + " " + (list_lowest_tenth[i].middle_name || "")  +" "+ list_lowest_tenth[i].last_name));
+link0.appendChild(linkText);
+newCell0.appendChild(link0);
+
+
+// adding text
+
+
+
+/*   newCell0.textContent = (list_lowest_tenth[i].first_name + " " + (list_lowest_tenth[i].middle_name || "")  +" "+ list_lowest_tenth[i].last_name) */
+  newCell1.textContent = Math.ceil((list_lowest_tenth[i].votes_with_party_pct / 100) * list_lowest_tenth[i].total_votes);
+  newCell2.textContent = list_lowest_tenth[i].votes_with_party_pct;
+
+}
+
+//-----------------------table 3------------------------------------
+//table 2 works with the tenth most loyal array, and list name, num party votes and % of party novtes
+
+// name = (list_highest_tenth[i].first_name + " " + (list_highest_tenth[i].middle_name || "")  +" "+ list_highest_tenth[i].last_name)
+// num party votes  = (list_highest_tenth[i].votes_with_party_pct/100) * list_highest_tenth[i].total_votes
+// % party votes   = list_highest_tenth[i].votes_with_party_pct
+let table_most_loyal = document.getElementById("most_loyal");
+let tbody_mly = document.getElementById('most_loyal').getElementsByTagName('tbody')[0];
+
+
+
+
+
+
+
+for (i=0; i < list_highest_tenth.length;i++){
+  // Create row
+ 
+  let newRow = tbody_mly.insertRow(i);
   //Create cells
   let newCell0 = newRow.insertCell(0);
   let newCell1 = newRow.insertCell(1);
   let newCell2 = newRow.insertCell(2);
 
+
+  
+// link, create add link and text on cell0
+let link0 = document.createElement("a");
+link0.setAttribute("href", list_highest_tenth[i].url)
+
+var linkText = document.createTextNode((list_highest_tenth[i].first_name + " " + (list_highest_tenth[i].middle_name || "")  +" "+ list_highest_tenth[i].last_name));
+link0.appendChild(linkText);
+newCell0.appendChild(link0);
+
+
 // adding text
-  newCell0.textContent = "NEW CELL1";
-  newCell1.textContent = "NEW CELL2";
-  newCell2.textContent = "NEW CELL3";
+
+
+
+/*   newCell0.textContent = (list_highest_tenth[i].first_name + " " + (list_highest_tenth[i].middle_name || "")  +" "+ list_highest_tenth[i].last_name) */
+  newCell1.textContent = Math.ceil((list_highest_tenth[i].votes_with_party_pct / 100) * list_highest_tenth[i].total_votes);
+  newCell2.textContent = list_highest_tenth[i].votes_with_party_pct;
 
 }
-  
- /*  // Append a text node to the cell
-  let newText1 = document.createTextNode('celda1');
-  newCell1.appendChild(newText1);
-
-  // Append a text node to the cell
-  let newText2 = document.createTextNode('celda2');
-  newCell2.appendChild(newText2);
-
-  // Append a text node to the cell
-  let newText3 = document.createTextNode('celda3');
-  newCell3.appendChild(newText3); */
-
-  /* //Create a family
-
-  newText1.appendChild(newCell1);
-  newText2.appendChild(newCell2);
-  newText3.appendChild(newCell3);
-
-  newCell1.appendChild(newRow);
-  newCell2.appendChild(newRow);
-  newCell3.appendChild(newRow);
-
-  newRow.appendChild(tbody);
-
-  tbody.appendChild(table_least_engaged);
- */
 
 
 
 
 
+
+ 
 /* ----------------------------function build_table()--------------------------------------------*/
 
 /*
