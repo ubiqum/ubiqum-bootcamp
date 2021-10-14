@@ -5058,7 +5058,7 @@ let data =
 
 
 
-//calculate number of party members
+//Declare variables
 
 let membersArr = data.results[0].members;
 
@@ -5069,6 +5069,7 @@ let democratLoyalty = 0;
 let republicanLoyalty = 0;
 let independentLoyalty = 0;
 
+//Iterate the array and get data for the number of party members and loyalty to the party
 for (i=0; i<membersArr.length; i++){
     if (membersArr[i].party === "D"){
         democratsArr.push(membersArr[i]);
@@ -5083,14 +5084,13 @@ for (i=0; i<membersArr.length; i++){
     }
 };
 
-
+//calculate number of party members
 document.getElementById("numberDemocrats").textContent = democratsArr.length;
 document.getElementById("numberRepublicans").textContent = republicansArr.length;
 document.getElementById("numberIndependents").textContent = independentsArr.length;
 
 
 //calculate the loyalty to party
-
 democratLoyalty = democratLoyalty/democratsArr.length;
 republicanLoyalty = republicanLoyalty/republicansArr.length;
 independentLoyalty = independentLoyalty/independentsArr.length;
@@ -5100,23 +5100,26 @@ document.getElementById("republicanLoyalty").textContent = republicanLoyalty.toF
 document.getElementById("independentLoyalty").textContent = independentLoyalty.toFixed(2);
 
 
-//calculate members who least vote with party
+//sort members by their loyalty
+let bottomTenLoyals = membersArr;
+let topTenLoyals = membersArr;
 
-let lowTenLoyalty = membersArr;
-/*
-function compareLoyalty (a,b){
-    if (a.lowTenLoyalty[i].votes_against_party_pct < b.lowTenLoyalty[i].votes_against_party_pct){
-        return -1;
-    }
-    if (a.lowTenLoyalty[i].votes_against_party_pct > b.lowTenLoyalty[i].votes_against_party_pct){
-        return 1;
-    }
-    return 0;
+function compare (a, b) {
+  if (a.votes_against_party_pct < b.votes_against_party_pct){
+    return -1;
+  }
+  if (a.votes_against_party_pct > b.votes_against_party_pct){
+    return 1;
+  }
+  return 0;
 }
-lowTenLoyalty.sort(compareLoyalty)
-*/
+
+//vote less with party
+bottomTenLoyals.sort(compare);
+bottomTenLoyals = bottomTenLoyals.slice(0,10);
+//vote more with party
+topTenLoyals.sort(compare);
+topTenLoyals = topTenLoyals.slice(95,105);
 
 
-console.log(lowTenLoyalty)
-console.log(membersArr[i].votes_with_party_pct)
-console.log(independentLoyalty)
+console.log(topTenLoyals);
