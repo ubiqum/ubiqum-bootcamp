@@ -5104,7 +5104,7 @@ document.getElementById("independentLoyalty").textContent = independentLoyalty.t
 let bottomTenLoyals = membersArr;
 let topTenLoyals = membersArr;
 
-function compare (a, b) {
+function compareLoyalty (a, b) {
   if (a.votes_against_party_pct < b.votes_against_party_pct){
     return -1;
   }
@@ -5112,14 +5112,74 @@ function compare (a, b) {
     return 1;
   }
   return 0;
-}
+};
 
 //vote less with party
-bottomTenLoyals.sort(compare);
+bottomTenLoyals.sort(compareLoyalty);
 bottomTenLoyals = bottomTenLoyals.slice(0,10);
 //vote more with party
-topTenLoyals.sort(compare);
-topTenLoyals = topTenLoyals.slice(95,105);
+topTenLoyals.sort(compareLoyalty);
+topTenLoyals = topTenLoyals.slice(95,105).reverse();
 
 
-console.log(topTenLoyals);
+//build tables
+//build table of vote less with party
+function buildTableBottomLoyal(){
+    for (let i = 0; i < bottomTenLoyals.length; i++){
+        let row = document.createElement("tr");
+        let cell = document.createElement("td");
+
+        cell.textContent = bottomTenLoyals[i].first_name + " " + (bottomTenLoyals[i].middle_name || "") + " " + bottomTenLoyals[i].last_name;
+        row.insertCell().append(cell);
+        row.insertCell().innerHTML = Math.round(bottomTenLoyals[i].total_votes/100*bottomTenLoyals[i].votes_with_party_pct);
+        row.insertCell().innerHTML = bottomTenLoyals[i].votes_with_party_pct;
+        document.getElementById("senateBottomLoyal").append(row);
+    }
+};
+buildTableBottomLoyal(bottomTenLoyals);
+
+//build table of vote more with party
+function buildTableTopLoyal(){
+    for (let i = 0; i < topTenLoyals.length; i++){
+        let row = document.createElement("tr");
+        let cell = document.createElement("td");
+
+        cell.textContent = topTenLoyals[i].first_name + " " + (topTenLoyals[i].middle_name || "") + " " + topTenLoyals[i].last_name;
+        row.insertCell().append(cell);
+        row.insertCell().innerHTML = Math.round(topTenLoyals[i].total_votes/100*topTenLoyals[i].votes_with_party_pct);
+        row.insertCell().innerHTML = topTenLoyals[i].votes_with_party_pct;
+        document.getElementById("senateTopLoyal").append(row);
+    }
+};
+buildTableTopLoyal(topTenLoyals)
+/*
+//build table of low attendancy
+function buildTableBottomAttendancy(){
+    for (let i = 0; i < bottomTenAttendancy.length; i++){
+        let row = document.createElement("tr");
+        let cell = document.createElement("td");
+
+        cell.textContent = bottomTenAttendancy[i].first_name + " " + (bottomTenAttendancy[i].middle_name || "") + " " + bottomTenAttendancy[i].last_name;
+        row.insertCell().append(cell);
+        row.insertCell().innerHTML = Math.round(bottomTenAttendancy[i].total_votes/100*bottomTenAttendancy[i].votes_with_party_pct);
+        row.insertCell().innerHTML = bottomTenAttendancy[i].votes_with_party_pct;
+        document.getElementById("senateBottomAttendance").append(row);
+    }
+};
+buildTableBottomAttendancy(bottomTenAttendancy)
+
+//build table of high attendancy
+function buildTableTopAttendancy(){
+    for (let i = 0; i < topTenAttendancy.length; i++){
+        let row = document.createElement("tr");
+        let cell = document.createElement("td");
+
+        cell.textContent = topTenAttendancy[i].first_name + " " + (topTenAttendancy[i].middle_name || "") + " " + topTenAttendancy[i].last_name;
+        row.insertCell().append(cell);
+        row.insertCell().innerHTML = Math.round(topTenAttendancy[i].total_votes/100*topTenAttendancy[i].votes_with_party_pct);
+        row.insertCell().innerHTML = (topTenAttendancy[i].votes_with_party_pct);
+        document.getElementById("senateTopAttendance").append(row);
+    }
+};
+buildTableTopAttendancy(topTenAttendancy);
+*/
