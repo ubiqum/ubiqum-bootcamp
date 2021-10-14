@@ -5326,7 +5326,7 @@ newCell0.appendChild(link0);
 
 }
 
-//-----------------------table 3------------------------------------
+//-----------------------table 3--------------------------------------------------------------------
 //table 2 works with the tenth most loyal array, and list name, num party votes and % of party novtes
 
 // name = (list_highest_tenth[i].first_name + " " + (list_highest_tenth[i].middle_name || "")  +" "+ list_highest_tenth[i].last_name)
