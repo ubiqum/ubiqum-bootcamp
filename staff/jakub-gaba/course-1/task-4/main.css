@@ -173,8 +173,8 @@ color: black;
 text-align: center;
 }
 .register_wrap{
-  margin-right: 15%;
-  margin-left: 15%;
+  margin-right: 11%;
+  margin-left: 11%;
   border-top: 5px solid slategray;
   border-radius: 50%;
 }
@@ -189,6 +189,7 @@ select:hover, option{
 }
 .signature{
   padding-top: 30px;
+  font-weight: normal;
   text-align: center;
   font-size: 20px;
   border-top: 5px dotted slategray;
@@ -210,4 +211,17 @@ select:hover, option{
   font-weight: bold;
   float: right;
   padding-right: 100px;
+}
+.submit_button{
+  border: none;
+  margin-left: 14rem;
+  margin-top: 10rem;
+  font-size: 2rem;
+  transition: ease-in-out, width .5s cubic-bezier(0.19, .19, .19, .19);
+  transition-duration: 1s;
+}
+.submit_button:hover{
+  background-color: greenyellow;
+  letter-spacing: 10px;
+  border-radius: 10px;
 }
