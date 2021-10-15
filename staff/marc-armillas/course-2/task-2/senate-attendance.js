@@ -5056,9 +5056,6 @@ let data = {
  }
  
 
-
-
-
  let membersArr = data.results[0].members;
  let republicanArr = [];
  let democratArr = [];
@@ -5104,10 +5101,9 @@ document.getElementById("dem-perc").textContent = democratLoyaltyPercentage;
 document.getElementById("ind-perc").textContent = indpendentLoyaltypercentage;
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                      // Top 10 Senadores
 
 
-// Top 10 senadores que mas votan a favor y en contra de su partido
+// Top 10 senadores que votan mas y menos
 
 
 let percentage = (membersArr.length / 100)*10;
@@ -5116,8 +5112,8 @@ console.log(percentage);
 let cloneMembersArr = [...membersArr];
 
 function compare(a,b){
-  let memberA = a.votes_against_party_pct;
-  let memberB = b.votes_against_party_pct;
+  let memberA = a.missed_votes_pct;
+  let memberB = b.missed_votes_pct;
 
   let comparison = 0;
   if(memberA > memberB){
@@ -5136,86 +5132,63 @@ leastCloneMembersArr = leastCloneMembersArr.slice(0, percentage);
 console.log(mostCloneMembersArr);
 
 
-// /// numero de votos en consonancia con el partido
-
-let arrMoreNumberPartyVotes = [];
-for(i = 0; i < mostCloneMembersArr.length; i++){
-  let numberPartyVotes = (mostCloneMembersArr[i].total_votes /100) * mostCloneMembersArr[i].votes_with_party_pct;
-  arrMoreNumberPartyVotes.push(numberPartyVotes);
-  }
-for(i = 0; i < arrMoreNumberPartyVotes.length; i++){
-  arrMoreNumberPartyVotes[i] = arrMoreNumberPartyVotes[i].toFixed(0);
-}
-console.log(arrMoreNumberPartyVotes);
-
-let arrLesNumberMartyVotes = [];
-for(i = 0; i < leastCloneMembersArr.length; i++){
-  let numberLessPartyVotes = (leastCloneMembersArr[i].total_votes / 100) * leastCloneMembersArr[i].votes_with_party_pct;
-  arrLesNumberMartyVotes.push(numberLessPartyVotes);
-}
-for(i = 0; i < arrLesNumberMartyVotes.length; i++){
-  arrLesNumberMartyVotes[i] = arrLesNumberMartyVotes[i].toFixed(0);
-}
-
-
 // construyendo tabla
 
 // tabla 1
 function buildTable(mostCloneMembersArr){
 
-  for(i = 0; i < mostCloneMembersArr.length; i++){   
-
-    let tBody = document.getElementById("tBody1")
-    let tr = document.createElement("tr");
-    let td1 = document.createElement("td");
-    let td2 = document.createElement("td");
-    let td3 = document.createElement("td");
-
-    let text1 = document.createTextNode(mostCloneMembersArr[i].first_name + " " + mostCloneMembersArr[i].last_name);
-    let text2 = document.createTextNode(arrMoreNumberPartyVotes[i]);
-    let text3 = document.createTextNode(mostCloneMembersArr[i].votes_against_party_pct + "%");    
-    
-    td1.appendChild(text1);
-    td2.appendChild(text2);
-    td3.appendChild(text3);
-
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);    
-    
-    tBody.appendChild(tr);   
+    for(i = 0; i < mostCloneMembersArr.length; i++){   
+  
+      let tBody = document.getElementById("tBody1")
+      let tr = document.createElement("tr");
+      let td1 = document.createElement("td");
+      let td2 = document.createElement("td");
+      let td3 = document.createElement("td");
+  
+      let text1 = document.createTextNode(mostCloneMembersArr[i].first_name + " " + mostCloneMembersArr[i].last_name);
+      let text2 = document.createTextNode(mostCloneMembersArr[i].missed_votes);
+      let text3 = document.createTextNode(mostCloneMembersArr[i].missed_votes_pct + "%");    
+      
+      td1.appendChild(text1);
+      td2.appendChild(text2);
+      td3.appendChild(text3);
+  
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);    
+      
+      tBody.appendChild(tr);   
+    }
   }
-}
-
-buildTable(mostCloneMembersArr);
-
-
-// tabla 2
-function buildTable2(leastCloneMembersArr){
-
-  for(i = 0; i < leastCloneMembersArr.length; i++){   
-
-    let tBody = document.getElementById("tBody2")
-    let tr = document.createElement("tr");
-    let td1 = document.createElement("td");
-    let td2 = document.createElement("td");
-    let td3 = document.createElement("td");
-
-    let text1 = document.createTextNode(leastCloneMembersArr[i].first_name + " " + leastCloneMembersArr[i].last_name);
-    let text2 = document.createTextNode(arrLesNumberMartyVotes[i]);
-    let text3 = document.createTextNode(leastCloneMembersArr[i].votes_against_party_pct + "%");    
-    
-    td1.appendChild(text1);
-    td2.appendChild(text2);
-    td3.appendChild(text3);
-
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);    
-    
-    tBody.appendChild(tr);   
+  
+  buildTable(mostCloneMembersArr);
+  
+  
+  // tabla 2
+  function buildTable2(leastCloneMembersArr){
+  
+    for(i = 0; i < leastCloneMembersArr.length; i++){   
+  
+      let tBody = document.getElementById("tBody2")
+      let tr = document.createElement("tr");
+      let td1 = document.createElement("td");
+      let td2 = document.createElement("td");
+      let td3 = document.createElement("td");
+  
+      let text1 = document.createTextNode(leastCloneMembersArr[i].first_name + " " + leastCloneMembersArr[i].last_name);
+      let text2 = document.createTextNode(leastCloneMembersArr[i].missed_votes);
+      let text3 = document.createTextNode(leastCloneMembersArr[i].missed_votes_pct + "%");    
+      
+      td1.appendChild(text1);
+      td2.appendChild(text2);
+      td3.appendChild(text3);
+  
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);    
+      
+      tBody.appendChild(tr);   
+    }
   }
-}
-
-buildTable2(leastCloneMembersArr);
-
+  
+  buildTable2(leastCloneMembersArr);
