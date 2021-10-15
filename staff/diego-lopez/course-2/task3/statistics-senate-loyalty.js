@@ -5105,10 +5105,10 @@ let bottomTenLoyals = membersArr;
 let topTenLoyals = membersArr;
 
 function compareLoyalty (a, b) {
-  if (a.votes_against_party_pct < b.votes_against_party_pct){
+  if (a.votes_with_party_pct < b.votes_with_party_pct){
     return -1;
   }
-  if (a.votes_against_party_pct > b.votes_against_party_pct){
+  if (a.votes_with_party_pct > b.votes_with_party_pct){
     return 1;
   }
   return 0;
@@ -5152,34 +5152,3 @@ function buildTableTopLoyal(){
     }
 };
 buildTableTopLoyal(topTenLoyals)
-/*
-//build table of low attendancy
-function buildTableBottomAttendancy(){
-    for (let i = 0; i < bottomTenAttendancy.length; i++){
-        let row = document.createElement("tr");
-        let cell = document.createElement("td");
-
-        cell.textContent = bottomTenAttendancy[i].first_name + " " + (bottomTenAttendancy[i].middle_name || "") + " " + bottomTenAttendancy[i].last_name;
-        row.insertCell().append(cell);
-        row.insertCell().innerHTML = Math.round(bottomTenAttendancy[i].total_votes/100*bottomTenAttendancy[i].votes_with_party_pct);
-        row.insertCell().innerHTML = bottomTenAttendancy[i].votes_with_party_pct;
-        document.getElementById("senateBottomAttendance").append(row);
-    }
-};
-buildTableBottomAttendancy(bottomTenAttendancy)
-
-//build table of high attendancy
-function buildTableTopAttendancy(){
-    for (let i = 0; i < topTenAttendancy.length; i++){
-        let row = document.createElement("tr");
-        let cell = document.createElement("td");
-
-        cell.textContent = topTenAttendancy[i].first_name + " " + (topTenAttendancy[i].middle_name || "") + " " + topTenAttendancy[i].last_name;
-        row.insertCell().append(cell);
-        row.insertCell().innerHTML = Math.round(topTenAttendancy[i].total_votes/100*topTenAttendancy[i].votes_with_party_pct);
-        row.insertCell().innerHTML = (topTenAttendancy[i].votes_with_party_pct);
-        document.getElementById("senateTopAttendance").append(row);
-    }
-};
-buildTableTopAttendancy(topTenAttendancy);
-*/
