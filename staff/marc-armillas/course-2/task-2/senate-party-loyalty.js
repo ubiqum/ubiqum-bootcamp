@@ -5087,12 +5087,9 @@ for(i = 0; i < membersArr.length; i++){
 
 // Numero de representantes por partido y media de votos con el partido
 
-republicanLoyaltyPercentage = republicanLoyaltyPercentage / republicanArr.length
-republicanLoyaltyPercentage = republicanLoyaltyPercentage.toFixed(3);
-democratLoyaltyPercentage = democratLoyaltyPercentage / democratArr.length
-democratLoyaltyPercentage = democratLoyaltyPercentage.toFixed(3);
-indpendentLoyaltypercentage = indpendentLoyaltypercentage / independentArr.length
-indpendentLoyaltypercentage = indpendentLoyaltypercentage.toFixed(3);
+republicanLoyaltyPercentage = (republicanLoyaltyPercentage / republicanArr.length).toFixed(3);
+democratLoyaltyPercentage = (democratLoyaltyPercentage / democratArr.length).toFixed(3);
+indpendentLoyaltypercentage = (indpendentLoyaltypercentage / independentArr.length).toFixed(3);
 
 document.getElementById("rep-reps").textContent = republicanArr.length;
 document.getElementById("dem-reps").textContent = democratArr.length;
