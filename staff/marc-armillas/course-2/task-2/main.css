@@ -52,3 +52,21 @@ tbody a {
 .footer-p {
     display: inline;
 }
+
+
+/* atendance and loyalty tables */
+
+.box1, .box2 {
+    margin-top: 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2vw;
+}
+
+hr {
+    margin-top: 4vw;
+}
+
+hr:not([size]){
+    height: 2px;
+}

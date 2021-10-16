@@ -21617,39 +21617,42 @@ var data =
  }
 
  let membersArr = data.results[0].members;
+ let filterMembersArr = membersArr.filter(membersArr => membersArr.total_votes != 0);
+ // console.log(filterMembersArr);
+ // console.log(membersArr);
+ 
  let republicanArr = [];
  let democratArr = [];
  let independentArr = [];
  let republicanLoyaltyPercentage = 0;
  let democratLoyaltyPercentage = 0;
- let indpendentLoyaltypercentage = 0;
+ let indpendentLoyaltyPercentage = 0;
 
 
 
 //  Numero de representantes por partido
-for(i = 0; i < membersArr.length; i++){
-    if(membersArr[i].party === "R"){
-        republicanArr.push(membersArr[i]);
-        republicanLoyaltyPercentage += membersArr[i].votes_with_party_pct;
+for(i = 0; i < filterMembersArr.length; i++){
+    if(filterMembersArr[i].party === "R"){
+        republicanArr.push(filterMembersArr[i]);
+        republicanLoyaltyPercentage += filterMembersArr[i].votes_with_party_pct;
     }
-    if(membersArr[i].party === "D"){
-        democratArr.push(membersArr[i])
-        democratLoyaltyPercentage += membersArr[i].votes_with_party_pct;
+    if(filterMembersArr[i].party === "D"){
+        democratArr.push(filterMembersArr[i])
+        democratLoyaltyPercentage += filterMembersArr[i].votes_with_party_pct;
     }
-    if(membersArr[i].party === "ID"){
-        independentArr.push(membersArr[i]);
-        indpendentLoyaltypercentage += membersArr[i].votes_with_party_pct;
+    if(filterMembersArr[i].party === "ID"){
+        independentArr.push(filterMembersArr[i]);
+        indpendentLoyaltyPercentage += filterMembersArr[i].votes_with_party_pct;
     }
 }
 
 // Numero de representantes por partido y media de votos con el partido
 
-republicanLoyaltyPercentage = republicanLoyaltyPercentage / republicanArr.length
-republicanLoyaltyPercentage = republicanLoyaltyPercentage.toFixed(3);
-democratLoyaltyPercentage = democratLoyaltyPercentage / democratArr.length
-democratLoyaltyPercentage = democratLoyaltyPercentage.toFixed(3);
-indpendentLoyaltypercentage = indpendentLoyaltypercentage / independentArr.length
-indpendentLoyaltypercentage = indpendentLoyaltypercentage.toFixed(3);
+republicanLoyaltyPercentage = (republicanLoyaltyPercentage / republicanArr.length).toFixed(3);
+democratLoyaltyPercentage = (democratLoyaltyPercentage / democratArr.length).toFixed(3);
+indpendentLoyaltyPercentage = ((indpendentLoyaltyPercentage / independentArr.length).toFixed(3)) 
+// indpendentLoyaltyPercentage = indpendentLoyaltyPercentage === NaN ? "0" : indpendentLoyaltyPercentage;
+
 
 document.getElementById("rep-reps").textContent = republicanArr.length;
 document.getElementById("dem-reps").textContent = democratArr.length;
@@ -21658,7 +21661,7 @@ document.getElementById("ind-reps").textContent = independentArr.length;
 
 document.getElementById("rep-perc").textContent = republicanLoyaltyPercentage;
 document.getElementById("dem-perc").textContent = democratLoyaltyPercentage;
-document.getElementById("ind-perc").textContent = indpendentLoyaltypercentage;
+document.getElementById("ind-perc").textContent = "0";
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -21666,10 +21669,10 @@ document.getElementById("ind-perc").textContent = indpendentLoyaltypercentage;
 // Top 10 senadores que votan mas y menos
 
 
-let percentage = (membersArr.length / 100)*10;
+let percentage = (filterMembersArr.length / 100)*10;
 percentage = percentage.toFixed(0);
 console.log(percentage);
-let cloneMembersArr = [...membersArr];
+let clonefilterMembersArr = [...filterMembersArr];
 
 function compare(a,b){
   let memberA = a.missed_votes_pct;
@@ -21684,20 +21687,20 @@ function compare(a,b){
   return comparison;
 }
 
-cloneMembersArr = cloneMembersArr.sort(compare);
-let leastCloneMembersArr = cloneMembersArr;
-let mostCloneMembersArr = cloneMembersArr;
-mostCloneMembersArr = mostCloneMembersArr.slice(-percentage).reverse();
-leastCloneMembersArr = leastCloneMembersArr.slice(0, percentage);
-console.log(mostCloneMembersArr);
+clonefilterMembersArr = clonefilterMembersArr.sort(compare);
+let leastClonefilterMembersArr = clonefilterMembersArr;
+let mostClonefilterMembersArr = clonefilterMembersArr;
+mostClonefilterMembersArr = mostClonefilterMembersArr.slice(-percentage).reverse();
+leastClonefilterMembersArr = leastClonefilterMembersArr.slice(0, percentage);
+console.log(mostClonefilterMembersArr);
 
 
 // construyendo tabla
 
 // tabla 1
-function buildTable(mostCloneMembersArr){
+function buildTable(mostClonefilterMembersArr){
 
-    for(i = 0; i < mostCloneMembersArr.length; i++){   
+    for(i = 0; i < mostClonefilterMembersArr.length; i++){   
   
       let tBody = document.getElementById("tBody1")
       let tr = document.createElement("tr");
@@ -21705,9 +21708,9 @@ function buildTable(mostCloneMembersArr){
       let td2 = document.createElement("td");
       let td3 = document.createElement("td");
   
-      let text1 = document.createTextNode(mostCloneMembersArr[i].first_name + " " + mostCloneMembersArr[i].last_name);
-      let text2 = document.createTextNode(mostCloneMembersArr[i].missed_votes);
-      let text3 = document.createTextNode(mostCloneMembersArr[i].missed_votes_pct + "%");    
+      let text1 = document.createTextNode(mostClonefilterMembersArr[i].first_name + " " + mostClonefilterMembersArr[i].last_name);
+      let text2 = document.createTextNode(mostClonefilterMembersArr[i].missed_votes);
+      let text3 = document.createTextNode(mostClonefilterMembersArr[i].missed_votes_pct + "%");    
       
       td1.appendChild(text1);
       td2.appendChild(text2);
@@ -21721,13 +21724,13 @@ function buildTable(mostCloneMembersArr){
     }
   }
   
-  buildTable(mostCloneMembersArr);
+  buildTable(mostClonefilterMembersArr);
   
   
   // tabla 2
-  function buildTable2(leastCloneMembersArr){
+  function buildTable2(leastClonefilterMembersArr){
   
-    for(i = 0; i < leastCloneMembersArr.length; i++){   
+    for(i = 0; i < leastClonefilterMembersArr.length; i++){   
   
       let tBody = document.getElementById("tBody2")
       let tr = document.createElement("tr");
@@ -21735,9 +21738,9 @@ function buildTable(mostCloneMembersArr){
       let td2 = document.createElement("td");
       let td3 = document.createElement("td");
   
-      let text1 = document.createTextNode(leastCloneMembersArr[i].first_name + " " + leastCloneMembersArr[i].last_name);
-      let text2 = document.createTextNode(leastCloneMembersArr[i].missed_votes);
-      let text3 = document.createTextNode(leastCloneMembersArr[i].missed_votes_pct + "%");    
+      let text1 = document.createTextNode(leastClonefilterMembersArr[i].first_name + " " + leastClonefilterMembersArr[i].last_name);
+      let text2 = document.createTextNode(leastClonefilterMembersArr[i].missed_votes);
+      let text3 = document.createTextNode(leastClonefilterMembersArr[i].missed_votes_pct + "%");    
       
       td1.appendChild(text1);
       td2.appendChild(text2);
@@ -21751,4 +21754,4 @@ function buildTable(mostCloneMembersArr){
     }
   }
   
-  buildTable2(leastCloneMembersArr);
+  buildTable2(leastClonefilterMembersArr);
