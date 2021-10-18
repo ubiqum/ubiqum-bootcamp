@@ -5178,6 +5178,47 @@ console.log(high10);
 
 
 
+//Number of party votes which is: given the total votes and the percent of votes to the party, get the total number of votes to the party
+
+function calculateTotal() {
+  let ans = [];
+
+  for (i=0;i<low10.length;i++) {
+    ans.push((low10[i].total_votes/100) * (low10[i].votes_with_party_pct)
+    )}
+  console.log(ans);
+
+  return ans;
+}
+
+
+let totalVotes = calculateTotal(low10);
+
+for (i=0;i<low10.length;i++){
+  totalVotes[i]= Math.round(parseFloat(totalVotes[i]));
+  console.log(totalVotes[i]);
+}
+
+//same with high loyalty
+function calculateTotal2() {
+  let ansH = [];
+
+  for (i=0;i<high10.length;i++) {
+    ansH.push((high10[i].total_votes/100) * (high10[i].votes_with_party_pct)
+    )}
+  console.log(ansH);
+
+  return ansH;
+}
+
+
+let totalVotesHigh = calculateTotal2(high10);
+
+for (i=0;i<high10.length;i++){
+  totalVotesHigh[i]= Math.round(parseFloat(totalVotesHigh[i]));
+  console.log(totalVotesHigh[i]);
+}
+
 
 
 
@@ -5196,8 +5237,8 @@ console.log(high10);
 
 
     let textHeader = document.createTextNode("Name");
-    let textHeader2 = document.createTextNode("No of Missed Votes");
-    let textHeader3 = document.createTextNode("& of Missed Votes");
+    let textHeader2 = document.createTextNode("No of Party Votes");
+    let textHeader3 = document.createTextNode("% of Party Votes");
 
     th.appendChild(textHeader);
     th2.appendChild(textHeader2);
@@ -5221,7 +5262,7 @@ console.log(high10);
   let text1 = document.createTextNode(low10[i].first_name + " " + (low10[i].middle_name || "") + " " + low10[i].last_name);
   link.appendChild(text1);
 
-  let text2 = document.createTextNode(low10[i].missed_votes);
+  let text2 = document.createTextNode(totalVotes[i]);
   let text3 = document.createTextNode(low10[i].missed_votes_pct);
 
   
@@ -5249,8 +5290,6 @@ buildTable(low10);
 
 
 
-
-
 //top 10 loyalty table
 
 function buildTable2(high10) {
@@ -5265,8 +5304,8 @@ function buildTable2(high10) {
 
 
     let textHeader = document.createTextNode("Name");
-    let textHeader2 = document.createTextNode("No of Missed Votes");
-    let textHeader3 = document.createTextNode("& of Missed Votes");
+    let textHeader2 = document.createTextNode("No of Party Votes");
+    let textHeader3 = document.createTextNode("& of Party Votes");
 
     th.appendChild(textHeader);
     th2.appendChild(textHeader2);
@@ -5290,7 +5329,7 @@ function buildTable2(high10) {
   let text1 = document.createTextNode(high10[i].first_name + " " + (high10[i].middle_name || "") + " " + high10[i].last_name);
   link.appendChild(text1);
 
-  let text2 = document.createTextNode(high10[i].missed_votes);
+  let text2 = document.createTextNode(totalVotesHigh[i]);
   let text3 = document.createTextNode(high10[i].missed_votes_pct);
 
   

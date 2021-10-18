@@ -5196,7 +5196,7 @@ function buildTable3(attLow10) {
   
       let textHeader = document.createTextNode("Name");
       let textHeader2 = document.createTextNode("No of Missed Votes");
-      let textHeader3 = document.createTextNode("& of Missed Votes");
+      let textHeader3 = document.createTextNode("% of Missed Votes");
   
       th.appendChild(textHeader);
       th2.appendChild(textHeader2);
@@ -5257,7 +5257,7 @@ function buildTable3(attLow10) {
   
       let textHeader = document.createTextNode("Name");
       let textHeader2 = document.createTextNode("No of Missed Votes");
-      let textHeader3 = document.createTextNode("& of Missed Votes");
+      let textHeader3 = document.createTextNode("% of Missed Votes");
   
       th.appendChild(textHeader);
       th2.appendChild(textHeader2);
@@ -5282,7 +5282,7 @@ function buildTable3(attLow10) {
     link.appendChild(text1);
   
     let text2 = document.createTextNode(attHigh10[i].missed_votes);
-    let text3 = document.createTextNode(attHigh10[i].missed_votes_pct);
+    let text3 = document.createTextNode(attHigh10[i].votes_with_party_pct);
   
     
     td1.appendChild(link);
@@ -5305,3 +5305,6 @@ function buildTable3(attLow10) {
   
   buildTable4(attHigh10);
   
+
+
+

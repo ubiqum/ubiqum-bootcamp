@@ -41,9 +41,24 @@
     justify-content: space-between;
 }
 
+.margin--left{
+    margin-left: 0%;
+    width: 45%;
+    float: left;
+}
+.margin--left1{
+    margin-left: 7%;
+    width: 45%;
+    float: left;
+}
+
+
 
 .text--margin{
     margin-left: 50%;
     width: 80%;
 }
 
+.margin--top{
+    margin-top: 30%;
+}
