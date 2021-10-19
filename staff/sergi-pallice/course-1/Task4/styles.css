@@ -16,7 +16,8 @@ div.top-text {
 }
 
 body {
-  font-family: "Cambria";
+  /* font-family: "Cambria"; */
+  font-family: "Titillium Web", sans-serif;
 }
 
 div.top-frame {
@@ -49,7 +50,7 @@ h2 {
   text-align: center;
   display: inline-block;
   text-decoration: none;
-  width: 60%;
+  width: 65%;
 }
 
 .color-button {
@@ -60,7 +61,7 @@ h2 {
   text-align: center;
   display: inline-block;
   text-decoration: none;
-  width: 60%;
+  width: 65%;
 }
 
 .index-frame1 img {
@@ -91,12 +92,6 @@ h2 {
   margin-top: 10px;
 }
 
-.bottom-frame2 dl {
-  padding-left: 20px;
-  float: right;
-  width: calc(100% - 184px);
-}
-
 /* Center website*/
 div.everything {
   width: 90%;
@@ -124,29 +119,45 @@ td {
   display: block;
 } */
 
-.bottom-text {
-  float: left;
-  margin-top: 10px;
-}
-
-.table1 {
-  float: left;
-}
-
-.table2 {
-  float: left;
-  margin: 0 10px 0 10px;
-}
-
-.table3 {
-  float: left;
-}
-
-.index-bottom-text {
+.bottom-frame {
   float: left;
 }
 
 div.middle-frame {
   float: left;
   font-size: large;
+}
+
+.table1,
+.table2,
+.table3,
+.google-maps,
+.bottom-text {
+  float: left;
+  margin: 10px;
+}
+
+div.bottom-frame {
+  display: flex;
+  flex-direction: row;
+}
+
+div.middle-frame {
+  display: flex;
+  flex-direction: row;
+}
+
+div.submit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+div.form-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
 }
