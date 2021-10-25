@@ -52,8 +52,8 @@ function insert_row(table_id, first_row, name_text,urlsenators, party_text, stat
     pervoteswithparty.innerHTML = pervoteswithparty_text;
 
 }
-function makeMemberRows(jsonsenators) {
-    for (let i = 0; i <= 49;i++) {
+function makeMemberRows(jsonsenators,rowstodisplay) {
+    for (let i = 0; i <= rowstodisplay;i++) {
         var statesenator = jsonsenators.results[0].members[i].state;     
         var statelongname = jsonstates[statesenator];
         var fullname =jsonsenators.results[0].members[i].first_name + " " + jsonsenators.results[0].members[i].last_name;
@@ -61,14 +61,18 @@ function makeMemberRows(jsonsenators) {
     insert_row('senators-list', 1, fullname ,urlsenators, jsonsenators.results[0].members[i].party, statelongname, jsonsenators.results[0].members[i].seniority, jsonsenators.results[0].members[i].votes_with_party_pct);
       }
 }
+
+
 function waitForjsonsenators(){
     if(typeof(jsonsenators.results) !== "undefined" && typeof(jsonsenators) !== "undefined" ){
-        makeMemberRows(makeMemberRows(jsonsenators))
+        makeMemberRows(makeMemberRows(jsonsenators,49))
     }
     else{
         setTimeout(waitForjsonsenators, 250);
     }
 }
+
+
 fetchJsonstatefiles(jsonstatefile);
 fetchJsonsenators(url, keyvalue);
 waitForjsonsenators();
