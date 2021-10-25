@@ -1,0 +1,180 @@
+.logo img {
+  width: 120px;
+  height: 120px;
+  border: 2px solid #999999;
+}
+
+div.logo {
+  margin-top: 10px;
+  float: left;
+  padding-right: 10px;
+}
+
+div.top-text {
+  margin: 30px;
+  float: right;
+}
+
+body {
+  /* font-family: "Cambria"; */
+  font-family: "Titillium Web", sans-serif;
+}
+
+div.top-frame {
+  text-align: center;
+  width: 100%;
+}
+
+div.top-frame img {
+  width: 100%;
+  background-color: grey;
+}
+
+.text-in-image {
+  position: absolute;
+  top: 20px;
+  margin-left: 20px;
+}
+
+/* Tab Name Border */
+h2 {
+  margin: 0;
+  border: 2px solid black;
+}
+
+.button {
+  background-color: rgb(58, 58, 247); /* Blue */
+  border: 2px solid black;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  width: 65%;
+}
+
+.color-button {
+  background-color: rgb(8, 192, 8); /* Green */
+  border: 2px solid black;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  width: 65%;
+}
+
+.index-frame1 img {
+  float: left;
+  margin-right: 20px;
+  width: 50%;
+}
+
+.index-frame1 {
+  height: 140px;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: calc(100% / 1.4);
+}
+
+.menu img {
+  float: left;
+  margin-right: 20px;
+  width: 140px;
+  height: 140px;
+  border: 2px solid #999999;
+}
+
+.bottom-frame {
+  margin-top: 10px;
+}
+
+/* Center website*/
+div.everything {
+  width: 90%;
+  margin: auto;
+  max-width: 960px;
+}
+
+div.sides {
+  width: 5%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+/* #show,
+#content {
+  display: none;
+}
+
+#show:checked ~ #content {
+  display: block;
+} */
+
+.bottom-frame {
+  float: left;
+}
+
+div.middle-frame {
+  float: left;
+  font-size: large;
+}
+
+.table1,
+.table2,
+.table3,
+.google-maps,
+.bottom-text {
+  float: left;
+  margin: 10px;
+}
+
+div.bottom-frame {
+  display: flex;
+  flex-direction: row;
+}
+
+div.middle-frame {
+  display: flex;
+  flex-direction: row;
+}
+
+div.submit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+div.form-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 0px);
+  height: 350px;
+  margin: 0 10px;
+}
+
+.submit-button {
+  margin: auto;
+  display: block;
+}
+
+select {
+  font-size: 16px;
+}
+
+input {
+  font-size: 16px;
+}
