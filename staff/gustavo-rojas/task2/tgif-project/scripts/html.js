@@ -1,15 +1,9 @@
-const url = 'https://api.propublica.org/congress/v1/117/senate/members.json';
-const keyvalue = 'gdT8JyXvej1ZEHgazl8N6EvfRX88z8ik4qymrZ23';
+const url = './jsons/pro-congress-117-senate.json';
 
 var jsonsenators = [];
+
 function fetchJsonsenators(url, keyvalue) {
-    return fetch(url, { 
-            mode: 'cors', 
-            headers: { 
-            'X-API-Key': keyvalue, 
-            'Accept': 'application/json',
-        } 
-                })
+    return fetch(url)
         .then(
             (value) => {
                 return value.json()
@@ -22,8 +16,8 @@ function fetchJsonsenators(url, keyvalue) {
         .catch(error => console.log('Error while fetching:', error))
 
 }
-var jsonstates =[];
-const jsonstatefile='./jsons/states_hash.json';
+var jsonstates = [];
+const jsonstatefile = './jsons/states_hash.json';
 function fetchJsonstatefiles(jsonstatefiles) {
     return fetch(jsonstatefiles)
         .then(
@@ -38,7 +32,7 @@ function fetchJsonstatefiles(jsonstatefiles) {
         .catch(error => console.log('Error while fetching:', error))
 }
 
-function insert_row(table_id, first_row, name_text,urlsenators, party_text, state_text, yearinoffice_text, pervoteswithparty_text) {
+function insert_row(table_id, first_row, name_text, urlsenators, party_text, state_text, yearinoffice_text, pervoteswithparty_text) {
     var x = document.getElementById(table_id).insertRow(first_row);
     var name = x.insertCell(0);
     var party = x.insertCell(1);
@@ -52,27 +46,55 @@ function insert_row(table_id, first_row, name_text,urlsenators, party_text, stat
     pervoteswithparty.innerHTML = pervoteswithparty_text;
 
 }
-function makeMemberRows(jsonsenators,rowstodisplay) {
-    for (let i = 0; i <= rowstodisplay;i++) {
-        var statesenator = jsonsenators.results[0].members[i].state;     
+function makeMemberRows(jsonsenators, rowstodisplay, table_id) {
+    for (let i = 0; i <= rowstodisplay; i++) {
+        var statesenator = jsonsenators.results[0].members[i].state;
         var statelongname = jsonstates[statesenator];
-        var fullname =jsonsenators.results[0].members[i].first_name + " " + jsonsenators.results[0].members[i].last_name;
-        var urlsenators=jsonsenators.results[0].members[i].url;
-    insert_row('senators-list', 1, fullname ,urlsenators, jsonsenators.results[0].members[i].party, statelongname, jsonsenators.results[0].members[i].seniority, jsonsenators.results[0].members[i].votes_with_party_pct);
-      }
+        var fullname = jsonsenators.results[0].members[i].first_name + " " + jsonsenators.results[0].members[i].last_name;
+        var urlsenators = jsonsenators.results[0].members[i].url;
+        insert_row(table_id, 1, fullname, urlsenators, jsonsenators.results[0].members[i].party, statelongname, jsonsenators.results[0].members[i].seniority, jsonsenators.results[0].members[i].votes_with_party_pct);
+    }
+}
+function makerowswitharray(arrayfiltered, rowstodisplay, table_id) {
+    for (let i = 0; i <= rowstodisplay; i++) {
+        var statesenator = arrayfiltered[i].state;
+        var statelongname = jsonstates[statesenator];
+        var fullname = arrayfiltered[i].first_name + " " + arrayfiltered[i].last_name;
+        var urlsenators = jsonsenators.results[0].members[i].url;
+        insert_row(table_id, 1, fullname, urlsenators, arrayfiltered[i].party, statelongname, arrayfiltered[i].seniority, arrayfiltered[i].votes_with_party_pct);
+    }
+
 }
 
+function waitForjsonsenators() {
+    tableidtodisplay = 'senators-list';
+    if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
+        makeMemberRows(jsonsenators, jsonsenators.results[0].members.length - 1, tableidtodisplay);
 
-function waitForjsonsenators(){
-    if(typeof(jsonsenators.results) !== "undefined" && typeof(jsonsenators) !== "undefined" ){
-        makeMemberRows(makeMemberRows(jsonsenators,49))
     }
-    else{
+    else {
         setTimeout(waitForjsonsenators, 250);
     }
 }
 
+function hidenbycellvalue(table_id, numbercell, value) {
+    mytable = document.getElementById(table_id);
+    for (let i = 0; i <= mytable.rows.length-1; i++) {
+        if (mytable.rows[i].cells[numbercell].innerHTML == value) {
+            mytable.rows[i].hidden = true;
+        }
+    }
+}
+
+function showbycellvalue(table_id, numbercell, value) {
+    mytable = document.getElementById(table_id);
+    for (let i = 0; i <= mytable.rows.length-1; i++) {
+        if (mytable.rows[i].cells[numbercell].innerHTML == value) {
+            mytable.rows[i].hidden = false;
+        }
+    }
+}
 
 fetchJsonstatefiles(jsonstatefile);
-fetchJsonsenators(url, keyvalue);
+fetchJsonsenators(url);
 waitForjsonsenators();
