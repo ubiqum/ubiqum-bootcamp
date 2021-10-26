@@ -77,6 +77,10 @@ function waitForjsonsenators() {
     }
 }
 
+fetchJsonstatefiles(jsonstatefile);
+fetchJsonsenators(url);
+waitForjsonsenators();
+
 function hidenbycellvalue(table_id, numbercell, value) {
     mytable = document.getElementById(table_id);
     for (let i = 0; i <= mytable.rows.length-1; i++) {
@@ -95,6 +99,120 @@ function showbycellvalue(table_id, numbercell, value) {
     }
 }
 
-fetchJsonstatefiles(jsonstatefile);
-fetchJsonsenators(url);
-waitForjsonsenators();
+
+republicanscheckbox = document.getElementById('republicanscheckbox');
+democratscheckbox = document.getElementById('democratscheckbox');
+independentcheckbox = document.getElementById('independentcheckbox');
+republicanscheckbox.addEventListener('change', e => {
+    if(e.target.checked){
+        showrepublicans();
+    }
+    else {
+      if (!democratscheckbox.checked && !republicanscheckbox.checked && !independentcheckbox.checked  ) {
+        showallrows();
+      }
+      if(democratscheckbox.checked) {
+        showdemocrats();
+      }
+      if(independentcheckbox.checked){
+        showindependent();
+      }
+        
+    }
+});
+
+
+democratscheckbox.addEventListener('change', e => {
+    if(e.target.checked){
+        showdemocrats();
+    }
+    else {
+        if (!democratscheckbox.checked && !republicanscheckbox.checked && !independentcheckbox.checked  ) {
+            showallrows();
+          }
+        if (republicanscheckbox.checked){
+            showrepublicans();
+        }
+        if(independentcheckbox.checked){
+            showindependent();
+
+        }
+    }
+});
+
+independentcheckbox.addEventListener('change', e => {
+    if(e.target.checked){
+        showindependent();
+    }
+    else {
+        if (!democratscheckbox.checked && !republicanscheckbox.checked && !independentcheckbox.checked  ) {
+        showallrows();
+      }
+      if (republicanscheckbox.checked){
+        showrepublicans();
+    }
+    if(democratscheckbox.checked) {
+        showdemocrats();
+      }
+      
+    }
+});
+
+function showrepublicans() {
+    var table_id='senators-list';
+    var numbercell = 1;
+    var republicans= "R";
+    showbycellvalue(table_id, numbercell, republicans);
+    if (!democratscheckbox.checked) {
+        var democrats="D"
+        hidenbycellvalue(table_id, numbercell, democrats);
+    }
+    if(!independentcheckbox.checked) {
+        var independent="ID";
+        hidenbycellvalue(table_id, numbercell, independent);
+
+    }
+}
+
+function showdemocrats() {
+    var table_id='senators-list';
+    var numbercell = 1;
+    var democrats= "D";
+    showbycellvalue(table_id, numbercell, democrats);
+    if (!republicanscheckbox.checked) {
+        var republicans="R"
+        hidenbycellvalue(table_id, numbercell, republicans);
+    }
+    if(!independentcheckbox.checked) {
+        var independent="ID";
+        hidenbycellvalue(table_id, numbercell, independent);
+
+    }
+}
+
+function showindependent() {
+    var table_id='senators-list';
+    var numbercell = 1;
+    var independent= "ID";
+    showbycellvalue(table_id, numbercell, independent);
+    if (!republicanscheckbox.checked) {
+        var republicans="R"
+        hidenbycellvalue(table_id, numbercell, republicans);
+    }
+    if(!democratscheckbox.checked) {
+        var democrats="D";
+        hidenbycellvalue(table_id, numbercell, democrats);
+
+    }
+}
+
+function showallrows() {
+    var table_id='senators-list';
+    var numbercell = 1;
+    var republicans= "R";
+    showbycellvalue(table_id, numbercell, republicans);
+    var democrats= "D";
+    showbycellvalue(table_id, numbercell, democrats);
+    var independent= "ID";
+    showbycellvalue(table_id, numbercell, independent);
+}
