@@ -77,6 +77,8 @@ function waitForjsonsenators() {
     }
 }
 
+
+
 fetchJsonstatefiles(jsonstatefile);
 fetchJsonsenators(url);
 waitForjsonsenators();
@@ -206,6 +208,18 @@ function showindependent() {
     }
 }
 
+function showbystate(statename,jsonstates) {
+    var table_id='senators-list';
+    var numbercell = 2;
+    showbycellvalue(table_id, numbercell,statename);
+    for (let key in jsonstates) {
+        if(jsonstates[key]!==statename) {
+            hidenbycellvalue(table_id, numbercell,jsonstates[key]);
+        }
+      }
+}
+
+
 function showallrows() {
     var table_id='senators-list';
     var numbercell = 1;
@@ -216,3 +230,40 @@ function showallrows() {
     var independent= "ID";
     showbycellvalue(table_id, numbercell, independent);
 }
+
+
+function createdropdownmenu() {
+    dropdown = document.getElementById("state-territory");
+    option= document.createElement('option');
+    option.text = "All States/territories";
+    option.value = "All States/territories";
+    dropdown.add(option);
+    console.log(jsonstates);
+    for (var key in jsonstates) {
+        option = document.createElement('option');
+        option.text = jsonstates[key];
+        option.value = jsonstates[key];
+        dropdown.add(option);
+      }
+    
+}
+
+function waitForjsonstates() {
+    if (jsonstates.length!==0) {
+        createdropdownmenu();
+    }
+    else {
+        setTimeout(waitForjsonstates, 250);
+    }
+}
+
+/*
+if(typeof(jsonstates) == "undefined") {
+    console.log("jsonstates is undefined")
+} 
+
+if(typeof(jsonstates) !== "undefined") {
+    console.log("jsonstates is defined")
+}*/
+
+waitForjsonstates()
