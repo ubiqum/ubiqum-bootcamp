@@ -257,13 +257,4 @@ function waitForjsonstates() {
     }
 }
 
-/*
-if(typeof(jsonstates) == "undefined") {
-    console.log("jsonstates is undefined")
-} 
-
-if(typeof(jsonstates) !== "undefined") {
-    console.log("jsonstates is defined")
-}*/
-
 waitForjsonstates()
