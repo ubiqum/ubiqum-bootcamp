@@ -1,7 +1,51 @@
+/* I tried with this call to the API to propublica
+const url = 'https://api.propublica.org/congress/v1/117/senate/members.json';
+const keyvalue = 'gdT8JyXvej1ZEHgazl8N6EvfRX88z8ik4qymrZ23';
+
+function fetchJsonsenators(url, keyvalue) {
+    return fetch(url, { 
+            mode: 'cors', 
+            headers: { 
+            'X-API-Key': keyvalue, 
+            'Accept': 'application/json',
+        } 
+                })
+        .then(
+            (value) => {
+                return value.json()
+            }
+        ).then(
+            (value) => {
+                jsonsenators = value
+            }
+        )
+And show me this error  
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource 
+at https://api.propublica.org/congress/v1/117/senate/members.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
+
+I sent a email to apihelp@propublica.org
+And they aswered:
+From:Ken Schwencke <Ken.Schwencke@propublica.org>
+To:Gustavo Rojas H <grojas@fastmail.com>
+Cc:API-Help <APIhelp@propublica.org>
+Subject:Re: Interment issues with the API Calls
+Date:Monday, October 25, 2021 8:07 AM
+Size:19 KB
+Hi Gustavo,
+
+I believe this is by design -- we don't currently allow front-end javascript calls to the API, only backend calls from the server. 
+
+-- 
+Ken Schwencke
+Editor, News Apps
+ProPublica
+I sent the task with the file and no with the URL because that .
+
+*/
 const url = './jsons/pro-congress-117-senate.json';
 var jsonsenators = [];
 
-function fetchJsonsenators(url, keyvalue) {
+function fetchJsonsenators(url) {
     return fetch(url)
         .then(
             (value) => {
@@ -46,30 +90,66 @@ function insert_row(table_id, first_row, name_text, urlsenators, party_text, sta
     pervoteswithparty.innerHTML = pervoteswithparty_text;
 
 }
-function makeMemberRows(jsonsenators, rowstodisplay, table_id) {
-    for (let i = 0; i <= rowstodisplay; i++) {
-        var statesenator = jsonsenators.results[0].members[i].state;
-        var statelongname = jsonstates[statesenator];
-        var fullname = jsonsenators.results[0].members[i].first_name + " " + jsonsenators.results[0].members[i].last_name;
-        var urlsenators = jsonsenators.results[0].members[i].url;
-        insert_row(table_id, 1, fullname, urlsenators, jsonsenators.results[0].members[i].party, statelongname, jsonsenators.results[0].members[i].seniority, jsonsenators.results[0].members[i].votes_with_party_pct);
+
+function getmembersFiltersArray(){
+    let dropdown = document.getElementById("state-territory");
+    members=jsonsenators.results[0].members;
+    var republicanselected="";
+    var decomocratsselected="";
+    var independentsselected="";
+    stateselected=dropdown.value;
+    republicansenators =[];
+    democratssenators =[];
+    independentsenators=[];
+    if(republicanscheckbox.checked) {
+        var republicanselected="R"; 
     }
+    if(democratscheckbox.checked) {
+        var decomocratsselected="D"; 
+    }
+    if(independentcheckbox.checked) {
+        var independentsselected="ID"; 
+    }
+    stateselected=dropdown.value;
+    if(stateselected=="all"){
+        republicansenators = members.filter(function (currentElement) { return currentElement.party === republicanselected; });
+        democratssenators = members.filter(function (currentElement) { return currentElement.party === decomocratsselected; });
+        independentsenators = members.filter(function (currentElement) { return currentElement.party === independentsselected; });
+        return [].concat(republicansenators, democratssenators ,independentsenators);
+    }
+    if(stateselected!=="all"){
+        republicansenators = members.filter(function (currentElement) { return currentElement.party === republicanselected && currentElement.state === stateselected;});
+        democratssenators = members.filter(function (currentElement) {  return currentElement.party === decomocratsselected && currentElement.state === stateselected;});
+        independentsenators = members.filter(function (currentElement) {return currentElement.party === independentsselected && currentElement.state === stateselected; });
+        return [].concat(republicansenators, democratssenators ,independentsenators);
+    } 
+
 }
-function makerowswitharray(arrayfiltered, rowstodisplay, table_id) {
-    for (let i = 0; i <= rowstodisplay; i++) {
+
+function makeMemberRowsfilteredarray(arrayfiltered, table_id) {
+    for (let i = 0; i <= arrayfiltered.length-1; i++) {
         var statesenator = arrayfiltered[i].state;
         var statelongname = jsonstates[statesenator];
         var fullname = arrayfiltered[i].first_name + " " + arrayfiltered[i].last_name;
-        var urlsenators = jsonsenators.results[0].members[i].url;
+        var urlsenators = arrayfiltered[i].url;
         insert_row(table_id, 1, fullname, urlsenators, arrayfiltered[i].party, statelongname, arrayfiltered[i].seniority, arrayfiltered[i].votes_with_party_pct);
+    }
+}
+
+function removeallrowstable(table_id) {
+    var table = document.getElementById(table_id);
+
+    for(var i = table.rows.length - 1; i > 0; i--)
+    {
+        table.deleteRow(i);
     }
 
 }
-
+//* This is for if we need to wait the data.
 function waitForjsonsenators() {
     tableidtodisplay = 'senators-list';
     if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
-        makeMemberRows(jsonsenators, jsonsenators.results[0].members.length - 1, tableidtodisplay);
+        
 
     }
     else {
@@ -77,204 +157,55 @@ function waitForjsonsenators() {
     }
 }
 
-
-
 fetchJsonstatefiles(jsonstatefile);
 fetchJsonsenators(url);
-waitForjsonsenators();
-
-function hidenbycellvalue(table_id, numbercell_1, value_1) {
-    mytable = document.getElementById(table_id);
-    for (let i = 0; i <= mytable.rows.length - 1; i++) {
-        if (mytable.rows[i].cells[numbercell_1].innerHTML == value_1) {
-            mytable.rows[i].hidden = true;
-        }
-    }
-}
-
-function showbycellvalue(table_id, numbercell_1, value_1) {
-    mytable = document.getElementById(table_id);
-    for (let i = 0; i <= mytable.rows.length - 1; i++) {
-        if (mytable.rows[i].cells[numbercell_1].innerHTML == value_1) {
-            mytable.rows[i].hidden = false;
-        }
-    }
-}
-
-function hidenbycellvaluev2(table_id, numbercell_1, value_1, dropdown, defaultdropdown) {
-    mytable = document.getElementById(table_id);
-    for (let i = 0; i <= mytable.rows.length - 1; i++) {
-        if (dropdown.value == defaultdropdown) {
-            if (mytable.rows[i].cells[numbercell_1].innerHTML == value_1) { mytable.rows[i].hidden = true; }
-        } else {
-            if (mytable.rows[i].cells[numbercell_1].innerHTML == value_1 && mytable.rows[i].cells[numbercell_1 + 1].innerHTML == dropdown.value) {
-                mytable.rows[i].hidden = true;
-            }
-        }
-    }
-}
-
-function showbycellvaluev2(table_id, numbercell_1, value_1, dropdown, defaultdropdown) {
-    mytable = document.getElementById(table_id);
-    for (let i = 0; i <= mytable.rows.length - 1; i++) {
-        if (dropdown.value == defaultdropdown) {
-            if (mytable.rows[i].cells[numbercell_1].innerHTML == value_1) { mytable.rows[i].hidden = false; }
-        } else {
-            if (mytable.rows[i].cells[numbercell_1].innerHTML == value_1 && mytable.rows[i].cells[numbercell_1 + 1].innerHTML == dropdown.value) {
-                mytable.rows[i].hidden = false;
-            }
-        }
-    }
-}
 
 republicanscheckbox = document.getElementById('republicanscheckbox');
 democratscheckbox = document.getElementById('democratscheckbox');
 independentcheckbox = document.getElementById('independentcheckbox');
-
 stateterritoresdropdown = document.getElementById('state-territory');
-const defaultstateterritoresdropdown = 'All States/territories';
-republicanscheckbox.addEventListener('change', e => {
-    if (e.target.checked) {
-        showrepublicans();
-    }
-    else {
-        
-        if (!democratscheckbox.checked && !republicanscheckbox.checked && !independentcheckbox.checked) {
-            showallrows();
-        }
-        if (democratscheckbox.checked) {
-            showdemocrats();
-        }
-        if (independentcheckbox.checked) {
-            showindependent();
-        }
 
+
+republicanscheckbox.addEventListener('change', e => {
+    var table_id = 'senators-list';    
+    var arraymemberselected =[];
+    if (e.target.checked || !e.target.checked) {
+        removeallrowstable(table_id);
+        arraymemberselected=getmembersFiltersArray();
+        makeMemberRowsfilteredarray(arraymemberselected, table_id)
     }
+
 });
 
 
 democratscheckbox.addEventListener('change', e => {
-    if (e.target.checked) {
-        showdemocrats();
-    }
-    else {
-        if (!democratscheckbox.checked && !republicanscheckbox.checked && !independentcheckbox.checked) {
-            showallrows();
-        }
-        if (republicanscheckbox.checked) {
-            showrepublicans();
-        }
-        if (independentcheckbox.checked) {
-            showindependent();
-
-        }
+    var table_id = 'senators-list';    
+    var arraymemberselected =[];
+    if (e.target.checked || !e.target.checked) {
+        removeallrowstable(table_id);
+        arraymemberselected=getmembersFiltersArray();
+        makeMemberRowsfilteredarray(arraymemberselected, table_id);
     }
 });
 
 independentcheckbox.addEventListener('change', e => {
-    if (e.target.checked) {
-        showindependent();
+    var table_id = 'senators-list';    
+    var arraymemberselected =[];
+     if (e.target.checked || !e.target.checked) {
+        removeallrowstable(table_id);
+        arraymemberselected=getmembersFiltersArray();
+        makeMemberRowsfilteredarray(arraymemberselected, table_id);
     }
-    else {
-        if (!democratscheckbox.checked && !republicanscheckbox.checked && !independentcheckbox.checked) {
-            showallrows();
-        }
-        if (republicanscheckbox.checked) {
-            showrepublicans();
-        }
-        if (democratscheckbox.checked) {
-            showdemocrats();
-        }
-
-    }
+    
 });
 
-function showrepublicans() {
+stateterritoresdropdown.addEventListener('change', e => {
     var table_id = 'senators-list';
-    var numbercell = 1;
-    var republicans = "R";
-    showbycellvaluev2(table_id, numbercell, republicans,stateterritoresdropdown,defaultstateterritoresdropdown);
-    if (!democratscheckbox.checked) {
-        var democrats = "D"
-        hidenbycellvaluev2(table_id, numbercell, democrats,stateterritoresdropdown,defaultstateterritoresdropdown);
-    }
-    if (!independentcheckbox.checked) {
-        var independent = "ID";
-        hidenbycellvaluev2(table_id, numbercell, independent,stateterritoresdropdown,defaultstateterritoresdropdown);
+    removeallrowstable(table_id);
+    arraymemberselected=getmembersFiltersArray();
+    makeMemberRowsfilteredarray(arraymemberselected, table_id);
 
-    }
-}
-
-function showdemocrats() {
-    var table_id = 'senators-list';
-    var numbercell = 1;
-    var democrats = "D";
-    showbycellvalue(table_id, numbercell, democrats);
-    if (!republicanscheckbox.checked) {
-        var republicans = "R"
-        hidenbycellvalue(table_id, numbercell, republicans);
-    }
-    if (!independentcheckbox.checked) {
-        var independent = "ID";
-        hidenbycellvalue(table_id, numbercell, independent);
-
-    }
-}
-
-function showindependent() {
-    var table_id = 'senators-list';
-    var numbercell = 1;
-    var independent = "ID";
-    showbycellvalue(table_id, numbercell, independent);
-    if (!republicanscheckbox.checked) {
-        var republicans = "R"
-        hidenbycellvalue(table_id, numbercell, republicans);
-    }
-    if (!democratscheckbox.checked) {
-        var democrats = "D";
-        hidenbycellvalue(table_id, numbercell, democrats);
-
-    }
-}
-
-function showbystate(statename, jsonstates) {
-    var table_id = 'senators-list';
-    var numbercell = 2;
-    showbycellvalue(table_id, numbercell, statename);
-    for (let key in jsonstates) {
-        if (jsonstates[key] !== statename) {
-            hidenbycellvalue(table_id, numbercell, jsonstates[key]);
-        }
-    }
-}
-
-
-function showallrows() {
-    var table_id = 'senators-list';
-    var numbercell = 1;
-    var republicans = "R";
-    showbycellvaluev2(table_id, numbercell, republicans,stateterritoresdropdown,defaultstateterritoresdropdown);
-    var democrats = "D";
-    showbycellvalue(table_id, numbercell, democrats);
-    var independent = "ID";
-    showbycellvalue(table_id, numbercell, independent);
-}
-
-
-function createdropdownmenu() {
-    let dropdown = document.getElementById("state-territory");
-    option = document.createElement('option');
-    option.text = "All States/territories";
-    option.value = "All States/territories";
-    dropdown.add(option);
-    for (let key in jsonstates) {
-        option = document.createElement('option');
-        option.text = jsonstates[key];
-        option.value = jsonstates[key];
-        dropdown.add(option);
-    }
-
-}
+})
 
 function waitForjsonstates() {
     if (jsonstates.length !== 0) {
@@ -285,12 +216,18 @@ function waitForjsonstates() {
     }
 }
 
-waitForjsonstates()
-
-stateterritoresdropdown.addEventListener('change', e => {
-    showbystate(stateterritoresdropdown.value, jsonstates);
-    if (stateterritoresdropdown.value == "All States/territories") {
-        showallrows();
+function createdropdownmenu() {
+    let dropdown = document.getElementById("state-territory");
+    option = document.createElement('option');
+    option.text = "All States/territories";
+    option.value = "all";
+    dropdown.add(option);
+    for (let key in jsonstates) {
+        option = document.createElement('option');
+        option.text = jsonstates[key];
+        option.value = key;
+        dropdown.add(option);
     }
 
-})
+}
+waitForjsonstates()
