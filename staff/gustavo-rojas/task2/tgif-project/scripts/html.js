@@ -249,20 +249,4 @@ function createdropdownmenu() {
     }
 
 }
-/*
-function createdropdownmenufiltered(jsonstatesfiltered) {
-    let dropdown = document.getElementById("state-territory");
-    option = document.createElement('option');
-    option.text = "All States/territories";
-    option.value = "all";
-    dropdown.add(option);
-    for (let key in jsonstatesfiltered) {
-        option = document.createElement('option');
-        option.text = jsonstatesfiltered[key];
-        option.value = key;
-        dropdown.add(option);
-    }
-
-}*/
-
 waitForjsonsenators();
