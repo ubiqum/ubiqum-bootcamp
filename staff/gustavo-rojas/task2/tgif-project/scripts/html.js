@@ -7,18 +7,18 @@ function fetchJsonsenators(url, keyvalue) {
             mode: 'cors', 
             headers: { 
             'X-API-Key': keyvalue, 
-            'Accept': 'application/json',
+            'Accept': 'application/json'
         } 
                 })
         .then(
             (value) => {
                 return value.json()
             }
-        ).then(
+        ).then (
             (value) => {
                 jsonsenators = value
             }
-        )
+        )}
 And show me this error  
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource 
 at https://api.propublica.org/congress/v1/117/senate/members.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
@@ -39,10 +39,13 @@ I believe this is by design -- we don't currently allow front-end javascript cal
 Ken Schwencke
 Editor, News Apps
 ProPublica
-I sent the task with the file and no with the URL because that .
+For recomendation of mentor I used https://designer.mocky.io/
 
 */
-const url = './jsons/pro-congress-117-senate.json';
+
+
+
+const url = 'https://run.mocky.io/v3/3579f880-e224-4789-938c-1795db6b51fb';
 var jsonsenators = [];
 
 function fetchJsonsenators(url) {
@@ -145,11 +148,13 @@ function removeallrowstable(table_id) {
     }
 
 }
-//* This is for if we need to wait the data.
+//* This is for if we need to wait the to the date to be storage on jsonsenators  .
+var jsonstatesfiltered;
 function waitForjsonsenators() {
     tableidtodisplay = 'senators-list';
     if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
-        
+        removestatesnosenators();
+        waitForjsonstates();
 
     }
     else {
@@ -216,6 +221,20 @@ function waitForjsonstates() {
     }
 }
 
+function removestatesnosenators() {
+    var jsonstatesfiltered=jsonstates;
+    members=jsonsenators.results[0].members;
+    memberbystate=[];
+    for (let key in jsonstatesfiltered) {
+     memberbystate=members.filter(function (currentElement) { return (currentElement.state === key) });
+         if(memberbystate.length===0) { delete jsonstatesfiltered[key]; }
+    }
+
+    return jsonstatesfiltered;
+    }
+    
+
+
 function createdropdownmenu() {
     let dropdown = document.getElementById("state-territory");
     option = document.createElement('option');
@@ -230,4 +249,20 @@ function createdropdownmenu() {
     }
 
 }
-waitForjsonstates()
+/*
+function createdropdownmenufiltered(jsonstatesfiltered) {
+    let dropdown = document.getElementById("state-territory");
+    option = document.createElement('option');
+    option.text = "All States/territories";
+    option.value = "all";
+    dropdown.add(option);
+    for (let key in jsonstatesfiltered) {
+        option = document.createElement('option');
+        option.text = jsonstatesfiltered[key];
+        option.value = key;
+        dropdown.add(option);
+    }
+
+}*/
+
+waitForjsonsenators();
