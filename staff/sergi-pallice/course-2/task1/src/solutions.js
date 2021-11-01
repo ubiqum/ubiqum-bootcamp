@@ -33,8 +33,46 @@ export const subArray = (arr, ind) => {
     ind.forEach(element => result.push(arr[element]))
     return result
 };
-
+export const over21 = arr => {
+    var result = []
+    arr.forEach(element => {if (element['age'] >= 21) {result.push(element)} });
+    return result
+};
+export const product = arr => arr.reduce((acc, val) => acc * val);
+export const getRepeats = arr => {
+    var result = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i]) && !result.includes(arr[i]) ) {
+        result.push(arr[i])
+      }
+    }
+    return result;
+};
+export const aboveAverage = obj => {
+    var avg = [], result = [];
+    obj.forEach(element => avg.push(element['score']));
+    avg = avg.reduce((a,b) => a + b, 0) / avg.length;
+    obj.forEach(element => element['score'] > avg ? result.push(element) : 0);
+    return result;
+};
 // ARRAYS AND STRINGS
-
-
+export const reverseNumber = (num) => parseInt(String(num).split("").reverse().join(""));
+export const isWordAnagram = (w1, w2) => {
+    const sort = str => str.split('').sort().join('');
+    return sort(w1) === sort(w2); 
+};
+export const isPhraseAnagram = (s1, s2) => {
+    const noSpaceAndLowerCase = str => str.split('').filter(e => e.trim().length).join('').toLowerCase();
+    const sort = str => str.split('').sort().join('');
+    return sort(noSpaceAndLowerCase(s1)) === sort(noSpaceAndLowerCase(s2));
+};
+export const longestWords = str => {
+    var length = str.split(' ').sort((a,b) => b.length - a.length)[0].length;
+    var result = [];
+    str.split(' ').forEach(element => {if (element !== '' && element.length === length) {result.push(element)} })
+    return result;
+};
 // DOM OPERATIONS
+export const moduleTitles = empty => ['Expressions', 'Strings', 'Conditionals', 'Arrays', 'Arrays and Strings', 'DOM Operations'];
+export const goPurple = empty => 'Go Purple!';
+export const copycat = input => console.log(input);
