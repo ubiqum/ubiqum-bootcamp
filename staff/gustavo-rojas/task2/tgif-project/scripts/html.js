@@ -1,49 +1,3 @@
-/* I tried with this call to the API to propublica
-const url = 'https://api.propublica.org/congress/v1/117/senate/members.json';
-const keyvalue = 'gdT8JyXvej1ZEHgazl8N6EvfRX88z8ik4qymrZ23';
-
-function fetchJsonsenators(url, keyvalue) {
-    return fetch(url, { 
-            mode: 'cors', 
-            headers: { 
-            'X-API-Key': keyvalue, 
-            'Accept': 'application/json'
-        } 
-                })
-        .then(
-            (value) => {
-                return value.json()
-            }
-        ).then (
-            (value) => {
-                jsonsenators = value
-            }
-        )}
-And show me this error  
-Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource 
-at https://api.propublica.org/congress/v1/117/senate/members.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
-
-I sent a email to apihelp@propublica.org
-And they aswered:
-From:Ken Schwencke <Ken.Schwencke@propublica.org>
-To:Gustavo Rojas H <grojas@fastmail.com>
-Cc:API-Help <APIhelp@propublica.org>
-Subject:Re: Interment issues with the API Calls
-Date:Monday, October 25, 2021 8:07 AM
-Size:19 KB
-Hi Gustavo,
-
-I believe this is by design -- we don't currently allow front-end javascript calls to the API, only backend calls from the server. 
-
--- 
-Ken Schwencke
-Editor, News Apps
-ProPublica
-For recomendation of mentor I used https://designer.mocky.io/
-
-*/
-
-
 
 const url = 'https://run.mocky.io/v3/3579f880-e224-4789-938c-1795db6b51fb';
 var jsonsenators = [];
@@ -148,7 +102,9 @@ function removeallrowstable(table_id) {
     }
 
 }
-//* This is for if we need to wait the to the date to be storage on jsonsenators  .
+/* I did the call in fetch we use a external variable to store the results . The way how I checked if the variable have the data is checking if
+the variable is available . The next version of this code must test the use async and await, to await and manage the async call in the fetch and wait to the variable values . 
+That was a workaround because the prorepublica have issues with the API calls . */
 var jsonstatesfiltered;
 function waitForjsonsenators() {
     tableidtodisplay = 'senators-list';
