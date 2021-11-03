@@ -1,7 +1,43 @@
+var params = (new URL(document.location)).searchParams;
+var chamber_params = params.get('chamber');
 
-const url = './jsons/pro-congress-117-senate.json';
+
+switch (chamber_params) {
+    case 'senate':
+        var url = './jsons/pro-congress-117-senate.json';
+        var chamber = 'senate'
+        break;
+    case 'house':
+        var url = './jsons/pro-congress-117-house.json';
+        var chamber = 'house'
+        break;
+    case null:
+        var url = './jsons/pro-congress-117-senate.json';
+        var chamber = 'senate'
+        break;
+    default: 
+        var url = './jsons/pro-congress-117-senate.json';
+        var chamber = 'senate'
+}
+
+showproperintroduction(chamber);
+function showproperintroduction(actualchamber) {
+    var senators_text = document.getElementById("introduction_senators");
+    var house_text = document.getElementById("introduction_house");
+   switch (actualchamber) {
+       case 'senate':
+        house_text.hidden=true;
+        break;
+        case 'house':
+        senators_text.hidden=true;
+        break;
+        default: 
+        house_text.hidden=true;
+   } 
+   
+  }
+
 var jsonsenators = [];
-
 function fetchJsonsenators(url) {
     return fetch(url)
         .then(
@@ -48,51 +84,49 @@ function insert_row(table_id, first_row, name_text, urlsenators, party_text, sta
 
 }
 
-function getmembersFiltersArray(){
+function getmembersFiltersArray() {
     let dropdown_state_territory = document.getElementById("state-territory");
-    members=jsonsenators.results[0].members;
-    var republicanselected="";
-    var decomocratsselected="";
-    var independentsselected="";
-    stateselected=dropdown_state_territory.value;
-    republicansenators =[];
-    democratssenators =[];
-    independentsenators=[];
-    if(republicanscheckbox.checked) {
-        var republicanselected="R"; 
+    members = jsonsenators.results[0].members;
+    var republicanselected = "";
+    var decomocratsselected = "";
+    var independentsselected = "";
+    stateselected = dropdown_state_territory.value;
+    republicansenators = [];
+    democratssenators = [];
+    independentsenators = [];
+    if (republicanscheckbox.checked) {
+        var republicanselected = "R";
     }
-    if(democratscheckbox.checked) {
-        var decomocratsselected="D"; 
+    if (democratscheckbox.checked) {
+        var decomocratsselected = "D";
     }
-    if(independentcheckbox.checked) {
-        var independentsselected="ID"; 
+    if (independentcheckbox.checked) {
+        var independentsselected = "ID";
     }
-    stateselected=dropdown_state_territory.value;
-    if(stateselected=="all"){
+    stateselected = dropdown_state_territory.value;
+    if (stateselected == "all") {
         republicansenators = members.filter(function (currentElement) { return currentElement.party === republicanselected; });
         democratssenators = members.filter(function (currentElement) { return currentElement.party === decomocratsselected; });
         independentsenators = members.filter(function (currentElement) { return currentElement.party === independentsselected; });
-        return [].concat(republicansenators, democratssenators ,independentsenators);
+        return [].concat(republicansenators, democratssenators, independentsenators);
     }
-    if(stateselected!=="all"){
-        republicansenators = members.filter(function (currentElement) { return currentElement.party === republicanselected && currentElement.state === stateselected;});
-        democratssenators = members.filter(function (currentElement) {  return currentElement.party === decomocratsselected && currentElement.state === stateselected;});
-        independentsenators = members.filter(function (currentElement) {return currentElement.party === independentsselected && currentElement.state === stateselected; });
-        return [].concat(republicansenators, democratssenators ,independentsenators);
-    } 
+    if (stateselected !== "all") {
+        republicansenators = members.filter(function (currentElement) { return currentElement.party === republicanselected && currentElement.state === stateselected; });
+        democratssenators = members.filter(function (currentElement) { return currentElement.party === decomocratsselected && currentElement.state === stateselected; });
+        independentsenators = members.filter(function (currentElement) { return currentElement.party === independentsselected && currentElement.state === stateselected; });
+        return [].concat(republicansenators, democratssenators, independentsenators);
+    }
 
 }
 
 function makeMemberRowsfilteredarray(arrayfiltered, table_id) {
-    for (let i = 0; i <= arrayfiltered.length-1; i++) {
+    for (let i = 0; i <= arrayfiltered.length - 1; i++) {
         var statesenator = arrayfiltered[i].state;
         var statelongname = jsonstates[statesenator];
         var fullname = arrayfiltered[i].first_name + " " + arrayfiltered[i].last_name;
         var urlsenators = arrayfiltered[i].url;
-        if (typeof arrayfiltered[i].votes_with_party_pct === "undefined" ) 
-        {votes_with_party_pct="NA"} 
-        else 
-        {votes_with_party_pct=arrayfiltered[i].votes_with_party_pct};
+        if (typeof arrayfiltered[i].votes_with_party_pct === "undefined") { votes_with_party_pct = "NA" }
+        else { votes_with_party_pct = arrayfiltered[i].votes_with_party_pct };
         insert_row(table_id, 1, fullname, urlsenators, arrayfiltered[i].party, statelongname, arrayfiltered[i].seniority, votes_with_party_pct);
     }
 }
@@ -100,8 +134,7 @@ function makeMemberRowsfilteredarray(arrayfiltered, table_id) {
 function removeallrowstable(table_id) {
     var table = document.getElementById(table_id);
 
-    for(var i = table.rows.length - 1; i > 0; i--)
-    {
+    for (var i = table.rows.length - 1; i > 0; i--) {
         table.deleteRow(i);
     }
 
@@ -132,11 +165,11 @@ stateterritoresdropdown = document.getElementById('state-territory');
 
 
 republicanscheckbox.addEventListener('change', e => {
-    var table_id = 'senators-list';    
-    var arraymemberselected =[];
+    var table_id = 'senators-list';
+    var arraymemberselected = [];
     if (e.target.checked || !e.target.checked) {
         removeallrowstable(table_id);
-        arraymemberselected=getmembersFiltersArray();
+        arraymemberselected = getmembersFiltersArray();
         makeMemberRowsfilteredarray(arraymemberselected, table_id)
     }
 
@@ -144,30 +177,30 @@ republicanscheckbox.addEventListener('change', e => {
 
 
 democratscheckbox.addEventListener('change', e => {
-    var table_id = 'senators-list';    
-    var arraymemberselected =[];
+    var table_id = 'senators-list';
+    var arraymemberselected = [];
     if (e.target.checked || !e.target.checked) {
         removeallrowstable(table_id);
-        arraymemberselected=getmembersFiltersArray();
+        arraymemberselected = getmembersFiltersArray();
         makeMemberRowsfilteredarray(arraymemberselected, table_id);
     }
 });
 
 independentcheckbox.addEventListener('change', e => {
-    var table_id = 'senators-list';    
-    var arraymemberselected =[];
-     if (e.target.checked || !e.target.checked) {
+    var table_id = 'senators-list';
+    var arraymemberselected = [];
+    if (e.target.checked || !e.target.checked) {
         removeallrowstable(table_id);
-        arraymemberselected=getmembersFiltersArray();
+        arraymemberselected = getmembersFiltersArray();
         makeMemberRowsfilteredarray(arraymemberselected, table_id);
     }
-    
+
 });
 
 stateterritoresdropdown.addEventListener('change', e => {
     var table_id = 'senators-list';
     removeallrowstable(table_id);
-    arraymemberselected=getmembersFiltersArray();
+    arraymemberselected = getmembersFiltersArray();
     makeMemberRowsfilteredarray(arraymemberselected, table_id);
 
 })
@@ -182,17 +215,17 @@ function waitForjsonstates() {
 }
 
 function removestatesnosenators() {
-    var jsonstatesfiltered=jsonstates;
-    members=jsonsenators.results[0].members;
-    memberbystate=[];
+    var jsonstatesfiltered = jsonstates;
+    members = jsonsenators.results[0].members;
+    memberbystate = [];
     for (let key in jsonstatesfiltered) {
-     memberbystate=members.filter(function (currentElement) { return (currentElement.state === key) });
-         if(memberbystate.length===0) { delete jsonstatesfiltered[key]; }
+        memberbystate = members.filter(function (currentElement) { return (currentElement.state === key) });
+        if (memberbystate.length === 0) { delete jsonstatesfiltered[key]; }
     }
 
     return jsonstatesfiltered;
-    }
-    
+}
+
 
 
 function createdropdownmenu() {
