@@ -89,7 +89,11 @@ function makeMemberRowsfilteredarray(arrayfiltered, table_id) {
         var statelongname = jsonstates[statesenator];
         var fullname = arrayfiltered[i].first_name + " " + arrayfiltered[i].last_name;
         var urlsenators = arrayfiltered[i].url;
-        insert_row(table_id, 1, fullname, urlsenators, arrayfiltered[i].party, statelongname, arrayfiltered[i].seniority, arrayfiltered[i].votes_with_party_pct);
+        if (typeof arrayfiltered[i].votes_with_party_pct === "undefined" ) 
+        {votes_with_party_pct="NA"} 
+        else 
+        {votes_with_party_pct=arrayfiltered[i].votes_with_party_pct};
+        insert_row(table_id, 1, fullname, urlsenators, arrayfiltered[i].party, statelongname, arrayfiltered[i].seniority, votes_with_party_pct);
     }
 }
 
