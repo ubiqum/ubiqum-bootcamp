@@ -55,6 +55,7 @@ export const aboveAverage = obj => {
     obj.forEach(element => element['score'] > avg ? result.push(element) : 0);
     return result;
 };
+
 // ARRAYS AND STRINGS
 export const reverseNumber = (num) => parseInt(String(num).split("").reverse().join(""));
 export const isWordAnagram = (w1, w2) => {
@@ -72,6 +73,7 @@ export const longestWords = str => {
     str.split(' ').forEach(element => {if (element !== '' && element.length === length) {result.push(element)} })
     return result;
 };
+
 // DOM OPERATIONS
 export const moduleTitles = empty => ['Expressions', 'Strings', 'Conditionals', 'Arrays', 'Arrays and Strings', 'DOM Operations'];
 export const goPurple = empty => 'Go Purple!';
