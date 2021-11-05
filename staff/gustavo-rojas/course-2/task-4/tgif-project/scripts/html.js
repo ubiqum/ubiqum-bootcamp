@@ -1,13 +1,22 @@
-var acutualpage = location.pathname.split('/')[2];
+var actualpage = location.pathname.split('/')[2];
+
 function setactivepage() {
     homepageobject = document.getElementById("homepage");
     navbarobject = document.getElementById("navbarDropdown");
+    navbarobjectatt = document.getElementById("navbarDropdownAttendance");
+    navbarobjectloyal= document.getElementById("navbarDropdownLoyayly");
     switch (acutualpage) {
         case 'index.html':
             homepageobject.classList.add("active");
             break;
         case 'members.html':
             navbarobject.classList.add("active");
+            break;
+        case 'attendance.html':
+            navbarobjectatt.classList.add("active");
+            break;
+        case 'loyalty.html' :
+            navbarobjectloyal.classList.add("active");
             break;
         default:
             homepageobject.classList.add("active");
@@ -16,7 +25,7 @@ function setactivepage() {
     }
 }
 
-if (acutualpage === 'members.html') {
+if (actualpage === 'members.html') {
     var params = (new URL(document.location)).searchParams;
     var chamber_params = params.get('chamber');
     republicanscheckbox = document.getElementById('republicanscheckbox');
@@ -180,11 +189,6 @@ if (acutualpage === 'members.html') {
         }
     }
 
-
-
-
-
-
     republicanscheckbox.addEventListener('change', e => {
         var table_id = 'senators-list';
         var arraymemberselected = [];
@@ -269,5 +273,9 @@ if (acutualpage === 'members.html') {
     fetchJsonsenators(url);
     waitForjsonsenators();
 }
+if (actualpage === 'attendance.html') {
+
+}
+
 setactivepage();
 
