@@ -4,8 +4,8 @@ function setactivepage() {
     homepageobject = document.getElementById("homepage");
     navbarobject = document.getElementById("navbarDropdown");
     navbarobjectatt = document.getElementById("navbarDropdownAttendance");
-    navbarobjectloyal= document.getElementById("navbarDropdownLoyayly");
-    switch (acutualpage) {
+    navbarobjectloyal = document.getElementById("navbarDropdownLoyayly");
+    switch (actualpage) {
         case 'index.html':
             homepageobject.classList.add("active");
             break;
@@ -15,7 +15,7 @@ function setactivepage() {
         case 'attendance.html':
             navbarobjectatt.classList.add("active");
             break;
-        case 'loyalty.html' :
+        case 'loyalty.html':
             navbarobjectloyal.classList.add("active");
             break;
         default:
@@ -273,7 +273,160 @@ if (actualpage === 'members.html') {
     fetchJsonsenators(url);
     waitForjsonsenators();
 }
+
+
 if (actualpage === 'attendance.html') {
+    var params = (new URL(document.location)).searchParams;
+    var chamber_params = params.get('chamber');
+    var actualchamber = chamber_params;
+    function showproperintroduction(actualchamber) {
+        var senators_text = document.getElementById("attendance_senators");
+        var house_text = document.getElementById("attendance_house");
+        switch (actualchamber) {
+            case 'senate':
+                house_text.hidden = true;
+                break;
+            case 'house':
+                senators_text.hidden = true;
+                break;
+            default:
+                house_text.hidden = true;
+        }
+
+    }
+
+
+    switch (chamber_params) {
+        case 'senate':
+            var url = './jsons/pro-congress-117-senate.json';
+            var chamber = 'senate'
+            break;
+        case 'house':
+            var url = './jsons/pro-congress-117-house.json';
+            var chamber = 'house'
+            break;
+        case null:
+            var url = './jsons/pro-congress-117-senate.json';
+            var chamber = 'senate'
+            break;
+        default:
+            var url = './jsons/pro-congress-117-senate.json';
+            var chamber = 'senate'
+    }
+
+    var jsonsenators = [];
+    function fetchJsonsenators(url) {
+        return fetch(url)
+            .then(
+                (value) => {
+                    return value.json()
+                }
+            ).then(
+                (value) => {
+                    jsonsenators = value
+                }
+            )
+            .catch(error => console.log('Error while fetching:', error))
+
+    }
+
+    function waitForjsonsenators() {
+        tableidtodisplay = 'atglance_table';
+        if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
+            array_stats= atglancestats();
+            maketablerows(array_stats, tableidtodisplay)
+        }
+        else {
+            setTimeout(waitForjsonsenators, 250);
+        }
+    }
+
+ 
+    function atglancestats() {
+        members = jsonsenators.results[0].members;
+        const republicanssymbol = 'R';
+        var republicans = members.filter(x => x.party === republicanssymbol);
+        const democratsssymbol = 'D';
+        var democrats = members.filter(x => x.party === democratsssymbol);
+        const independentsymbol = 'ID';
+        var independent = members.filter(x => x.party === independentsymbol);
+        republicanswithvote=republicans.filter(x=> typeof(x.votes_with_party_pct) !== "undefined");
+		democratswithvote=democrats.filter(x=> typeof(x.votes_with_party_pct) !== "undefined");
+	    independentwithvote=independent.filter(x=> typeof(x.votes_with_party_pct) !== "undefined");
+        rep_avg_votes_with_party_pct=republicanswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0)/republicanswithvote.length;
+		dem_avg_votes_with_party_pct=democratswithvote.reduce((a, b) => a + b.votes_with_party_pct,0)/democratswithvote.length;
+		ind_avg_votes_with_party_pct=independentwithvote.reduce((a, b) => a + b.votes_with_party_pct,0)/independentwithvote.length;
+
+        var atglancestatsarray=[];
+        var array_total=["Total",members.length,(rep_avg_votes_with_party_pct+dem_avg_votes_with_party_pct+ind_avg_votes_with_party_pct)/3];
+        atglancestatsarray.push(array_total);
+        var array_row3=["Independent",independent.length,ind_avg_votes_with_party_pct];
+        atglancestatsarray.push(array_row3);
+        var array_row2=["Democrats",democrats.length,dem_avg_votes_with_party_pct];
+        atglancestatsarray.push(array_row2);
+        var array_row1=["Republicans",republicans.length,rep_avg_votes_with_party_pct];
+        atglancestatsarray.push(array_row1);
+
+
+  
+        //console.log(atglancestatsarray);
+        return atglancestatsarray;
+	}
+
+    function maketablerows(array, table_id) {
+        for (let i = 0; i <= array.length - 1; i++) {
+            insert_row(table_id, 1, array[i][0], array[i][1], array[i][2]);
+        }
+    }
+
+    function insert_row(table_id, first_row, col_01, col_02, col_03) {
+        var x = document.getElementById(table_id).insertRow(first_row);
+        var col_01_temp = x.insertCell(0);
+        var col_02_temp = x.insertCell(1);
+        var col_03_temp = x.insertCell(2);
+        col_01_temp.innerHTML = col_01;
+        col_02_temp.innerHTML = col_02;
+        col_03_temp.innerHTML = col_03;
+        
+    }
+    
+    function removeallrowstable(table_id) {
+        var table = document.getElementById(table_id);
+
+        for (var i = table.rows.length - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+
+    }
+    table_id='atglance_table';
+    removeallrowstable(table_id)
+    showproperintroduction(actualchamber);
+    fetchJsonsenators(url);
+    waitForjsonsenators();
+}
+
+if (actualpage === 'loyalty.html') {
+    var params = (new URL(document.location)).searchParams;
+    var chamber_params = params.get('chamber');
+    var actualchamber = chamber_params;
+    function showproperintroduction(actualchamber) {
+        var senators_text = document.getElementById("loyalty_senators");
+        var house_text = document.getElementById("loyalty_house");
+        switch (actualchamber) {
+            case 'senate':
+                house_text.hidden = true;
+                break;
+            case 'house':
+                senators_text.hidden = true;
+                break;
+            default:
+                house_text.hidden = true;
+        }
+
+    }
+
+    showproperintroduction(actualchamber);
+
 
 }
 

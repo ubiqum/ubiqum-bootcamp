@@ -31,63 +31,111 @@
             <a href="mailto:info@tgif.net">info@tgif.net</a>
         </div>
     </div>
-   
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container-fluid">
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a id="homepage" class="nav-link" href="./index.html">Home</a>
-              </li>
-             
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" aria-current="page" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Congress 117
-                </a>
-                <ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="./members.html?chamber=house">House</a></li>
-                  <li><a class="dropdown-item" href="./members.html?chamber=senate">Senate</a></li>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a id="homepage" class="nav-link" href="./index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" aria-current="page" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Congress 117
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./members.html?chamber=house">House</a></li>
+                            <li><a class="dropdown-item" href="./members.html?chamber=senate">Senate</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" aria-current="page" href="#" id="navbarDropdownAttendance"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Attendance
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownAttendance">
+                            <li><a class="dropdown-item" href="./attendance.html?chamber=house">House</a></li>
+                            <li><a class="dropdown-item" href="./attendance.html?chamber=senate">Senate</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" aria-current="page" href="#" id="navbarDropdownLoyayly"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Party Loyalty
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownLoyayly">
+                            <li><a class="dropdown-item" href="./loyalty.html?chamber=house">House</a></li>
+                            <li><a class="dropdown-item" href="./loyalty.html?chamber=senate">Senate</a></li>
+                        </ul>
+                    </li>
+
+
                 </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" aria-current="page" href="#" id="navbarDropdownAttendance" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Attendance
-                </a>
-                <ul class="dropdown-menu"  aria-labelledby="navbarDropdownAttendance">
-                  <li><a class="dropdown-item" href="./attendance.html?chamber=house">House</a></li>
-                  <li><a class="dropdown-item" href="./attendance.html?chamber=senate">Senate</a></li>
-                </ul>
-              </li>
-
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" aria-current="page" href="#" id="navbarDropdownLoyayly" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Party Loyalty
-                </a>
-                <ul class="dropdown-menu"  aria-labelledby="navbarDropdownLoyayly">
-                  <li><a class="dropdown-item" href="./loyalty.html?chamber=house">House</a></li>
-                  <li><a class="dropdown-item" href="./loyalty.html?chamber=senate">Senate</a></li>
-                </ul>
-              </li>
-
-
-            </ul>
-          </div>
+            </div>
         </div>
-      </nav>
+    </nav>
     <h1>Loyalty</h1>
     <br>
 
-      <p>
-        Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, 
-        tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. 
-      </p>
-    
+    <p>
+        Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively,
+        tend to be the most faithful in voting for their party's nominee for office and legislation that backs their
+        party's agenda.
+    </p>
+    <div id="loyalty_senators">
+        <h2>Senate at a Glance</h2>
 
+    </div>
+    <div id="loyalty_house">
+        <h2>House at a Glance</h2>
+    </div>
+    <div class="info-congress-members-container">
+        <table id="atglance-table" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Party</th>
+                    <th>Number of Reps</th>
+                    <th>% Voted with Prt</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <h4>Least Loyal (Bottom 10% of Party)</h4>
+        <table id="least-loyal-table" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number Party Votes</th>
+                    <th>% Party Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <h4>Most Loyal (Top 10% of Party)</h4>
+        <table id="most-loyal-table" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number Party Votes</th>
+                    <th>% Party Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
     <footer class="bg-secondary text-center text-white">
         &copy; 2021 TGIF | All Rights Reserved
     </footer>
@@ -95,8 +143,8 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-crossorigin="anonymous"></script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
 <script src="./scripts/html.js"> </script>
 
