@@ -332,9 +332,16 @@ if (actualpage === 'attendance.html') {
 
     function waitForjsonsenators() {
         tableatglance_id = 'atglance_table';
+        tablemostengaged_id='most-engaged-table';
+        tableleastengaded_id='least-engaged-table';
+        percentage=10; 
         if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
-            array_stats= atglancestats();
-            maketablerows(array_stats, tableatglance_id);
+            stats_atglance= atglancestats();
+            maketablerows(stats_atglance, tableatglance_id);
+            stats_mostengaded=mostengaded_stats(percentage);
+            maketablerows(stats_mostengaded,tablemostengaged_id);
+            stats_leastengaded=leastengaged_stats(percentage);
+            maketablerows(stats_leastengaded,tableleastengaded_id);
         }
         else {
             setTimeout(waitForjsonsenators, 250);
@@ -379,21 +386,30 @@ if (actualpage === 'attendance.html') {
         reversed_members_missed_votes_pct_sliced=reversed_members_missed_votes_pct.slice(0,n_rows);
         stats_reversed_members=[];
         reversed_members_missed_votes_pct_sliced.forEach(element => {
+            array_temp=[];
             var complete_name=element.first_name+" "+ element.last_name;
-            console.log(complete_name,element.missed_votes_pct,element.missed_votes);
-            
+            array_temp=[complete_name,element.missed_votes_pct,element.missed_votes];
+            // console.log(complete_name,element.missed_votes_pct,element.missed_votes);
+            stats_reversed_members.unshift(array_temp);
         });
-    }    function mostengaded_stats(percent){
+        return stats_reversed_members;
+    }    
+    
+    function mostengaded_stats(percent){
         members = jsonsenators.results[0].members;
         n_rows=(members.length*(percent/100)).toFixed();
         var sorted_members_missed_votes_pct = members.sort((a, b) => a.missed_votes_pct - b.missed_votes_pct);
         sorted_members_missed_votes_pct_sliced=sorted_members_missed_votes_pct.slice(0,n_rows);
         stats_sorted_members=[];
         sorted_members_missed_votes_pct_sliced.forEach(element => {
+            array_temp=[];
             var complete_name=element.first_name+" "+ element.last_name;
-            console.log(complete_name,element.missed_votes_pct,element.missed_votes);
+            array_temp=[complete_name,element.missed_votes_pct,element.missed_votes];
+            //console.log(complete_name,element.missed_votes_pct,element.missed_votes);
+            stats_sorted_members.unshift(array_temp);
             
         });
+        return stats_sorted_members;
     }
 
 
