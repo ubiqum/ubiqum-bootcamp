@@ -345,6 +345,7 @@ if (actualpage === 'attendance.html') {
         democratswithvote = democrats.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
         independentwithvote = independent.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
         rep_avg_votes_with_party_pct = republicanswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / republicanswithvote.length;
+        // if(isNaN(rep_avg_votes_with_party_pct){}
         dem_avg_votes_with_party_pct = democratswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / democratswithvote.length;
         ind_avg_votes_with_party_pct = independentwithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / independentwithvote.length;
 
@@ -366,7 +367,7 @@ if (actualpage === 'attendance.html') {
         reversed_members_missed_votes_pct_sliced = reversed_members_missed_votes_pct.slice(0, n_rows);
         stats_reversed_members = [];
         reversed_members_missed_votes_pct_sliced.forEach(element => {
-            array_temp = [];
+            array_temp = []; 
             var complete_name = element.first_name + " " + element.last_name;
             array_temp = [complete_name, element.missed_votes, element.missed_votes_pct];
             stats_reversed_members.unshift(array_temp);
