@@ -330,25 +330,9 @@ if (actualpage === 'attendance.html') {
 
     }
 
-    function waitForjsonsenators() {
-        tableatglance_id = 'atglance_table';
-        tablemostengaged_id='most-engaged-table';
-        tableleastengaded_id='least-engaged-table';
-        percentage=10; 
-        if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
-            stats_atglance= atglancestats();
-            maketablerows(stats_atglance, tableatglance_id);
-            stats_mostengaded=mostengaded_stats(percentage);
-            maketablerows(stats_mostengaded,tablemostengaged_id);
-            stats_leastengaded=leastengaged_stats(percentage);
-            maketablerows(stats_leastengaded,tableleastengaded_id);
-        }
-        else {
-            setTimeout(waitForjsonsenators, 250);
-        }
-    }
 
- 
+
+
     function atglancestats() {
         members = jsonsenators.results[0].members;
         const republicanssymbol = 'R';
@@ -357,57 +341,50 @@ if (actualpage === 'attendance.html') {
         var democrats = members.filter(x => x.party === democratsssymbol);
         const independentsymbol = 'ID';
         var independent = members.filter(x => x.party === independentsymbol);
-        republicanswithvote=republicans.filter(x=> typeof(x.votes_with_party_pct) !== "undefined");
-		democratswithvote=democrats.filter(x=> typeof(x.votes_with_party_pct) !== "undefined");
-	    independentwithvote=independent.filter(x=> typeof(x.votes_with_party_pct) !== "undefined");
-        rep_avg_votes_with_party_pct=republicanswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0)/republicanswithvote.length;
-		dem_avg_votes_with_party_pct=democratswithvote.reduce((a, b) => a + b.votes_with_party_pct,0)/democratswithvote.length;
-		ind_avg_votes_with_party_pct=independentwithvote.reduce((a, b) => a + b.votes_with_party_pct,0)/independentwithvote.length;
+        republicanswithvote = republicans.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
+        democratswithvote = democrats.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
+        independentwithvote = independent.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
+        rep_avg_votes_with_party_pct = republicanswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / republicanswithvote.length;
+        dem_avg_votes_with_party_pct = democratswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / democratswithvote.length;
+        ind_avg_votes_with_party_pct = independentwithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / independentwithvote.length;
 
-        var atglancestatsarray=[];
-        var array_total=["Total",members.length,(rep_avg_votes_with_party_pct+dem_avg_votes_with_party_pct+ind_avg_votes_with_party_pct)/3];
+        var atglancestatsarray = [];
+        var array_total = ["Total", members.length, (rep_avg_votes_with_party_pct + dem_avg_votes_with_party_pct + ind_avg_votes_with_party_pct) / 3];
         atglancestatsarray.push(array_total);
-        var array_row3=["Independent",independent.length,ind_avg_votes_with_party_pct];
+        var array_row3 = ["Independent", independent.length, ind_avg_votes_with_party_pct];
         atglancestatsarray.push(array_row3);
-        var array_row2=["Democrats",democrats.length,dem_avg_votes_with_party_pct];
+        var array_row2 = ["Democrats", democrats.length, dem_avg_votes_with_party_pct];
         atglancestatsarray.push(array_row2);
-        var array_row1=["Republicans",republicans.length,rep_avg_votes_with_party_pct];
+        var array_row1 = ["Republicans", republicans.length, rep_avg_votes_with_party_pct];
         atglancestatsarray.push(array_row1);
-
-
-  
-        //console.log(atglancestatsarray);
         return atglancestatsarray;
-	}
-    function leastengaged_stats(percent){
+    }
+    function leastengaged_stats(percent) {
         members = jsonsenators.results[0].members;
-        n_rows=(members.length*(percent/100)).toFixed();
+        n_rows = (members.length * (percent / 100)).toFixed();
         var reversed_members_missed_votes_pct = members.sort((a, b) => b.missed_votes_pct - a.missed_votes_pct);
-        reversed_members_missed_votes_pct_sliced=reversed_members_missed_votes_pct.slice(0,n_rows);
-        stats_reversed_members=[];
+        reversed_members_missed_votes_pct_sliced = reversed_members_missed_votes_pct.slice(0, n_rows);
+        stats_reversed_members = [];
         reversed_members_missed_votes_pct_sliced.forEach(element => {
-            array_temp=[];
-            var complete_name=element.first_name+" "+ element.last_name;
-            array_temp=[complete_name,element.missed_votes_pct,element.missed_votes];
-            // console.log(complete_name,element.missed_votes_pct,element.missed_votes);
+            array_temp = [];
+            var complete_name = element.first_name + " " + element.last_name;
+            array_temp = [complete_name, element.missed_votes, element.missed_votes_pct];
             stats_reversed_members.unshift(array_temp);
         });
         return stats_reversed_members;
-    }    
-    
-    function mostengaded_stats(percent){
+    }
+
+    function mostengaded_stats(percent) {
         members = jsonsenators.results[0].members;
-        n_rows=(members.length*(percent/100)).toFixed();
+        n_rows = (members.length * (percent / 100)).toFixed();
         var sorted_members_missed_votes_pct = members.sort((a, b) => a.missed_votes_pct - b.missed_votes_pct);
-        sorted_members_missed_votes_pct_sliced=sorted_members_missed_votes_pct.slice(0,n_rows);
-        stats_sorted_members=[];
+        sorted_members_missed_votes_pct_sliced = sorted_members_missed_votes_pct.slice(0, n_rows);
+        stats_sorted_members = [];
         sorted_members_missed_votes_pct_sliced.forEach(element => {
-            array_temp=[];
-            var complete_name=element.first_name+" "+ element.last_name;
-            array_temp=[complete_name,element.missed_votes_pct,element.missed_votes];
-            //console.log(complete_name,element.missed_votes_pct,element.missed_votes);
+            array_temp = [];
+            var complete_name = element.first_name + " " + element.last_name;
+            array_temp = [complete_name, element.missed_votes, element.missed_votes_pct];
             stats_sorted_members.unshift(array_temp);
-            
         });
         return stats_sorted_members;
     }
@@ -427,9 +404,9 @@ if (actualpage === 'attendance.html') {
         col_01_temp.innerHTML = col_01;
         col_02_temp.innerHTML = col_02;
         col_03_temp.innerHTML = col_03.toFixed(2);
-        
+
     }
-    
+
     function removeallrowstable(table_id) {
         var table = document.getElementById(table_id);
 
@@ -438,7 +415,25 @@ if (actualpage === 'attendance.html') {
         }
 
     }
-    table_id='atglance_table';
+    function waitForjsonsenators() {
+        tableatglance_id = 'atglance_table';
+        tablemostengaged_id = 'most-engaged-table';
+        tableleastengaded_id = 'least-engaged-table';
+        percentage = 10;
+        if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
+            stats_atglance = atglancestats();
+            maketablerows(stats_atglance, tableatglance_id);
+            stats_mostengaded = mostengaded_stats(percentage);
+            maketablerows(stats_mostengaded, tablemostengaged_id);
+            stats_leastengaded = leastengaged_stats(percentage);
+            maketablerows(stats_leastengaded, tableleastengaded_id);
+        }
+        else {
+            setTimeout(waitForjsonsenators, 250);
+        }
+    }
+
+    table_id = 'atglance_table';
     removeallrowstable(table_id)
     showproperintroduction(actualchamber);
     fetchJsonsenators(url);
@@ -465,8 +460,146 @@ if (actualpage === 'loyalty.html') {
 
     }
 
-    showproperintroduction(actualchamber);
+    switch (chamber_params) {
+        case 'senate':
+            var url = './jsons/pro-congress-117-senate.json';
+            var chamber = 'senate'
+            break;
+        case 'house':
+            var url = './jsons/pro-congress-117-house.json';
+            var chamber = 'house'
+            break;
+        case null:
+            var url = './jsons/pro-congress-117-senate.json';
+            var chamber = 'senate'
+            break;
+        default:
+            var url = './jsons/pro-congress-117-senate.json';
+            var chamber = 'senate'
+    }
 
+    var jsonsenators = [];
+    function fetchJsonsenators(url) {
+        return fetch(url)
+            .then(
+                (value) => {
+                    return value.json()
+                }
+            ).then(
+                (value) => {
+                    jsonsenators = value
+                }
+            )
+            .catch(error => console.log('Error while fetching:', error))
+
+    }
+    function maketablerows(array, table_id) {
+        for (let i = 0; i <= array.length - 1; i++) {
+            insert_row(table_id, 1, array[i][0], array[i][1], array[i][2]);
+        }
+    }
+
+    function insert_row(table_id, first_row, col_01, col_02, col_03) {
+        var x = document.getElementById(table_id).insertRow(first_row);
+        var col_01_temp = x.insertCell(0);
+        var col_02_temp = x.insertCell(1);
+        var col_03_temp = x.insertCell(2);
+        col_01_temp.innerHTML = col_01;
+        col_02_temp.innerHTML = col_02;
+        col_03_temp.innerHTML = col_03.toFixed(2);
+
+    }
+
+    function removeallrowstable(table_id) {
+        var table = document.getElementById(table_id);
+
+        for (var i = table.rows.length - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+
+    }
+    function atglancestats() {
+        members = jsonsenators.results[0].members;
+        const republicanssymbol = 'R';
+        var republicans = members.filter(x => x.party === republicanssymbol);
+        const democratsssymbol = 'D';
+        var democrats = members.filter(x => x.party === democratsssymbol);
+        const independentsymbol = 'ID';
+        var independent = members.filter(x => x.party === independentsymbol);
+        republicanswithvote = republicans.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
+        democratswithvote = democrats.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
+        independentwithvote = independent.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
+        rep_avg_votes_with_party_pct = republicanswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / republicanswithvote.length;
+        dem_avg_votes_with_party_pct = democratswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / democratswithvote.length;
+        ind_avg_votes_with_party_pct = independentwithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / independentwithvote.length;
+
+        var atglancestatsarray = [];
+        var array_total = ["Total", members.length, (rep_avg_votes_with_party_pct + dem_avg_votes_with_party_pct + ind_avg_votes_with_party_pct) / 3];
+        atglancestatsarray.push(array_total);
+        var array_row3 = ["Independent", independent.length, ind_avg_votes_with_party_pct];
+        atglancestatsarray.push(array_row3);
+        var array_row2 = ["Democrats", democrats.length, dem_avg_votes_with_party_pct];
+        atglancestatsarray.push(array_row2);
+        var array_row1 = ["Republicans", republicans.length, rep_avg_votes_with_party_pct];
+        atglancestatsarray.push(array_row1);
+        return atglancestatsarray;
+    }
+
+
+    function leastloyal_stats(percent) {
+        members = jsonsenators.results[0].members;
+        n_rows = (members.length * (percent / 100)).toFixed();
+        var reversed_least_loyal_members = members.sort((a, b) => a.votes_with_party_pct - b.votes_with_party_pct);
+        reversed_least_loyal_members_sliced = reversed_least_loyal_members.slice(0, n_rows);
+        stats_least_loyal_members = [];
+        reversed_least_loyal_members_sliced.forEach(element => {
+            array_temp = [];
+            var complete_name = element.first_name + " " + element.last_name;
+            num_party_votes=((element.votes_with_party_pct/100)*element.total_votes).toFixed(0);
+            array_temp = [complete_name, num_party_votes, element.votes_with_party_pct];
+            stats_least_loyal_members.unshift(array_temp);
+        });
+        return stats_least_loyal_members;
+    }
+    function mostloyal_stats(percent) {
+        members = jsonsenators.results[0].members;
+        n_rows = (members.length * (percent / 100)).toFixed();
+        var sort_most_loyal_members = members.sort((a, b) => b.votes_with_party_pct - a.votes_with_party_pct);
+        sort_most_loyal_members_sliced = sort_most_loyal_members.slice(0, n_rows);
+        stats_most_loyal_members = [];
+        sort_most_loyal_members_sliced.forEach(element => {
+            array_temp = [];
+            var complete_name = element.first_name + " " + element.last_name;
+            num_party_votes=((element.votes_with_party_pct/100)*element.total_votes).toFixed(0);
+            array_temp = [complete_name, num_party_votes, element.votes_with_party_pct];
+            stats_most_loyal_members.unshift(array_temp);
+        });
+        return stats_most_loyal_members;
+    }
+    
+    function waitForjsonsenators() {
+        tableatglance_id = 'atglance_table';
+         table_leastloyal_id='least-loyal-table';
+         table_mostloyal_id='most-loyal-table';
+        percentage = 10;
+        if (typeof (jsonsenators.results) !== "undefined" && typeof (jsonsenators) !== "undefined") {
+            stats_atglance = atglancestats();
+            maketablerows(stats_atglance, tableatglance_id);
+            stats_leastloyal=leastloyal_stats(percentage);
+            maketablerows(stats_leastloyal,table_leastloyal_id);
+            stats_mostloyal=mostloyal_stats(percentage);
+            maketablerows(stats_mostloyal,table_mostloyal_id);
+        }
+        else {
+            setTimeout(waitForjsonsenators, 250);
+        }
+    }
+
+    table_id = 'atglance_table';
+    removeallrowstable(table_id)
+    showproperintroduction(actualchamber);
+    fetchJsonsenators(url);
+    waitForjsonsenators();
 
 }
 
