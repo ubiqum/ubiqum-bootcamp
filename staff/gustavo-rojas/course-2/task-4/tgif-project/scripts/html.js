@@ -546,7 +546,7 @@ if (actualpage === 'loyalty.html') {
         var col_03_temp = x.insertCell(2);
         col_01_temp.innerHTML = col_01;
         col_02_temp.innerHTML = col_02;
-        col_03_temp.innerHTML = col_03.toFixed(2);
+        col_03_temp.innerHTML = col_03;
 
     }
 
@@ -570,11 +570,40 @@ if (actualpage === 'loyalty.html') {
         democratswithvote = democrats.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
         independentwithvote = independent.filter(x => typeof (x.votes_with_party_pct) !== "undefined");
         rep_avg_votes_with_party_pct = republicanswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / republicanswithvote.length;
-        dem_avg_votes_with_party_pct = democratswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / democratswithvote.length;
-        ind_avg_votes_with_party_pct = independentwithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / independentwithvote.length;
+        if(Number.isNaN(rep_avg_votes_with_party_pct)) {
+            rep_avg_votes_with_party_pct= 'N/A';
+        } else { 
+            rep_avg_votes_with_party_pct=Number(rep_avg_votes_with_party_pct.toFixed(2));
+     
+            };
 
+        dem_avg_votes_with_party_pct = democratswithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / democratswithvote.length;
+        if(Number.isNaN(dem_avg_votes_with_party_pct)) {
+            dem_avg_votes_with_party_pct='N/A';
+        } else {
+            dem_avg_votes_with_party_pct=Number(dem_avg_votes_with_party_pct.toFixed(2));
+     
+     
+        };
+        ind_avg_votes_with_party_pct = independentwithvote.reduce((a, b) => a + b.votes_with_party_pct, 0) / independentwithvote.length;
+        if(Number.isNaN(ind_avg_votes_with_party_pct)) {
+            ind_avg_votes_with_party_pct='N/A';
+        } else {
+                ind_avg_votes_with_party_pct=Number(ind_avg_votes_with_party_pct.toFixed(2));
+     
+            }
         var atglancestatsarray = [];
-        var array_total = ["Total", members.length, (rep_avg_votes_with_party_pct + dem_avg_votes_with_party_pct + ind_avg_votes_with_party_pct) / 3];
+        arrayaverage_totals=[rep_avg_votes_with_party_pct, dem_avg_votes_with_party_pct, ind_avg_votes_with_party_pct];
+        average_per_total= getaveragearray(arrayaverage_totals);
+        
+        if(Number.isNaN(average_per_total)) {
+            ind_avg_votes_with_party_pct='N/A';
+        } else {
+            average_per_total=Number(average_per_total.toFixed(2));
+     
+            }
+     
+        var array_total = ["Total", members.length,average_per_total];
         atglancestatsarray.push(array_total);
         var array_row3 = ["Independent", independent.length, ind_avg_votes_with_party_pct];
         atglancestatsarray.push(array_row3);
@@ -583,6 +612,16 @@ if (actualpage === 'loyalty.html') {
         var array_row1 = ["Republicans", republicans.length, rep_avg_votes_with_party_pct];
         atglancestatsarray.push(array_row1);
         return atglancestatsarray;
+    }
+    function getaveragearray (arrayoftotals) {
+        var only_numbers = arrayoftotals.filter(function (item) {
+            return (!isNaN(item));
+          });
+        if(only_numbers.length===0) {
+            return 'N/A'
+        };
+        average_number=only_numbers.reduce((a, b) => a + b, 0) / only_numbers.length;
+        return average_number;
     }
 
 
