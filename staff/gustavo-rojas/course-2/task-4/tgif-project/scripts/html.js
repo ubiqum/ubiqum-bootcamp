@@ -473,7 +473,7 @@ if (actualpage === 'attendance.html') {
     }
 
     table_id = 'atglance_table';
-    removeallrowstable(table_id)
+    removeallrowstable(table_id);
     showproperintroduction(actualchamber);
     fetchJsonsenators(url);
     waitForjsonsenators();
