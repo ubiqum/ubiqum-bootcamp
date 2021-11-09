@@ -341,7 +341,31 @@ function getaveragearray (arrayoftotals) {
     return average_number;
 }
 
+function maketablerows(array, table_id) {
+    for (let i = 0; i <= array.length - 1; i++) {
+        insert_row(table_id, 1, array[i][0], array[i][1], array[i][2]);
+    }
+}
 
+function insert_row(table_id, first_row, col_01, col_02, col_03) {
+    var x = document.getElementById(table_id).insertRow(first_row);
+    var col_01_temp = x.insertCell(0);
+    var col_02_temp = x.insertCell(1);
+    var col_03_temp = x.insertCell(2);
+    col_01_temp.innerHTML = col_01;
+    col_02_temp.innerHTML = col_02;
+    col_03_temp.innerHTML = col_03;
+
+}
+
+function removeallrowstable(table_id) {
+    var table = document.getElementById(table_id);
+
+    for (var i = table.rows.length - 1; i > 0; i--) {
+        table.deleteRow(i);
+    }
+
+}
 
 if (actualpage === 'attendance.html') {
     var params = (new URL(document.location)).searchParams;
@@ -398,10 +422,6 @@ if (actualpage === 'attendance.html') {
 
     }
 
-    // I need to reproduce this in the other page in loyaly.html
-
-   
-
     function leastengaged_stats(percent) {
         members = jsonsenators.results[0].members;
         n_rows = (members.length * (percent / 100)).toFixed();
@@ -433,31 +453,7 @@ if (actualpage === 'attendance.html') {
     }
 
 
-    function maketablerows(array, table_id) {
-        for (let i = 0; i <= array.length - 1; i++) {
-            insert_row(table_id, 1, array[i][0], array[i][1], array[i][2]);
-        }
-    }
-
-    function insert_row(table_id, first_row, col_01, col_02, col_03) {
-        var x = document.getElementById(table_id).insertRow(first_row);
-        var col_01_temp = x.insertCell(0);
-        var col_02_temp = x.insertCell(1);
-        var col_03_temp = x.insertCell(2);
-        col_01_temp.innerHTML = col_01;
-        col_02_temp.innerHTML = col_02;
-        col_03_temp.innerHTML = col_03;
-
-    }
-
-    function removeallrowstable(table_id) {
-        var table = document.getElementById(table_id);
-
-        for (var i = table.rows.length - 1; i > 0; i--) {
-            table.deleteRow(i);
-        }
-
-    }
+ 
     function waitForjsonsenators() {
         tableatglance_id = 'atglance_table';
         tablemostengaged_id = 'most-engaged-table';
@@ -536,32 +532,7 @@ if (actualpage === 'loyalty.html') {
             .catch(error => console.log('Error while fetching:', error))
 
     }
-    function maketablerows(array, table_id) {
-        for (let i = 0; i <= array.length - 1; i++) {
-            insert_row(table_id, 1, array[i][0], array[i][1], array[i][2]);
-        }
-    }
-
-    function insert_row(table_id, first_row, col_01, col_02, col_03) {
-        var x = document.getElementById(table_id).insertRow(first_row);
-        var col_01_temp = x.insertCell(0);
-        var col_02_temp = x.insertCell(1);
-        var col_03_temp = x.insertCell(2);
-        col_01_temp.innerHTML = col_01;
-        col_02_temp.innerHTML = col_02;
-        col_03_temp.innerHTML = col_03;
-
-    }
-
-    function removeallrowstable(table_id) {
-        var table = document.getElementById(table_id);
-
-        for (var i = table.rows.length - 1; i > 0; i--) {
-            table.deleteRow(i);
-        }
-
-    }
-    
+  
     function leastloyal_stats(percent) {
         members = jsonsenators.results[0].members;
         n_rows = (members.length * (percent / 100)).toFixed();
