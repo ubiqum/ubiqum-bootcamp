@@ -53,7 +53,7 @@ export function subArray(x, y) {
 
 export const over21 = arr => {
     var result = [];
-    arr.forEach(element => { if (element['age'] >= 21) { result.push(element) } });
+    arr.forEach(element => { if (element.age >= 21) { result.push(element) } });
     return result;
 }
 
@@ -97,15 +97,18 @@ export function isPhraseAnagram(x, y) {
 }
 
 export function longestWords(x) {
+    const response = [];
     if (x.length == 0) {
-        return [];
+        return response;
     }
     let array = x.split(' ').sort(function (a, b) { return b.length - a.length });
     if ((array[0].length == array[1].length) && (array[1].length == array[2].length)) {
-        return array[0] + ", " + array[1] + ", " + array[2];
+        response.push(array[0], array[1], array[2])
+        return response;
     }
     else {
-        return array[0];
+        response.push(array[0]);
+        return response;
     }
 }
 
@@ -118,8 +121,8 @@ export const getRepeats = (x) => x.filter((item, index) => x.lastIndexOf(item) !
 
 
 export function moduleTitles(){
-     Array.from(document.querySelectorAll('.module-title')).
-     map(module_title => module_title.innerText);
+     return Array.from(document.querySelectorAll('.module-title')).map(module_title => module_title.innerText);
+  
 }
 
 export function goPurple(){
