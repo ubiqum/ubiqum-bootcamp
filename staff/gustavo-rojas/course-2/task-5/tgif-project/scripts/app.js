@@ -1,8 +1,9 @@
 const app = Vue.createApp({
   data() {
     return { 
-      chamber: this.getChamber()
-    }
+      chamber: this.getChamber(),
+      
+     }
   },
   methods: {
     getChamber() {
@@ -23,7 +24,43 @@ const app = Vue.createApp({
               var chamber = 'senate'
     }
      return chamber
+    },
+
+    geturl() {
+      var chamber="";
+      chamber = this.getChamber();
+      var json_url ="";
+      switch (chamber) {
+        case 'senate':
+          var json_url = './jsons/pro-congress-117-senate.json';
+          break;      
+          case 'house':
+            var json_url = './jsons/pro-congress-117-house.json';
+            break;
+        case null:
+          var json_url = './jsons/pro-congress-117-senate.json';
+            break;
+        default:
+          var json_url = './jsons/pro-congress-117-senate.json';
     }
+    return json_url
+  },
+  
+  fetchJson(url, init){
+
+    fetch(url, init).then((response) => {
+      if (response.ok) {
+        return response.json(); 
+      }
+      throw new Error(response.statusText);
+    });
+
   }
-});
-  app.mount('#app');
+  
+  
+   
+  },
+  
+})
+
+app.mount('#app');
