@@ -1,7 +1,18 @@
+const fetchJson = (url, init) => (
+  fetch(url, init).then((response) => {
+    if (response.ok) {
+      return response.json(); 
+    }
+    throw new Error(response.statusText);
+  })
+);
+
+
 const app = Vue.createApp({
   data() {
     return { 
       chamber: this.getChamber(),
+      members: this.created()
       
      }
   },
@@ -46,20 +57,14 @@ const app = Vue.createApp({
     return json_url
   },
   
-  fetchJson(url, init){
-
-    fetch(url, init).then((response) => {
-      if (response.ok) {
-        return response.json(); 
-      }
-      throw new Error(response.statusText);
-    });
-
+  created() {
+    var json_url=this.geturl();
+    fetchJson(json_url).then(members => {
+      this.members = members.results[0].members;
+    })
   }
   
-  
-   
-  },
+   },
   
 })
 
