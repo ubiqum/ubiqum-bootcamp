@@ -75,6 +75,14 @@ export const longestWords = str => {
 };
 
 // DOM OPERATIONS
-export const moduleTitles = empty => ['Expressions', 'Strings', 'Conditionals', 'Arrays', 'Arrays and Strings', 'DOM Operations'];
+export const moduleTitles = () => {
+    var x = document.getElementsByClassName("module-title");
+    var y = [];
+    for (var i = 0; i < x.length; i++) {
+        //console.log(x[i].innerText);
+        y.push(x[i].innerText);
+    }
+    return y;
+}
 export const goPurple = empty => 'Go Purple!';
-export const copycat = input => console.log(input);
+export const copycat = input => input;
