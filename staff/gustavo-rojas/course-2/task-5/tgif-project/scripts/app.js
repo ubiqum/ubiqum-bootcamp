@@ -13,7 +13,9 @@ const app = Vue.createApp({
     return { 
       chamber: this.getChamber(),
       members: this.getData(),
-      at_glance_stats:[]
+      at_glance_stats:[],
+      least_loyal_stats:[],
+      most_loyal_stats:[]
       }
   },
   
@@ -60,10 +62,7 @@ const app = Vue.createApp({
   },
   
   created() {
-    
-    //fetchJson(json_url).then(members => {
-      //this.members = members.results[0].members;
-   // })
+
   },
 
   async getData() {
@@ -72,15 +71,15 @@ const app = Vue.createApp({
       let response = await fetch(json_url);
       this.members = await response.json();
       this.members=this.members.results[0].members;
-      this.at_glance_stats= this.atglancestats(this.members)
+      this.at_glance_stats= this.atglancestats(this.members);
+      this.least_loyal_stats=this.leastloyal_stats(this.members);
+      this.most_loyal_stats=this.mostloyal_stats(this.members)
       
     } catch (error) {
       console.log(error);
     }
   },
   atglancestats(members) {
-    //var members= this.getData();
-    //console.log(members);
     const republicanssymbol = 'R';
     var republicans = members.filter(x => x.party === republicanssymbol);
     const democratsssymbol = 'D';
@@ -135,6 +134,36 @@ const app = Vue.createApp({
     //console.log(atglancestatsarray);
     return atglancestatsarray;
 },
+leastloyal_stats(members) {
+  percent=10;
+  n_rows = (members.length * (percent / 100)).toFixed();
+  var reversed_least_loyal_members = members.sort((a, b) => a.votes_with_party_pct - b.votes_with_party_pct);
+  reversed_least_loyal_members_sliced = reversed_least_loyal_members.slice(0, n_rows);
+  stats_least_loyal_members = [];
+  reversed_least_loyal_members_sliced.forEach(element => {
+      array_temp = [];
+      var complete_name = element.first_name + " " + element.last_name;
+      num_party_votes=((element.votes_with_party_pct/100)*element.total_votes).toFixed(0);
+      array_temp = [complete_name, num_party_votes, element.votes_with_party_pct];
+      stats_least_loyal_members.unshift(array_temp);
+  });
+  return stats_least_loyal_members;
+},
+mostloyal_stats(members) {
+  percent=10;
+  n_rows = (members.length * (percent / 100)).toFixed();
+  var sort_most_loyal_members = members.sort((a, b) => b.votes_with_party_pct - a.votes_with_party_pct);
+  sort_most_loyal_members_sliced = sort_most_loyal_members.slice(0, n_rows);
+  stats_most_loyal_members = [];
+  sort_most_loyal_members_sliced.forEach(element => {
+      array_temp = [];
+      var complete_name = element.first_name + " " + element.last_name;
+      num_party_votes=((element.votes_with_party_pct/100)*element.total_votes).toFixed(0);
+      array_temp = [complete_name, num_party_votes, element.votes_with_party_pct];
+      stats_most_loyal_members.unshift(array_temp);
+  });
+  return stats_most_loyal_members;
+}
     
    }
 }
