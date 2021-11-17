@@ -110,6 +110,11 @@
                 </tr>
             </thead>
             <tbody>
+                <tr v-for="stat in at_glance_stats">
+                    <td>{{stat[0]}}</td>
+                    <td>{{stat[1]}}</td>
+                    <td>{{stat[2]}}</td>
+                    </tr>
             </tbody>
         </table>
         <h4>Least Loyal (Bottom 10% of Party)</h4>
@@ -122,6 +127,11 @@
                 </tr>
             </thead>
             <tbody>
+                <tr v-for="stat in least_loyal_stats">
+                    <td>{{stat[0]}}</td>
+                    <td>{{stat[1]}}</td>
+                    <td>{{stat[2]}}</td>
+                    </tr>
             </tbody>
         </table>
         <h4>Most Loyal (Top 10% of Party)</h4>
@@ -133,6 +143,11 @@
                     <th>% Party Votes</th>
                 </tr>
             </thead>
+            <tr v-for="stat in most_loyal_stats">
+                <td>{{stat[0]}}</td>
+                <td>{{stat[1]}}</td>
+                <td>{{stat[2]}}</td>
+                </tr>
             <tbody>
             </tbody>
         </table>

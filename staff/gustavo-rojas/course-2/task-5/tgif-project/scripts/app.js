@@ -122,16 +122,14 @@ const app = Vue.createApp({
         average_per_total=Number(average_per_total.toFixed(2));
  
         }
- 
-    var array_total = ["Total", members.length,average_per_total];
-    atglancestatsarray.push(array_total);
-    var array_row3 = ["Independent", independent.length, ind_avg_votes_with_party_pct];
-    atglancestatsarray.push(array_row3);
-    var array_row2 = ["Democrats", democrats.length, dem_avg_votes_with_party_pct];
-    atglancestatsarray.push(array_row2);
     var array_row1 = ["Republicans", republicans.length, rep_avg_votes_with_party_pct];
     atglancestatsarray.push(array_row1);
-    //console.log(atglancestatsarray);
+    var array_row2 = ["Democrats", democrats.length, dem_avg_votes_with_party_pct];
+    atglancestatsarray.push(array_row2);
+    var array_row3 = ["Independent", independent.length, ind_avg_votes_with_party_pct];
+    atglancestatsarray.push(array_row3);
+    var array_total = ["Total", members.length,average_per_total];
+    atglancestatsarray.push(array_total);
     return atglancestatsarray;
 },
 leastloyal_stats(members) {
@@ -145,7 +143,7 @@ leastloyal_stats(members) {
       var complete_name = element.first_name + " " + element.last_name;
       num_party_votes=((element.votes_with_party_pct/100)*element.total_votes).toFixed(0);
       array_temp = [complete_name, num_party_votes, element.votes_with_party_pct];
-      stats_least_loyal_members.unshift(array_temp);
+      stats_least_loyal_members.push(array_temp);
   });
   return stats_least_loyal_members;
 },
@@ -160,7 +158,7 @@ mostloyal_stats(members) {
       var complete_name = element.first_name + " " + element.last_name;
       num_party_votes=((element.votes_with_party_pct/100)*element.total_votes).toFixed(0);
       array_temp = [complete_name, num_party_votes, element.votes_with_party_pct];
-      stats_most_loyal_members.unshift(array_temp);
+      stats_most_loyal_members.push(array_temp);
   });
   return stats_most_loyal_members;
 }
