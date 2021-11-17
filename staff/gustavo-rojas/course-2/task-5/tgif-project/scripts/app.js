@@ -9,6 +9,7 @@ function getaveragearray (arrayoftotals) {
   return average_number;
 }
 const app = Vue.createApp({
+  
   data() {
     return { 
       chamber: this.getChamber(),

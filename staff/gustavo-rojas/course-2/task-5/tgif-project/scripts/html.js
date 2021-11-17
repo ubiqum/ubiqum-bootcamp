@@ -1,4 +1,4 @@
-var actualpage = location.pathname.split('/')[2];
+var actualpage = window.location.pathname.split('/')[1];
 
 function setactivepage() {
     homepageobject = document.getElementById("homepage");
