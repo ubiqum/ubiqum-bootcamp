@@ -4,7 +4,7 @@ var url = 'https://api.propublica.org/congress/v1/117/senate/members.json';
 var D = [];
 var ID = [];
 var R = [];
-
+var saving = [];
 
 
 export async function fetchJson() {
@@ -26,6 +26,7 @@ export function makeMemberRows(data) {
     }
   }
   filterByParty(data);
+  showStateData();
 }
 
 export function filterByParty(data) {
@@ -42,18 +43,10 @@ export function filterByParty(data) {
   }
 }
 
-export function filterByState(data) {
-  for (let i = 0; i <= data.results[0].members.length - 1; i++) {
-    if (data.results[0].members[i].party == "D") {
-      D.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
-
-    } else if (data.results[0].members[i].party == "ID") {
-      ID.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
-
-    } else {
-      R.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
-    }
-  }
+function showStateData(){
+fetch("./states.json").then(response => {return response.json();})
+.then(data => saving.push(data));
+console.log(saving);
 }
 
 // document.getElementById("myBtn").addEventListener("click", displayDemocrats);
