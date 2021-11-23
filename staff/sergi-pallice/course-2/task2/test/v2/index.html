@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Console test</title>
+  </head>
+  <body>
+    <h1>Let's see if this works</h1>
+    <script>
+      fetch("pro-congress-117-senate.json")
+        .then(response => response.json())
+        .then(data => {console.log(data)})
+    </script>
+  </body>
+</html>
