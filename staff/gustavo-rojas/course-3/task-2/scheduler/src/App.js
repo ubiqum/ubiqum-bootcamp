@@ -9,6 +9,11 @@ const hasConflict = (course, selected) => (
   selected.some(selection => courseConflict(course, selection))
 );
 
+const addScheduleTimes = schedule => ({
+  title: schedule.title,
+  courses: mapValues(addCourseTimes, schedule.courses)
+});
+
 const meetsPat = /^ *((?:M|Tu|W|Th|F)+) +(\d\d?):(\d\d) *[ -] *(\d\d?):(\d\d) *$/;
 
 const timeParts = meets => {
@@ -30,10 +35,7 @@ const addCourseTimes = course => ({
   ...timeParts(course.meets)
 });
 
-const addScheduleTimes = schedule => ({
-  title: schedule.title,
-  courses: mapValues(addCourseTimes, schedule.courses)
-});
+
 
 const toggle = (x, lst) => (
   lst.includes(x) ? lst.filter(y => y !== x) : [x, ...lst]
@@ -122,7 +124,7 @@ const getCourseTerm = course => (
 const getCourseNumber = course => (
   course.id.slice(1, 4)
 );
-
+//var setSchedule =[];
 
 const App = () => {
   const [schedule, setSchedule] = useState();
@@ -137,7 +139,7 @@ const App = () => {
     }
     fetchSchedule();
   }, [])
-
+  if (!schedule) return <h1>Loading schedule...</h1>; // This line is missing in 6. Filter out course conflicts
   return (
     <div className="container">
       <Banner title={ schedule.title } />
