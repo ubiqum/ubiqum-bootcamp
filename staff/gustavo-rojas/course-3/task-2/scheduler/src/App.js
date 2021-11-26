@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 // import { hasConflict,getCourseTerm,getCourseNumber,terms } from './utilities/times.js';
 import CourseList from './components/CourseList';
+
 const Banner = ({ title }) => (
   <h1>{ title }</h1>
 );
