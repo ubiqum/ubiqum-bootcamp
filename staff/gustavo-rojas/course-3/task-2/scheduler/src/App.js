@@ -58,11 +58,11 @@ const Course = ({ course, selected, setSelected }) => {
   );
 };
 
-const TermButton = ({term, setTerm, checked}) => (
+const TermButton = ({term, setTerm, checked}) => (// We neeed change className for class  in this code class="btn btn-success m-1 p-2" htmlFor={term}>
   <>
     <input type="radio" id={term} className="btn-check" checked={checked} autoComplete="off"
       onChange={() => setTerm(term)} />
-    <label class="btn btn-success m-1 p-2" htmlFor={term}>
+    <label className="btn btn-success m-1 p-2" htmlFor={term}>
     { term }
     </label>
   </>
