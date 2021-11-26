@@ -84,5 +84,17 @@ export const moduleTitles = () => {
     }
     return y;
 }
-export const goPurple = empty => 'Go Purple!';
-export const copycat = input => input;
+
+// export function goPurple(){
+//     var x = document.body.querySelector('div');
+//     x.innerHTML = '<span style="color:purple">goPurple</span>'
+//     return 'Go Purple!'
+// }
+
+export function goPurple() {
+    var x = Array.from(document.querySelectorAll('div')).find(el => el.textContent === 'goPurple');
+    x.innerHTML = '<span style="color:purple">goPurple</span>'
+    return 'Go Purple!'
+} 
+
+export const copycat = (x) => {var y=[0, 100, 'hello!', [1, 2, 3] ]; return y[x]};
