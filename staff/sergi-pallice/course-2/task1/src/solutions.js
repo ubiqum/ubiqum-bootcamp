@@ -85,12 +85,6 @@ export const moduleTitles = () => {
     return y;
 }
 
-// export function goPurple(){
-//     var x = document.body.querySelector('div');
-//     x.innerHTML = '<span style="color:purple">goPurple</span>'
-//     return 'Go Purple!'
-// }
-
 export function goPurple() {
     var x = Array.from(document.querySelectorAll('div')).find(el => el.textContent === 'goPurple');
     x.innerHTML = '<span style="color:purple">goPurple</span>'
