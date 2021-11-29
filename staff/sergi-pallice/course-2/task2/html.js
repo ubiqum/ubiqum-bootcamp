@@ -1,6 +1,6 @@
 
 // async function fetchAsync () {
-//     let response = await fetch("http://api.plos.org/search?q=title:%22Drosophila%22%20and%20body:%22RNA%22&fl=id,abstract&wt=json&indent=on");
+//     let response = await fetch("http://http://localhost:8000/pro-congress-117-senate.json");
 //     let data = await response.json();
 //     console.log(data);
 //     return data;
@@ -10,19 +10,25 @@
 //     .then(data => console.log(data))
 //     .catch(reason => console.log(reason.message))
 
+let data = []     // Empty variable to save our Senators
 
-//"./pro-congress-117-senate.json"
+async function fetchAsync () {
+   await fetch("http://localhost:8000/pro-congress-117-senate.json")
+      .then( (response) => {
+        return response.json();         // Saving response into JSON format (because we know)   
+      })
+      .then( (json)=> {
+        data = json.results[0].members // This places itself in the array with all members
+        console.log(data)
+      })
+     //.catch(reason => console.log(reason.message))
+    
+      let members = []
+      for (var i=0; i<data.length; i++) {
+        members.push(document.getElementById("congress").innerHTML = data[i]["first_name"] + ' ' +  data[i]["last_name"])
+      }
+    document.getElementById("congress").innerHTML = members
 
-const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
-const request = new XMLHttpRequest();
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
+}
 
-request.onload = function() {
-    const superHeroes = request.response;
-    console.log(superHeroes);
-    document.getElementById("js").innerHTML = superHeroes.squadName;
-    // populateHeader(superHeroes);
-    // showHeroes(superHeroes);
-  }
+fetchAsync()
