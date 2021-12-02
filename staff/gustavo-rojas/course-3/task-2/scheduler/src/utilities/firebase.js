@@ -5,9 +5,23 @@ import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut
 export const signInWithGoogle = () => {
   signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
 };
+
+const firebaseSignOut = () => signOut(getAuth(firebase));
+
+export { firebaseSignOut as signOut };
+
 export const setData = (path, value) => (
   set(ref(database, path), value)
 );
+export const useUserState = () => {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    onIdTokenChanged(getAuth(firebase), setUser);
+  }, []);
+
+  return [user];
+};
 const firebaseConfig = {
   apiKey: "AIzaSyDzVKdflz2JigP0AWmWAKX-VM4OlmyXxAc",
   authDomain: "scheduler-637fd.firebaseapp.com",

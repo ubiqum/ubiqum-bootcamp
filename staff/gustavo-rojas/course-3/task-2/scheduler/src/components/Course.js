@@ -1,5 +1,6 @@
 import { hasConflict,getCourseTerm,getCourseNumber } from '../utilities/times.js';
-import { setData } from '../utilities/firebase.js';
+import { setData,useUserState } from '../utilities/firebase.js';
+
 const meetsPat = /^ *((?:M|Tu|W|Th|F)+) +(\d\d?):(\d\d) *[ -] *(\d\d?):(\d\d) *$/;
 const timeParts = meets => {
   const [match, days, hh1, mm1, hh2, mm2] = meetsPat.exec(meets) || [];
@@ -32,6 +33,7 @@ const reschedule = async (course, meets) => {
 const Course = ({ course, selected, setSelected }) => {
     const isSelected = selected.includes(course);
     const isDisabled = !isSelected && hasConflict(course, selected);
+    const [user] = useUserState();
     const style = {
       backgroundColor: isDisabled? 'lightgrey' : isSelected ? 'lightgreen' : 'white'
     };
