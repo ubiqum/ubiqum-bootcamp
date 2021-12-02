@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { getCourseTerm,terms } from '/mnt/c/ubiqum/ubiqum-bootcamp/staff/gustavo-rojas/course-3/task-2/scheduler/src/utilities/times.js';
-import Course from '/mnt/c/ubiqum/ubiqum-bootcamp/staff/gustavo-rojas/course-3/task-2/scheduler/src/components/Course.js';
+import { getCourseTerm,terms } from '../utilities/times.js';
+import Course from '../components/Course.js';
 const CourseList = ({ courses }) => {
     const [term, setTerm] = useState('Fall');
     const [selected, setSelected] = useState([]);

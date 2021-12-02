@@ -2,6 +2,9 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, onValue, ref, set } from 'firebase/database';
 import { useState, useEffect } from 'react';
 
+export const setData = (path, value) => (
+  set(ref(database, path), value)
+);
 const firebaseConfig = {
   apiKey: "AIzaSyDzVKdflz2JigP0AWmWAKX-VM4OlmyXxAc",
   authDomain: "scheduler-637fd.firebaseapp.com",
