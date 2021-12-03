@@ -48,6 +48,7 @@ const SignOuButton = () => (
 const TermSelector = ({term, setTerm}) => {
   const [user] = useUserState();
   return ( // This "(" is missing in the original code  
+    
     <div className="btn-toolbar justify-content-between">
       <div className="btn-group">
       { 
