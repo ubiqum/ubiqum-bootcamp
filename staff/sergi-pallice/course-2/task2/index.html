@@ -21,10 +21,7 @@
 </head>
 
 <body>
-
-  <div id="js"></div>
-
-
+  
   <div id="senate-table">
     <h1>Senators</h1>
     <p>
@@ -38,70 +35,17 @@
       uniformed officers, as well as trial of federal officials impeached by the House.
     </p>
 
-    <p id="TEST">TEST</p>
+    <form class="party_filter" action="/action_page.php">
+      <input type="checkbox" id="democrat" name="democrat" value="democrat">
+      <label for="democrat">Democrat</label>
+      <input type="checkbox" id="republican" name="republic" value="republican">
+      <label for="republican">Republican</label>
+      <input type="checkbox" id="independent" name="independent" value="independent">
+      <label for="independent">Independent</label><br><br>
+    </form>
 
-    <table id="senate-data">
-      <!-- <thead>
-        <tr>
-            <th>Name</th>
-            <th>Party</th>
-            <th>State</th>
-            <th>Years in Office</th>
-            <th>% Votes with Party</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><a href="https://www.alexander.senate.gov/public">Lamar Alexander</a></td>
-            <td>R</td>
-            <td>TN</td>
-            <td>11</td>
-            <td>86</td>
-        </tr>
-        <tr>
-            <td><a href="http://www.ayotte.senate.gov">Kelly Ayotte</a></td>
-            <td>R</td>
-            <td>NH</td>
-            <td>3</td>
-            <td>81</td>
-        </tr>
-        <tr>
-            <td><a href="https://www.baldwin.senate.gov">Tammy Baldwin</a></td>
-            <td>D</td>
-            <td>WI</td>
-            <td>1</td>
-            <td>99</td>
-        </tr>
-        <tr>
-            <td><a href="https://www.barrasso.senate.gov">John Barrasso</a></td>
-            <td>R</td>
-            <td>WY</td>
-            <td>7</td>
-            <td>92</td>
-        </tr>
-        <tr>
-            <td><a href="http://www.baucus.senate.gov">Max Baucus</a></td>
-            <td>D</td>
-            <td>MT</td>
-            <td>35</td>
-            <td>90</td>
-        </tr>
-        <tr>
-            <td><a href="http://www.begich.senate.gov">Mark Begich</a></td>
-            <td>D</td>
-            <td>AK</td>
-            <td>5</td>
-            <td>96</td>
-        </tr>
-        <tr>
-            <td><a href="https://www.bennet.senate.gov">Michael Bennet</a></td>
-            <td>D</td>
-            <td>CO</td>
-            <td>5</td>
-            <td>98</td>
-        </tr>
-    </tbody> -->
-    </table>
+
+    <table id="senate-data"></table>
   </div>
   
   <script src="html.js"></script>

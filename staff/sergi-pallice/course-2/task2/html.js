@@ -11,37 +11,13 @@
 //     .catch(reason => console.log(reason.message))
 
 
-let members = []     // Empty variable to save our Senators
-
-async function fetchAsync () {
-   await fetch("http://localhost:8000/pro-congress-117-senate.json")
-      .then( (response) => {
-        return response.json();         // Saving response into JSON format (because we know)   
-      })
-      .then( (json)=> {
-        members = json.results[0].members // This places itself in the array with all members
-        console.log(members)
-      })
-     //.catch(reason => console.log(reason.message))
-    
-      // let members_names = []
-      // for (var i=0; i<members.length; i++) {
-      //   members_names.push(document.getElementById("congress").innerHTML = members[i]["first_name"] + ' ' +  members[i]["last_name"])
-      // }
-      
-      build_table(members);
-
-}
-
-fetchAsync()
-
 
 function build_table(members_array){
-  document.getElementById("senate-data").innerHTML = ""; // Deletes previous data in div
+  document.getElementById("senate-data").innerHTML = "";  // Deletes previous data in div
 
-  let table = document.getElementById("senate-data"); // We'll put the table inside div "senate-table"
+  let table = document.getElementById("senate-data");     // We'll put the table inside div "senate-table"
   //-------------------------Header---------------------------//
-  let thead = document.createElement('thead');
+  let thead = document.createElement('thead');            // (thead=tablehead)
   //---------------Creates Header (Column) Cells--------------//
   let tr      = document.createElement('tr');
   let head_cell1 = document.createElement('th');
@@ -51,10 +27,10 @@ function build_table(members_array){
   let head_cell5 = document.createElement('th');
   //--------------Setting Column Names---------------// 
   let text_h1 = document.createTextNode("Full name");
-  let text_h2 = document.createTextNode("Party (D, R, or I)");
+  let text_h2 = document.createTextNode("Party");
   let text_h3 = document.createTextNode("State");
-  let text_h4 = document.createTextNode("Seniority");
-  let text_h5 = document.createTextNode("% votes");
+  let text_h4 = document.createTextNode("Years in Office");
+  let text_h5 = document.createTextNode("% Votes with Party");
   //Adding text to cells
   head_cell1.appendChild(text_h1);
   head_cell2.appendChild(text_h2);
@@ -71,14 +47,12 @@ function build_table(members_array){
   thead.appendChild(tr);
   table.appendChild(thead);
 
-  /*------------------------LOOP VARS-------------------------- */
-  let row = document.createElement('tr'); // Create Row Elements (tr=tablerow)
-  let td =  document.createElement('td'); // Create Cell Elements (td=tabledata)
+
   let tbody = document.createElement("tbody");
 
   /*-------------------------LOOP------------------------------ */
   for (let i=0; i < members_array.length; i++) {
-    let link1 = document.createElement("a");
+    let link1 = document.createElement("a");    //"href=a"
       
     //We'll add 1 row and 5 cells (columns) per iteration
     let tr  =  document.createElement('tr');
@@ -116,3 +90,77 @@ function build_table(members_array){
     table.appendChild(tbody);
        }
 }
+
+
+//If Democrat Selected
+document.getElementById("democrat").addEventListener("click", function () {
+    if (document.getElementById("democrat").checked === true){
+          console.log(document.getElementById("democrat").value);
+          filter_party();
+          }
+    });
+//If Republican Selected
+document.getElementById("republican").addEventListener("click", function () {
+    if (document.getElementById("republican").checked === true){
+    console.log(document.getElementById("republican").value );
+    filter_party();
+    }
+  });
+//If Independent Selected
+document.getElementById("independent").addEventListener("click", function () {
+    if (document.getElementById("independent").checked === true){
+    console.log(document.getElementById("independent").value );
+    filter_party();
+    }
+  });
+
+
+function filter_party(){
+  let selected_members_filter = []
+
+  for (var i = 0; i < members.length; i++) {
+    if ((document.getElementById("democrat").checked && members[i].party === 'D')){
+      selected_members_filter.push(members[i]);
+    } 
+                  
+  if ((document.getElementById("republican").checked && members[i].party === 'R')){
+    selected_members_filter.push(members[i]);
+    } 
+
+  if ((document.getElementById("independent").checked && members[i].party === 'ID')){
+    selected_members_filter.push(members[i]);
+    }
+
+  if (((document.getElementById("democrat").checked === false) && (document.getElementById("republican").checked === false) && (document.getElementById("independent").checked === false))){
+    selected_members_filter.push(members[i]);
+    }
+  }           
+  console.log(selected_members_filter);  
+  build_table(selected_members_filter);
+}
+
+
+
+
+
+
+
+let members = []     // Empty variable to save our Senators
+
+async function fetchAsync () {
+   await fetch("http://localhost:8000/pro-congress-117-senate.json")
+      .then( (response) => {
+        return response.json();         // Saving response into JSON format (because we know)   
+      })
+      .then( (json)=> {
+        members = json.results[0].members // This places itself in the array with all members
+        console.log(members)
+      })
+     //.catch(reason => console.log(reason.message))
+
+     //build_table(members);
+     filter_party();
+     
+}
+
+fetchAsync()
