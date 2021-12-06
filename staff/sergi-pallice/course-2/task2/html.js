@@ -61,17 +61,13 @@ const states = {
   "WY": "Wyoming"
 }
 
+/*------------------------------------------USER VALUES---------------------------------------- */
 document.getElementById("democrat").addEventListener("click", function () { filter_party() });
 document.getElementById("republican").addEventListener("click", function () { filter_party() });  
 document.getElementById("independent").addEventListener("click", function () { filter_party() });
+document.getElementById("state_filter").addEventListener("input",  function () { filter_party() });
 
-let selectedState = document.getElementById("state_filter").value;
-document.getElementById("state_filter").addEventListener("input",  function () {
-  selectedState = document.getElementById("state_filter").value;
-  console.log(selectedState);
-  filter_party();
-});
-
+/*---------------------------------------AUTO-CREATE TABLE---------------------------------------- */
 function makeMemberRows(members_array){
   document.getElementById("senate-data").innerHTML = "";  // Deletes previous data in div
   let table = document.getElementById("senate-data");     // We'll put the table inside div "senate-data"
@@ -135,37 +131,13 @@ function makeMemberRows(members_array){
        }
 }
 
-// function filter_party(){
-//   let selected_members = []
-
-//   for (var i = 0; i < members.length; i++) {
-//     if (
-//       (document.getElementById("democrat").checked && members[i].party === 'D')
-//       ) { selected_members.push(members[i]);
-//     } 
-//     if (
-//       (document.getElementById("republican").checked && members[i].party === 'R')
-//       ) { selected_members.push(members[i]);
-//     } 
-//     if (
-//       (document.getElementById("independent").checked && members[i].party === 'ID')
-//       ){ selected_members.push(members[i]);
-//       } 
-//     if (( 
-//       !(document.getElementById("democrat").checked) &&         // NOT operator (!) negates boolean of "checked"
-//       !(document.getElementById("republican").checked) && 
-//       !(document.getElementById("independent").checked))
-//       ){ selected_members.push(members[i]);
-//     }
-//   }     
-//   makeMemberRows(selected_members);
-// }
-
-
+/*-------------------------------------FILTER CREATED TABLE---------------------------------------- */
 function filter_party(){
   let selected_members = []
 
   for (var i = 0; i < members.length; i++) {
+    let selectedState = document.getElementById("state_filter").value;
+
     if (
       (document.getElementById("democrat").checked && members[i].party === 'D') && 
       (selectedState === members[i].state || selectedState === "All")
@@ -192,9 +164,8 @@ function filter_party(){
   makeMemberRows(selected_members);
 }
 
-
-
-let members = [];    // Empty variable to save our Senators
+/*--------------------------------GET DATA AND SHOW FILTERED TABLE---------------------------------- */
+let members = [];
 async function fetchAsync () {
   await fetch("http://localhost:8000/pro-congress-117-senate.json")
     .then( (response) => {
