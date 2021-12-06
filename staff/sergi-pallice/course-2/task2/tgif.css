@@ -1,5 +1,6 @@
 * {
   font-family: sans-serif;
+  font-size: 16px;
 }
 
 body {
@@ -30,6 +31,10 @@ td {
   border: 1px solid #3498db;
   border-collapse: collapse;
   padding: 5px;
+}
+
+.div {
+  float: left;
 }
 
 .button {

@@ -1,11 +1,80 @@
 
+const states = {
+  "AL": "Alabama",
+  "AK": "Alaska",
+  "AS": "American Samoa",
+  "AZ": "Arizona",
+  "AR": "Arkansas",
+  "CA": "California",
+  "CO": "Colorado",
+  "CT": "Connecticut",
+  "DE": "Delaware",
+  "DC": "District Of Columbia",
+  "FM": "Federated States Of Micronesia",
+  "FL": "Florida",
+  "GA": "Georgia",
+  "GU": "Guam",
+  "HI": "Hawaii",
+  "ID": "Idaho",
+  "IL": "Illinois",
+  "IN": "Indiana",
+  "IA": "Iowa",
+  "KS": "Kansas",
+  "KY": "Kentucky",
+  "LA": "Louisiana",
+  "ME": "Maine",
+  "MH": "Marshall Islands",
+  "MD": "Maryland",
+  "MA": "Massachusetts",
+  "MI": "Michigan",
+  "MN": "Minnesota",
+  "MS": "Mississippi",
+  "MO": "Missouri",
+  "MT": "Montana",
+  "NE": "Nebraska",
+  "NV": "Nevada",
+  "NH": "New Hampshire",
+  "NJ": "New Jersey",
+  "NM": "New Mexico",
+  "NY": "New York",
+  "NC": "North Carolina",
+  "ND": "North Dakota",
+  "MP": "Northern Mariana Islands",
+  "OH": "Ohio",
+  "OK": "Oklahoma",
+  "OR": "Oregon",
+  "PW": "Palau",
+  "PA": "Pennsylvania",
+  "PR": "Puerto Rico",
+  "RI": "Rhode Island",
+  "SC": "South Carolina",
+  "SD": "South Dakota",
+  "TN": "Tennessee",
+  "TX": "Texas",
+  "UT": "Utah",
+  "VT": "Vermont",
+  "VI": "Virgin Islands",
+  "VA": "Virginia",
+  "WA": "Washington",
+  "WV": "West Virginia",
+  "WI": "Wisconsin",
+  "WY": "Wyoming"
+}
+
 document.getElementById("democrat").addEventListener("click", function () { filter_party() });
 document.getElementById("republican").addEventListener("click", function () { filter_party() });  
-document.getElementById("independent").addEventListener("click", function () { filter_party() }); 
+document.getElementById("independent").addEventListener("click", function () { filter_party() });
 
-function build_table(members_array){
+let selectedState = document.getElementById("state_filter").value;
+document.getElementById("state_filter").addEventListener("input",  function () {
+  selectedState = document.getElementById("state_filter").value;
+  console.log(selectedState);
+  filter_party();
+});
+
+function makeMemberRows(members_array){
   document.getElementById("senate-data").innerHTML = "";  // Deletes previous data in div
-  let table = document.getElementById("senate-data");     // We'll put the table inside div "senate-table"
+  let table = document.getElementById("senate-data");     // We'll put the table inside div "senate-data"
   let thead = document.createElement('thead');            // Variable to create block header
   let tbody = document.createElement("tbody");            // Variable to create body
   /*-------------------------------------------TABLE HEADER---------------------------------------- */
@@ -66,28 +135,64 @@ function build_table(members_array){
        }
 }
 
+// function filter_party(){
+//   let selected_members = []
+
+//   for (var i = 0; i < members.length; i++) {
+//     if (
+//       (document.getElementById("democrat").checked && members[i].party === 'D')
+//       ) { selected_members.push(members[i]);
+//     } 
+//     if (
+//       (document.getElementById("republican").checked && members[i].party === 'R')
+//       ) { selected_members.push(members[i]);
+//     } 
+//     if (
+//       (document.getElementById("independent").checked && members[i].party === 'ID')
+//       ){ selected_members.push(members[i]);
+//       } 
+//     if (( 
+//       !(document.getElementById("democrat").checked) &&         // NOT operator (!) negates boolean of "checked"
+//       !(document.getElementById("republican").checked) && 
+//       !(document.getElementById("independent").checked))
+//       ){ selected_members.push(members[i]);
+//     }
+//   }     
+//   makeMemberRows(selected_members);
+// }
+
+
 function filter_party(){
   let selected_members = []
 
   for (var i = 0; i < members.length; i++) {
-    if ((document.getElementById("democrat").checked && members[i].party === 'D')){
-      selected_members.push(members[i]);
+    if (
+      (document.getElementById("democrat").checked && members[i].party === 'D') && 
+      (selectedState === members[i].state || selectedState === "All")
+      ) { selected_members.push(members[i]);
     } 
-    if ((document.getElementById("republican").checked && members[i].party === 'R')){
-      selected_members.push(members[i]);
+    if (
+      (document.getElementById("republican").checked && members[i].party === 'R') &&
+      (selectedState === members[i].state || selectedState === "All")
+      ) { selected_members.push(members[i]);
     } 
-    if ((document.getElementById("independent").checked && members[i].party === 'ID')){
-      selected_members.push(members[i]);
-    } 
+    if (
+      (document.getElementById("independent").checked && members[i].party === 'ID') &&
+      (selectedState === members[i].state || selectedState === "All")
+      ){ selected_members.push(members[i]);
+      } 
     if (( 
-      !(document.getElementById("democrat").checked) &&         // NOT operator (!) negates status of "checked"
+      !(document.getElementById("democrat").checked) &&         // NOT operator (!) negates boolean of "checked"
       !(document.getElementById("republican").checked) && 
-      !(document.getElementById("independent").checked))){
-        selected_members.push(members[i]);
+      !(document.getElementById("independent").checked) &&
+      (selectedState === members[i].state || selectedState === "All"))
+      ){ selected_members.push(members[i]);
     }
-  }           
-  build_table(selected_members);
+  }     
+  makeMemberRows(selected_members);
 }
+
+
 
 let members = [];    // Empty variable to save our Senators
 async function fetchAsync () {
@@ -104,3 +209,4 @@ async function fetchAsync () {
 }
 
 fetchAsync()
+
