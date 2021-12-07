@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './nysl_logo.svg';
 import './App.css';
+import {nysl_league,sport_events} from "./components/home.js"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+    
+    <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
+    <ul>
+        {sport_events.map(sport_event => {
+          return (
+          <li>{sport_event.s_event_date} - {sport_event.s_event_title}</li>
+          )
+        })}
+      </ul>
+  </div>
+   
   );
 }
 
