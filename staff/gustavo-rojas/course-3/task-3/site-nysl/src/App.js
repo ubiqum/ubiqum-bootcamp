@@ -3,11 +3,13 @@ import logo from './nysl_logo.svg';
 import './App.css';
 import {nysl_league,sport_events} from "./components/home.js"
 import {game_info} from "./components/gameinfo.js"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faInfoCircle,faRuler,faEnvelope,faFutbol,faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  NavLink
 } from "react-router-dom";
 
 export default function App() {
@@ -36,28 +38,14 @@ export default function App() {
           </Route>
         </Switch>
       </div>
-      <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/gameinfo">Game Info</Link>
-            </li>
-            <li>
-              <Link to="/rules">Rules Policies</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link to="/regform">Registration</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
-        </nav>
+      <nav className="navbar fixed-bottom navbar-light bg-light" >
+              <NavLink to="/"> <FontAwesomeIcon size="lg" icon={faHome}/> </NavLink>
+              <NavLink to="/gameinfo"> <FontAwesomeIcon size="lg" icon={faFutbol}/> </NavLink>
+              <NavLink to="/rules"><FontAwesomeIcon size="lg" icon={faRuler}/></NavLink>
+              <NavLink to="/contact"><FontAwesomeIcon size="lg" icon={faEnvelope}/></NavLink>
+              <NavLink to="/regform"><FontAwesomeIcon size="lg" icon={faUserPlus}/></NavLink>
+              <NavLink to="/about"><FontAwesomeIcon size="lg" icon={faInfoCircle}/> </NavLink>
+     </nav>
     </Router>
   );
 }
@@ -80,7 +68,7 @@ function Home() {
 function About() {
   return <div>
   <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
-  <h5>About</h5>;
+  <h5>About</h5>
   </div>
 }
 
@@ -114,20 +102,20 @@ function Gameinfo() {
 function Rules() {
   return  <div>
   <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
-  <h5>Rules and Policies </h5>;
+  <h5>Rules and Policies </h5>
   </div>
 }
 
 function Regform() {
   return  <div>
   <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
-  <h5>Registration</h5>;
+  <h5>Registration</h5>
   </div>
 }
 
 function Contact() {
   return  <div>
   <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
-  <h5>Contact</h5>;
+  <h5>Contact</h5>
   </div>
 }
