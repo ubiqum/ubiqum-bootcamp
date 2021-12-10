@@ -1,3 +1,6 @@
+export const page_home_header = "Home";
+export const logo_alttext = "Logo NYSL";
+export const logo_width="100";
 export const nysl_league = {
     title: "North Youth Soccer League"
   };

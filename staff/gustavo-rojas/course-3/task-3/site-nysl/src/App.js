@@ -1,17 +1,17 @@
 import React from 'react';
 import logo from './nysl_logo.svg';
 import './App.css';
-import {nysl_league,sport_events} from "./components/home.js"
-import {game_info,additional_info_game} from "./components/gameinfo.js"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faInfoCircle,faRuler,faEnvelope,faFutbol,faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import {nysl_league,sport_events,page_home_header,logo_alttext,logo_width} from "./components/home.js"
+import {game_info,additional_info_game,table_games_header,page_gameinfo_header,dayweek_warning} from "./components/gameinfo.js"
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHome,faInfoCircle,faRuler,faEnvelope,faFutbol,faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink
 } from "react-router-dom";
-//import validator from 'validator'
+import validator from 'validator'
 export default function App() {
   return (
     <Router>
@@ -40,6 +40,7 @@ export default function App() {
       </div>
       <nav className="navbar fixed-bottom navbar-light bg-light" >
               <NavLink to="/"> <FontAwesomeIcon size="lg" icon={faHome}/> </NavLink>
+              
               <NavLink to="/gameinfo"> <FontAwesomeIcon size="lg" icon={faFutbol}/> </NavLink>
               <NavLink to="/rules"><FontAwesomeIcon size="lg" icon={faRuler}/></NavLink>
               <NavLink to="/contact"><FontAwesomeIcon size="lg" icon={faEnvelope}/></NavLink>
@@ -53,8 +54,8 @@ export default function App() {
 function Home() {
   return <div>
     
-  <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
-  <h5>Home</h5>
+  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
+  <h5>{page_home_header}</h5>
   <ul>
       {sport_events.map(sport_event => {
         return (
@@ -67,23 +68,24 @@ function Home() {
 
 function About() {
   return <div>
-  <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
+  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
   <h5>About</h5>
   </div>
 }
 
 function Gameinfo() {
   return  <div>
-  <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
-  <h5>Game Info</h5>
+  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
+  <h5>{page_gameinfo_header}</h5>
+  <h5>{dayweek_warning}</h5>
   <table className="table">
   <thead>
-  <tr>
-    <th>Date</th>
-    <th>Teams</th>
-    <th>Location</th>
-    <th>Times</th>
-  </tr>
+  {table_games_header.map(header => {
+        return (
+        <tr key={header.id}><th>{header.first_col}</th><th>{header.second_col}</th><th>{header.third_col}</th><th>{header.fourth_col}</th>
+        </tr>
+        )
+      })}
   </thead>
   <tbody>
       {game_info.map(game => {
@@ -98,11 +100,19 @@ function Gameinfo() {
    <table className="table">
    <tbody>
       {additional_info_game.map(info => {
-        //var is_email=validator.isEmail(info.info);
-        //var info_temp ="N.A";
-        //if(is_email) {info_temp= '<a href={'mailto:${info_info}'}> '+info_info+' </a>'} else {info_temp=info.info};
+        var is_email=validator.isEmail(info.info);
+        var info_temp ="N.A";
+        if(is_email) 
+          {
+            info_temp= <a href={`mailto: ${info.info}`}>{info.info}</a>
+          } 
+          else {
+            info_temp=info.info
+          };
         return (
-        <tr key={info.id}><td>{info.label}</td><td>{info.info}</td></tr>
+        <tr key={info.id}>
+          <td>{info.label}</td>
+          <td>{info_temp}</td></tr>
         )
       })}
       </tbody> 
@@ -113,21 +123,21 @@ function Gameinfo() {
 
 function Rules() {
   return  <div>
-  <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
-  <h5>Rules and Policies </h5>
+  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
+  <h5>Rules and Policies</h5>
   </div>
 }
 
 function Regform() {
   return  <div>
-  <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
+  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
   <h5>Registration</h5>
   </div>
 }
 
 function Contact() {
   return  <div>
-  <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
+  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
   <h5>Contact</h5>
   </div>
 }

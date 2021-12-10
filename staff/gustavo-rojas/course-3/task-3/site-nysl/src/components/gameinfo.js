@@ -1,3 +1,14 @@
+export const page_gameinfo_header = "Game Info";
+export const season_title="Fall Schedule";
+export const dayweek_warning = "* All games take place on Saturday";
+export const table_games_header=[
+   {"id":"01",
+      "first_col":"Date",
+      "second_col":"Teams",
+      "third_col":"Location",
+      "fourth_col": "Times"
+   }
+]
 export const additional_info_game = [
    {
       "id": "01",
