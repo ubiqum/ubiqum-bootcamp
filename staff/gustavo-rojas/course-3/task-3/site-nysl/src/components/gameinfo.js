@@ -1,3 +1,39 @@
+export const additional_info_game = [
+   {
+      "id": "01",
+      "label": "Facility Type:",
+      "info": "Outdoor",
+   },
+   {
+      "id":"02",
+      "label": "Additional Information:",
+      "info": "If deemed necessary by NYSL, games may be shortened or cancelled due to extreme weather conditions.",
+      
+   },
+   {
+      "id":"03",
+      "label": "Please direct all questions to:",
+      "info":"Michael Randall, League Coordinator",
+      
+   },
+      {
+         "id":"04",  
+         "label": "Phone:",
+         "info": "(630) 690-8132",
+   },
+   {
+      "id":"05",
+      "label": "Email:",
+      "info": "michael.randall@chisoccer.org"
+   }
+   , {
+      "id":"06",
+      "label": "",
+      "info": ""
+   }
+   
+]
+
 export const game_info = [
    {
       "id": "001",
@@ -62,7 +98,7 @@ export const game_info = [
       "Location": "Greenbay",
       "Times": "9:30 a.m."
    },
-      {
+   {
       "id": "010",
       "Date": "2018-10-06",
       "Teams": "U2 and U5",
@@ -119,7 +155,14 @@ export const game_info = [
       "Times": "1:00 p.m."
    },
    {
-      "id": "",
+      "id": "018",
+      "Date": "",
+      "Teams": "",
+      "Location": "",
+      "Times": ""
+   },
+   {
+      "id": "019",
       "Date": "",
       "Teams": "",
       "Location": "",

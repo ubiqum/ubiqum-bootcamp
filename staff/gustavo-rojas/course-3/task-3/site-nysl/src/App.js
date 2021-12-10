@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './nysl_logo.svg';
 import './App.css';
 import {nysl_league,sport_events} from "./components/home.js"
-import {game_info} from "./components/gameinfo.js"
+import {game_info,additional_info_game} from "./components/gameinfo.js"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faInfoCircle,faRuler,faEnvelope,faFutbol,faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -11,7 +11,7 @@ import {
   Route,
   NavLink
 } from "react-router-dom";
-
+//import validator from 'validator'
 export default function App() {
   return (
     <Router>
@@ -73,7 +73,6 @@ function About() {
 }
 
 function Gameinfo() {
-  // console.log(game_info);
   return  <div>
   <h5 > <img src={logo} alt="Logo NYSL" width="100" /> { nysl_league.title }</h5>
   <h5>Game Info</h5>
@@ -95,7 +94,20 @@ function Gameinfo() {
       })}
    </tbody>
     </table>
-    
+
+   <table className="table">
+   <tbody>
+      {additional_info_game.map(info => {
+        //var is_email=validator.isEmail(info.info);
+        //var info_temp ="N.A";
+        //if(is_email) {info_temp= '<a href={'mailto:${info_info}'}> '+info_info+' </a>'} else {info_temp=info.info};
+        return (
+        <tr key={info.id}><td>{info.label}</td><td>{info.info}</td></tr>
+        )
+      })}
+      </tbody> 
+        </table>
+
   </div>
 }
 
