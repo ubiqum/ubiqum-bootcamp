@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './nysl_logo.svg';
 import './App.css';
 import {nysl_league,sport_events,page_home_header,logo_alttext,logo_width} from "./components/home.js"
-import {game_info,additional_info_game,table_games_header,page_gameinfo_header,dayweek_warning} from "./components/gameinfo.js"
+import {game_info,additional_info_game,table_games_header,page_gameinfo_header,dayweek_warning,game_locations} from "./components/gameinfo.js"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHome,faInfoCircle,faRuler,faEnvelope,faFutbol,faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import {
@@ -17,30 +17,16 @@ export default function App() {
     <Router>
       <div>
         <Switch>
-        <Route path="/contact">
-            <Contact />
-          </Route>
-
-        <Route path="/regform">
-            <Regform />
-          </Route>
-        <Route path="/rules">
-            <Rules />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/gameinfo">
-            <Gameinfo />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+        <Route path="/contact">    <Contact />  </Route>
+        <Route path="/regform">    <Regform />  </Route>
+        <Route path="/rules">      <Rules />    </Route>
+        <Route path="/about">      <About />    </Route>
+        <Route path="/gameinfo">   <Gameinfo /> </Route>
+        <Route path="/">           <Home />     </Route>
         </Switch>
       </div>
       <nav className="navbar fixed-bottom navbar-light bg-light" >
               <NavLink to="/"> <FontAwesomeIcon size="lg" icon={faHome}/> </NavLink>
-              
               <NavLink to="/gameinfo"> <FontAwesomeIcon size="lg" icon={faFutbol}/> </NavLink>
               <NavLink to="/rules"><FontAwesomeIcon size="lg" icon={faRuler}/></NavLink>
               <NavLink to="/contact"><FontAwesomeIcon size="lg" icon={faEnvelope}/></NavLink>
@@ -89,8 +75,10 @@ function Gameinfo() {
   </thead>
   <tbody>
       {game_info.map(game => {
+        var location_temp=game.Location;
+        var game_location_temp=game_locations[location_temp][0].name_location;
         return (
-        <tr key={game.id}><td>{game.Date}</td><td>{game.Teams}</td><td>{game.Location}</td><td>{game.Times}</td>
+        <tr key={game.id}><td>{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
         </tr>
         )
       })}
