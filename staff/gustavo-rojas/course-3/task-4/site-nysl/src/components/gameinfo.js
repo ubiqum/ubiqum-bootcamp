@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+import logo from './nysl_logo.svg';
+import {nysl_league,logo_alttext,logo_width} from "./components/home.js"
 export const page_gameinfo_header = "Game Info";
 export const season_title = "Fall Schedule";
 export const dayweek_warning = "* All games take place on Saturday";
@@ -207,10 +210,20 @@ export const game_info = [
    },
    {
       "id": "017",
-      "Date": "2018-10-27",
+       "Date": "2018-10-27",
       "Teams": "U5 and U6",
       "Location": "03",
       "Times": "1:00 p.m."
    }
    
 ]
+
+export const GameDetails = () => {
+   const {id} =useParams();
+   return ( 
+<div>
+  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
+  <h5>Game Details {id}</h5>
+  </div>
+   );
+}

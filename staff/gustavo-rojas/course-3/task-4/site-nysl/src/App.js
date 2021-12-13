@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './nysl_logo.svg';
 import './App.css';
 import {nysl_league,sport_events,page_home_header,logo_alttext,logo_width} from "./components/home.js"
-import {game_info,additional_info_game,table_games_header,page_gameinfo_header,dayweek_warning,game_locations} from "./components/gameinfo.js"
+import {game_info,additional_info_game,table_games_header,page_gameinfo_header,dayweek_warning,game_locations,GameDetails } from "./components/gameinfo.js"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHome,faInfoCircle,faRuler,faEnvelope,faFutbol,faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import {
@@ -23,6 +23,7 @@ export default function App() {
         <Route path="/about">      <About />    </Route>
         <Route path="/gameinfo">   <Gameinfo /> </Route>
         <Route path="/">           <Home />     </Route>
+        <Route path="/gamedetails/:id">         <GameDetails /> </Route>
         </Switch>
       </div>
       <nav className="navbar fixed-bottom navbar-light bg-light" >
@@ -108,6 +109,7 @@ function Gameinfo() {
 
   </div>
 }
+
 
 function Rules() {
   return  <div>
