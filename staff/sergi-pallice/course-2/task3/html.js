@@ -1,15 +1,26 @@
 
-// Close all dropdown lists if the user clicks outside of it
-window.addEventListener('click', (event) => {
+/*---------------------------------------EVENT LISTENERS--------------------------------------- */
+document.getElementById("democrat").addEventListener("click", function () { filter_party() });
+document.getElementById("republican").addEventListener("click", function () { filter_party() });  
+document.getElementById("independent").addEventListener("click", function () { filter_party() });
+document.getElementById("state_filter").addEventListener("input",  function () { filter_party() });
+
+/*--------------------------------VAR TO TELL PAGE WE ARE ON------------------------------------ */
+var path = window.location.pathname;
+var page = path.split("/").pop();
+var congress = page.split('.')[0];
+//console.log(congress)
+
+
+/*--------------------------------DROPDOWN MENU FEATURES------------------------------------ */
+window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside of it
   if (!event.target.matches('.dropdown-btn')) {
     Array.from(document.querySelectorAll('.dropdown')).forEach((elt) => {
      elt.classList.remove('show');
     })
   }
 });
-
-// set all dropdown buttons to open their associated dropdown list on click
-Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {
+Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {   // Set all dropdown buttons to open their associated dropdown list on click
   const dropdown = btn.closest('.dropdown');
   if (dropdown) {
     btn.addEventListener('click', (evt) => {
@@ -19,6 +30,7 @@ Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {
   }
 });
 
+/*--------------------------------------STATE DICTIONARY------------------------------------------ */
 const states = {
   "AL": "Alabama",
   "AK": "Alaska",
@@ -83,8 +95,8 @@ const states = {
 
 /*---------------------------------------AUTO-CREATE TABLE---------------------------------------- */
 function makeMemberRows(members_array){
-  document.getElementById("senate-data").innerHTML = "";  // Deletes previous data in div
-  let table = document.getElementById("senate-data");     // We'll put the table inside div "senate-data"
+  document.getElementById(`${congress}-data`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${congress}-data`);     // We'll put the table inside correspondent div
   let thead = document.createElement('thead');            // Variable to create block header
   let tbody = document.createElement("tbody");            // Variable to create body
   /*-------------------------------------------TABLE HEADER---------------------------------------- */
@@ -181,7 +193,9 @@ function filter_party(){
 /*--------------------------------GET DATA AND SHOW FILTERED TABLE---------------------------------- */
 let members = [];
 async function fetchAsync () {
-  await fetch("http://localhost:8000/pro-congress-117-senate.json")
+  console.log(congress);
+  //await fetch("http://localhost:8000/pro-congress-117-senate.json")
+  await fetch(`http://localhost:8000/pro-congress-117-${congress}.json`)
     .then( (response) => {
       return response.json();         // Saving response into JSON format (because we know)   
       })
