@@ -9,14 +9,15 @@ document.getElementById("state_filter").addEventListener("input",  function () {
 var path = window.location.pathname;
 var page = path.split("/").pop();
 var congress = page.split('.')[0];
-//console.log(congress)
+console.log(congress)
 
 
 /*--------------------------------DROPDOWN MENU FEATURES------------------------------------ */
-window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside of it
+window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside
   if (!event.target.matches('.dropdown-btn')) {
-    Array.from(document.querySelectorAll('.dropdown')).forEach((elt) => {
-     elt.classList.remove('show');
+    Array.from(document.querySelectorAll('.dropdown')).forEach((element) => {
+      console.log("User clicking outside dropdown: " + !event.target.matches('.dropdown-btn'));
+      element.classList.remove('show');
     })
   }
 });
@@ -193,15 +194,13 @@ function filter_party(){
 /*--------------------------------GET DATA AND SHOW FILTERED TABLE---------------------------------- */
 let members = [];
 async function fetchAsync () {
-  console.log(congress);
-  //await fetch("http://localhost:8000/pro-congress-117-senate.json")
   await fetch(`http://localhost:8000/pro-congress-117-${congress}.json`)
     .then( (response) => {
       return response.json();         // Saving response into JSON format (because we know)   
       })
     .then( (json)=> {
-      members = json.results[0].members // This places itself in the array with all members
-      console.log(members)
+      members = json.results[0].members; // This places itself in the array with all members
+      //console.log(members);
       })
      .catch(reason => console.log(reason.message))
      filter_party();
