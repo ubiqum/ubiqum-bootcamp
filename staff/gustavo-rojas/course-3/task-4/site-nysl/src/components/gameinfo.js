@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import logo from './nysl_logo.svg';
-import {nysl_league,logo_alttext,logo_width} from "./components/home.js"
+import logo from '../nysl_logo.svg';
+import {nysl_league,logo_alttext,logo_width} from "../components/home.js"
 export const page_gameinfo_header = "Game Info";
 export const season_title = "Fall Schedule";
 export const dayweek_warning = "* All games take place on Saturday";
