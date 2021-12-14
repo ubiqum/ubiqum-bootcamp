@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import logo from '../nysl_logo.svg';
 import {nysl_league,logo_alttext,logo_width} from "../components/home.js"
+import validator from 'validator'
 export const page_gameinfo_header = "Game Info";
 export const season_title = "Fall Schedule";
 export const dayweek_warning = "* All games take place on Saturday";
@@ -40,13 +41,7 @@ export const additional_info_game = [
       "id": "05",
       "label": "Email:",
       "info": "michael.randall@chisoccer.org"
-   }
-   , {
-      "id": "06",
-      "label": "",
-      "info": ""
-   }
-
+   }   
 ]
 
 export const game_locations =
@@ -218,12 +213,62 @@ export const game_info = [
    
 ]
 
-export const GameDetails = () => {
+export function Gameinfo() {
+   return  <div>
+   <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
+   <h5>{page_gameinfo_header}</h5>
+   <h5>{dayweek_warning}</h5>
+   <table className="table">
+   <thead>
+   {table_games_header.map(header => {
+         return (
+         <tr key={header.id}><th>{header.first_col}</th><th>{header.second_col}</th><th>{header.third_col}</th><th>{header.fourth_col}</th>
+         </tr>
+         )
+       })}
+   </thead>
+   <tbody>
+       {game_info.map(game => {
+        
+         var location_temp=game.Location;
+         var game_location_temp=game_locations[location_temp][0].name_location;
+         //var gameid_temp=game.id;
+         return (
+         <tr key={game.id}><td>{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
+         </tr>
+         )
+       })}
+    </tbody>
+     </table>
+ 
+    <table className="table mb-5">
+    <tbody >
+       {additional_info_game.map(info => {
+         var is_email=validator.isEmail(info.info);
+         var info_temp ="N.A";
+         if(is_email) 
+           {
+             info_temp= <a href={`mailto: ${info.info}`}>{info.info}</a>
+           } 
+           else {
+             info_temp=info.info
+           };
+         return (
+         <tr key={info.id}>
+           <td>{info.label}</td>
+           <td>{info_temp}</td></tr>
+         )
+       })}
+      </tbody> 
+         </table>
+ 
+   </div>
+ }
+export function Gamedetails() {
    const {id} =useParams();
-   return ( 
-<div>
-  <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
-  <h5>Game Details {id}</h5>
-  </div>
-   );
-}
+    return  <div>
+   <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
+   <h5>Game Details {id}</h5>
+   </div>
+    
+  }
