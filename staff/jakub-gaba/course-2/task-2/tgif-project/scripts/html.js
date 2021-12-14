@@ -1,13 +1,16 @@
-
 var API = 'werjoImcxnptmekG4oOVTHidgbQOBbmJh4gj90mn';
 var url = 'https://api.propublica.org/congress/v1/117/senate/members.json';
 var D = [];
 var ID = [];
 var R = [];
 let saveValues;
+var Republicans = document.querySelector("input[id=republicanscheckbox]");
+var Democrats = document.querySelector("input[id=democratscheckbox]");
+var Independent = document.querySelector("input[id=independentcheckbox]");
+var statesData = document.getElementById("states_add");
 
 
-
+//Fetching data from congress ( JSON )
 export async function fetchJson() {
   const response = await fetch(url, {
     method: "GET",
@@ -19,6 +22,7 @@ export async function fetchJson() {
   return data;
 }
 
+//Shows facebook accounts of each person
 export function makeMemberRows(data) {
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].facebook_account == null) { }
@@ -27,10 +31,12 @@ export function makeMemberRows(data) {
     }
   }
   filterByParty(data);
+  saveValues = data;
   showStateData();
-  letsRoll(data);
+
 }
 
+//Filter to save and separate Democrats, Indepentens, Republicans
 export function filterByParty(data) {
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].party == "D") {
@@ -46,83 +52,131 @@ export function filterByParty(data) {
 
 }
 
+//Fetching states from ( JSON )
 export async function showStateData() {
   const response = await fetch("./states.json");
   const data = await response.json();
   return data;
 }
 
-
-
-// document.getElementById("myBtn").addEventListener("click", displayDemocrats);
-
-
-var Republicans = document.querySelector("input[id=republicanscheckbox]");
-var Democrats = document.querySelector("input[id=democratscheckbox]");
-var Independent = document.querySelector("input[id=independentcheckbox]");
-var statesData = document.getElementById("states_add");
-
-
-
+//Listener for listening between Republicans
 Republicans.addEventListener('change', function () {
-  if (this.checked) {
+  document.getElementById("filter").innerHTML = "";
+  var element = document.getElementById("states_add");
+  if (element.options[element.selectedIndex].value == 0) {
     for (let i = 0; i <= R.length - 1; i++) {
       var row = document.getElementById("R").insertRow();
       var cell = row.insertCell();
       cell.innerHTML = R[i];
     }
-  } else {
+  }
+  else {
+    for (let i = 0; i <= saveValues.results[0].members.length - 1; i++) {
+      if (saveValues.results[0].members[i].state == element.options[element.selectedIndex].value &&
+        saveValues.results[0].members[i].party == "R") {
+        var row = document.getElementById("R").insertRow();
+        var cell = row.insertCell();
+        cell.innerHTML = saveValues.results[0].members[i].first_name + " " + saveValues.results[0].members[i].last_name + " R ";
+      }
+    }
+  }
+  if (!Republicans.checked) {
     document.getElementById("R").innerHTML = "";
   }
 });
 
-
+//Listener for listening between Democrats
 Democrats.addEventListener('change', function () {
-  if (this.checked) {
+  document.getElementById("filter").innerHTML = "";
+  var element = document.getElementById("states_add");
+  if (element.options[element.selectedIndex].value == 0) {
     for (let i = 0; i <= D.length - 1; i++) {
       var row = document.getElementById("D").insertRow();
       var cell = row.insertCell();
       cell.innerHTML = D[i];
     }
-  } else {
+  }
+  else {
+    for (let i = 0; i <= saveValues.results[0].members.length - 1; i++) {
+      if (saveValues.results[0].members[i].state == element.options[element.selectedIndex].value && saveValues.results[0].members[i].party == "D") {
+        var row = document.getElementById("D").insertRow();
+        var cell = row.insertCell();
+        cell.innerHTML = saveValues.results[0].members[i].first_name + " " + saveValues.results[0].members[i].last_name + " D ";
+      }
+    }
+  }
+  if (!Democrats.checked) {
     document.getElementById("D").innerHTML = "";
   }
 });
 
-
+//Listener for listening between Independets
 Independent.addEventListener('change', function () {
-  if (this.checked) {
+  document.getElementById("filter").innerHTML = "";
+  var element = document.getElementById("states_add");
+  if (element.options[element.selectedIndex].value == 0) {
     for (let i = 0; i <= ID.length - 1; i++) {
       var row = document.getElementById("ID").insertRow();
       var cell = row.insertCell();
       cell.innerHTML = ID[i];
     }
-  } else {
+  }
+  else {
+    for (let i = 0; i <= saveValues.results[0].members.length - 1; i++) {
+      if (saveValues.results[0].members[i].state == element.options[element.selectedIndex].value && saveValues.results[0].members[i].party == "ID") {
+        var row = document.getElementById("ID").insertRow();
+        var cell = row.insertCell();
+        cell.innerHTML = saveValues.results[0].members[i].first_name + " " + saveValues.results[0].members[i].last_name + " ID ";
+      }
+    }
+  }
+  if (!Independent.checked) {
     document.getElementById("ID").innerHTML = "";
   }
 });
 
 
+//Listener for picking states
 statesData.addEventListener('change', function () {
+  document.getElementById("filter").innerHTML = "";
   var element = document.getElementById("states_add");
-  if (this.checked) {
-    for (let i = 0; i <= data.results[0].members.length - 1; i++) {
-      if (data.results[0].members[i].state == element.options[element.selectedIndex].value) {
-        console.log(data.results[0].members[i].first_name + " " + data.results[0].members[i].state + " " + element.options[element.selectedIndex].value);
-        var row = document.getElementById("impostor").insertRow();
-        var cell = row.insertCell();
-        cell.innerHTML = data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name;;
+  var actualValue = element.options[element.selectedIndex].value;
+  console.log(actualValue);
+  if (!(Republicans.checked) && !(Democrats.checked) && !(Independent.checked)) {
+  }
+  else {
+    let names = [];
+    console.log(document.getElementsByTagName("td").length);
+    for (let i = 0; i <= document.getElementsByTagName("td").length - 1; i++) {
+      for (let j = 0; j <= saveValues.results[0].members.length - 1; j++) {
+        if (document.getElementsByTagName("td")[i].innerHTML == saveValues.results[0].members[j].first_name + " " + saveValues.results[0].members[j].last_name &&
+          actualValue == saveValues.results[0].members[j].state) {
+          names.push(saveValues.results[0].members[j].first_name + " " + saveValues.results[0].members[j].last_name);
+        }
       }
     }
+    document.getElementById("R").innerHTML = "";
+    document.getElementById("D").innerHTML = "";
+    document.getElementById("ID").innerHTML = "";
+    for (let i = 0; i <= names.length - 1; i++) {
+      var row = document.getElementById("filter").insertRow();
+      var cell = row.insertCell();
+      cell.innerHTML = names[i];
+    }
+    Republicans.checked = false;
+    Democrats.checked = false;
+    Independent.checked = false;
+    console.log(document.getElementsByTagName("td").length);
   }
 });
 
+
+//Create and fill with states
 export function makeStatesMenu() {
   showStateData().then(data => {
     const saving = data;
     const keys = Object.keys(saving);
     const value = Object.values(saving);
-
     for (let i = 0; i < keys.length; i++) {
       let opt = document.createElement('option');
       opt.value = keys[i];
