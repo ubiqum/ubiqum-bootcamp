@@ -60,11 +60,6 @@ function About() {
   </div>
 }
 
-
-
-
-
-
 function Rules() {
   return  <div>
   <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
@@ -85,4 +80,3 @@ function Contact() {
   <h5>Contact</h5>
   </div>
 }
-

@@ -1,7 +1,10 @@
-import { useParams } from "react-router-dom";
 import logo from '../nysl_logo.svg';
 import {nysl_league,logo_alttext,logo_width} from "../components/home.js"
 import validator from 'validator'
+import {
+     useParams,
+  } from "react-router-dom";
+ 
 export const page_gameinfo_header = "Game Info";
 export const season_title = "Fall Schedule";
 export const dayweek_warning = "* All games take place on Saturday";
@@ -214,7 +217,11 @@ export const game_info = [
 ]
 
 export function Gameinfo() {
-   return  <div>
+   
+   function  Handleclick(gameid) {
+      window.location.href="/gamedetails/" + gameid.gameid_temp;
+     }
+    return  <div>
    <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
    <h5>{page_gameinfo_header}</h5>
    <h5>{dayweek_warning}</h5>
@@ -232,9 +239,10 @@ export function Gameinfo() {
         
          var location_temp=game.Location;
          var game_location_temp=game_locations[location_temp][0].name_location;
-         //var gameid_temp=game.id;
+         var gameid_temp=game.id;
+         //console.log(gameid_temp);
          return (
-         <tr key={game.id}><td>{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
+         <tr key={game.id} onClick={() => Handleclick({gameid_temp})}><td >{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
          </tr>
          )
        })}
