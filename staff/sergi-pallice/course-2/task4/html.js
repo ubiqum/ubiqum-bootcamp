@@ -6,30 +6,36 @@ document.getElementById("independent").addEventListener("click", function () { f
 document.getElementById("state_filter").addEventListener("input",  function () { filter_party() });
 
 /*--------------------------------VAR TO TELL PAGE WE ARE ON------------------------------------ */
-var path = window.location.pathname;
-var page = path.split("/").pop();
-var congress = page.split('.')[0];
-console.log(congress)
-
+let params = new URL(document.location).searchParams;
+let chamber = params.get('chamber');
+console.log(chamber);
 
 /*--------------------------------DROPDOWN MENU FEATURES------------------------------------ */
-window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside
+window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside of it
   if (!event.target.matches('.dropdown-btn')) {
+    console.log("click outside: " + !event.target.matches('.dropdown-btn'));
     Array.from(document.querySelectorAll('.dropdown')).forEach((element) => {
-      console.log("User clicking outside dropdown: " + !event.target.matches('.dropdown-btn'));
       element.classList.remove('show');
     })
   }
 });
 Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {   // Set all dropdown buttons to open their associated dropdown list on click
   const dropdown = btn.closest('.dropdown');
+  console.log(dropdown);
   if (dropdown) {
-    btn.addEventListener('click', (evt) => {
-      evt.preventDefault();
-      dropdown.classList.toggle('show');
+    btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    dropdown.classList.toggle('show');
     })
   }
 });
+/*------------------------------HIDING INFORMATION BASED ON PAGE-------------------------------- */
+var x = document.getElementById(`hide-${chamber}-info`);
+if (x.style.display === "none") {
+  x.style.display = "block";
+} else {
+  x.style.display = "none";
+}
 
 /*--------------------------------------STATE DICTIONARY------------------------------------------ */
 const states = {
@@ -96,8 +102,8 @@ const states = {
 
 /*---------------------------------------AUTO-CREATE TABLE---------------------------------------- */
 function makeMemberRows(members_array){
-  document.getElementById(`${congress}-data`).innerHTML = "";  // Deletes previous data in div
-  let table = document.getElementById(`${congress}-data`);     // We'll put the table inside correspondent div
+  document.getElementById(`${chamber}-data`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${chamber}-data`);     // We'll put the table inside correspondent div
   let thead = document.createElement('thead');            // Variable to create block header
   let tbody = document.createElement("tbody");            // Variable to create body
   /*-------------------------------------------TABLE HEADER---------------------------------------- */
@@ -194,13 +200,13 @@ function filter_party(){
 /*--------------------------------GET DATA AND SHOW FILTERED TABLE---------------------------------- */
 let members = [];
 async function fetchAsync () {
-  await fetch(`http://localhost:8000/pro-congress-117-${congress}.json`)
+  await fetch(`http://localhost:8000/pro-congress-117-${chamber}.json`)
     .then( (response) => {
       return response.json();         // Saving response into JSON format (because we know)   
       })
     .then( (json)=> {
-      members = json.results[0].members; // This places itself in the array with all members
-      //console.log(members);
+      members = json.results[0].members // This places itself in the array with all members
+      console.log(members)
       })
      .catch(reason => console.log(reason.message))
      filter_party();

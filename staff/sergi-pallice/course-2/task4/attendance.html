@@ -13,32 +13,30 @@
           <li class="dropdown">
             <button class="button dropdown-btn">Congress 117</button>
             <ul class="dropdown-items">
-              <li><a href="./senate.html">Senate</a></li>
-              <li><a href="./house.html">House</a></li>
+              <li><a href="./members.html?chamber=senate">Senate</a></li>
+              <li><a href="./members.html?chamber=house">House</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <button class="button dropdown-btn">Attendance</button>
             <ul class="dropdown-items">
-              <li><a href="./senate-attendance.html">Senate</a></li>
-              <li><a href="./house-attendance.html">House</a></li>
+              <li><a href="./attendance.html?chamber=senate">Senate</a></li>
+              <li><a href="./attendance.html?chamber=house">House</a></li>
             </ul>
           </li>
-          <li class="dropdown">
+          <!-- <li class="dropdown">
             <button class="button dropdown-btn">Loyalty</button>
             <ul class="dropdown-items">
               <li><a href="./senate-loyalty.html">Senate</a></li>
               <li><a href="./house-loyalty.html">House</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
       </nav>
 
     <div>
       <h1>Attendance</h1>
-
-      <p>
-        
+      <p> 
         The Constitution specifies that a majority of members constitutes a quorum 
         to do business in each house. Representatives and senators rarely force the 
         presence of a quorum by demanding quorum calls; thus, in most cases, debates 
@@ -53,7 +51,8 @@
         the Vice President may (if present) cast the tiebreaking vote.
       </p>
   	  
-      <h2>Senate at a Glance</h2>
+      <h2 id="hide-house-info">Senate at a Glance</h2>
+      <h2 id="hide-senate-info">House at a Glance</h2>
 
       <table>
         <thead>
@@ -83,7 +82,7 @@
       </table>
 
       <h2>Least Engaged (Bottom 10% Attendance)</h2>
-      <table>
+      <!-- <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -123,11 +122,11 @@
             <td>--</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 
       <h2>Most Engaged (Top 10% Attendance)</h2>
-      <table>
-        <thead>
+      <!-- <<table>
+        thead>
           <tr>
             <th>Name</th>
             <th>Number of Missed Votes</th>
@@ -170,8 +169,8 @@
             <td>--</td>
             <td>--</td>
           </tr>
-        </tbody>
-      </table>
+        </tbody> 
+      </table>-->
 
   	</div>
     <script src="tgif.js"></script>
