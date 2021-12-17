@@ -53,13 +53,13 @@ export const game_locations =
       {
          "name_location": "AJ Katzenmaier Elementary",
          "address": "24 W. Walton St., Chicago, IL 60610",
-         "url_map": "https://goo.gl/maps/6b8Z6o6UG8nXyDL56"
+         "google_maps_placeid": "ChIJw7r2B07TD4gRhiyVWV0uqGg"
       }],
    "02": [
       {
          "name_location": "Greenbay Elementary",
          "address": "1734 N. Orleans St., Chicago, IL 60614",
-         "url_map": "https://goo.gl/maps/EKVcpqpMGC1yzwPj9"
+         "google_maps_placeid": "ChIJowbzc0DTD4gRDj_y-LsmF54"
       }
    ],
 
@@ -67,14 +67,14 @@ export const game_locations =
       {
          "name_location": "Howard A Yeager Elementary",
          "address": "2245 N. Southport Ave., Chicago, IL 60614",
-         "url_map": "https://goo.gl/maps/jsn7JYJ3eRAgd3kw7"
+         "google_maps_placeid": "ChIJLY2bf-PSD4gR1lXXfZCLrWI"
       }],
 
    "04": [
       {
          "name_location": "Marjorie P Hart Elementary",
          "address": "2625 N. Orchard St., Chicago, IL 60614",
-         "url_map": "https://goo.gl/maps/621gq7txUzApuPzF8"
+         "google_maps_placeid": "ChIJUeUwJg_TD4gRFPfOpUSecT4"
 
       }],
 
@@ -82,13 +82,13 @@ export const game_locations =
       {
          "name_location": "North Elementary",
          "address": "1409 N. Ogden Ave., Chicago, IL 60610",
-         "url_map": "https://goo.gl/maps/3ei5SWFMY3Ar1X8m8"
+         "google_maps_placeid": "ChIJXahMZzrTD4gRxVBJPBbHQJk"
       }],
    "06": [
       {
          "name_location": "South Elementary",
          "address": "2101 N. Fremont St., Chicago, IL 60614",
-         "url_map": "https://goo.gl/maps/rPTAja92ECpNW9667"
+         "google_maps_placeid": "ChIJxx20bxnTD4gR9W0z1vfnC5c"
       }]
 }
 
@@ -284,8 +284,10 @@ export function Gamedetails() {
    const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
    let gametodisplay = game_info.find(game => game.id === id);
    var game_location_temp = game_locations[gametodisplay.Location][0].name_location;
-   var game_location_address_temp=game_locations[gametodisplay.Location][0].address;
-   var game_location_url_temp=game_locations[gametodisplay.Location][0].url_map+"?key="+API_KEY;
+   var game_location_address_temp = game_locations[gametodisplay.Location][0].address;
+   var google_api_url="https://www.google.com/maps/embed/v1/place?q=place_id:";
+   var game_location_id_temp=game_locations[gametodisplay.Location][0].google_maps_placeid;
+   var game_location_url_temp=google_api_url.concat(game_location_id_temp,"&key=",API_KEY);
    return <div>
       <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
       <h5>Game Details </h5>
@@ -299,7 +301,7 @@ export function Gamedetails() {
          </tbody>
       </table>
       <div >
-      <iframe title='Maps test' width="600" height="450" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJxx20bxnTD4gR9W0z1vfnC5c&key=AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY"></iframe>
+      <iframe title='Game Location Google Maps' width="600" height="450" loading="lazy" allowFullScreen src={game_location_url_temp}></iframe>
       </div>
    </div>
 
