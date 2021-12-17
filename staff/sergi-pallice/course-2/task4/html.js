@@ -8,7 +8,7 @@ document.getElementById("state_filter").addEventListener("input",  function () {
 /*--------------------------------VAR TO TELL PAGE WE ARE ON------------------------------------ */
 let params = new URL(document.location).searchParams;
 let chamber = params.get('chamber');
-console.log(chamber);
+console.log("chamber: " + chamber);
 
 /*--------------------------------DROPDOWN MENU FEATURES------------------------------------ */
 window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside of it
@@ -100,7 +100,7 @@ const states = {
   "WY": "Wyoming"
 }
 
-/*---------------------------------------AUTO-CREATE TABLE---------------------------------------- */
+/*------------------------------AUTO-CREATE TABLE TO LIST MEMBERS---------------------------------------- */
 function makeMemberRows(members_array){
   document.getElementById(`${chamber}-data`).innerHTML = "";  // Deletes previous data in div
   let table = document.getElementById(`${chamber}-data`);     // We'll put the table inside correspondent div
@@ -162,6 +162,10 @@ function makeMemberRows(members_array){
     tbody.appendChild(tr);          //Append row to body
     table.appendChild(tbody);        //Append body to table
        }
+}
+
+function attendance{
+  
 }
 
 /*-------------------------------------FILTER CREATED TABLE---------------------------------------- */

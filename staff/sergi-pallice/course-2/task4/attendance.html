@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
     <title>Attendance</title>
-    <link rel="stylesheet" href="./tgif.css">
-    </head>
-    
+    <meta name="description" content="InSider, Transparent Government web app">
+    <meta name="sergi" content="SitePoint">
+  
+    <meta property="og:title" content="TGIF">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Make it easier to the public to see how their government works">
+  
+    <link rel="stylesheet" href="tgif.css">
+  </head>
+
     <body>
       <a class="logo" href="./index.html">TGIF</a>
       <nav>
@@ -80,9 +90,11 @@
           </tr>
         </tbody>
       </table>
+      <div class="data"><table id="house-attendance"></table></div>
+      <div class="data"><table id="senate-attendance"></table></div>
 
-      <h2>Least Engaged (Bottom 10% Attendance)</h2>
-      <!-- <table>
+      <!-- <h2>Least Engaged (Bottom 10% Attendance)</h2>
+      <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -124,8 +136,8 @@
         </tbody>
       </table> -->
 
-      <h2>Most Engaged (Top 10% Attendance)</h2>
-      <!-- <<table>
+      <!-- <h2>Most Engaged (Top 10% Attendance)</h2>
+      <<table>
         thead>
           <tr>
             <th>Name</th>
@@ -173,6 +185,6 @@
       </table>-->
 
   	</div>
-    <script src="tgif.js"></script>
+    <script src="html.js"></script>
 </body>
 </html>
