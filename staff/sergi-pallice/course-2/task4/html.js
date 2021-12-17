@@ -1,14 +1,19 @@
-
-/*---------------------------------------EVENT LISTENERS--------------------------------------- */
-document.getElementById("democrat").addEventListener("click", function () { filter_party() });
-document.getElementById("republican").addEventListener("click", function () { filter_party() });  
-document.getElementById("independent").addEventListener("click", function () { filter_party() });
-document.getElementById("state_filter").addEventListener("input",  function () { filter_party() });
-
 /*--------------------------------VAR TO TELL PAGE WE ARE ON------------------------------------ */
 let params = new URL(document.location).searchParams;
 let chamber = params.get('chamber');
 console.log("chamber: " + chamber);
+
+/*---------------------------------------EVENT LISTENERS--------------------------------------- */
+var path = window.location.pathname;
+var page = path.split("/").pop().split('.')[0];
+console.log("page: " + page);
+
+if (page === "members") {
+document.getElementById("democrat").addEventListener("click", function () { filter_party() });
+document.getElementById("republican").addEventListener("click", function () { filter_party() });  
+document.getElementById("independent").addEventListener("click", function () { filter_party() });
+document.getElementById("state_filter").addEventListener("input",  function () { filter_party() });
+}
 
 /*--------------------------------DROPDOWN MENU FEATURES------------------------------------ */
 window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside of it
@@ -31,11 +36,7 @@ Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {   // S
 });
 /*------------------------------HIDING INFORMATION BASED ON PAGE-------------------------------- */
 var x = document.getElementById(`hide-${chamber}-info`);
-if (x.style.display === "none") {
-  x.style.display = "block";
-} else {
-  x.style.display = "none";
-}
+if (x.style.display === "none") {x.style.display = "block"} else {x.style.display = "none"}
 
 /*--------------------------------------STATE DICTIONARY------------------------------------------ */
 const states = {
@@ -164,8 +165,64 @@ function makeMemberRows(members_array){
        }
 }
 
-function attendance{
-  
+/*------------------------------AUTO-CREATE ATTENDANCE TABLE---------------------------------------- */
+function makeAttendanceRows(){
+  document.getElementById(`${chamber}-attendance`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${chamber}-attendance`);     // We'll put the table inside correspondent div
+  let thead = document.createElement('thead');            // Variable to create block header
+  let tbody = document.createElement("tbody");            // Variable to create body
+  /*-------------------------------------------TABLE HEADER---------------------------------------- */
+  let tr      = document.createElement('tr');
+  let th1 = document.createElement('th');
+  let th2 = document.createElement('th');
+  let th3 = document.createElement('th');
+  let col1 = document.createTextNode("Party");
+  let col2 = document.createTextNode("Number of Reps");
+  let col3 = document.createTextNode("% Votes with Party");
+
+  th1.appendChild(col1);          // Append head text
+  th2.appendChild(col2);
+  th3.appendChild(col3);
+  tr.appendChild(th1);            // Append cell
+  tr.appendChild(th2);
+  tr.appendChild(th3);
+  thead.appendChild(tr);          // Append row to header
+  table.appendChild(thead);       // Append head to table
+
+  /*-------------------------------------------INSERT ROWS---------------------------------------- */
+  for (let i=0; i < 3; i++) {
+    let party = ["Republican", "Democrat", "Independent"];
+    let totals = [total_rep, total_dem, total_ind];
+
+    let tr  =  document.createElement('tr');
+    let td1 =  document.createElement('td');
+    let td2 =  document.createElement('td');
+    let td3 =  document.createElement('td');
+    let text1 =  document.createTextNode(party[i]);
+    let text2 =  document.createTextNode(totals[i]);
+    let text3 =  document.createTextNode("NA");
+
+    td1.appendChild(text1);           //Append text
+    td2.appendChild(text2);
+    td3.appendChild(text3);
+    tr.appendChild(td1);            // Append cell
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tbody.appendChild(tr);          //Append row to body
+    table.appendChild(tbody);        //Append body to table
+  }
+}
+
+/*--------------------------------FILL IN ATTENDANCE TABLE---------------------------------------- */
+let total_rep = 0, total_dem = 0, total_ind = 0;
+function attendanceData(){
+  for (var i = 0; i < members.length; i++) {
+    if (members[i].party === 'D') { total_dem++ } 
+    if (members[i].party === 'R') { total_rep++ }
+    if (members[i].party === 'ID') { total_ind++ }  
+  }     
+  console.log(total_rep, total_dem, total_ind);
+  makeAttendanceRows();
 }
 
 /*-------------------------------------FILTER CREATED TABLE---------------------------------------- */
@@ -201,7 +258,8 @@ function filter_party(){
   makeMemberRows(selected_members);
 }
 
-/*--------------------------------GET DATA AND SHOW FILTERED TABLE---------------------------------- */
+/*--------------------------------GET DATA AND SHOW IT---------------------------------- */
+//NOTE: All functions must be run inside fetchAsync or else they won't call the json.
 let members = [];
 async function fetchAsync () {
   await fetch(`http://localhost:8000/pro-congress-117-${chamber}.json`)
@@ -210,11 +268,12 @@ async function fetchAsync () {
       })
     .then( (json)=> {
       members = json.results[0].members // This places itself in the array with all members
-      console.log(members)
+      console.log(members);
       })
      .catch(reason => console.log(reason.message))
-     filter_party();
+     if (page === "members") { filter_party() };
+     if (page === "attendance") { attendanceData() };
 }
 
-fetchAsync()
+fetchAsync();
 
