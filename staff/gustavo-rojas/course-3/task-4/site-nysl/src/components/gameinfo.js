@@ -1,10 +1,10 @@
 import logo from '../nysl_logo.svg';
-import {nysl_league,logo_alttext,logo_width} from "../components/home.js"
+import { nysl_league, logo_alttext, logo_width } from "../components/home.js"
 import validator from 'validator'
 import {
-     useParams,
-  } from "react-router-dom";
- 
+   useParams
+} from "react-router-dom";
+
 export const page_gameinfo_header = "Game Info";
 export const season_title = "Fall Schedule";
 export const dayweek_warning = "* All games take place on Saturday";
@@ -44,7 +44,7 @@ export const additional_info_game = [
       "id": "05",
       "label": "Email:",
       "info": "michael.randall@chisoccer.org"
-   }   
+   }
 ]
 
 export const game_locations =
@@ -208,75 +208,99 @@ export const game_info = [
    },
    {
       "id": "017",
-       "Date": "2018-10-27",
+      "Date": "2018-10-27",
       "Teams": "U5 and U6",
       "Location": "03",
       "Times": "1:00 p.m."
    }
-   
+
 ]
 
 export function Gameinfo() {
-   
-   function  Handleclick(gameid) {
-      window.location.href="/gamedetails/" + gameid.gameid_temp;
-     }
-    return  <div>
-   <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
-   <h5>{page_gameinfo_header}</h5>
-   <h5>{dayweek_warning}</h5>
-   <table className="table">
-   <thead>
-   {table_games_header.map(header => {
-         return (
-         <tr key={header.id}><th>{header.first_col}</th><th>{header.second_col}</th><th>{header.third_col}</th><th>{header.fourth_col}</th>
-         </tr>
-         )
-       })}
-   </thead>
-   <tbody>
-       {game_info.map(game => {
-        
-         var location_temp=game.Location;
-         var game_location_temp=game_locations[location_temp][0].name_location;
-         var gameid_temp=game.id;
-         //console.log(gameid_temp);
-         return (
-         <tr key={game.id} onClick={() => Handleclick({gameid_temp})}><td >{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
-         </tr>
-         )
-       })}
-    </tbody>
-     </table>
- 
-    <table className="table mb-5">
-    <tbody >
-       {additional_info_game.map(info => {
-         var is_email=validator.isEmail(info.info);
-         var info_temp ="N.A";
-         if(is_email) 
-           {
-             info_temp= <a href={`mailto: ${info.info}`}>{info.info}</a>
-           } 
-           else {
-             info_temp=info.info
-           };
-         return (
-         <tr key={info.id}>
-           <td>{info.label}</td>
-           <td>{info_temp}</td></tr>
-         )
-       })}
-      </tbody> 
-         </table>
- 
+
+   function Handleclick(gameid) {
+      window.location.href = "/gamedetails/" + gameid.gameid_temp;
+   }
+   return <div>
+      <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+      <h5>{page_gameinfo_header}</h5>
+      <h5>{dayweek_warning}</h5>
+      <table className="table">
+         <thead>
+            {table_games_header.map(header => {
+               return (
+                  <tr key={header.id}><th>{header.first_col}</th><th>{header.second_col}</th><th>{header.third_col}</th><th>{header.fourth_col}</th>
+                  </tr>
+               )
+            })}
+         </thead>
+         <tbody>
+            {game_info.map(game => {
+
+               var location_temp = game.Location;
+               var game_location_temp = game_locations[location_temp][0].name_location;
+               console.log(game_locations[location_temp].name_location);
+               var gameid_temp = game.id;
+               return (
+                  <tr key={game.id} onClick={() => Handleclick({ gameid_temp })}><td >{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
+                  </tr>
+               )
+            })}
+         </tbody>
+      </table>
+
+      <table className="table mb-5">
+         <tbody >
+            {additional_info_game.map(info => {
+               var is_email = validator.isEmail(info.info);
+               var info_temp = "N.A";
+               if (is_email) {
+                  info_temp = <a href={`mailto: ${info.info}`}>{info.info}</a>
+               }
+               else {
+                  info_temp = info.info
+               };
+               return (
+                  <tr key={info.id}>
+                     <td>{info.label}</td>
+                     <td>{info_temp}</td></tr>
+               )
+            })}
+         </tbody>
+      </table>
+
    </div>
- }
+}
+const label_game_details = [
+   {
+      label_date: "Date",
+      label_team: "Team",
+      label_location: "Location",
+      label_address:"Address",
+      label_time: "Time"
+   }]
 export function Gamedetails() {
-   const {id} =useParams();
-    return  <div>
-   <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> { nysl_league.title }</h5>
-   <h5>Game Details {id}</h5>
+   const { id } = useParams();
+   const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
+   let gametodisplay = game_info.find(game => game.id === id);
+   var game_location_temp = game_locations[gametodisplay.Location][0].name_location;
+   var game_location_address_temp=game_locations[gametodisplay.Location][0].address;
+   var game_location_url_temp=game_locations[gametodisplay.Location][0].url_map+"?key="+API_KEY;
+   return <div>
+      <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+      <h5>Game Details </h5>
+      <table className="table">
+         <tbody>
+            <tr><td>{label_game_details[0].label_date}</td><td>{gametodisplay.Date}</td></tr>
+            <tr><td>{label_game_details[0].label_time}</td><td>{gametodisplay.Times}</td></tr>
+            <tr><td>{label_game_details[0].label_location}</td><td>{game_location_temp}</td></tr>
+            <tr><td>{label_game_details[0].label_address}</td><td>{game_location_address_temp}</td></tr>
+            <tr><td>{label_game_details[0].label_team}</td><td>{gametodisplay.Teams}</td></tr>
+         </tbody>
+      </table>
+      <div >
+      <iframe title='Maps test' width="600" height="450" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJxx20bxnTD4gR9W0z1vfnC5c&key=AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY"></iframe>
+      </div>
    </div>
-    
-  }
+
+}
