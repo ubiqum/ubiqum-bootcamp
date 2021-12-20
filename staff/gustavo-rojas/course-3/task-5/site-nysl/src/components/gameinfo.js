@@ -1,5 +1,6 @@
 import logo from '../nysl_logo.svg';
 import { nysl_league, logo_alttext, logo_width } from "../components/home.js"
+import {SignInButton,useUserState,SignOuButton} from '../utilities/firebase.js'
 import validator from 'validator'
 import {
    useParams
@@ -217,12 +218,22 @@ export const game_info = [
 ]
 
 export function Gameinfo() {
-
+   const [user] = useUserState();
    function Handleclick(gameid) {
       window.location.href = "/gamedetails/" + gameid.gameid_temp;
    }
    return <div>
-      <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+      <div className="btn-toolbar justify-content-between">
+        <div>
+          <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+        </div>
+        <div>
+        { user ? <SignOuButton /> : <SignInButton /> }
+        </div>
+      </div>
+      
+      
+      
       <h5>{page_gameinfo_header}</h5>
       <h5>{dayweek_warning}</h5>
       <table className="table">
