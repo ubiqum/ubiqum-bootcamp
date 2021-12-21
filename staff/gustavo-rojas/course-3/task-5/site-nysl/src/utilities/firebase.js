@@ -9,7 +9,7 @@ export const signInWithGoogle = () => {
   };
 
 const firebaseSignOut = () => signOut(getAuth(firebase));
-//export { firebaseSignOut as signOut };
+
 
 export const useUserState = () => {
   const [user, setUser] = useState();
