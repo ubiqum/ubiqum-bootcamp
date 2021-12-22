@@ -1,6 +1,7 @@
 import logo from '../nysl_logo.svg';
 import { nysl_league, logo_alttext, logo_width } from "../components/home.js"
 import {SignInButton,useUserState,SignOuButton} from '../utilities/firebase.js'
+//import {message_unique_id} from '../components/chat-board.js'
 import validator from 'validator'
 import {
    useParams
@@ -231,9 +232,6 @@ export function Gameinfo() {
         { user ? <SignOuButton /> : <SignInButton /> }
         </div>
       </div>
-      
-      
-      
       <h5>{page_gameinfo_header}</h5>
       <h5>{dayweek_warning}</h5>
       <table className="table">
@@ -247,7 +245,6 @@ export function Gameinfo() {
          </thead>
          <tbody>
             {game_info.map(game => {
-
                var location_temp = game.Location;
                var game_location_temp = game_locations[location_temp][0].name_location;
                console.log(game_locations[location_temp].name_location);
@@ -259,7 +256,6 @@ export function Gameinfo() {
             })}
          </tbody>
       </table>
-
       <table className="table mb-5">
          <tbody >
             {additional_info_game.map(info => {
@@ -291,6 +287,7 @@ const label_game_details = [
       label_time: "Time"
    }]
 export function Gamedetails() {
+   //console.log(message_unique_id());
    const { id } = useParams();
    const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
    let gametodisplay = game_info.find(game => game.id === id);
@@ -300,7 +297,7 @@ export function Gamedetails() {
    var game_location_id_temp=game_locations[gametodisplay.Location][0].google_maps_placeid;
    var game_location_url_temp=google_api_url.concat(game_location_id_temp,"&key=",API_KEY);
    return <div>
-      <h5 > <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+      <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
       <h5>Game Details </h5>
       <table className="table">
          <tbody>
@@ -311,8 +308,8 @@ export function Gamedetails() {
             <tr><td>{label_game_details[0].label_team}</td><td>{gametodisplay.Teams}</td></tr>
          </tbody>
       </table>
-      <div >
-      <iframe title='Game Location Google Maps' width="600" height="450" loading="lazy" allowFullScreen src={game_location_url_temp}></iframe>
+      <div className="embed-responsive embed-responsive-1by1">
+      <iframe title='Game Location Google Maps' className="embed-responsive-item" allowFullScreen src={game_location_url_temp}></iframe>
       </div>
    </div>
 
