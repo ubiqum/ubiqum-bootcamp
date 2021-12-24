@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 // import { getAnalytics } from "firebase/analytics";
-import { getDatabase, onValue, ref, set } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
 // const analytics = getAnalytics(app);
@@ -48,37 +48,10 @@ export const SignOuButton = () => (
     </button>
   );
 
-  
+  export const database = getDatabase(firebase);
 
-  const database = getDatabase(firebase);
-  export const setData = (path, value) => (
-    set(ref(database, path), value)
-  );
-  export const useData = (path, transform) => {
-    const [data, setData] = useState();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState();
   
-    useEffect(() => {
-      const dbRef = ref(database, path);
-      const devMode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
-      if (devMode) { console.log(`loading ${path}`); }
-      return onValue(dbRef, (snapshot) => {
-        const val = snapshot.val();
-        if (devMode) { console.log(val); }
-        setData(transform ? transform(val) : val);
-        setLoading(false);
-        setError(null);
-      }, (error) => {
-        setData(null);
-        setLoading(false);
-        setError(error);
-      });
-    }, [path, transform]);
   
-    return [data, loading, error];
-  };
-
 
 
 

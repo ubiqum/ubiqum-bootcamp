@@ -4,6 +4,7 @@ import './App.css';
 import { nysl_league, logo_alttext, logo_width,Home} from "./components/home.js"
 import { Gamedetails, Gameinfo } from "./components/gameinfo.js"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Chatboard} from './components/chat-board.js'
 import { faHome, faInfoCircle, faRuler, faEnvelope, faFutbol, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {
   BrowserRouter as Router,
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/about">                   <About />       </Route>
           <Route path="/gameinfo">                <Gameinfo />    </Route>
           <Route path="/gamedetails/:id">         <Gamedetails /> </Route>
+          <Route path="/chatboard/:id">           <Chatboard />   </Route>
           <Route path="/">                        <Home />        </Route>
         </Switch>
       </div>

@@ -7,7 +7,8 @@ import {
    useParams
 } from "react-router-dom";
 
-export const page_gameinfo_header = "Game Info";
+const page_gameinfo_header = "Game Info";
+const page_gamedetails_header="Game Details ";
 export const season_title = "Fall Schedule";
 export const dayweek_warning = "* All games take place on Saturday";
 export const table_games_header = [
@@ -287,7 +288,7 @@ const label_game_details = [
       label_time: "Time"
    }]
 export function Gamedetails() {
-   //console.log(message_unique_id());
+   const [user] = useUserState();
    const { id } = useParams();
    const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
    let gametodisplay = game_info.find(game => game.id === id);
@@ -297,8 +298,15 @@ export function Gamedetails() {
    var game_location_id_temp=game_locations[gametodisplay.Location][0].google_maps_placeid;
    var game_location_url_temp=google_api_url.concat(game_location_id_temp,"&key=",API_KEY);
    return <div>
-      <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
-      <h5>Game Details </h5>
+      <div className="btn-toolbar justify-content-between">
+        <div>
+          <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+        </div>
+        <div>
+        { user ? <SignOuButton /> : <SignInButton /> }
+        </div>
+      </div>
+      <h5>{page_gamedetails_header}</h5>
       <table className="table">
          <tbody>
             <tr><td>{label_game_details[0].label_date}</td><td>{gametodisplay.Date}</td></tr>
