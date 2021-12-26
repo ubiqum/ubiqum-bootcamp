@@ -1,19 +1,18 @@
 import logo from '../nysl_logo.svg';
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-//import { useHistory } from "react-router-dom";
 import { nysl_league, logo_alttext, logo_width } from "../components/home.js"
-import {SignInButton,useUserState,SignOuButton} from '../utilities/firebase.js'
-//import {Gameboardbutton} from '../components/chat-board.js'
+import { SignInButton, useUserState, SignOuButton } from '../utilities/firebase.js'
 import validator from 'validator'
 import {
    useParams
 } from "react-router-dom";
 
 const page_gameinfo_header = "Game Info";
-const page_gamedetails_header="Game Details ";
+const page_gamedetails_header = "Game Details ";
 export const season_title = "Fall Schedule";
 const dayweek_warning = "* All games take place on Saturday";
+const label_button_gameboardchat="Game Board Chat";
 const table_games_header = [
    {
       "id": "01",
@@ -225,19 +224,19 @@ export const game_info = [
 export function Gameinfo() {
    const [user] = useUserState();
    let navigate = useNavigate();
-   
-   function Handleclick(gameid) {
-   let path="/gamedetails/" + gameid.gameid_temp;
-   navigate(path)
+   var route_gamedetails = "/gamedetails/"
+   function Handleclick(route, gameid) {
+      let path = route.route_gamedetails + gameid.gameid_temp;
+      navigate(path)
    }
    return <div>
       <div className="btn-toolbar justify-content-between">
-        <div>
-          <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
-        </div>
-        <div>
-        { user ? <SignOuButton /> : <SignInButton /> }
-        </div>
+         <div>
+            <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+         </div>
+         <div>
+            {user ? <SignOuButton /> : <SignInButton />}
+         </div>
       </div>
       <h5>{page_gameinfo_header}</h5>
       <h5>{dayweek_warning}</h5>
@@ -257,7 +256,7 @@ export function Gameinfo() {
                console.log(game_locations[location_temp].name_location);
                var gameid_temp = game.id;
                return (
-                  <tr key={game.id} onClick={() => Handleclick({ gameid_temp })}><td >{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
+                  <tr key={game.id} onClick={() => Handleclick({ route_gamedetails }, { gameid_temp })}><td >{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>
                   </tr>
                )
             })}
@@ -290,45 +289,47 @@ const label_game_details = [
       label_date: "Date",
       label_team: "Team",
       label_location: "Location",
-      label_address:"Address",
+      label_address: "Address",
       label_time: "Time"
    }]
-   
-   
 
-   export function Gamedetails() {
+
+
+export function Gamedetails() {
    const [user] = useUserState();
    const { id } = useParams();
-   
-   const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
+
+   const API_KEY = "AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
    let gametodisplay = game_info.find(game => game.id === id);
    var game_location_temp = game_locations[gametodisplay.Location][0].name_location;
    var game_location_address_temp = game_locations[gametodisplay.Location][0].address;
-  // console.log(id);
-   var google_api_url="https://www.google.com/maps/embed/v1/place?q=place_id:";
-   var game_location_id_temp=game_locations[gametodisplay.Location][0].google_maps_placeid;
-   var game_location_url_temp=google_api_url.concat(game_location_id_temp,"&key=",API_KEY);
+
+   var google_api_url = "https://www.google.com/maps/embed/v1/place?q=place_id:";
+   var game_location_id_temp = game_locations[gametodisplay.Location][0].google_maps_placeid;
+   var game_location_url_temp = google_api_url.concat(game_location_id_temp, "&key=", API_KEY);
+
    let navigate = useNavigate();
+   var route_gamedetails = "/chatboard/"
+   function Handleclick(route, id) {
+      let path = route.route_gamedetails + id.id;
+      navigate(path)
+   }
    
-   function Handleclick(idgame) {
-     let path="/chatboard/" + idgame;
-     navigate(path)
-     }
-    
-  const Gameboardbutton = () => (
+
+   const Gameboardbutton = () => (
       <button className="btn btn-secondary btn-sm"
-          onClick={() => Handleclick({id})}>
-        Game Board
+         onClick={() => Handleclick({route_gamedetails},{ id })}>
+         {label_button_gameboardchat}
       </button>
-    );
+   );
    return <div>
       <div className="btn-toolbar justify-content-between">
-        <div>
-          <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
-        </div>
-        <div>
-        { user ? <SignOuButton /> : <SignInButton /> }
-        </div>
+         <div>
+            <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+         </div>
+         <div>
+            {user ? <SignOuButton /> : <SignInButton />}
+         </div>
       </div>
       <h5>{page_gamedetails_header}</h5>
       <table className="table">
@@ -341,10 +342,10 @@ const label_game_details = [
          </tbody>
       </table>
       <div>
-      <Gameboardbutton />
+         <Gameboardbutton />
       </div>
       <div className="embed-responsive embed-responsive-1by1">
-      <iframe title='Game Location Google Maps' className="embed-responsive-item" allowFullScreen src={game_location_url_temp}></iframe>
+         <iframe title='Game Location Google Maps' className="embed-responsive-item" allowFullScreen src={game_location_url_temp}></iframe>
       </div>
    </div>
 

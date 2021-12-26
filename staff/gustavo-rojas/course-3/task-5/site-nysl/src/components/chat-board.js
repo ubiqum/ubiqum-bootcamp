@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
-//import React from 'react';
-//import { useNavigate } from "react-router-dom";
-//import { Router } from 'react-router';
-//import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { nysl_league, logo_alttext, logo_width } from "../components/home.js";
+import logo from '../nysl_logo.svg';
+import { SignInButton, useUserState, SignOuButton } from '../utilities/firebase.js'
+const page_gamechatboard_header = "Game Board Chat";
 
 export function message_unique_id() {
     return uuidv4()
@@ -11,10 +11,20 @@ export function message_unique_id() {
 }
 export function Chatboard() {
   const { id } = useParams();
+  const [user] = useUserState();
   return <div>
-          <p> Hello {id} </p>
-          </div>
+          <div className="btn-toolbar justify-content-between">
+         <div>
+            <h5> <img src={logo} alt={logo_alttext} width={logo_width} /> {nysl_league.title}</h5>
+         </div>
+         <div>
+            {user ? <SignOuButton /> : <SignInButton />}
+         </div>
           
+          
+          </div>
+          <p> {page_gamechatboard_header} "Game ID" {id} </p>
+          </div>
             }
 
 function toTimestamp(strDate){
