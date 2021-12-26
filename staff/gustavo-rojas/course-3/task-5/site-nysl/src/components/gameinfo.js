@@ -1,7 +1,10 @@
 import logo from '../nysl_logo.svg';
+import React from 'react';
+import { useNavigate } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import { nysl_league, logo_alttext, logo_width } from "../components/home.js"
 import {SignInButton,useUserState,SignOuButton} from '../utilities/firebase.js'
-//import {message_unique_id} from '../components/chat-board.js'
+//import {Gameboardbutton} from '../components/chat-board.js'
 import validator from 'validator'
 import {
    useParams
@@ -10,8 +13,8 @@ import {
 const page_gameinfo_header = "Game Info";
 const page_gamedetails_header="Game Details ";
 export const season_title = "Fall Schedule";
-export const dayweek_warning = "* All games take place on Saturday";
-export const table_games_header = [
+const dayweek_warning = "* All games take place on Saturday";
+const table_games_header = [
    {
       "id": "01",
       "first_col": "Date",
@@ -221,8 +224,11 @@ export const game_info = [
 
 export function Gameinfo() {
    const [user] = useUserState();
+   let navigate = useNavigate();
+   
    function Handleclick(gameid) {
-      window.location.href = "/gamedetails/" + gameid.gameid_temp;
+   let path="/gamedetails/" + gameid.gameid_temp;
+   navigate(path)
    }
    return <div>
       <div className="btn-toolbar justify-content-between">
@@ -287,16 +293,34 @@ const label_game_details = [
       label_address:"Address",
       label_time: "Time"
    }]
-export function Gamedetails() {
+   
+   
+
+   export function Gamedetails() {
    const [user] = useUserState();
    const { id } = useParams();
+   
    const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
    let gametodisplay = game_info.find(game => game.id === id);
    var game_location_temp = game_locations[gametodisplay.Location][0].name_location;
    var game_location_address_temp = game_locations[gametodisplay.Location][0].address;
+  // console.log(id);
    var google_api_url="https://www.google.com/maps/embed/v1/place?q=place_id:";
    var game_location_id_temp=game_locations[gametodisplay.Location][0].google_maps_placeid;
    var game_location_url_temp=google_api_url.concat(game_location_id_temp,"&key=",API_KEY);
+   let navigate = useNavigate();
+   
+   function Handleclick(idgame) {
+     let path="/chatboard/" + idgame;
+     navigate(path)
+     }
+    
+  const Gameboardbutton = () => (
+      <button className="btn btn-secondary btn-sm"
+          onClick={() => Handleclick({id})}>
+        Game Board
+      </button>
+    );
    return <div>
       <div className="btn-toolbar justify-content-between">
         <div>
@@ -316,6 +340,9 @@ export function Gamedetails() {
             <tr><td>{label_game_details[0].label_team}</td><td>{gametodisplay.Teams}</td></tr>
          </tbody>
       </table>
+      <div>
+      <Gameboardbutton />
+      </div>
       <div className="embed-responsive embed-responsive-1by1">
       <iframe title='Game Location Google Maps' className="embed-responsive-item" allowFullScreen src={game_location_url_temp}></iframe>
       </div>

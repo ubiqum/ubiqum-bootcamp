@@ -7,36 +7,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Chatboard} from './components/chat-board.js'
 import { faHome, faInfoCircle, faRuler, faEnvelope, faFutbol, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
-  NavLink
+  Link
 } from "react-router-dom";
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/contact">                 <Contact />     </Route>
-          <Route path="/regform">                 <Regform />     </Route>
-          <Route path="/rules">                   <Rules />       </Route>
-          <Route path="/about">                   <About />       </Route>
-          <Route path="/gameinfo">                <Gameinfo />    </Route>
-          <Route path="/gamedetails/:id">         <Gamedetails /> </Route>
-          <Route path="/chatboard/:id">           <Chatboard />   </Route>
-          <Route path="/">                        <Home />        </Route>
-        </Switch>
-      </div>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/contact" element={<Contact />} >            </Route>
+          <Route path="/regform" element={<Regform />}>             </Route>
+          <Route path="/rules" element={<Rules />} >                </Route>
+          <Route path="/about" element={<About />}>                 </Route>
+          <Route path="/gameinfo" element={<Gameinfo />}>           </Route>
+          <Route path="/gamedetails/:id" element={<Gamedetails />}> </Route>
+          <Route path="/chatboard/:id" element={<Chatboard />}>     </Route>
+          <Route path="/" element={<Home />}>                       </Route>
+        </Routes>
+     
       <nav className="navbar fixed-bottom navbar-light bg-light" >
-        <NavLink to="/"> <FontAwesomeIcon size="lg" icon={faHome} /> </NavLink>
-        <NavLink to="/gameinfo"> <FontAwesomeIcon size="lg" icon={faFutbol} /> </NavLink>
-        <NavLink to="/rules"><FontAwesomeIcon size="lg" icon={faRuler} /></NavLink>
-        <NavLink to="/contact"><FontAwesomeIcon size="lg" icon={faEnvelope} /></NavLink>
-        <NavLink to="/regform"><FontAwesomeIcon size="lg" icon={faUserPlus} /></NavLink>
-        <NavLink to="/about"><FontAwesomeIcon size="lg" icon={faInfoCircle} /> </NavLink>
+        <Link to="/"> <FontAwesomeIcon size="lg" icon={faHome} /> </Link>
+        <Link to="/gameinfo"> <FontAwesomeIcon size="lg" icon={faFutbol} /> </Link>
+        <Link to="/rules"><FontAwesomeIcon size="lg" icon={faRuler} /></Link>
+        <Link to="/contact"><FontAwesomeIcon size="lg" icon={faEnvelope} /></Link>
+        <Link to="/regform"><FontAwesomeIcon size="lg" icon={faUserPlus} /></Link>
+        <Link to="/about"><FontAwesomeIcon size="lg" icon={faInfoCircle} /> </Link>
       </nav>
-    </Router>
+    </BrowserRouter>
   );
 }
 
