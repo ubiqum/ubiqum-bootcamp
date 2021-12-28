@@ -284,7 +284,7 @@ export function Gameinfo() {
 
    </div>
 }
-const label_game_details = [
+export const label_game_details = [
    {
       label_date: "Date",
       label_team: "Team",
