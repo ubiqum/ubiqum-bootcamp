@@ -1,6 +1,6 @@
 import { initializeApp} from 'firebase/app';
 // import { getAnalytics } from "firebase/analytics";
-//import { getDatabase,onValue,ref} from 'firebase/database';
+import { getDatabase} from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
 // const analytics = getAnalytics(app);
@@ -33,7 +33,7 @@ const firebaseConfig = {
 };
 
 const firebase = initializeApp(firebaseConfig);
-// const database = getDatabase(firebase);
+export const database = getDatabase(firebase);
 
 
 

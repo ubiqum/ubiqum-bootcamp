@@ -1,9 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useParams } from "react-router-dom";
+import React from 'react';
 import { nysl_league, logo_alttext, logo_width } from "../components/home.js";
 import logo from '../nysl_logo.svg';
-
-import { SignInButton, useUserState, SignOuButton } from '../utilities/firebase.js'
+import {ref} from 'firebase/database';
+import { useListVals } from 'react-firebase-hooks/database';
+import { SignInButton, useUserState, SignOuButton,database } from '../utilities/firebase.js'
 import {game_info,game_locations,label_game_details} from '../components/gameinfo.js'
 const page_gamechatboard_header = "Game Board Chat";
 
@@ -11,11 +13,23 @@ export function message_unique_id() {
     return uuidv4()
 
 }
+const MessageListGame = () => {
+   const { id } = useParams();
+   const gameid=id
+   const [array] = useListVals(ref(database, '/messages/'+gameid));
+  return (
+      <div>
+        <p> {array.map(n=>` Author ${n.author} Message ${n.text} Time ${n.timestamp}`)} </p>
+      </div>
+    );
+} ;
+
 
 export function Chatboard() {
   const { id } = useParams();
   const [user] = useUserState();
-  let gametodisplay = game_info.find(game => game.id === id);
+
+let gametodisplay = game_info.find(game => game.id === id);
 var game_location_temp = game_locations[gametodisplay.Location][0].name_location;
 var game_location_address_temp = game_locations[gametodisplay.Location][0].address;
   return <div>
@@ -39,6 +53,7 @@ var game_location_address_temp = game_locations[gametodisplay.Location][0].addre
             <tr><td>{label_game_details[0].label_team}</td><td>{gametodisplay.Teams}</td></tr>
          </tbody>
       </table>
+      <MessageListGame />
           </div>
             }
 
