@@ -13,14 +13,43 @@ export function message_unique_id() {
     return uuidv4()
 
 }
+const table_game_chatboard = [
+   {
+      "id": "01",
+      "first_col": "Author",
+      "second_col": "Message",
+      "third_col": "Date",
+      "fourth_col": "Time"
+   }
+]
 const MessageListGame = () => {
    const { id } = useParams();
    const gameid=id
-   const [array] = useListVals(ref(database, '/messages/'+gameid));
+   const [messages] = useListVals(ref(database, '/messages/'+gameid));
   return (
-      <div>
-        <p> {array.map(n=>` Author ${n.author} Message ${n.text} Time ${n.timestamp}`)} </p>
-      </div>
+   <table className="table">
+      <thead>
+            {table_game_chatboard.map(header => {
+               return (
+                  <tr key={header.id}><th>{header.first_col}</th><th>{header.second_col}</th><th>{header.third_col}</th><th>{header.fourth_col}</th>
+                  </tr>
+               )
+            })}
+         </thead>
+
+       <tbody>
+            {messages.map(message => 
+            {var datetime_temp= new Date(message.timestamp);
+             var date_temp=datetime_temp.getDate()+"/"+(datetime_temp.getMonth()+1)+"/"+datetime_temp.getFullYear();
+             var time_temp=datetime_temp.getHours()+ ":"+datetime_temp.getMinutes()+ ":"+datetime_temp.getSeconds();
+             var unique_id=message_unique_id()
+              return (
+                  <tr key={unique_id} ><td >{message.author}</td><td>{message.text}</td><td>{date_temp}</td><td>{time_temp}</td>
+                  </tr>
+               )
+            })}
+         </tbody>
+   </table>
     );
 } ;
 
@@ -43,7 +72,7 @@ var game_location_address_temp = game_locations[gametodisplay.Location][0].addre
           
           
           </div>
-          <p> {page_gamechatboard_header} "Game ID" {id} </p>
+          <p> {page_gamechatboard_header}</p>
           <table className="table">
          <tbody>
             <tr><td>{label_game_details[0].label_date}</td><td>{gametodisplay.Date}</td></tr>
