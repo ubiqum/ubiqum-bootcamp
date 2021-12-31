@@ -27,7 +27,7 @@ export default function App() {
           <Route path="/" element={<Home />}>                       </Route>
         </Routes>
      
-      <nav className="navbar fixed-bottom navbar-light bg-light" >
+      <nav className="navbar px-5 fixed-bottom navbar-light bg-light" >
         <Link to="/"> <FontAwesomeIcon size="lg" icon={faHome} /> </Link>
         <Link to="/gameinfo"> <FontAwesomeIcon size="lg" icon={faFutbol} /> </Link>
         <Link to="/rules"><FontAwesomeIcon size="lg" icon={faRuler} /></Link>

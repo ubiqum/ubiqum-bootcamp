@@ -221,6 +221,13 @@ export const game_info = [
 
 ]
 
+export function Warninguserstosignin() {
+   const warning_temp="to see and post messages";
+   return <p>
+      <SignInButton/> {warning_temp}
+   </p>
+}
+
 export function Gameinfo() {
    const [user] = useUserState();
    let navigate = useNavigate();
@@ -342,7 +349,7 @@ export function Gamedetails() {
          </tbody>
       </table>
       <div>
-         <Gameboardbutton />
+         { user ? <Gameboardbutton />: <Warninguserstosignin/>}
       </div>
       <div className="embed-responsive embed-responsive-1by1">
          <iframe title='Game Location Google Maps' className="embed-responsive-item" allowFullScreen src={game_location_url_temp}></iframe>

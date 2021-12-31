@@ -6,7 +6,7 @@ import logo from '../nysl_logo.svg';
 import {ref} from 'firebase/database';
 import { useListVals } from 'react-firebase-hooks/database';
 import { SignInButton, useUserState, SignOuButton,database } from '../utilities/firebase.js'
-import {game_info,game_locations,label_game_details} from '../components/gameinfo.js'
+import {game_info,game_locations,label_game_details,Warninguserstosignin} from '../components/gameinfo.js'
 const page_gamechatboard_header = "Game Board Chat";
 
 export function message_unique_id() {
@@ -22,11 +22,12 @@ const table_game_chatboard = [
       "fourth_col": "Time"
    }
 ]
-const MessageListGame = () => {
+
+function Messagelist() {
    const { id } = useParams();
    const gameid=id
    const [messages] = useListVals(ref(database, '/messages/'+gameid));
-  return (
+   return (
    <table className="table">
       <thead>
             {table_game_chatboard.map(header => {
@@ -42,15 +43,25 @@ const MessageListGame = () => {
             {var datetime_temp= new Date(message.timestamp);
              var date_temp=datetime_temp.getDate()+"/"+(datetime_temp.getMonth()+1)+"/"+datetime_temp.getFullYear();
              var time_temp=datetime_temp.getHours()+ ":"+datetime_temp.getMinutes()+ ":"+datetime_temp.getSeconds();
-             var unique_id=message_unique_id()
+             
               return (
-                  <tr key={unique_id} ><td >{message.author}</td><td>{message.text}</td><td>{date_temp}</td><td>{time_temp}</td>
+                  <tr key={message.id} ><td >{message.author}</td><td>{message.text}</td><td>{date_temp}</td><td>{time_temp}</td>
                   </tr>
                )
             })}
          </tbody>
-   </table>
-    );
+   </table>)
+ ;}
+
+
+const MessageListGame = () => {
+  const [user] = useUserState();
+  return (
+   <div>
+   {user ? <Messagelist/> :<Warninguserstosignin/>}
+    
+    </div>)
+
 } ;
 
 
