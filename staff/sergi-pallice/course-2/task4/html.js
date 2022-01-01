@@ -193,6 +193,7 @@ function makeAttendanceRows(){
   for (let i=0; i < 3; i++) {
     let party = ["Republican", "Democrat", "Independent"];
     let totals = [total_rep, total_dem, total_ind];
+    let averages = [avg_votes_rep, avg_votes_dem, avg_votes_ind]
 
     let tr  =  document.createElement('tr');
     let td1 =  document.createElement('td');
@@ -200,7 +201,7 @@ function makeAttendanceRows(){
     let td3 =  document.createElement('td');
     let text1 =  document.createTextNode(party[i]);
     let text2 =  document.createTextNode(totals[i]);
-    let text3 =  document.createTextNode("NA");
+    let text3 =  document.createTextNode(averages[i]);
 
     td1.appendChild(text1);           //Append text
     td2.appendChild(text2);
@@ -215,13 +216,21 @@ function makeAttendanceRows(){
 
 /*--------------------------------FILL IN ATTENDANCE TABLE---------------------------------------- */
 let total_rep = 0, total_dem = 0, total_ind = 0;
+let avg_votes_rep = 0, avg_votes_dem = 0, avg_votes_ind = 0;
 function attendanceData(){
+  let pct_votes_rep = [], pct_votes_dem = [], pct_votes_ind = [];
   for (var i = 0; i < members.length; i++) {
-    if (members[i].party === 'D') { total_dem++ } 
-    if (members[i].party === 'R') { total_rep++ }
-    if (members[i].party === 'ID') { total_ind++ }  
-  }     
-  console.log(total_rep, total_dem, total_ind);
+    var votes = members[i].votes_with_party_pct;
+    if (members[i].party === 'D') {if (votes !== undefined) {pct_votes_rep.push(votes), total_dem++} else {pct_votes_rep.push(0, total_dem++)} } 
+    if (members[i].party === 'R') {if (votes !== undefined) {pct_votes_dem.push(votes), total_rep++} else {pct_votes_dem.push(0, total_rep++)} } 
+    if (members[i].party === 'ID') {if (votes !== undefined) {pct_votes_ind.push(votes), total_ind++} else {pct_votes_ind.push(0, total_ind++)} } 
+  }
+  function sum (array) {return array.reduce((a, b) => a + b, 0)};
+  function avg (array) {return (sum(array) / array.length) || 0};
+  avg_votes_rep = parseFloat(avg(pct_votes_rep)).toFixed(2);
+  avg_votes_dem = parseFloat(avg(pct_votes_dem)).toFixed(2);
+  avg_votes_ind = parseFloat(avg(pct_votes_ind)).toFixed(2);
+
   makeAttendanceRows();
 }
 
@@ -268,7 +277,7 @@ async function fetchAsync () {
       })
     .then( (json)=> {
       members = json.results[0].members // This places itself in the array with all members
-      console.log(members);
+      //console.log(members);
       })
      .catch(reason => console.log(reason.message))
      if (page === "members") { filter_party() };
