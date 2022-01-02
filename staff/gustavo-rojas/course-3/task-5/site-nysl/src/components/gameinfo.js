@@ -222,7 +222,7 @@ export const game_info = [
 ]
 
 export function Warninguserstosignin() {
-   const warning_temp="to see and post messages";
+   const warning_temp="to see Game Chatboard and post messages";
    return <p>
       <SignInButton/> {warning_temp}
    </p>

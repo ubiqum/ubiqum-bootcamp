@@ -7,10 +7,21 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+import { FirebaseAppProvider} from 'reactfire';
+const firebaseConfig = {
+  apiKey: "AIzaSyDKIrUzXk5468PKOAl05fRDub2ynJiTDWM",
+  authDomain: "site-nysl.firebaseapp.com",
+  databaseURL: "https://site-nysl-default-rtdb.firebaseio.com",
+  projectId: "site-nysl",
+  storageBucket: "site-nysl.appspot.com",
+  messagingSenderId: "17474263660",
+  appId: "1:17474263660:web:1172327d61ab57eef69649",
+  measurementId: "G-ES77RVXY38"
+};
 ReactDOM.render(
-  <React.StrictMode>
+  <FirebaseAppProvider firebaseConfig={firebaseConfig}>
     <App />
-  </React.StrictMode>,
+  </FirebaseAppProvider>,
   document.getElementById('root')
 );
 
