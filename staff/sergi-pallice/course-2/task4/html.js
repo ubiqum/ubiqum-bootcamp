@@ -165,10 +165,10 @@ function makeMemberRows(members_array){
        }
 }
 
-/*------------------------------AUTO-CREATE ATTENDANCE TABLE---------------------------------------- */
+/*------------------------------AUTO-CREATE "AT-A-GLANCE" TABLE---------------------------------------- */
 function makeAttendanceRows(){
-  document.getElementById(`${chamber}-attendance`).innerHTML = "";  // Deletes previous data in div
-  let table = document.getElementById(`${chamber}-attendance`);     // We'll put the table inside correspondent div
+  document.getElementById(`${chamber}-at-a-glance`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${chamber}-at-a-glance`);     // We'll put the table inside correspondent div
   let thead = document.createElement('thead');            // Variable to create block header
   let tbody = document.createElement("tbody");            // Variable to create body
   /*-------------------------------------------TABLE HEADER---------------------------------------- */
@@ -214,16 +214,107 @@ function makeAttendanceRows(){
   }
 }
 
-/*--------------------------------FILL IN ATTENDANCE TABLE---------------------------------------- */
+/*------------------------------AUTO-CREATE "LEAST-ENGAGED" TABLE---------------------------------------- */
+function makeLeastEngagedRows(sorted_array){
+  document.getElementById(`${chamber}-least-engaged`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${chamber}-least-engaged`);     // We'll put the table inside correspondent div
+  let thead = document.createElement('thead');            // Variable to create block header
+  let tbody = document.createElement("tbody");            // Variable to create body
+  /*-------------------------------------------TABLE HEADER---------------------------------------- */
+  let tr      = document.createElement('tr');
+  let th1 = document.createElement('th');
+  let th2 = document.createElement('th');
+  let th3 = document.createElement('th');
+  let col1 = document.createTextNode("Name");
+  let col2 = document.createTextNode("No. Missed Votes");
+  let col3 = document.createTextNode("% Missed");
+
+  th1.appendChild(col1);          // Append head text
+  th2.appendChild(col2);
+  th3.appendChild(col3);
+  tr.appendChild(th1);            // Append cell
+  tr.appendChild(th2);
+  tr.appendChild(th3);
+  thead.appendChild(tr);          // Append row to header
+  table.appendChild(thead);       // Append head to table
+
+  /*-------------------------------------------INSERT ROWS---------------------------------------- */
+  for (var i = 0; i < sorted_array.length; i++) {
+    let tr  =  document.createElement('tr');
+    let td1 =  document.createElement('td');
+    let td2 =  document.createElement('td');
+    let td3 =  document.createElement('td');
+    let text1 =  document.createTextNode(members[i].first_name);
+    let text2 =  document.createTextNode(members[i].missed_votes);
+    let text3 =  document.createTextNode(members[i].missed_votes_pct);
+
+    td1.appendChild(text1);           //Append text
+    td2.appendChild(text2);
+    td3.appendChild(text3);
+    tr.appendChild(td1);            // Append cell
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tbody.appendChild(tr);          //Append row to body
+    table.appendChild(tbody);        //Append body to table
+  }
+}
+/*------------------------------AUTO-CREATE "LEAST-ENGAGED" TABLE---------------------------------------- */
+function makeMostEngagedRows(sorted_array){
+  document.getElementById(`${chamber}-most-engaged`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${chamber}-most-engaged`);     // We'll put the table inside correspondent div
+  let thead = document.createElement('thead');            // Variable to create block header
+  let tbody = document.createElement("tbody");            // Variable to create body
+  /*-------------------------------------------TABLE HEADER---------------------------------------- */
+  let tr      = document.createElement('tr');
+  let th1 = document.createElement('th');
+  let th2 = document.createElement('th');
+  let th3 = document.createElement('th');
+  let col1 = document.createTextNode("Name");
+  let col2 = document.createTextNode("No. Missed Votes");
+  let col3 = document.createTextNode("% Missed");
+
+  th1.appendChild(col1);          // Append head text
+  th2.appendChild(col2);
+  th3.appendChild(col3);
+  tr.appendChild(th1);            // Append cell
+  tr.appendChild(th2);
+  tr.appendChild(th3);
+  thead.appendChild(tr);          // Append row to header
+  table.appendChild(thead);       // Append head to table
+
+  /*-------------------------------------------INSERT ROWS---------------------------------------- */
+  for (var i = 0; i < sorted_array.length; i++) {
+    let tr  =  document.createElement('tr');
+    let td1 =  document.createElement('td');
+    let td2 =  document.createElement('td');
+    let td3 =  document.createElement('td');
+    let text1 =  document.createTextNode(members[i].first_name);
+    let text2 =  document.createTextNode(members[i].missed_votes);
+    let text3 =  document.createTextNode(members[i].missed_votes_pct);
+
+    td1.appendChild(text1);           //Append text
+    td2.appendChild(text2);
+    td3.appendChild(text3);
+    tr.appendChild(td1);            // Append cell
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tbody.appendChild(tr);          //Append row to body
+    table.appendChild(tbody);        //Append body to table
+  }
+}
+
+/*--------------------------------FILL IN "AT-A-GLANCE" TABLE---------------------------------------- */
 let total_rep = 0, total_dem = 0, total_ind = 0;
 let avg_votes_rep = 0, avg_votes_dem = 0, avg_votes_ind = 0;
 function attendanceData(){
   let pct_votes_rep = [], pct_votes_dem = [], pct_votes_ind = [];
   for (var i = 0; i < members.length; i++) {
     var votes = members[i].votes_with_party_pct;
-    if (members[i].party === 'D') {if (votes !== undefined) {pct_votes_rep.push(votes), total_dem++} else {pct_votes_rep.push(0, total_dem++)} } 
-    if (members[i].party === 'R') {if (votes !== undefined) {pct_votes_dem.push(votes), total_rep++} else {pct_votes_dem.push(0, total_rep++)} } 
-    if (members[i].party === 'ID') {if (votes !== undefined) {pct_votes_ind.push(votes), total_ind++} else {pct_votes_ind.push(0, total_ind++)} } 
+    if (votes !== undefined) {
+      if (members[i].party === 'D') {pct_votes_rep.push(votes), total_dem++}; 
+      if (members[i].party === 'R') {pct_votes_dem.push(votes), total_rep++}; 
+      if (members[i].party === 'ID') {pct_votes_ind.push(votes), total_ind++};
+    }
   }
   function sum (array) {return array.reduce((a, b) => a + b, 0)};
   function avg (array) {return (sum(array) / array.length) || 0};
@@ -232,6 +323,14 @@ function attendanceData(){
   avg_votes_ind = parseFloat(avg(pct_votes_ind)).toFixed(2);
 
   makeAttendanceRows();
+}
+
+/*------------------------------FILL IN BOTH ENGAGEMENT TABLES-------------------------------------- */
+function engagement(){
+  let ten_percent = parseInt(members.length / 10);
+  const engaged_sorted = members.sort(function(a,b) { return a.missed_votes < b.missed_votes ? 1 : -1});
+  makeLeastEngagedRows(engaged_sorted.splice(1, ten_percent));
+  makeMostEngagedRows(engaged_sorted.reverse().splice(1, ten_percent));
 }
 
 /*-------------------------------------FILTER CREATED TABLE---------------------------------------- */
@@ -267,7 +366,7 @@ function filter_party(){
   makeMemberRows(selected_members);
 }
 
-/*--------------------------------GET DATA AND SHOW IT---------------------------------- */
+/*---------------------------------------GET DATA AND SHOW IT--------------------------------------- */
 //NOTE: All functions must be run inside fetchAsync or else they won't call the json.
 let members = [];
 async function fetchAsync () {
@@ -281,8 +380,7 @@ async function fetchAsync () {
       })
      .catch(reason => console.log(reason.message))
      if (page === "members") { filter_party() };
-     if (page === "attendance") { attendanceData() };
+     if (page === "attendance") { attendanceData(), engagement() };
 }
 
 fetchAsync();
-
