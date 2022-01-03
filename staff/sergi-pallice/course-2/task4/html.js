@@ -34,11 +34,13 @@ Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {   // S
     })
   }
 });
-/*------------------------------HIDING INFORMATION BASED ON PAGE-------------------------------- */
-var x = document.getElementById(`hide-${chamber}-info`);
-if (x.style.display === "none") {x.style.display = "block"} else {x.style.display = "none"}
+/*-----------------------------------HIDING INFORMATION BASED ON PAGE------------------------------------ */
+if (page !== "index") {
+  var x = document.getElementById(`hide-${chamber}-info`);
+  if (x.style.display === "none") {x.style.display = "block"} else {x.style.display = "none"}
+}
 
-/*--------------------------------------STATE DICTIONARY------------------------------------------ */
+/*------------------------------------------STATE DICTIONARY--------------------------------------------- */
 const states = {
   "AL": "Alabama",
   "AK": "Alaska",
@@ -165,7 +167,7 @@ function makeMemberRows(members_array){
        }
 }
 
-/*------------------------------AUTO-CREATE "AT-A-GLANCE" TABLE---------------------------------------- */
+/*--------------------------------AUTO-CREATE "AT-A-GLANCE" TABLE---------------------------------------- */
 function makeAttendanceRows(){
   document.getElementById(`${chamber}-at-a-glance`).innerHTML = "";  // Deletes previous data in div
   let table = document.getElementById(`${chamber}-at-a-glance`);     // We'll put the table inside correspondent div
@@ -244,7 +246,7 @@ function makeLeastEngagedRows(sorted_array){
     let td1 =  document.createElement('td');
     let td2 =  document.createElement('td');
     let td3 =  document.createElement('td');
-    let text1 =  document.createTextNode(members[i].first_name);
+    let text1 =  document.createTextNode(members[i].first_name + " " + (members[i].middle_name || "")  +" "+ members[i].last_name);
     let text2 =  document.createTextNode(members[i].missed_votes);
     let text3 =  document.createTextNode(members[i].missed_votes_pct);
 
@@ -258,7 +260,8 @@ function makeLeastEngagedRows(sorted_array){
     table.appendChild(tbody);        //Append body to table
   }
 }
-/*------------------------------AUTO-CREATE "LEAST-ENGAGED" TABLE---------------------------------------- */
+
+/*------------------------------AUTO-CREATE "MOST-ENGAGED" TABLE----------------------------------------- */
 function makeMostEngagedRows(sorted_array){
   document.getElementById(`${chamber}-most-engaged`).innerHTML = "";  // Deletes previous data in div
   let table = document.getElementById(`${chamber}-most-engaged`);     // We'll put the table inside correspondent div
@@ -288,7 +291,7 @@ function makeMostEngagedRows(sorted_array){
     let td1 =  document.createElement('td');
     let td2 =  document.createElement('td');
     let td3 =  document.createElement('td');
-    let text1 =  document.createTextNode(members[i].first_name);
+    let text1 =  document.createTextNode(members[i].first_name + " " + (members[i].middle_name || "")  +" "+ members[i].last_name);
     let text2 =  document.createTextNode(members[i].missed_votes);
     let text3 =  document.createTextNode(members[i].missed_votes_pct);
 
@@ -303,7 +306,97 @@ function makeMostEngagedRows(sorted_array){
   }
 }
 
-/*--------------------------------FILL IN "AT-A-GLANCE" TABLE---------------------------------------- */
+/*-------------------------------AUTO-CREATE "LEAST-LOYAL" TABLE----------------------------------------- */
+function makeLeastLoyalRows(sorted_array){
+  document.getElementById(`${chamber}-least-loyal`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${chamber}-least-loyal`);     // We'll put the table inside correspondent div
+  let thead = document.createElement('thead');            // Variable to create block header
+  let tbody = document.createElement("tbody");            // Variable to create body
+  /*-------------------------------------------TABLE HEADER---------------------------------------- */
+  let tr      = document.createElement('tr');
+  let th1 = document.createElement('th');
+  let th2 = document.createElement('th');
+  let th3 = document.createElement('th');
+  let col1 = document.createTextNode("Name");
+  let col2 = document.createTextNode("No. Party Votes");
+  let col3 = document.createTextNode("% Party Votes");
+
+  th1.appendChild(col1);          // Append head text
+  th2.appendChild(col2);
+  th3.appendChild(col3);
+  tr.appendChild(th1);            // Append cell
+  tr.appendChild(th2);
+  tr.appendChild(th3);
+  thead.appendChild(tr);          // Append row to header
+  table.appendChild(thead);       // Append head to table
+
+  /*-------------------------------------------INSERT ROWS---------------------------------------- */
+  for (var i = 0; i < sorted_array.length; i++) {
+    let tr  =  document.createElement('tr');
+    let td1 =  document.createElement('td');
+    let td2 =  document.createElement('td');
+    let td3 =  document.createElement('td');
+    let text1 =  document.createTextNode(members[i].first_name + " " + (members[i].middle_name || "") + " " + members[i].last_name);
+    let text2 =  document.createTextNode(members[i].total_votes);
+    let text3 =  document.createTextNode(members[i].votes_against_party_pct);
+
+    td1.appendChild(text1);           //Append text
+    td2.appendChild(text2);
+    td3.appendChild(text3);
+    tr.appendChild(td1);            // Append cell
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tbody.appendChild(tr);          //Append row to body
+    table.appendChild(tbody);        //Append body to table
+  }
+}
+
+/*-------------------------------AUTO-CREATE "MOST-LOYAL" TABLE------------------------------------------ */
+function makeMostLoyalRows(sorted_array){
+  document.getElementById(`${chamber}-most-loyal`).innerHTML = "";  // Deletes previous data in div
+  let table = document.getElementById(`${chamber}-most-loyal`);     // We'll put the table inside correspondent div
+  let thead = document.createElement('thead');            // Variable to create block header
+  let tbody = document.createElement("tbody");            // Variable to create body
+  /*-------------------------------------------TABLE HEADER---------------------------------------- */
+  let tr      = document.createElement('tr');
+  let th1 = document.createElement('th');
+  let th2 = document.createElement('th');
+  let th3 = document.createElement('th');
+  let col1 = document.createTextNode("Name");
+  let col2 = document.createTextNode("No. Party Votes");
+  let col3 = document.createTextNode("% Party Votes");
+
+  th1.appendChild(col1);          // Append head text
+  th2.appendChild(col2);
+  th3.appendChild(col3);
+  tr.appendChild(th1);            // Append cell
+  tr.appendChild(th2);
+  tr.appendChild(th3);
+  thead.appendChild(tr);          // Append row to header
+  table.appendChild(thead);       // Append head to table
+
+  /*-------------------------------------------INSERT ROWS---------------------------------------- */
+  for (var i = 0; i < sorted_array.length; i++) {
+    let tr  =  document.createElement('tr');
+    let td1 =  document.createElement('td');
+    let td2 =  document.createElement('td');
+    let td3 =  document.createElement('td');
+    let text1 =  document.createTextNode(members[i].first_name + " " + (members[i].middle_name || "") + " " + members[i].last_name);
+    let text2 =  document.createTextNode(members[i].total_votes);
+    let text3 =  document.createTextNode(members[i].votes_with_party_pct);
+
+    td1.appendChild(text1);           //Append text
+    td2.appendChild(text2);
+    td3.appendChild(text3);
+    tr.appendChild(td1);            // Append cell
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tbody.appendChild(tr);          //Append row to body
+    table.appendChild(tbody);        //Append body to table
+  }
+}
+
+/*-----------------------------------FILL IN "AT-A-GLANCE" TABLE----------------------------------------- */
 let total_rep = 0, total_dem = 0, total_ind = 0;
 let avg_votes_rep = 0, avg_votes_dem = 0, avg_votes_ind = 0;
 function attendanceData(){
@@ -331,6 +424,14 @@ function engagement(){
   const engaged_sorted = members.sort(function(a,b) { return a.missed_votes < b.missed_votes ? 1 : -1});
   makeLeastEngagedRows(engaged_sorted.splice(1, ten_percent));
   makeMostEngagedRows(engaged_sorted.reverse().splice(1, ten_percent));
+}
+
+/*------------------------------FILL IN BOTH LOYALTY TABLES-------------------------------------- */
+function loyalty(){
+  let ten_percent = parseInt(members.length / 10);
+  const loyalty_sorted = members.sort(function(a,b) { return a.votes_with_party_pct < b.votes_with_party_pct ? 1 : -1});
+  makeLeastLoyalRows(loyalty_sorted.splice(1, ten_percent));
+  makeMostLoyalRows(loyalty_sorted.splice(1, ten_percent));
 }
 
 /*-------------------------------------FILTER CREATED TABLE---------------------------------------- */
@@ -370,6 +471,7 @@ function filter_party(){
 //NOTE: All functions must be run inside fetchAsync or else they won't call the json.
 let members = [];
 async function fetchAsync () {
+  if (page !== "index") {
   await fetch(`http://localhost:8000/pro-congress-117-${chamber}.json`)
     .then( (response) => {
       return response.json();         // Saving response into JSON format (because we know)   
@@ -381,6 +483,8 @@ async function fetchAsync () {
      .catch(reason => console.log(reason.message))
      if (page === "members") { filter_party() };
      if (page === "attendance") { attendanceData(), engagement() };
+     if (page === "loyalty") { attendanceData(), loyalty() };
+    }
 }
 
 fetchAsync();
