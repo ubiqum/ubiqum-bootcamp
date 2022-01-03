@@ -16,24 +16,24 @@ document.getElementById("state_filter").addEventListener("input",  function () {
 }
 
 /*--------------------------------DROPDOWN MENU FEATURES------------------------------------ */
-window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside of it
-  if (!event.target.matches('.dropdown-btn')) {
-    console.log("click outside: " + !event.target.matches('.dropdown-btn'));
-    Array.from(document.querySelectorAll('.dropdown')).forEach((element) => {
-      element.classList.remove('show');
-    })
-  }
-});
-Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {   // Set all dropdown buttons to open their associated dropdown list on click
-  const dropdown = btn.closest('.dropdown');
-  console.log(dropdown);
-  if (dropdown) {
-    btn.addEventListener('click', (event) => {
-    event.preventDefault();
-    dropdown.classList.toggle('show');
-    })
-  }
-});
+// window.addEventListener('click', (event) => {     // Close all dropdown lists if the user clicks outside of it
+//   if (!event.target.matches('.dropdown-btn')) {
+//     console.log("click outside: " + !event.target.matches('.dropdown-btn'));
+//     Array.from(document.querySelectorAll('.dropdown')).forEach((element) => {
+//       element.classList.remove('show');
+//     })
+//   }
+// });
+// Array.from(document.querySelectorAll('.dropdown-btn')).forEach((btn) => {   // Set all dropdown buttons to open their associated dropdown list on click
+//   const dropdown = btn.closest('.dropdown');
+//   console.log(dropdown);
+//   if (dropdown) {
+//     btn.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     dropdown.classList.toggle('show');
+//     })
+//   }
+// });
 /*-----------------------------------HIDING INFORMATION BASED ON PAGE------------------------------------ */
 if (page !== "index") {
   var x = document.getElementById(`hide-${chamber}-info`);
