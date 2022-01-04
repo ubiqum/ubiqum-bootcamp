@@ -3,27 +3,57 @@ import { useParams } from "react-router-dom";
 import React from 'react';
 import { nysl_league, logo_alttext, logo_width } from "../components/home.js";
 import logo from '../nysl_logo.svg';
-import {ref} from 'firebase/database';
+import {ref,set} from 'firebase/database';
+import { getAuth } from 'firebase/auth';
 import { SignInButton, useUserState, SignOuButton,database } from '../utilities/firebase.js'
 import {game_info,game_locations,label_game_details,Warninguserstosignin} from '../components/gameinfo.js'
-import { getAuth } from 'firebase/auth';
 import { useDatabase, DatabaseProvider, AuthProvider, useFirebaseApp,useDatabaseListData} from 'reactfire';
-import { Formik } from 'formik';
+import {useFormik } from 'formik';
+//import { useNavigate } from "react-router-dom";
+
 const page_gamechatboard_header = "Game Board Chat";
+
 function FirebaseMessagesreactfire({ children }) {
    const app = useFirebaseApp(); // a parent component contains a `FirebaseAppProvider`
    const auth = getAuth(app);
- 
-   // any child components will be able to use `useUser`, `useDatabaseObjectData`, etc
+   
+    // any child components will be able to use `useUser`, `useDatabaseObjectData`, etc
    return (
      <AuthProvider sdk={auth}>
        <DatabaseProvider sdk={database}>
         <Showmessages/> 
-        <Formmessage/>
-       </DatabaseProvider>
+        <Messageform/> 
+        </DatabaseProvider>
      </AuthProvider>
    );
  }
+ const  Writemessage = () => {
+  const { id } = useParams();
+  let gameid=id;
+  let values01={ textarea: "A message" };
+  let user= {email:"grojas@fastmail.com"}
+  //console.log(values);
+  //console.log(user.email);
+  //const [user] = useUserState();
+  console.log(user);
+  let useremail=user.email;
+  let messageunqueid=message_unique_id(); 
+  let timestamp01=new Date().getTime();
+  set(ref(database, '/messages/'+ gameid + '/'+ messageunqueid), {
+    author: useremail ,
+    text:values01.textarea,
+    timestamp : timestamp01,
+    id:messageunqueid
+  })
+  .then(() => {
+    console.log("Data Saved")
+  })
+  .catch((error) => {
+    console.log("Error cannot save")
+  });
+}
+
+
 function Showmessages() {
    var database = useDatabase();
    const { id } = useParams();
@@ -32,6 +62,7 @@ function Showmessages() {
    const messagesRef = ref(database,querypath);
    const { status, data: messages } =  useDatabaseListData(messagesRef);
    if (status==='success') {
+    
       return (<div>
          <table className="table">
             <thead>
@@ -46,6 +77,8 @@ function Showmessages() {
              <tbody>
                   {messages.map(message => 
                   {var datetime_temp= new Date(message.timestamp);
+                    //console.log(message.timestamp);
+                    //console.log(datetime_temp);
                    var date_temp=datetime_temp.getDate()+"/"+(datetime_temp.getMonth()+1)+"/"+datetime_temp.getFullYear();
                    var time_temp=datetime_temp.getHours()+ ":"+datetime_temp.getMinutes()+ ":"+datetime_temp.getSeconds();
                    
@@ -58,6 +91,7 @@ function Showmessages() {
          
          </table>
             </div>
+            
        )
                            }
    if (status === 'loading') {
@@ -66,64 +100,35 @@ function Showmessages() {
    ;
 }
 
-const Formmessage = () => (
-   <div>
-     <h1>Anywhere in your app!</h1>
-     <Formik
-       initialValues={{ email: '', password: '' }}
-       validate={values => {
-         const errors = {};
-         if (!values.email) {
-           errors.email = 'Required';
-         } else if (
-           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-         ) {
-           errors.email = 'Invalid email address';
-         }
-         return errors;
-       }}
-       onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
-       }}
-     >
-       {({
-         values,
-         errors,
-         touched,
-         handleChange,
-         handleBlur,
-         handleSubmit,
-         isSubmitting,
-         /* and other goodies */
-       }) => (
-         <form onSubmit={handleSubmit}>
-           <input
-             type="email"
-             name="email"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.email}
-           />
-           {errors.email && touched.email && errors.email}
-           <input
-             type="password"
-             name="password"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.password}
-           />
-           {errors.password && touched.password && errors.password}
-           <button type="submit" disabled={isSubmitting}>
-             Submit
-           </button>
-         </form>
-       )}
-     </Formik>
-   </div>
- );
+const Messageform = () => {
+  // Pass the useFormik() hook initial form values and a submit function that will
+  // be called when the form is submitted
+  const formik = useFormik({
+    initialValues: {
+      textarea: '',
+    },
+    onSubmit: values => {Writemessage(values)
+    
+    }
+    
+  });
+  return (
+    <form onSubmit={formik.handleSubmit}>
+     <div className="form-group">
+      <input
+      className="form-control" rows="3"
+        id="textarea"
+        name="textarea"
+        type="textarea"
+        onChange={formik.handleChange}
+        value={formik.values.textarea}
+      />
+      </div>
+
+      <button type="submit">Post a message</button>
+    </form>
+  );
+};
 
 export function message_unique_id() {
     return uuidv4()
@@ -164,6 +169,7 @@ const table_game_chatboard = [
 
 const MessageListGame = () => {
   const [user] = useUserState();
+  //console.log(user);
   return (
    <div>
    {user ? <FirebaseMessagesreactfire /> :<Warninguserstosignin/>}
