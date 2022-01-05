@@ -16,13 +16,17 @@ const page_gamechatboard_header = "Game Board Chat";
 function FirebaseMessagesreactfire({ children }) {
    const app = useFirebaseApp(); // a parent component contains a `FirebaseAppProvider`
    const auth = getAuth(app);
-   
+   const [user] = useUserState();
+   const {id} = useParams();
+  const messagesmetada = {
+    user:user,
+    gameid: id,    
+     };
     // any child components will be able to use `useUser`, `useDatabaseObjectData`, etc
    return (
      <AuthProvider sdk={auth}>
        <DatabaseProvider sdk={database}>
-        <Showmessages/> 
-        <Messageform/> 
+        <Showmessages messagesmetada={messagesmetada}/> 
         </DatabaseProvider>
      </AuthProvider>
    );
@@ -32,9 +36,6 @@ function FirebaseMessagesreactfire({ children }) {
   let gameid=id;
   let values01={ textarea: "A message" };
   let user= {email:"grojas@fastmail.com"}
-  //console.log(values);
-  //console.log(user.email);
-  //const [user] = useUserState();
   console.log(user);
   let useremail=user.email;
   let messageunqueid=message_unique_id(); 
@@ -54,10 +55,20 @@ function FirebaseMessagesreactfire({ children }) {
 }
 
 
-function Showmessages() {
-   var database = useDatabase();
-   const { id } = useParams();
-   const gameid=id
+function Showmessages(messagesmetada) {
+      //console.log(messagesmetada)
+  if (typeof (messagesmetada.messagesmetada.user) !== 'undefined') 
+  { var useremail=messagesmetada.messagesmetada.user.email;
+    var gameid=messagesmetada.messagesmetada.gameid;
+    //console.log(useremail,gameid)
+   }
+  var usermessagemetadata={
+    useremail:useremail,
+    gameid:gameid
+
+  }
+  
+  var database = useDatabase();
    var querypath='/messages/' + gameid;
    const messagesRef = ref(database,querypath);
    const { status, data: messages } =  useDatabaseListData(messagesRef);
@@ -77,11 +88,8 @@ function Showmessages() {
              <tbody>
                   {messages.map(message => 
                   {var datetime_temp= new Date(message.timestamp);
-                    //console.log(message.timestamp);
-                    //console.log(datetime_temp);
                    var date_temp=datetime_temp.getDate()+"/"+(datetime_temp.getMonth()+1)+"/"+datetime_temp.getFullYear();
                    var time_temp=datetime_temp.getHours()+ ":"+datetime_temp.getMinutes()+ ":"+datetime_temp.getSeconds();
-                   
                     return (
                         <tr key={message.id} ><td >{message.author}</td><td>{message.text}</td><td>{date_temp}</td><td>{time_temp}</td>
                         </tr>
@@ -90,8 +98,8 @@ function Showmessages() {
                </tbody>
          
          </table>
+         <Messageform usermessagemetadata={usermessagemetadata}/> 
             </div>
-            
        )
                            }
    if (status === 'loading') {
@@ -100,9 +108,10 @@ function Showmessages() {
    ;
 }
 
-const Messageform = () => {
+const Messageform = (usermessagemetadata) => {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
+  console.log(usermessagemetadata);
   const formik = useFormik({
     initialValues: {
       textarea: '',
