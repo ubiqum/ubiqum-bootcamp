@@ -260,7 +260,6 @@ export function Gameinfo() {
             {game_info.map(game => {
                var location_temp = game.Location;
                var game_location_temp = game_locations[location_temp][0].name_location;
-               console.log(game_locations[location_temp].name_location);
                var gameid_temp = game.id;
                return (
                   <tr key={game.id} onClick={() => Handleclick({ route_gamedetails }, { gameid_temp })}><td >{game.Date}</td><td>{game.Teams}</td><td>{game_location_temp}</td><td>{game.Times}</td>

@@ -28,7 +28,6 @@ export const nysl_league = {
   ]
   export function Home() {
     const [user] = useUserState();
-    //console.log(user);
     return <div>
       <div className="btn-toolbar justify-content-between">
         <div>
