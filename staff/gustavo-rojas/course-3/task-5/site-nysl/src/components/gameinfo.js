@@ -4,13 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { nysl_league, logo_alttext, logo_width } from "../components/home.js"
 import { SignInButton, useUserState, SignOuButton } from '../utilities/firebase.js'
 import validator from 'validator'
-import {
-   useParams
-} from "react-router-dom";
-
+import { useParams } from "react-router-dom";
+export const season_title = "Fall Schedule";
 const page_gameinfo_header = "Game Info";
 const page_gamedetails_header = "Game Details ";
-export const season_title = "Fall Schedule";
 const dayweek_warning = "* All games take place on Saturday";
 const label_button_gameboardchat="Game Board Chat";
 const table_games_header = [

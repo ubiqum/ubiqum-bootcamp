@@ -49,7 +49,11 @@ function Showmessages(messagesmetada) {
   var querypath = '/messages/' + gameid;
   const messagesRef = ref(database, querypath);
   const { status, data: messages } = useDatabaseListData(messagesRef);
+  
+  if (typeof (messages) !== 'undefined') 
+  { var messagessortedtimestamp=messages.sort((a, b) => { return a.timestamp - b.timestamp; })}
   if (status === 'success') {
+    
 
     return (<div>
       <table className="table">
@@ -63,7 +67,7 @@ function Showmessages(messagesmetada) {
         </thead>
 
         <tbody>
-          {messages.map(message => {
+          {messagessortedtimestamp.map(message => {
             var datetime_temp = new Date(message.timestamp);
             var date_temp = datetime_temp.getDate() + "/" + (datetime_temp.getMonth() + 1) + "/" + datetime_temp.getFullYear();
             var time_temp = datetime_temp.getHours() + ":" + datetime_temp.getMinutes() + ":" + datetime_temp.getSeconds();
@@ -84,6 +88,17 @@ function Showmessages(messagesmetada) {
   }
   ;
 }
+const validate = values => {
+  const errors = {};
+  if (values.textarea===0 || values.textarea.replace(/^\s+|\s+$/gm,'').length===0) {
+    errors.textarea = 'Required';
+  } else if (values.textarea.length === 0) {
+    
+    errors.textarea = 'The message must be no empty';
+ }
+  return errors;
+};
+
 
 const Messageform = (messagesmetada) => {
   var database = useDatabase();
@@ -95,6 +110,7 @@ const Messageform = (messagesmetada) => {
     initialValues: {
       textarea: '',
     },
+    validate,
   onSubmit: (values, {resetForm}) => {
       var message = values.textarea;
       var messageunqueid = message_unique_id();
@@ -107,7 +123,7 @@ const Messageform = (messagesmetada) => {
       })
         .then(() => {
           resetForm();
-          
+
            })
         .catch((error) => {
         });
@@ -174,12 +190,5 @@ export function Chatboard() {
   </div>
 }
 
-function toTimestamp(strDate) {
-  var datum = Date.parse(strDate);
-  return datum / 1000;
-}
-toTimestamp(randomDate(new Date(2012, 0, 1), new Date()))
-export function randomDate(start, end) {
-  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-}
+
 
