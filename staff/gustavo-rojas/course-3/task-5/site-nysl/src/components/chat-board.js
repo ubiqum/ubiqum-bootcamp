@@ -95,7 +95,7 @@ const Messageform = (messagesmetada) => {
     initialValues: {
       textarea: '',
     },
-    onSubmit: values => {
+  onSubmit: (values, {resetForm}) => {
       var message = values.textarea;
       var messageunqueid = message_unique_id();
       let timestampmessage = new Date().getTime();
@@ -106,17 +106,17 @@ const Messageform = (messagesmetada) => {
         id: messageunqueid
       })
         .then(() => {
-          console.log("Data Saved")
-        })
+          resetForm();
+          
+           })
         .catch((error) => {
-          console.log("Error cannot save")
         });
-
+        
     }
 
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form className="form mb-5" id="messageform" onSubmit={formik.handleSubmit}>
       <div className="form-group">
         <input
           className="form-control" rows="3"
@@ -125,6 +125,7 @@ const Messageform = (messagesmetada) => {
           type="textarea"
           onChange={formik.handleChange}
           value={formik.values.textarea}
+
         />
       </div>
 
