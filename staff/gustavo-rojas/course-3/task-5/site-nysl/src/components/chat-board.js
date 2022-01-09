@@ -9,6 +9,7 @@ import { SignInButton, useUserState, SignOuButton, database } from '../utilities
 import { game_info, game_locations, label_game_details, Warninguserstosignin } from '../components/gameinfo.js'
 import { useDatabase, DatabaseProvider, AuthProvider, useFirebaseApp, useDatabaseListData } from 'reactfire';
 import { useFormik } from 'formik';
+
 const page_gamechatboard_header = "Game Board Chat";
 const table_game_chatboard = [
   {
@@ -44,18 +45,26 @@ function FirebaseMessagesreactfire({ children }) {
 }
 
 function Showmessages(messagesmetada) {
+
   if (typeof (messagesmetada.messagesmetada.user) !== 'undefined') { var gameid = messagesmetada.messagesmetada.gameid; }
   var database = useDatabase();
   var querypath = '/messages/' + gameid;
   const messagesRef = ref(database, querypath);
-  const { status, data: messages } = useDatabaseListData(messagesRef);
+  const objectlistofmesagges = useDatabaseListData(messagesRef);
+  const { status, data: messages } = objectlistofmesagges;
+  if (typeof (objectlistofmesagges.data) !== 'undefined') {
   
-  if (typeof (messages) !== 'undefined') 
-  { var messagessortedtimestamp=messages.sort((a, b) => { return a.timestamp - b.timestamp; })}
-  if (status === 'success') {
-    
+    var numberofmessageperpage = objectlistofmesagges.data.length;
+    if (numberofmessageperpage === 0) {
+  
+    };
+  }
 
-    return (<div>
+  if (typeof (messages) !== 'undefined') {
+    var messagessortedtimestamp = messages.sort((a, b) => { return a.timestamp - b.timestamp; })
+  }
+  if (status === 'success') {
+     return (<div>
       <table className="table">
         <thead>
           {table_game_chatboard.map(header => {
@@ -68,9 +77,19 @@ function Showmessages(messagesmetada) {
 
         <tbody>
           {messagessortedtimestamp.map(message => {
-            var datetime_temp = new Date(message.timestamp);
-            var date_temp = datetime_temp.getDate() + "/" + (datetime_temp.getMonth() + 1) + "/" + datetime_temp.getFullYear();
-            var time_temp = datetime_temp.getHours() + ":" + datetime_temp.getMinutes() + ":" + datetime_temp.getSeconds();
+            var datetime_temp = "";
+            var date_temp = "";
+            var time_temp = "";
+            if (typeof (messages) !== 'undefined')
+              datetime_temp = new Date(message.timestamp);
+            if (isNaN(datetime_temp)) {
+              date_temp = "";
+              time_temp = ""
+            }
+            else {
+              date_temp = datetime_temp.getDate() + "/" + (datetime_temp.getMonth() + 1) + "/" + datetime_temp.getFullYear();
+              time_temp = datetime_temp.getHours() + ":" + datetime_temp.getMinutes() + ":" + datetime_temp.getSeconds();
+            }
             return (
               <tr key={message.id} ><td >{message.author}</td><td>{message.text}</td><td>{date_temp}</td><td>{time_temp}</td>
               </tr>
@@ -90,12 +109,12 @@ function Showmessages(messagesmetada) {
 }
 const validate = values => {
   const errors = {};
-  if (values.textarea===0 || values.textarea.replace(/^\s+|\s+$/gm,'').length===0) {
+  if (values.textarea === 0 || values.textarea.replace(/^\s+|\s+$/gm, '').length === 0) {
     errors.textarea = 'Required';
   } else if (values.textarea.length === 0) {
-    
+
     errors.textarea = 'The message must be no empty';
- }
+  }
   return errors;
 };
 
@@ -111,7 +130,7 @@ const Messageform = (messagesmetada) => {
       textarea: '',
     },
     validate,
-  onSubmit: (values, {resetForm}) => {
+    onSubmit: (values, { resetForm }) => {
       var message = values.textarea;
       var messageunqueid = message_unique_id();
       let timestampmessage = new Date().getTime();
@@ -124,10 +143,10 @@ const Messageform = (messagesmetada) => {
         .then(() => {
           resetForm();
 
-           })
+        })
         .catch((error) => {
         });
-        
+
     }
 
   });
