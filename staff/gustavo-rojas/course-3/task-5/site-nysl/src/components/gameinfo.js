@@ -298,14 +298,9 @@ export const label_game_details = [
       label_time: "Time"
    }]
 
-
-
-export function Gamedetails() {
+   export function Gamedetails() {
    const [user] = useUserState();
    const { id } = useParams();
-   //var Actualpathname=useLocation().pathname;
-   //console.log(Actualpathname);
-
    const API_KEY = "AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
    let gametodisplay = game_info.find(game => game.id === id);
    var game_location_temp = game_locations[gametodisplay.Location][0].name_location;

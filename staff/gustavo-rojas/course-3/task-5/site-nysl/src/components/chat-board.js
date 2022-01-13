@@ -52,24 +52,19 @@ function Showmessages(messagesmetada) {
   var querypath = '/messages/' + gameid;
   const messagesRef = ref(database, querypath);
   const objectlistofmesagges = useDatabaseListData(messagesRef);
-  //setState(useDatabaseListData(messagesRef));
+  
   const { status, data: messages } = objectlistofmesagges;
-  //console.log(JSON.stringify(objectlistofmesagges));
-  if (typeof (objectlistofmesagges.data) !== 'undefined') {
+    if (typeof (objectlistofmesagges.data) !== 'undefined') {
     var numberofmessageperpage = objectlistofmesagges.data.length;
     if (numberofmessageperpage === 0) {
-      //numberofmessagesiszero=true;
     };
-  }
+    }
 
   if (typeof (messages) !== 'undefined') {
     var messagessortedtimestamp = messages.sort((a, b) => { return a.timestamp - b.timestamp; })
   }
   if (status === 'success') {
-    // if(numberofmessagesiszero) {
-    //  messagessortedtimestamp=[{"author": "","id": "dfbcf093-de7b-4860-9efe-2631b13ac745","text": "", "timestamp": "","NO_ID_FIELD": "dfbcf093-de7b-4860-9efe-2631b13ac745"}]
-    // };
-    //console.log(messagessortedtimestamp);
+  
     return (<div>
       <table className="table">
         <thead>
@@ -211,6 +206,3 @@ export function Chatboard() {
     <MessageListGame />
   </div>
 }
-
-
-
