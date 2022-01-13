@@ -5,11 +5,13 @@ import { nysl_league, logo_alttext, logo_width } from "../components/home.js"
 import { SignInButton, useUserState, SignOuButton } from '../utilities/firebase.js'
 import validator from 'validator'
 import { useParams } from "react-router-dom";
+
 export const season_title = "Fall Schedule";
+
 const page_gameinfo_header = "Game Info";
 const page_gamedetails_header = "Game Details ";
 const dayweek_warning = "* All games take place on Saturday";
-const label_button_gameboardchat="Game Board Chat";
+const label_button_gameboardchat = "Game Board Chat";
 const table_games_header = [
    {
       "id": "01",
@@ -219,9 +221,9 @@ export const game_info = [
 ]
 
 export function Warninguserstosignin() {
-   const warning_temp="to see Game Chatboard and post messages";
+   const warning_temp = "to see Game Chatboard and post messages";
    return <p>
-      <SignInButton/> {warning_temp}
+      <SignInButton /> {warning_temp}
    </p>
 }
 
@@ -301,6 +303,8 @@ export const label_game_details = [
 export function Gamedetails() {
    const [user] = useUserState();
    const { id } = useParams();
+   //var Actualpathname=useLocation().pathname;
+   //console.log(Actualpathname);
 
    const API_KEY = "AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
    let gametodisplay = game_info.find(game => game.id === id);
@@ -317,11 +321,11 @@ export function Gamedetails() {
       let path = route.route_gamedetails + id.id;
       navigate(path)
    }
-   
+
 
    const Gameboardbutton = () => (
       <button className="btn btn-secondary btn-sm"
-         onClick={() => Handleclick({route_gamedetails},{ id })}>
+         onClick={() => Handleclick({ route_gamedetails }, { id })}>
          {label_button_gameboardchat}
       </button>
    );
@@ -345,7 +349,7 @@ export function Gamedetails() {
          </tbody>
       </table>
       <div>
-         { user ? <Gameboardbutton />: <Warninguserstosignin/>}
+         {user ? <Gameboardbutton /> : <Warninguserstosignin />}
       </div>
       <div className="embed-responsive embed-responsive-1by1">
          <iframe title='Game Location Google Maps' className="embed-responsive-item" allowFullScreen src={game_location_url_temp}></iframe>

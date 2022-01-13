@@ -6,8 +6,8 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
-import { FirebaseAppProvider} from 'reactfire';
+import { BrowserRouter } from "react-router-dom";
+import { FirebaseAppProvider } from 'reactfire';
 const firebaseConfig = {
   apiKey: "AIzaSyDKIrUzXk5468PKOAl05fRDub2ynJiTDWM",
   authDomain: "site-nysl.firebaseapp.com",
@@ -19,11 +19,14 @@ const firebaseConfig = {
   measurementId: "G-ES77RVXY38"
 };
 ReactDOM.render(
-  <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-    <App />
-  </FirebaseAppProvider>,
+  <BrowserRouter>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <App />
+    </FirebaseAppProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

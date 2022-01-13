@@ -24,7 +24,7 @@ export function message_unique_id() {
   return uuidv4()
 }
 
-function FirebaseMessagesreactfire({ children }) {
+export function FirebaseMessagesreactfire({ children }) {
   const app = useFirebaseApp(); // a parent component contains a `FirebaseAppProvider`
   const auth = getAuth(app);
   const [user] = useUserState();
@@ -45,18 +45,20 @@ function FirebaseMessagesreactfire({ children }) {
 }
 
 function Showmessages(messagesmetada) {
+  //var numberofmessagesiszero=false;
 
   if (typeof (messagesmetada.messagesmetada.user) !== 'undefined') { var gameid = messagesmetada.messagesmetada.gameid; }
   var database = useDatabase();
   var querypath = '/messages/' + gameid;
   const messagesRef = ref(database, querypath);
   const objectlistofmesagges = useDatabaseListData(messagesRef);
+  //setState(useDatabaseListData(messagesRef));
   const { status, data: messages } = objectlistofmesagges;
+  //console.log(JSON.stringify(objectlistofmesagges));
   if (typeof (objectlistofmesagges.data) !== 'undefined') {
-  
     var numberofmessageperpage = objectlistofmesagges.data.length;
     if (numberofmessageperpage === 0) {
-  
+      //numberofmessagesiszero=true;
     };
   }
 
@@ -64,7 +66,11 @@ function Showmessages(messagesmetada) {
     var messagessortedtimestamp = messages.sort((a, b) => { return a.timestamp - b.timestamp; })
   }
   if (status === 'success') {
-     return (<div>
+    // if(numberofmessagesiszero) {
+    //  messagessortedtimestamp=[{"author": "","id": "dfbcf093-de7b-4860-9efe-2631b13ac745","text": "", "timestamp": "","NO_ID_FIELD": "dfbcf093-de7b-4860-9efe-2631b13ac745"}]
+    // };
+    //console.log(messagessortedtimestamp);
+    return (<div>
       <table className="table">
         <thead>
           {table_game_chatboard.map(header => {
@@ -107,6 +113,8 @@ function Showmessages(messagesmetada) {
   }
   ;
 }
+
+
 const validate = values => {
   const errors = {};
   if (values.textarea === 0 || values.textarea.replace(/^\s+|\s+$/gm, '').length === 0) {
@@ -117,7 +125,6 @@ const validate = values => {
   }
   return errors;
 };
-
 
 const Messageform = (messagesmetada) => {
   var database = useDatabase();
@@ -142,13 +149,10 @@ const Messageform = (messagesmetada) => {
       })
         .then(() => {
           resetForm();
-
         })
         .catch((error) => {
         });
-
     }
-
   });
   return (
     <form className="form mb-5" id="messageform" onSubmit={formik.handleSubmit}>
@@ -160,7 +164,6 @@ const Messageform = (messagesmetada) => {
           type="textarea"
           onChange={formik.handleChange}
           value={formik.values.textarea}
-
         />
       </div>
 
