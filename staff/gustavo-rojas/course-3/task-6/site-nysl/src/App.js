@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Home } from "./components/home.js"
 import { Gamedetails, Gameinfo } from "./components/gameinfo.js"
+import { Photos } from './components/photos.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Chatboard } from './components/chat-board.js'
 import { faHome, faFutbol, faComment } from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +13,10 @@ import {
   NavLink,
   useLocation
 } from "react-router-dom";
+
 const prefixgamechatboard="/chatboard/";
 export default function App() {
+
   const [user] = useUserState();
   var Actualpathname = useLocation().pathname;
   if (Actualpathname.includes("gamedetails")){
@@ -27,6 +30,7 @@ export default function App() {
           <Route path="/gameinfo" element={<Gameinfo />}>           </Route>
           <Route path="/gamedetails/:id" element={<Gamedetails />}> </Route>
           <Route path="/chatboard/:id" element={<Chatboard />}>     </Route>
+          <Route path="/photos/:id" element={<Photos />}>           </Route>
           <Route path="/" element={<Home />}>                       </Route>
         </Routes>
         <nav className="navbar px-5 fixed-bottom navbar-light bg-light" >
@@ -44,6 +48,7 @@ export default function App() {
           <Route path="/gameinfo" element={<Gameinfo />}>           </Route>
           <Route path="/gamedetails/:id" element={<Gamedetails />}> </Route>
           <Route path="/chatboard/:id" element={<Chatboard />}>     </Route>
+          <Route path="/photos/:id" element={<Photos />}>           </Route>
           <Route path="/" element={<Home />}>                       </Route>
         </Routes>
         <nav className="navbar px-5 fixed-bottom navbar-light bg-light" >

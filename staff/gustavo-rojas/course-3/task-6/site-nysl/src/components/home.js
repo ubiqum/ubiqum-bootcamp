@@ -1,6 +1,6 @@
 import logo from '../nysl_logo.svg';
 import { SignInButton, useUserState, SignOuButton } from '../utilities/firebase.js'
-export const page_home_header = "Home";
+const page_home_header = "Home";
 export const logo_alttext = "Logo NYSL";
 export const logo_width = "100";
 

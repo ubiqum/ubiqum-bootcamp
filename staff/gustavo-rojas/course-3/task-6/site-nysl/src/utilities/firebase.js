@@ -3,10 +3,12 @@ import { initializeApp} from 'firebase/app';
 import { getDatabase} from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { getStorage } from "firebase/storage";
 // const analytics = getAnalytics(app);
 export const signInWithGoogle = () => {
     signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
   };
+
 
 const firebaseSignOut = () => signOut(getAuth(firebase));
 
@@ -34,10 +36,11 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 export const database = getDatabase(firebase);
-
+export const storage = getStorage(firebase);
 
 
 export const SignOuButton = () => (
+  
     <button className="btn btn-secondary btn-sm"
         onClick={() => firebaseSignOut()}>
       Sign Out
@@ -50,19 +53,3 @@ export const SignOuButton = () => (
       Sign In
     </button>
   );
-
-
-
-  
-  
-
-
-
-
- 
- 
- 
-
-  
-
-  
