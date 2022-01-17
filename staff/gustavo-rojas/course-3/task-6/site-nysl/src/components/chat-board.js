@@ -20,7 +20,7 @@ const table_game_chatboard = [
     "fourth_col": "Time"
   }
 ]
-export function message_unique_id() {
+function message_unique_id() {
   return uuidv4()
 }
 
