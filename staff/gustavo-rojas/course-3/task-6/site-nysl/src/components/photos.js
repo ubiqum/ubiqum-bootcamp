@@ -8,7 +8,7 @@ const page_photos_header = "Photos";
 const handleFile = async (event) => {
    console.log(storage)
    var file=event.target.files[0];   
-   console.log(file.name);   
+   console.log(file.name);
    const jpgref = ref(storage, 'images/mountains.jpg');
    const uploadTask = uploadBytesResumable(jpgref, file);
     //await jpgref.put(file.name);
