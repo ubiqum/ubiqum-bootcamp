@@ -1,0 +1,140 @@
+.bigboss{
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container {
+  padding: 1rem;
+  border-radius: .5rem;
+  margin-left: 4rem;
+  display: flex;
+  
+}
+.container_logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20em;
+  
+}
+.container_safety{
+  
+  margin-top: 10em;
+  text-align: center;
+  font-size: 30px;
+}
+.nav{
+  font-size: 2rem;
+  text-align: left;
+  margin-top: 3rem;
+}
+.nav__item {
+  color: rgb(61, 92, 194);
+}
+
+.logo {
+  max-width: 18rem;
+  padding-right: 2rem;
+}
+.images {
+  max-width: 15rem;
+  margin-right: 2rem;  
+}
+.text_logo  {
+  font-size: 40px;
+  display: flex;
+  text-align: center;
+  
+}
+.contact_text {
+  font-size: 35px;
+}
+.date{
+  font-size: 1.5rem;
+}
+.date_text{
+  margin-left: 1.5rem;
+  font-size: 1.2rem; 
+}
+.about_text{
+  font-size: 1.5rem; 
+  font-weight: bold;
+}
+.container_safety_subtext{
+  font-size: 1.8rem;
+  
+}
+.safety_text{
+  font-size: 1.3rem;
+  
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+}
+.safety_subtext{
+  font-size: 1.3rem;
+  
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+  line-height: normal;
+}
+.safety_levels{
+  font-size: 2rem;
+  
+  line-height: 50px;
+  font-weight: bold;
+  
+}
+.car_diff{
+  font-size:1.5rem;
+  
+}
+.car_sub{
+  font-size:1.3rem;
+  
+  line-height: 30px;
+}
+.car_text{
+  font-size: 1.1rem;
+  
+  font-weight: normal;
+  line-height: 50px;
+}
+.car_text__long{
+  line-height:normal;
+  padding-bottom: 10px;
+}
+.ol_countdelete{
+  list-style-type: none;
+}
+.car_table{
+  width: 444px;
+
+  background-color: whitesmoke;
+  border-radius: .5rem;
+}
+.line{
+color:deepskyblue;
+font-size: 2.5rem;
+}
+.table_row{
+  justify-content: center;
+  padding: 20px;
+  display: flex;
+}
+.table_main_rules{
+  font-size: 20px;
+  border: 2px solid black;
+}
+.table_addiction-informations{
+  font-size: 20px;
+  border: 2px solid black;
+  width: 25rem;
+}
+th{
+  border: 2px solid black;
+}
+table{
+  margin: 1px;
+}

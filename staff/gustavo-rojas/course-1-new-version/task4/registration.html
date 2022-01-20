@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>NorCal Time Trials Series</title>
+  <link rel="stylesheet" href="styles/nctss_3.css">
+</head>
+
+<body>
+  <div class=logo-container>
+    <img class="logo" src="images/logo.png" alt="The Logo of NorCal Time Trial Series">
+  </div>
+  <div class=name-of-the-event-container>
+    <p class="name-of-the-event"> NorCal Time Trial Series</p>
+  </div>
+  <div class="horizontal-image-container">
+    <img class="logo" src="images/alternative_image.jpg" alt="Alternative image">
+  </div>
+  <div class="menu-container">
+    <div class="menu">
+      <ul>
+        <li class="other-pages-menu"><span><a href="index.html">Home</a></span></li>
+        <li class="other-pages-menu"><span><a href="about.html">About</a></span></li>
+        <li class="other-pages-menu"><span><a href="contact.html">Contact</a></span></li>
+        <li class="other-pages-menu"><span><a href="rules.html">Rules</a></span></li>
+        <li class="other-pages-menu"><span><a href="general_info.html">General Info</a></span></li>
+        <li class="actual-page-menu"><span><a>Sign Up!</a></span></li>
+      
+
+      </ul>
+    </div>
+  </div>
+  
+    <h1 class="index-title">Registration</h1>
+  
+  <div class="image-design-container">
+    <img class="image-design" src="images/image_1.png" alt="Image ilustration">
+  </div>
+
+  <div class="information-container">
+    <header class='registration'>
+      <p><em>Do you want be part of this amanzing events? Fill out this form.</em></p>
+   </header>
+   <br>
+   <form action='show_data.html' method='get' class='registration-form'>
+
+     <div class='form-row'>
+       <label for='first-name'>First Name</label>
+       <input id='first-name' name='first-name' type='text' />
+     </div>
+     <div class='form-row'>
+       <label for='last-name'>Last Name</label>
+       <input id='last-name' name='last-name' type='text' />
+     </div>
+     <div class='form-row'>
+       <label for='street-address'>Street Address</label>
+       <input id='street-address' name='street-address' type='text' />
+     </div>
+     <div class='form-row'>
+       <label for='City'>City</label>
+       <input id='City' name='City' type='text' />
+     </div>
+
+     <div class='form-row'>
+       <label for='zip-code'>Zip Code</label>
+       <input id='zip-code' name='zip-code' type='text' />
+     </div>
+     <div class='form-row'>
+       <label for='age'>Age</label>
+       <input id='age' name='age' type='text' />
+     </div>
+     <fieldset class='legacy-form-row'>
+       <legend>Gender</legend>
+       <input id='gender-type-2' name='gender-type' type='radio' value='Female' checked />
+       <label for='gender-type-2' class='radio-label'>Female</label>
+       <input id='gender-type-1' name='gender-type' type='radio' value='Male' />
+       <label for='gender-type-1' class='radio-label'>Male</label>
+     </fieldset>
+     <div class='form-row'>
+       <label for='contact-phone'>Contact Phone</label>
+       <input id='contact-phone' name='contact-phone' type='tel' />
+     </div>
+     <div class='form-row'>
+       <label for='email'>Contact Email</label>
+       <input id='email' name='email' type='email' placeholder='joe@example.com' />
+      </div>
+      <div class='form-row'>
+        <h4>Motorsports Organization Membership?</h4>
+       </div>
+         
+      
+
+      <div class='form-row'>
+        
+        <select name="mom" id="mom">
+          <option value="SCCA">Sports Car Club of America (SCCA)</option>
+        <option value="NASA">National Autosport Association (NASA)</option>
+        <option value="none">None</option>
+        </select>
+      </div>
+
+      
+      <div class='form-row'>
+        <h4>Previous Competitive Experience</h4>
+       </div>
+       <div class='form-row'>
+        ​<select name="pce" id="pce">
+          <option value="none">None</option>
+          <option value="htd">HPDE/Track Days</option>
+          <option value="autocross">Autocross</option>
+          <option value="one-year">One Year</option>
+          <option value="two-year">Two Years</option>
+          <option value="over-two-year">Over two years</option>
+          </select>
+      </div>
+
+      
+      <div class='form-row'>
+        <h4>Racing License</h4>
+       </div>
+       <div class='form-row'>
+        <select name="rl" id="rl">
+          <option value="none">None</option>
+          <option value="scca">SCCA</option>
+          <option value="nasa">NASA</option>
+          <option value="fia">FIA</option>
+          
+            </select>
+      </div>
+      
+      <p>I agree that I will abide by all the rules of the NorCal Time Trial Series (NCTTS). I recognize that Motorsports are inherently dangerous. 
+        I hereby release, discharge, and/or otherwise indemnify NCTTS, their employees and associated personnel and volunteers, including the facilities 
+        used for events, against any claim by or on behalf of the registrant as a result of my participation in the series. </p>
+        <br>
+        <p>By entering your name below, I hereby agree and authorize the above. </p>
+        <br>
+        <p><label for='signature-name'>Registrant’s Name:</label> <input id='signature-name' name='signature-name' type='text' /><label for='signature-date'>Date:</label> <input id='signature-date' name='signature-date' type='date' /> </p>
+      <br>
+     <br>
+     <div class='form-row'>
+       <button>Submit</button>
+     </div>
+    </form>
+  </div> 
+</body>
+
+</html>

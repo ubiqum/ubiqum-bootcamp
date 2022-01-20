@@ -1,0 +1,242 @@
+.bigboss{
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
+.container {
+  padding: 1rem;
+  border-radius: .5rem;
+  margin-left: 4rem;
+  display: flex;
+}
+
+.container_safety{
+  margin-top: 10em;
+  text-align: center;
+  font-size: 30px;
+}
+.nav{
+  font-size: 2rem;
+  
+  margin-top: 3rem;
+  
+ 
+}
+.nav__item {
+  color: rgb(61, 92, 194);
+}
+
+.logo {
+  float: left;
+  max-width: 17rem;
+  padding-left: 60px;
+
+  
+}
+.images {
+  max-width: 15rem;
+  margin-right: 2rem;  
+}
+.text_logo  {
+  font-size: 40px;
+  text-align: center;
+    
+}
+.contact_text {
+  font-size: 35px;
+}
+.date{
+  font-size: 1.5rem;
+}
+.date_text{
+  margin-left: 1.5rem;
+  font-size: 1.2rem; 
+}
+.about_text{
+  font-size: 1.5rem; 
+  font-weight: bold;
+}
+.container_safety_subtext{
+  font-size: 1.8rem;
+  
+}
+.safety_text{
+  font-size: 1.3rem;
+  
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+}
+.safety_subtext{
+  font-size: 1.3rem;
+  
+  background-color: whitesmoke;
+  border-radius: .5rem;
+  font-weight: normal;
+  line-height: normal;
+}
+.safety_levels{
+  font-size: 2rem;
+  
+  line-height: 50px;
+  font-weight: bold;
+  
+}
+.car_diff{
+  font-size:1.5rem;
+  
+}
+.car_sub{
+  font-size:1.3rem;
+  
+  line-height: 30px;
+}
+.car_text{
+  font-size: 1.1rem;
+  
+  font-weight: normal;
+  line-height: 50px;
+}
+.car_text__long{
+  line-height:normal;
+  padding-bottom: 10px;
+}
+.ol_countdelete{
+  list-style-type: none;
+}
+.car_table{
+  width: 444px;
+
+  background-color: whitesmoke;
+  border-radius: .5rem;
+}
+.line{
+color:deepskyblue;
+font-size: 2.5rem;
+}
+.table_row{
+  justify-content: center;
+  padding: 20px;
+  display: flex;
+}
+.table_main_rules{
+  font-size: 25px;
+  border: 2px solid black;
+  
+}
+.table_addiction-informations{
+  font-size: 20px;
+  border: 2px solid black;
+  width: 25rem;
+}
+th{
+  border: 2px solid black;
+}
+table{
+  margin: 1px;
+}
+sup{
+  border-bottom: 1px solid black;
+}
+.register_title{
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+}
+.register_form{
+padding-top: 2rem;
+text-align: center;
+font-size: 25px;
+font-weight: bold;
+}
+.register_labels{
+  font-size: 30px;
+  font-weight: bold;
+}
+input[type=text]{   
+  font-size: 30px;
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  transition: ease-in-out, width .5s cubic-bezier(0.19, .19, .19, .19);
+  color: transparent;
+
+}
+input[type=text]:focus, input[type=text]:hover{
+font-size: 25px;
+border-radius: 0%;
+width: 250px;
+border: none;
+color: black;
+text-align: center;
+}
+.register_wrap{
+  margin-right: 11%;
+  margin-left: 11%;
+  border-top: 5px solid slategray;
+  border-radius: 50%;
+}
+.gender{
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 4px solid black;
+}
+
+select:hover, option{
+  font-size: 20px;
+}
+.signature{
+  padding-top: 30px;
+  font-weight: normal;
+  text-align: center;
+  font-size: 20px;
+  border-top: 5px dotted slategray;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  
+}
+.signature_sign{
+  padding-top: 100px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+}
+.signature_date{
+  padding-top: 100px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  float: right;
+  padding-right: 100px;
+}
+.submit_button{
+  border: none;
+  margin-left: 14rem;
+  margin-top: 10rem;
+  font-size: 2rem;
+  transition: ease-in-out, width .5s cubic-bezier(0.19, .19, .19, .19);
+  transition-duration: 1s;
+}
+.submit_button:hover{
+  background-color: greenyellow;
+  letter-spacing: 10px;
+  border-radius: 10px;
+}
+.venue-theatre{
+  margin-bottom: 66px;
+}
+.venue-hotel{
+  margin-bottom: 22px;
+}
+.venue-map{
+  height: 264px;
+}
+.table_map{
+  font-size: 25px;
+  margin: auto;
+  text-align: center;
+  padding-top: 30px;
+}
