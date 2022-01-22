@@ -1,32 +1,79 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Tasks from './components/Tasks';
+import AddTask from './components/AddTask';
+import About from './components/About';
+
 
 function App() {
   const name = "Task Tracker";
-  const [tasks, setTasks] = useState(
-    [
-        {
-            id: 1,
-            text: 'Doctors Appointment',
-            day: 'Feb 5th, 14:30'
+  const [showAddTask, setShowAddTask] = useState(false)  // false=don't show by default
+  const [tasks, setTasks] = useState([])
+  
+  useEffect(() => {
+    const getTasks = async() => {
+      const tasksFromServer = await fetchTasks()
+      setTasks(tasksFromServer)
+    }
+
+    getTasks()
+  }, [])  // it's good practice to leave an empty array in the end 
+          //in case dependencies are used (like user)
+
+    //Fetch Tasks
+    const fetchTasks = async() => {
+      // fetch returns a promise, so await "awaits" that promise
+      const response = await fetch('http://localhost:5000/tasks')
+      const data = await response.json()
+      return data
+    }
+    //Add Task
+    const addTask = async (task) => {
+      const response = await fetch('http://localhost:5000/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
         },
-        {
-            id: 2,
-            text: 'Work Meeting',
-            day: 'Feb 6th, 10:30'  
-        }
-    ])
+        body: JSON.stringify(task)
+      })
+      const data = await response.json()
+      setTasks([...tasks, data])
+      // THE 3 LINES BELOW WERE ONLY USED IN UI WITHOUT BACKEND
+      // const id = Math.floor(Math.random() * 10000) + 1
+      // const newTask = {id, ...task}
+      // setTasks([...tasks, newTask])
+    }
     //Delete Task
-    const deleteTask = (id) => {
-      console.log('delete task id:', id)
+    const deleteTask = async(id) => {
+      await fetch(`http://localhost:5000/tasks/${id}`, {
+        method: 'DELETE'
+      })
+
       setTasks(tasks.filter( (task) => task.id !== id ))
     }
     return (
-    <div className="container">
-      <Header title={name}/>
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask}/> : 'No Tasks To Show'}
-    </div>
+      <Router>
+        <div className="container">
+          <Header 
+            title={name} 
+            onAdd={() => setShowAddTask(!showAddTask)} 
+            showAdd={showAddTask}
+            />
+          <Routes>
+            <Route path='/' element={
+              <>
+              {showAddTask && <AddTask onAdd={addTask} />}
+              {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask}/> : 'No Tasks To Show'}
+              </>
+              }
+              />
+            <Route path='/about' element={<About />} />
+            </Routes>
+          <Footer />
+        </div>
+    </Router>
   );
 }
 
