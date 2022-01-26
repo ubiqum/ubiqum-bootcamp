@@ -1,21 +1,10 @@
 //import Banner from './components/Banner'
 //import CourseList from './components/CourseList';
 import { useState, useEffect } from 'react'
-import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref, set } from 'firebase/database';
 
-const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  databaseURL: "...",
-  projectId: "...",
-  storageBucket: "....",
-  messagingSenderId: "...",
-  appId: "..."
-};
 
-const firebase = initializeApp(firebaseConfig);
-const database = getDatabase(firebase);
+// const firebase = initializeApp(firebaseConfig);
+// const database = getDatabase(firebase);
 
 //App link: https://ubiqum-react-scheduler.web.app/
 
@@ -48,15 +37,15 @@ const Course = ({ course }) => (
   </div>
 );
 
-useEffect(() => {
-  const fetchSchedule = async () => {
-    const response = await fetch(url);
-    if (!response.ok) throw response;
-    const json = await response.json();
-    setSchedule(json);
-  }
-  fetchSchedule();
-})
+// useEffect(() => {
+//   const fetchSchedule = async () => {
+//     const response = await fetch(url);
+//     if (!response.ok) throw response;
+//     const json = await response.json();
+//     setSchedule(json);
+//   }
+//   fetchSchedule();
+// })
 
 const schedule = {
   "title": "CS Courses for 2018-2019",
