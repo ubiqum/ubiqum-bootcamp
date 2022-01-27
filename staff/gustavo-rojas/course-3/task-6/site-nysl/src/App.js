@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import { Home } from "./components/home.js"
 import { Gamedetails, Gameinfo } from "./components/gameinfo.js"
-import { Photos } from './components/photos.js';
+import { Photos} from './components/photos.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Chatboard } from './components/chat-board.js'
-import { faHome, faFutbol, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faFutbol, faComment, faPhotoVideo } from '@fortawesome/free-solid-svg-icons';
 import { useUserState } from './utilities/firebase.js';
 import {
   Routes,
@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 
 const prefixgamechatboard="/chatboard/";
+const prefixphotos="/photos/"
 export default function App() {
 
   const [user] = useUserState();
@@ -22,7 +23,8 @@ export default function App() {
   if (Actualpathname.includes("gamedetails")){
     var gameid=Actualpathname.split('/')[2];
    }
-  var chatboardroute=prefixgamechatboard+gameid;
+   var chatboardroute=prefixgamechatboard+gameid;
+   var photosgameroute=prefixphotos+gameid;
   if (user !== null && Actualpathname.includes("gamedetails")) {
     return (
       <div>
@@ -37,6 +39,8 @@ export default function App() {
           <NavLink to="/"> <FontAwesomeIcon size="lg" icon={faHome} /> </NavLink>
           <NavLink to="/gameinfo"> <FontAwesomeIcon size="lg" icon={faFutbol} /> </NavLink>
           <NavLink to={chatboardroute}> <FontAwesomeIcon size="lg" icon={faComment} /> </NavLink>
+          <NavLink to={photosgameroute}> <FontAwesomeIcon size="lg" icon={faPhotoVideo} /> </NavLink>
+
         </nav>
       </div>
     );

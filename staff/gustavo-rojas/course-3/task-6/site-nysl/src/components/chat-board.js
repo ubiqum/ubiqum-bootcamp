@@ -33,20 +33,27 @@ export function FirebaseMessagesreactfire({ children }) {
     user: user,
     gameid: id,
   };
+  const messagesmetadaform = {
+    user: user,
+    gameid: id
+  };
+  //console.log(messagesmetadaform)
   // any child components will be able to use `useUser`, `useDatabaseObjectData`, etc
   return (
     <AuthProvider sdk={auth}>
       <DatabaseProvider sdk={database}>
         <Showmessages messagesmetada={messagesmetada} />
-        <Messageform messagesmetada={messagesmetada} />
+        <Messageform messagesmetadaform={messagesmetadaform} />
       </DatabaseProvider>
     </AuthProvider>
   );
 }
 
 function Showmessages(messagesmetada) {
-
-  if (typeof (messagesmetada.messagesmetada.user) !== 'undefined') { var gameid = messagesmetada.messagesmetada.gameid; }
+  
+  if (typeof (messagesmetada.messagesmetada.user) !== 'undefined') { 
+              var gameid = messagesmetada.messagesmetada.gameid; 
+                }
   var database = useDatabase();
   var querypath = '/messages/' + gameid;
   const messagesRef = ref(database, querypath);
@@ -56,7 +63,7 @@ function Showmessages(messagesmetada) {
     if (typeof (objectlistofmesagges.data) !== 'undefined') {
     var numberofmessageperpage = objectlistofmesagges.data.length;
     if (numberofmessageperpage === 0) {
-    };
+          };
     }
 
   if (typeof (messages) !== 'undefined') {
@@ -119,12 +126,14 @@ const validate = values => {
   return errors;
 };
 
-const Messageform = (messagesmetada) => {
+const Messageform = (messagesmetadaform) => {
   var database = useDatabase();
-  if (typeof (messagesmetada.messagesmetada.user) !== 'undefined') {
-    var email = messagesmetada.messagesmetada.user.email
-    var gameid = messagesmetada.messagesmetada.gameid
+  
+  if (typeof (messagesmetadaform.messagesmetadaform.user) !== 'undefined') {
+    var email = messagesmetadaform.messagesmetadaform.user.email
+    var gameid = messagesmetadaform.messagesmetadaform.gameid
   }
+  
   const formik = useFormik({
     initialValues: {
       textarea: '',
@@ -142,7 +151,7 @@ const Messageform = (messagesmetada) => {
       })
         .then(() => {
           resetForm();
-        })
+         })
         .catch((error) => {
         });
     }
