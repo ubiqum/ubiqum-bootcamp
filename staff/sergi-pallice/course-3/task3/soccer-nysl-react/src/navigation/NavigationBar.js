@@ -1,17 +1,23 @@
 import React from 'react';
-import {  Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendarAlt,
+  faHome,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 
 const navbar= () =>{
   return (
     <div>
       <nav className="mobile-nav">
-        <div>
+        <div className="alarm">
         {/* <i className="bi bi-house"></i> */}
-          <Link to="/home">HOME</Link>
+          <NavLink to="/home"><FontAwesomeIcon size="lg" icon={faCalendarAlt} color="darkgrey" /></NavLink>
         </div>
         <div>
-          <Link to="/games">GAMES</Link>
+          <NavLink to="/games">GAMES</NavLink>
         </div>
       </nav>
     </div>

@@ -6,6 +6,8 @@ import Home from "./navigation/Home"
 //import background from "./images/soccerBackground.jpg"
 // style={{backgroundImage: `url(${background})`}}
 
+// APP: https://soccer-react-app-7f65c.web.app/
+
 function App() {
   return (
     <div>
