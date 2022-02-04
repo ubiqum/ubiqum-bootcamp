@@ -1,12 +1,10 @@
 import React from 'react';
 import {  NavLink } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarAlt,
-  faHome,
-  faPaperPlane,
-} from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fontawesome/react-fortawesome";
+// import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons" 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const navbar= () =>{
   return (
@@ -14,7 +12,9 @@ const navbar= () =>{
       <nav className="mobile-nav">
         <div className="alarm">
         {/* <i className="bi bi-house"></i> */}
-          <NavLink to="/home"><FontAwesomeIcon size="lg" icon={faCalendarAlt} color="darkgrey" /></NavLink>
+          <NavLink to="/home">HOME
+            <FontAwesomeIcon icon={faHome} />
+          </NavLink>
         </div>
         <div>
           <NavLink to="/games">GAMES</NavLink>
