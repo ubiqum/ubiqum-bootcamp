@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavigationBar from "./navigation/NavigationBar"
 import Games from "./navigation/Games"
 import Home from "./navigation/Home"
+import { GameDetails } from "./navigation/Games.js"
+// import GameDetails from "./navigation/GameDetails"
 import React from 'react';
 //import background from "./images/soccerBackground.jpg"
 // style={{backgroundImage: `url(${background})`}}
@@ -12,10 +14,11 @@ import React from 'react';
 function App() {
   return (
     <Router>
-      <NavigationBar className="navbar fixed-bottom .bg-primary"></NavigationBar>
+      <NavigationBar></NavigationBar>
       <Routes>
-        <Route path='/home' element={<Home />} />
-        <Route path='/games' element={<Games />} />  
+        <Route path='/' element={<Home />} />
+        <Route path='/games' element={<Games />} />
+        <Route path='/gamedetails/:id' element={<GameDetails />} />
       </Routes>
     </Router>
   );
