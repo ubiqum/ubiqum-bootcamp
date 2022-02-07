@@ -1,31 +1,31 @@
-import game_data from '../data/game_data.json'
+import game_data from "../data/game_data.json"
 import { useParams } from "react-router-dom";
+import SignInOutButton from "../components/SignInOutButton"
 
-
-const headingStyle = {
-    textAlign: "center"
- }
+const headingStyle = { textAlign: "center" }
 
 
 export default function GameDetails() {
     const { id } = useParams();
-    var gametodisplay = game_data.games.find(game => game.id == id);
+    var gameToDisplay = game_data.games.find(game => game.id == id);
  
     const apiKey = "AIzaSyAusue00RkBid1ljE9amVRbXki4mJ_F2Po";
-    const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
+    //const API_KEY="AIzaSyD_PVZlhiITxWwbw_tavy_BoJh5PVpyqFY";
     var google_api_url="https://www.google.com/maps/embed/v1/place?q=place_id:";
-    var x = gametodisplay.Location
-    var mapURL = game_data.locations.Katzenmaier.google_maps_id
-    var mapSource = google_api_url.concat(mapURL,"&key=",API_KEY);
- 
+    var x = gameToDisplay.Location
+    var mapURL = game_data.locations[x].google_maps_id
+    var mapSource = google_api_url.concat(mapURL,"&key=",apiKey);
+
     return (
        <div>
           <h1 className="container bg-info" style={headingStyle}>Game Details</h1>
-          {gametodisplay.id}
-          {gametodisplay.Date}
-          {gametodisplay.Teams}
-          {gametodisplay.Location}
-          {gametodisplay.Times}
+          <SignInOutButton />
+          <div>
+            {"Date: " + gameToDisplay.Date}<br></br>
+            {"Teams: " + gameToDisplay.Teams}<br></br>
+            {"Place: " + gameToDisplay.Location}<br></br>
+            {"Time: " + gameToDisplay.Times}<br></br>
+          </div>
           <iframe title='Game Location Google Maps' loading="lazy" allowFullScreen src={mapSource}></iframe>
        </div>
     )

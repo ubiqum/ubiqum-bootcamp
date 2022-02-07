@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase, onValue, ref, set } from 'firebase/database';
+import { useState, useEffect } from 'react'
+import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCaHt6iD_3wksoERgujn6SnuLY0ZTzshxc",
   authDomain: "soccer-react-app-7f65c.firebaseapp.com",
@@ -18,4 +15,50 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const database = getDatabase(app);
+
+// Google Sign in / out
+export const signIn = () => {signInWithPopup(getAuth(app), new GoogleAuthProvider())};
+export const firebaseSignOut = () => signOut(getAuth(app));
+export { firebaseSignOut as signOut };
+export const useUserState = () => {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    onIdTokenChanged(getAuth(app), setUser);
+  }, []);
+
+  return [user];
+};
+
+// Fetch data
+export const setData = (path, value) => (
+  set(ref(database, path), value)
+);
+
+
+export const useData = (path) => {
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    const dbRef = ref(database, path);
+    // const devMode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+    // if (devMode) { console.log(`loading ${path}`); }
+      return onValue(dbRef, (snapshot) => {
+        const val = snapshot.val();
+        console.log(val, path)
+        // if (devMode) { console.log(val); }
+        setLoading(false);
+        setError(null);
+        }, (error) => {
+          setData(null);
+          setLoading(false);
+          setError(error);
+    });
+  }, [path]);
+
+  return [data, loading, error];
+};
+

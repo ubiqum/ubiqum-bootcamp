@@ -10,6 +10,7 @@ import GameDetails from "./components/GameDetails"
 // APP: https://soccer-react-app-7f65c.web.app/
 
 function App() {
+  // console.log(useData('/', Games) )
   return (
     <Router>
       <NavigationBar></NavigationBar>

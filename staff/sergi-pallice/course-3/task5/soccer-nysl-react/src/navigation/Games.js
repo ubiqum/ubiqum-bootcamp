@@ -1,15 +1,14 @@
 import game_data from '../data/game_data.json'
+import SignInOutButton from "../components/SignInOutButton"
+import { useData } from "../utilities/firebase"
 
-import { useNavigate } from "react-router-dom";
-import { Navbar, Nav, Container } from 'react-bootstrap';
 
-
-const headingStyle = {
-   textAlign: "center"
-}
-
+const headingStyle = { textAlign: "center" }
 
 const Games = () => {
+
+   const [data, loading, error] = useData('/games');
+   console.log( data )
 
    function showGameDetails(gameid) {
       window.location.href = "/gamedetails/" + gameid;
@@ -18,6 +17,7 @@ const Games = () => {
    return (
      <div>
        <h1 className="container bg-info" style={headingStyle}>Game List</h1>
+       <SignInOutButton />
        <h2><em>Fall Schedule</em></h2>
        <p>*All games take place on Saturday</p>
 
