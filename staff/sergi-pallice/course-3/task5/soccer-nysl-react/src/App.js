@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavigationBar from "./navigation/NavigationBar"
 import Games from "./navigation/Games"
 import Home from "./navigation/Home"
-import { GameDetails } from "./navigation/Games.js"
-// import GameDetails from "./navigation/GameDetails"
-import React from 'react';
+import GameDetails from "./components/GameDetails"
 //import background from "./images/soccerBackground.jpg"
 // style={{backgroundImage: `url(${background})`}}
 
