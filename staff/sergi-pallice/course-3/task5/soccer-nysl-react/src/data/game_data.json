@@ -162,5 +162,41 @@
           "address": "2101 N. Fremont St., Chicago, IL 60614",
           "google_maps_placeid": "ChIJxx20bxnTD4gR9W0z1vfnC5c"
        }
-   }
+   },
+   "messages": {
+      "001": {
+        "message-1": {
+          "author": "abc@example.com",
+          "text": "great job guarding the goal, Kevin!",
+          "timestamp": 1626713122679
+        },
+        "message-2": {
+         "author": "xyz@example.com",
+         "text": "gg",
+         "timestamp": 1626713145683
+       },
+       "message-3": {
+        "author": "xyz@example.com",
+        "text": "Hi Leslie!",
+        "timestamp": 1626713145683
+      },
+      "message-4": {
+         "author": "xyz@example.com",
+         "text": "c u all in the next game!",
+         "timestamp": 1626713145683
+       }
+      },
+      "002": {
+         "message-1": {
+           "author": "abc@example.com",
+           "text": "great job guarding the goal, Kevin!",
+           "timestamp": 1626713122679
+         },
+         "message-2": {
+          "author": "xyz@example.com",
+          "text": "gg",
+          "timestamp": 1626713145683
+        }
+       }      
+    }   
  }

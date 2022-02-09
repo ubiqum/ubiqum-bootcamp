@@ -4,6 +4,7 @@ import {useUserState} from '../utilities/firebase.js';
 export default function SignInOutButton() {
 
     const [user] = useUserState();
+    //console.log(user === null)  // If user is null then it's signed out
 
     const SignInButton = () => (
         <button className="btn btn-secondary btn-sm" style={{float:'right'}}

@@ -2,13 +2,12 @@ import game_data from '../data/game_data.json'
 import SignInOutButton from "../components/SignInOutButton"
 import { useData } from "../utilities/firebase"
 
-
 const headingStyle = { textAlign: "center" }
+
 
 const Games = () => {
 
-   const [data, loading, error] = useData('/games');
-   console.log( data )
+   const [data, loading, error] = useData('/')
 
    function showGameDetails(gameid) {
       window.location.href = "/gamedetails/" + gameid;
@@ -22,11 +21,11 @@ const Games = () => {
        <p>*All games take place on Saturday</p>
 
        {Object.values(game_data.games).map( (game, index) => (
-         <div className="container" key={index} onClick={() => showGameDetails(game.id)}>
-             <span className="block-example border border-dark">
+         <div  className="container block-example border border-dark" 
+               key={index} 
+               onClick={() => showGameDetails(game.id)}>
              {"Date: " + game.Date}
              {" &   Time: " + game.Times}
-             </span>
          </div>
           )
           )}

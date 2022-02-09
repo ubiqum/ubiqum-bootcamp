@@ -6,6 +6,7 @@ import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut
 const firebaseConfig = {
   apiKey: "AIzaSyCaHt6iD_3wksoERgujn6SnuLY0ZTzshxc",
   authDomain: "soccer-react-app-7f65c.firebaseapp.com",
+  databaseURL: "https://soccer-react-app-7f65c-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "soccer-react-app-7f65c",
   storageBucket: "soccer-react-app-7f65c.appspot.com",
   messagingSenderId: "660788612491",
@@ -48,7 +49,6 @@ export const useData = (path) => {
     // if (devMode) { console.log(`loading ${path}`); }
       return onValue(dbRef, (snapshot) => {
         const val = snapshot.val();
-        console.log(val, path)
         // if (devMode) { console.log(val); }
         setLoading(false);
         setError(null);
