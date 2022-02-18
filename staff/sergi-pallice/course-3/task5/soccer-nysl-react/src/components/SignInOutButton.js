@@ -25,5 +25,4 @@ export default function SignInOutButton() {
         { user ? <SignOuButton /> : <SignInButton /> }
     </div>
   )
-  
   }

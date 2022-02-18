@@ -39,26 +39,26 @@ export const setData = (path, value) => (
 
 
 export const useData = (path) => {
-  const [data, setData] = useState();
+  const [data, setNewData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
-
   useEffect(() => {
-    const dbRef = ref(database, path);
-    // const devMode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
-    // if (devMode) { console.log(`loading ${path}`); }
-      return onValue(dbRef, (snapshot) => {
+    const messagesRef = ref(database, path);
+    return onValue(
+      messagesRef,
+      (snapshot) => {
         const val = snapshot.val();
-        // if (devMode) { console.log(val); }
+        setNewData(val);
         setLoading(false);
         setError(null);
-        }, (error) => {
-          setData(null);
-          setLoading(false);
-          setError(error);
-    });
+      },
+      (errorReceived) => {
+        setNewData(null);
+        setLoading(false);
+        setError(errorReceived);
+      },
+    );
   }, [path]);
 
   return [data, loading, error];
 };
-

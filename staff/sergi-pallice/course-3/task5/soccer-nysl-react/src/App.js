@@ -4,13 +4,13 @@ import NavigationBar from "./navigation/NavigationBar"
 import Games from "./navigation/Games"
 import Home from "./navigation/Home"
 import GameDetails from "./components/GameDetails"
+import { useData } from "./utilities/firebase"
 //import background from "./images/soccerBackground.jpg"
 // style={{backgroundImage: `url(${background})`}}
 
 // APP: https://soccer-react-app-7f65c.web.app/
 
 function App() {
-  // console.log(useData('/', Games) )
   return (
     <Router>
       <NavigationBar></NavigationBar>
