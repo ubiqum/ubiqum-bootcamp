@@ -1,55 +1,42 @@
 import React from "react"
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useData, setData } from "../utilities/firebase"
+import { useData, setData, useUserState } from "../utilities/firebase"
 
 // sort function
 
-class NameForm extends React.Component {
+export function NameForm(props) {
 
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-
-    const messageX = {
-      "author": "spallice@gmail.com",
-      "text": this.state.value,
+  const [message, setName] = useState("");
+  const user = useUserState();
+  const {id} = useParams();
+  
+  const handleSubmit = (evt) => {
+    const newMessage = {
+      "author": user[0].email,
+      "text": message,
       "timestamp": Date.now()
     }
 
-    const id1 = '001'
-    const messageId = 'message-5'
-    setData(`/messages/${id1}/${messageId}`, messageX) 
+    // const totalMessages = Object.keys(data.messages[id]).length
+    const messageId = 'message-7'
+    setData(`/messages/${id}/${messageId}`, newMessage) 
 
-    alert('A message was submitted: ' + this.state.value);   
-    event.preventDefault();
+    evt.preventDefault();
+    alert(`Submitting Name ${message}`)
   }
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        {/* {console.log( Date.now() )}
-        {console.log(this.state)} */}
-        <label> Type:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Post" />
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Type:
+        <input type="text" value={message} onChange={e => setName(e.target.value)}/>
+      </label>
+      <input type="submit" value="Post" />
+    </form>
+  );
 }
 
-    // Fetch data
-    //setData = (path, value)
 
 
 export default function ChatMessages() {
@@ -60,19 +47,16 @@ export default function ChatMessages() {
     if (error) return <div>Error: {error.message}</div>;
     if (loading) return <div>Loading data...</div>;
 
-    // const messageX = {
-    //     "message-5": {
-    //     "author": "spallice@gmail.com",
-    //     "text": "this.state.value",
-    //     "timestamp": "Date.now()"
-    //   }
-    // }
-    // setData('/messegaes', messageX)
+    console.log(
+      Object.keys(data.messages[id]).length
+      )
 
     return (
         <div>
+
           <NameForm />
           <br></br>
+
           {Object.values(data.messages[id]).map( (message, index) => (
             <div className="container block-example border border-dark" key={index} style={{fontsize: 20}}>
                 {/* {console.log(message)} */}
