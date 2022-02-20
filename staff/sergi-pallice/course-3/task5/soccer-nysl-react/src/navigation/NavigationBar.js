@@ -9,8 +9,8 @@ const navbar= () =>{
     
     <Navbar className="navbar fixed-bottom" bg="info">
       <Container>
-        <NavLink to="/"><FontAwesomeIcon icon={faHome}/>HOME</NavLink>
-        <NavLink to="/games"><FontAwesomeIcon icon={faListUl}/>GAMES</NavLink>
+        <NavLink to="/"><h5><FontAwesomeIcon icon={faHome}/>HOME</h5></NavLink>
+        <NavLink to="/games"><h5><FontAwesomeIcon icon={faListUl}/>GAMES</h5></NavLink>
       </Container>
     </Navbar>
     

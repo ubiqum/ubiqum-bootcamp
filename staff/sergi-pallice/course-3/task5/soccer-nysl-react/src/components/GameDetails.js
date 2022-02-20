@@ -18,7 +18,6 @@ export default function GameDetails() {
    const [data, loading, error] = useData('/');
    if (error) return <div>Error: {error.message}</div>;
    if (loading) return <div>Loading data...</div>;
-   // console.log(data.games)
 
    var gameToDisplay = game_data.games.find(game => game.id === id);
  

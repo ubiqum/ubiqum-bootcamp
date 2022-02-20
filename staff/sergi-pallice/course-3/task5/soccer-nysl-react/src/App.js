@@ -4,7 +4,7 @@ import NavigationBar from "./navigation/NavigationBar"
 import Games from "./navigation/Games"
 import Home from "./navigation/Home"
 import GameDetails from "./components/GameDetails"
-import { useData } from "./utilities/firebase"
+import Pictures from "./components/Pictures"
 //import background from "./images/soccerBackground.jpg"
 // style={{backgroundImage: `url(${background})`}}
 
@@ -18,6 +18,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/games' element={<Games />} />
         <Route path='/gamedetails/:id' element={<GameDetails />} />
+        <Route path='/pictures/:id' element={<Pictures />} />
       </Routes>
     </Router>
   );

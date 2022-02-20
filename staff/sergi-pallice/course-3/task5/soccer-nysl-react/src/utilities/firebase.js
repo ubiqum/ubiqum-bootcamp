@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, set } from 'firebase/database';
 import { useState, useEffect } from 'react'
 import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCaHt6iD_3wksoERgujn6SnuLY0ZTzshxc",
@@ -32,12 +33,16 @@ export const useUserState = () => {
   return [user];
 };
 
-// Fetch data
+
+//----------------------IMAGE STORAGE----------------------------------
+export const storage = getStorage(app);
+
+//----------------------WRITE DATA----------------------------------
 export const setData = (path, value) => (
   set(ref(database, path), value)
 );
 
-
+//----------------------FETCH DATA-----------------------------
 export const useData = (path) => {
   const [data, setNewData] = useState();
   const [loading, setLoading] = useState(true);

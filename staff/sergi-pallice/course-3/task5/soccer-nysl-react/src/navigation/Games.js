@@ -1,9 +1,8 @@
-// import game_data from '../data/game_data.json'
 import SignInOutButton from "../components/SignInOutButton"
 import { useData } from "../utilities/firebase"
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const headingStyle = { textAlign: "center" }
 
@@ -11,15 +10,11 @@ const headingStyle = { textAlign: "center" }
 
 const Games = () => {
 
+   const navigate = useNavigate();
+
    const [data, loading, error] = useData('/');
    if (error) return <div>Error: {error.message}</div>;
    if (loading) return <div>Loading data...</div>;
-    
-   //const navigate = useNavigate()
-
-   function showGameDetails(gameid) {
-      window.location.href = "/gamedetails/" + gameid;
-   }
 
    return (
       <div>
@@ -30,8 +25,8 @@ const Games = () => {
  
         {Object.values(data.games).map( (game, index ) => (
           <div  className="container block-example border border-dark" 
-                key={index} 
-                onClick={() => showGameDetails(game.id)}>
+                key={index}
+                onClick={() => navigate('/gamedetails/' + game.id) }>
               {"Date: " + game.Date}
               {" &   Time: " + game.Times}
           </div>
