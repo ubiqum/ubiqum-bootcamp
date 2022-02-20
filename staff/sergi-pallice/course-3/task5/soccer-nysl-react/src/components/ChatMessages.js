@@ -1,10 +1,8 @@
 import React from "react"
-import game_data from "../data/game_data.json";
 import { useParams } from "react-router-dom";
 import { useData, setData } from "../utilities/firebase"
 
 // sort function
-
 
 class NameForm extends React.Component {
 
@@ -21,15 +19,26 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A message was submitted: ' + this.state.value);
+
+    const messageX = {
+      "author": "spallice@gmail.com",
+      "text": this.state.value,
+      "timestamp": Date.now()
+    }
+
+    const id1 = '001'
+    const messageId = 'message-5'
+    setData(`/messages/${id1}/${messageId}`, messageX) 
+
+    alert('A message was submitted: ' + this.state.value);   
     event.preventDefault();
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        {console.log( Date.now() )}
-        {console.log(this.state)}
+        {/* {console.log( Date.now() )}
+        {console.log(this.state)} */}
         <label> Type:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
@@ -51,8 +60,14 @@ export default function ChatMessages() {
     if (error) return <div>Error: {error.message}</div>;
     if (loading) return <div>Loading data...</div>;
 
-    // const messageX = {'x': 'x'}
-    //setData('/', messageX)
+    // const messageX = {
+    //     "message-5": {
+    //     "author": "spallice@gmail.com",
+    //     "text": "this.state.value",
+    //     "timestamp": "Date.now()"
+    //   }
+    // }
+    // setData('/messegaes', messageX)
 
     return (
         <div>
@@ -66,6 +81,8 @@ export default function ChatMessages() {
                 {"Author: " + message.author}
             </div>
              ))}
+          <br></br>
+          <br></br>
         </div>
           )
 }
