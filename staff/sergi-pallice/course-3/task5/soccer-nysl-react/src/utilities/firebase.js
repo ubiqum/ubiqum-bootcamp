@@ -1,8 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, set } from 'firebase/database';
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import {
+  getDownloadURL, getStorage, ref as storageRef, uploadBytes,
+} from 'firebase/storage';
+
 import { useState, useEffect } from 'react'
 import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { getStorage } from "firebase/storage";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCaHt6iD_3wksoERgujn6SnuLY0ZTzshxc",
@@ -16,8 +24,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+export const app = initializeApp(firebaseConfig);
+export const database = getDatabase(app);
 
 // Google Sign in / out
 export const signIn = () => {signInWithPopup(getAuth(app), new GoogleAuthProvider())};
@@ -36,6 +44,21 @@ export const useUserState = () => {
 
 //----------------------IMAGE STORAGE----------------------------------
 export const storage = getStorage(app);
+//export const storage = firebase.storage(); 
+
+// export const saveImage = (file, user, gameId, pictureNumber) => {
+//   const photoRef = storageRef(storage, `images/${file.name}`);
+//   uploadBytes(photoRef, file).then((snapshot) => {
+//     getDownloadURL(snapshot.ref).then((downloadURL) => {
+//       setData(`/pictures/${gameId}/${`picture-${pictureNumber}`}`, {
+//         author: user.email,
+//         url: downloadURL,
+//         timestamp: Date.now(),
+//       });
+//     });
+//   });
+// };
+
 
 //----------------------WRITE DATA----------------------------------
 export const setData = (path, value) => (

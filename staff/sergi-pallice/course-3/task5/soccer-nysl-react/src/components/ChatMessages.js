@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useData, setData, useUserState } from "../utilities/firebase"
 import { useNavigate } from 'react-router-dom'
+import { faImages } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 // sort function
 const headingStyle = { textAlign: "center" }
@@ -47,10 +50,11 @@ export default function ChatMessages() {
           </div>
           <br></br>
 
-          <div  className="container block-example border-dark bg-info"
+          <div  className="container block-example border-dark"
                 style={headingStyle}
                 onClick={() => navigate('/pictures/' + id) }>
-            Click here to view or upload pictures
+            <FontAwesomeIcon icon={faImages}/>
+            {' '} View/Upload Pictures
           </div>
           <br></br>
 
