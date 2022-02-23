@@ -21,7 +21,6 @@ export default function ChatMessages() {
     if (error) return <div>Error: {error.message}</div>;
     if (loading) return <div>Loading data...</div>;
 
-
     const handleSubmit = (evt) => {
       const newMessage = {
         "author": user[0].email,

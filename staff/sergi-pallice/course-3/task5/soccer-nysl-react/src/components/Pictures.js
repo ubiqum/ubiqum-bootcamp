@@ -1,66 +1,49 @@
 import React from "react"
-
-import { app, database } from  "../utilities/firebase"
+import { useParams } from "react-router-dom";
 import { useData, setData, useUserState, storage } from "../utilities/firebase"
-import { useState, useEffect } from "react";
-
-import {
-    getDownloadURL, getStorage, ref as storageRef, uploadBytes,
-  } from 'firebase/storage';
-
+import { getDownloadURL, getStorage, ref as storageRef, uploadBytes} from 'firebase/storage';
 import { faCamera, faImages } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
+
 const headingStyle = { textAlign: "center" }
-
-
-
-
-
-
-
+const imageStyle = { maxHeight: '100%', maxWidth: '100%' }
 
 
 export default function Pictures() {
 
-    const [image, setImage] = useState(null);
-    
-    const onImageChange = (e) => {
-        const reader = new FileReader();
-        let file = e.target.files[0]; // get the supplied file
-        // if there is a file, set image to that file
-        if (file) {
-          reader.onload = () => {
-            if (reader.readyState === 2) {
-              console.log(file);
-              setImage(file);
-            }
-          };
-          reader.readAsDataURL(e.target.files[0]);
-        // if there is no file, set image back to null
-        } else {
-          setImage(null);
-        }
-      };
+    const {id} = useParams();
+    const user = useUserState();
 
-      const uploadToFirebase = () => {
-        //1.
-        if (image) {
-          //2.
-          const storageRef = storage;
-          console.log(storage)
-          //3.
-          const imageRef = storageRef(image.name);
-          //4.
-          imageRef.put(image)
-         //5.
-         .then(() => {
-            alert("Image uploaded successfully to Firebase.");
+    const [data, loading, error] = useData('/');
+    if (error) return <div>Error: {error.message}</div>;
+    if (loading) return <div>Loading data...</div>;
+
+    const totalPictures = Object.keys(data.pictures[id]).length + 1
+    const pictureId = `message-${totalPictures}`
+
+    const saveImage = (image) => {
+      const photoRef = storageRef(storage, `/${image.name}`);
+      uploadBytes(photoRef, image).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log(downloadURL)
+          setData(`/pictures/${id}/${pictureId}`, {
+            author: user[0].email,
+            url: downloadURL,
+            timestamp: Date.now(),
+          });
         });
-        } else {
-          alert("Please upload an image first.");
-        }
-      };
+      });
+    };
+
+  const handleImage = async (e) => {
+      const image = e.target.files[0]
+      await saveImage(image)
+  }
+
+
+    const imageURL = "https://firebasestorage.googleapis.com/v0/b/soccer-react-app-7f65c.appspot.com/o/why.png?alt=media&token=e877de0e-cb81-41cb-a6bd-23024ce108bf"
 
      return (
         <div>
@@ -74,8 +57,25 @@ export default function Pictures() {
             </div>
 
             <div className="container">
-                <input type="file" accept="image/x-png,image/jpeg" onChange={(e) => {onImageChange(e); }}/>
-                <button onClick={() => {uploadToFirebase()}}>Upload</button>
+              {' '}
+                <input
+                  className="container block-example border-dark"
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleImage} 
+                  style={headingStyle}/>
+                <br></br>
+                <br></br>
+                {/* <img src={imageURL} style={imageStyle}/> */}
+                {Object.values(data.pictures[id]).reverse().map( (pic, index) => (
+                <div className="container block-example border border-dark" key={index} style={{fontsize: 20}}>
+                    {"Author: " + pic.author}<br></br>
+                    <img src={pic.url} style={imageStyle}/>
+                </div>
+                
+             ))}
+             <br></br>
+             <br></br>
             </div>
 
         </div>
