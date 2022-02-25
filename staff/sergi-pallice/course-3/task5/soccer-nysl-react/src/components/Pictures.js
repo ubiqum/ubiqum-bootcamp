@@ -66,13 +66,11 @@ export default function Pictures() {
                   style={headingStyle}/>
                 <br></br>
                 <br></br>
-                {/* <img src={imageURL} style={imageStyle}/> */}
                 {Object.values(data.pictures[id]).reverse().map( (pic, index) => (
                 <div className="container block-example border border-dark" key={index} style={{fontsize: 20}}>
                     {"Author: " + pic.author}<br></br>
                     <img src={pic.url} style={imageStyle}/>
                 </div>
-                
              ))}
              <br></br>
              <br></br>
