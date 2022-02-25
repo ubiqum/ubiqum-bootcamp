@@ -1,0 +1,423 @@
+{
+   "games": [
+     {
+       "id": "001",
+       "Date": "2018-09-01",
+       "Teams": "U1 and U4",
+       "Location": "Katzenmaier",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "002",
+       "Date": "2018-09-01",
+       "Teams": "U3 and U2",
+       "Location": "Greenbay",
+       "Times": "1:00 p.m."
+    },
+    {
+       "id": "003",
+       "Date": "2018-09-08",
+       "Teams": "U5 and U6",
+       "Location": "Yeager",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "004",
+       "Date": "2018-09-08",
+       "Teams": "U6 and U1",
+       "Location": "Hart",
+       "Times": "1:00 p.m."
+    },
+    {
+       "id": "005",
+       "Date": "2018-09-15",
+       "Teams": "U2 and U4",
+       "Location": "North",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "006",
+       "Date": "2018-09-15",
+       "Teams": "U3 and U5",
+       "Location": "Katzenmaier",
+       "Times": "1:00 p.m."
+    },
+    {
+       "id": "007",
+       "Date": "2018-09-22",
+       "Teams": "U1 and U3",
+       "Location": "South",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "008",
+       "Date": "2018-09-22",
+       "Teams": "U2 and U6",
+       "Location": "Yeager",
+       "Times": "1:00 p.m."
+    },
+    {
+       "id": "009",
+       "Date": "2018-09-29",
+       "Teams": "U4 and U5",
+       "Location": "Greenbay",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "Hart",
+       "Date": "2018-10-06",
+       "Teams": "U2 and U5",
+       "Location": "04",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "011",
+       "Date": "2018-10-06",
+       "Teams": "U1 and U6",
+       "Location": "South",
+       "Times": "1:00 p.m."
+    },
+    {
+       "id": "012",
+       "Date": "2018-10-13",
+       "Teams": "U3 and U4",
+       "Location": "Yeager",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "013",
+       "Date": "2018-10-13",
+       "Teams": "U5 and U1",
+       "Location": "Greenbay",
+       "Times": "1:00 p.m."
+    },
+    {
+       "id": "014",
+       "Date": "2018-10-20",
+       "Teams": "U6 and U3",
+       "Location": "North",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "015",
+       "Date": "2018-10-20",
+       "Teams": "U2 and U4",
+       "Location": "Hart",
+       "Times": "1:00 p.m."
+    },
+    {
+       "id": "016",
+       "Date": "2018-10-27",
+       "Teams": "U3 and U1",
+       "Location": "Katzenmaier",
+       "Times": "9:30 a.m."
+    },
+    {
+       "id": "017",
+       "Date": "2018-10-27",
+       "Teams": "U5 and U6",
+       "Location": "Yeager",
+       "Times": "1:00 p.m."
+    }
+     ],
+   "locations":  {
+     "Katzenmaier":
+       {
+          "full_name": "AJ Katzenmaier Elementary",
+          "address": "24 W. Walton St., Chicago, IL 60610",
+          "google_maps_id": "ChIJw7r2B07TD4gRhiyVWV0uqGg"
+       },
+     "Greenbay":
+       {
+          "full_name": "Greenbay Elementary",
+          "address": "1734 N. Orleans St., Chicago, IL 60614",
+          "google_maps_id": "ChIJowbzc0DTD4gRDj_y-LsmF54"
+       },
+    "Yeager": 
+       {
+          "full_name": "Howard A Yeager Elementary",
+          "address": "2245 N. Southport Ave., Chicago, IL 60614",
+          "google_maps_id": "ChIJLY2bf-PSD4gR1lXXfZCLrWI"
+       },
+    "Hart": 
+       {
+          "full_name": "Marjorie P Hart Elementary",
+          "address": "2625 N. Orchard St., Chicago, IL 60614",
+          "google_maps_id": "ChIJUeUwJg_TD4gRFPfOpUSecT4"
+       },      
+    "North": 
+       {
+          "full_name": "North Elementary",
+          "address": "1409 N. Ogden Ave., Chicago, IL 60610",
+          "google_maps_placeid": "ChIJXahMZzrTD4gRxVBJPBbHQJk"
+       },
+    "South": 
+       {
+          "full_name": "South Elementary",
+          "address": "2101 N. Fremont St., Chicago, IL 60614",
+          "google_maps_placeid": "ChIJxx20bxnTD4gR9W0z1vfnC5c"
+       }
+   },
+   "messages": {
+      "001": {
+        "message-1": {
+          "author": "abc@example.com",
+          "text": "great job guarding the goal, Kevin!",
+          "timestamp": 1626710000000
+        },
+        "message-2": {
+         "author": "xyz@example.com",
+         "text": "gg",
+         "timestamp": 1626713145683
+       },
+       "message-3": {
+        "author": "xyz@example.com",
+        "text": "Hi Leslie!",
+        "timestamp": 1626713145683
+      },
+      "message-4": {
+         "author": "xyz@example.com",
+         "text": "c u all in the next game!",
+         "timestamp": 1626713145683
+       }
+      },
+      "002": {
+         "message-1": {
+           "author": "abc@example.com",
+           "text": "great job guarding the goal, Kevin!",
+           "timestamp": 1626713122679
+         },
+         "message-2": {
+          "author": "xyz@example.com",
+          "text": "gg",
+          "timestamp": 1626713145683
+        }
+       },
+      "003": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },       
+      "004": {
+         "message-1": {
+           "author": "abc@example.com",
+           "text": "test",
+           "timestamp": 1626713122679
+         }        
+      },
+      "005": {
+         "message-1": {
+         "author": "abc@example.com",
+         "text": "test",
+         "timestamp": 1626713122679
+         }
+      },
+      "006": {
+         "message-1": {
+         "author": "abc@example.com",
+         "text": "test",
+         "timestamp": 1626713122679
+         }
+      },
+      "007": {
+         "message-1": {
+         "author": "abc@example.com",
+         "text": "test",
+         "timestamp": 1626713122679
+         }
+      },
+      "008": {
+         "message-1": {
+         "author": "abc@example.com",
+         "text": "test",
+         "timestamp": 1626713122679
+         }
+      },
+      "009": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "010": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "011": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "012": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "013": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "014": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "015": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "016": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      },
+      "017": {
+         "message-1": {
+         "author": "",
+         "text": "",
+         "timestamp": 1626713122679
+         }
+      }
+   },
+   "pictures": {
+      "001": {
+         "message-1": {
+           "author": "",
+           "url": "",
+           "timestamp": 1626710000000
+         }
+       },
+       "002": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+        },
+       "003": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },       
+       "004": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }     
+       },
+       "005": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "006": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "007": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "008": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "009": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "010": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "011": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "012": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "013": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "014": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "015": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "016": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       },
+       "017": {
+         "message-1": {
+            "author": "",
+            "url": "",
+            "timestamp": 1626710000000
+          }
+       }
+   }
+}
