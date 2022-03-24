@@ -4,7 +4,7 @@ var url = 'https://api.propublica.org/congress/v1/117/senate/members.json';
 var D = [];
 var ID = [];
 var R = [];
-let saveValues;
+var congressData;
 
 
 
@@ -26,9 +26,9 @@ export function makeMemberRows(data) {
       console.log('https://www.facebook.com/' + data.results[0].members[i].facebook_account);
     }
   }
+  congressData = data;
   filterByParty(data);
-  showStateData();
-  letsRoll(data);
+  makeStatesMenu();
 }
 
 export function filterByParty(data) {
@@ -57,11 +57,42 @@ export async function showStateData() {
 // document.getElementById("myBtn").addEventListener("click", displayDemocrats);
 
 
+
 var Republicans = document.querySelector("input[id=republicanscheckbox]");
 var Democrats = document.querySelector("input[id=democratscheckbox]");
 var Independent = document.querySelector("input[id=independentcheckbox]");
-var statesData = document.getElementById("states_add");
+var addStates = document.getElementById("states_add");
+document.getElementById("states_add").onchange = function () { changing() }; 
 
+
+function changing() {
+ 
+  if (Republicans.checked) {
+    for (let i = 0; i <= congressData.results[0].members.length - 1; i++) {
+      if(congressData.results[0].members[i].state.includes(document.getElementById("states_add").value) == true){
+        if(congressData.results[0].members[i].party == "R"){
+        console.log(congressData.results[0].members[i].first_name +" "+ congressData.results[0].members[i].last_name+" "+ congressData.results[0].members[i].party);
+      }
+    }
+      // if(R[i] document.getElementById("states_add").options[i].value ){
+      // // if (R[i] == congressData.results[0].members[i].first_name + " " + congressData.results[0].members[i].last_name  //Jestli republikan X ma stejne jmeno jako member X a prijmeni X ....
+      // //     && congressData.results[0].members[i].state == document.getElementById("states_add").options[i].value ){
+      }
+    }
+  }
+
+export function makeStatesMenu() {           // Creates menu for states.
+  showStateData().then(data => {
+    const keys = Object.keys(data);
+    const value = Object.values(data);
+    for (let i = 0; i < keys.length; i++) {
+      let opt = document.createElement('option');
+      opt.value = keys[i];
+      opt.innerHTML = value[i];
+      addStates.appendChild(opt);
+    }
+  })
+};
 
 
 Republicans.addEventListener('change', function () {
@@ -102,33 +133,17 @@ Independent.addEventListener('change', function () {
   }
 });
 
+// statesData.addEventListener('change', function () {
+//   var element = document.getElementById("states_add");
+//   if (this.checked) {
+//     for (let i = 0; i <= data.results[0].members.length - 1; i++) {
+//       if (data.results[0].members[i].state == element.options[element.selectedIndex].value) {
+//         console.log(data.results[0].members[i].first_name + " " + data.results[0].members[i].state + " " + element.options[element.selectedIndex].value);
+//         var row = document.getElementById("impostor").insertRow();
+//         var cell = row.insertCell();
+//         cell.innerHTML = data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name;;
+//       }
+//     }
+//   }
+// });
 
-statesData.addEventListener('change', function () {
-  var element = document.getElementById("states_add");
-  if (this.checked) {
-    for (let i = 0; i <= data.results[0].members.length - 1; i++) {
-      if (data.results[0].members[i].state == element.options[element.selectedIndex].value) {
-        console.log(data.results[0].members[i].first_name + " " + data.results[0].members[i].state + " " + element.options[element.selectedIndex].value);
-        var row = document.getElementById("impostor").insertRow();
-        var cell = row.insertCell();
-        cell.innerHTML = data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name;;
-      }
-    }
-  }
-});
-
-export function makeStatesMenu() {
-  showStateData().then(data => {
-    const saving = data;
-    const keys = Object.keys(saving);
-    const value = Object.values(saving);
-
-    for (let i = 0; i < keys.length; i++) {
-      let opt = document.createElement('option');
-      opt.value = keys[i];
-      opt.innerHTML = value[i];
-      opt.label = value[i];
-      statesData.appendChild(opt);
-    }
-  });
-}

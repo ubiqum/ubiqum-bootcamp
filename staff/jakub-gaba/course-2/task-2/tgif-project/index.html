@@ -66,6 +66,12 @@
     <table id="productTable" class="table table-striped table-bordered">
         <thead>
             <th>Name</th>
+            <th>
+                Select a state
+            <select id="states_add" name="states_addd">
+                <option value=""></option>              
+            </select>
+        </th>
         </thead>
         <tbody id="R">
         </tbody>
@@ -75,26 +81,12 @@
         </tbody>
     </table>
     <br>
-    <table id="stateTable" class="table table-striped table-bordered">
-        <thead>
-            <th> Select a state
-                <select id="states_add" name="states_add">
-                    <option value=""></option>
-                </select>
-            </th>
-            <tbody id="impostor">
-            
-            </tbody>
-        </thead>
-        </select>
-
-    </table>
 
     <script type="module">
-        import { fetchJson, makeMemberRows, filterByParty, makeStatesMenu, showStateData } from './scripts/html.js';
+        import { fetchJson, makeMemberRows, filterByParty} from './scripts/html.js';
         fetchJson()
             .then(data => makeMemberRows(data));
-        makeStatesMenu();
+        
         //use the data
     </script>
     <script src="scripts/html.js"></script>
