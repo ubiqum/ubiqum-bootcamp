@@ -53,33 +53,92 @@ export async function showStateData() {
 }
 
 
-
-// document.getElementById("myBtn").addEventListener("click", displayDemocrats);
-
-
-
 var Republicans = document.querySelector("input[id=republicanscheckbox]");
 var Democrats = document.querySelector("input[id=democratscheckbox]");
 var Independent = document.querySelector("input[id=independentcheckbox]");
 var addStates = document.getElementById("states_add");
-document.getElementById("states_add").onchange = function () { changing() }; 
+document.getElementById("states_add").onchange = function () { changing() };
 
 
-function changing() {
- 
-  if (Republicans.checked) {
+function changing() {                    //Changing states
+  if (Republicans.checked || Democrats.checked || Independent.checked) {
+    var stateRep = "statesChangeRep";
+    var stateDem = "statesChangeDem";
+    var stateInd = "statesChangeInd";
+    document.getElementById("R").innerHTML = "";
+    document.getElementById("D").innerHTML = "";
+    document.getElementById("ID").innerHTML = "";
+    document.getElementById("statesChangeRep").innerHTML = "";
+    document.getElementById("statesChangeDem").innerHTML = "";
+    document.getElementById("statesChangeInd").innerHTML = "";
     for (let i = 0; i <= congressData.results[0].members.length - 1; i++) {
-      if(congressData.results[0].members[i].state.includes(document.getElementById("states_add").value) == true){
-        if(congressData.results[0].members[i].party == "R"){
-        console.log(congressData.results[0].members[i].first_name +" "+ congressData.results[0].members[i].last_name+" "+ congressData.results[0].members[i].party);
-      }
-    }
-      // if(R[i] document.getElementById("states_add").options[i].value ){
-      // // if (R[i] == congressData.results[0].members[i].first_name + " " + congressData.results[0].members[i].last_name  //Jestli republikan X ma stejne jmeno jako member X a prijmeni X ....
-      // //     && congressData.results[0].members[i].state == document.getElementById("states_add").options[i].value ){
+      if (congressData.results[0].members[i].state.includes(document.getElementById("states_add").value) == true) { //porovnava jestli stat na indexu obsahuje stat zadanej
+        if ((congressData.results[0].members[i].party == "R") && (Republicans.checked)) {
+          document.getElementById("R").innerHTML = "";
+          writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+        }
+        else if ((congressData.results[0].members[i].party == "D") && (Democrats.checked)) {
+          document.getElementById("D").innerHTML = "";
+          writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+        }
+        else if ((congressData.results[0].members[i].party == "ID") && (Independent.checked)) {
+          document.getElementById("ID").innerHTML = "";
+          writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+        }
+        else if ((congressData.results[0].members[i].party == "R") && (congressData.results[0].members[i].party == "D") && (Democrats.checked) && (Republicans.checked)) {
+          document.getElementById("D").innerHTML = "";
+          document.getElementById("R").innerHTML = "";
+          if (congressData.results[0].members[i].party == "R") {
+            writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          }
+          else {
+            writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          }
+        }
+        else if ((congressData.results[0].members[i].party == "R") && (congressData.results[0].members[i].party == "ID") && (Independent.checked) && (Republicans.checked)) {
+          document.getElementById("ID").innerHTML = "";
+          document.getElementById("R").innerHTML = "";
+          if (congressData.results[0].members[i].party == "R") {
+            writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          }
+          else {
+            writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          }
+        }
+        else if ((congressData.results[0].members[i].party == "D") && (congressData.results[0].members[i].party == "ID") && (Independent.checked) && (Democrats.checked)) {
+          document.getElementById("D").innerHTML = "";
+          document.getElementById("ID").innerHTML = "";
+          if (congressData.results[0].members[i].party == "D") {
+            writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          }
+          else {
+            writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          }
+
+        }
+        else {
+          document.getElementById("R").innerHTML = "";
+          document.getElementById("D").innerHTML = "";
+          document.getElementById("ID").innerHTML = "";
+          document.getElementById("statesChangeRep").innerHTML = "";
+          document.getElementById("statesChangeDem").innerHTML = "";
+          document.getElementById("statesChangeInd").innerHTML = "";
+        }
       }
     }
   }
+  else {
+    document.getElementById("statesChangeRep").innerHTML = "";
+    document.getElementById("statesChangeDem").innerHTML = "";
+    document.getElementById("statesChangeInd").innerHTML = "";
+  }
+}
+
+function writeToHTML(idBro, nameBud, lastNameBud, partyBro) {
+  var row = document.getElementById(idBro).insertRow();
+  var cell = row.insertCell();
+  cell.innerHTML = nameBud + " " + lastNameBud + " " + partyBro;
+}
 
 export function makeStatesMenu() {           // Creates menu for states.
   showStateData().then(data => {
@@ -95,14 +154,19 @@ export function makeStatesMenu() {           // Creates menu for states.
 };
 
 
-Republicans.addEventListener('change', function () {
+Republicans.addEventListener('change', function () {            
   if (this.checked) {
     for (let i = 0; i <= R.length - 1; i++) {
       var row = document.getElementById("R").insertRow();
       var cell = row.insertCell();
       cell.innerHTML = R[i];
     }
-  } else {
+  }
+  else if (Democrats.checked || Independent.checked) {
+    document.getElementById("R").innerHTML = "";
+    document.getElementById("statesChangeRep").innerHTML = "";
+  }
+  else {
     document.getElementById("R").innerHTML = "";
   }
 });
@@ -115,7 +179,12 @@ Democrats.addEventListener('change', function () {
       var cell = row.insertCell();
       cell.innerHTML = D[i];
     }
-  } else {
+  }
+  else if (Republicans.checked || Independent.checked) {
+    document.getElementById("D").innerHTML = "";
+    document.getElementById("statesChangeDem").innerHTML = "";
+  }
+   else {
     document.getElementById("D").innerHTML = "";
   }
 });
@@ -128,22 +197,14 @@ Independent.addEventListener('change', function () {
       var cell = row.insertCell();
       cell.innerHTML = ID[i];
     }
-  } else {
+  }
+  else if (Republicans.checked || Democrats.checked) {
     document.getElementById("ID").innerHTML = "";
+    document.getElementById("statesChangeInd").innerHTML = "";
+  }
+  else {
+    document.getElementById("ID").innerHTML = "";
+
   }
 });
-
-// statesData.addEventListener('change', function () {
-//   var element = document.getElementById("states_add");
-//   if (this.checked) {
-//     for (let i = 0; i <= data.results[0].members.length - 1; i++) {
-//       if (data.results[0].members[i].state == element.options[element.selectedIndex].value) {
-//         console.log(data.results[0].members[i].first_name + " " + data.results[0].members[i].state + " " + element.options[element.selectedIndex].value);
-//         var row = document.getElementById("impostor").insertRow();
-//         var cell = row.insertCell();
-//         cell.innerHTML = data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name;;
-//       }
-//     }
-//   }
-// });
 
