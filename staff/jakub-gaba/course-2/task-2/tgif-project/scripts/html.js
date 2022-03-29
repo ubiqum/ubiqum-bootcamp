@@ -8,7 +8,7 @@ var congressData;
 
 
 
-export async function fetchJson() {
+export async function fetchJson() {            //Fetching data from JSON
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -58,7 +58,6 @@ var Democrats = document.querySelector("input[id=democratscheckbox]");
 var Independent = document.querySelector("input[id=independentcheckbox]");
 var addStates = document.getElementById("states_add");
 document.getElementById("states_add").onchange = function () { changing() };
-
 
 function changing() {                    //Changing states
   if (Republicans.checked || Democrats.checked || Independent.checked) {
@@ -154,8 +153,8 @@ export function makeStatesMenu() {           // Creates menu for states.
 };
 
 
-Republicans.addEventListener('change', function () {            
-  if (this.checked) {
+Republicans.addEventListener('change', function () {
+  if (this.checked && (document.getElementById("states_add").value == "") == true) {
     for (let i = 0; i <= R.length - 1; i++) {
       var row = document.getElementById("R").insertRow();
       var cell = row.insertCell();
@@ -166,6 +165,14 @@ Republicans.addEventListener('change', function () {
     document.getElementById("R").innerHTML = "";
     document.getElementById("statesChangeRep").innerHTML = "";
   }
+  else if (!this.checked) {
+    document.getElementById("statesChangeRep").innerHTML = "";
+    document.getElementById("R").innerHTML = "";
+  }
+  else if (this.checked && (document.getElementById("states_add").value == "") == false) {
+    console.log(document.getElementById("states_add").value == "");
+    changing();
+  }
   else {
     document.getElementById("R").innerHTML = "";
   }
@@ -173,7 +180,7 @@ Republicans.addEventListener('change', function () {
 
 
 Democrats.addEventListener('change', function () {
-  if (this.checked) {
+  if (this.checked && (document.getElementById("states_add").value == "") == true) {
     for (let i = 0; i <= D.length - 1; i++) {
       var row = document.getElementById("D").insertRow();
       var cell = row.insertCell();
@@ -184,14 +191,22 @@ Democrats.addEventListener('change', function () {
     document.getElementById("D").innerHTML = "";
     document.getElementById("statesChangeDem").innerHTML = "";
   }
-   else {
+  else if (!this.checked) {
+    document.getElementById("statesChangeDem").innerHTML = "";
+    document.getElementById("D").innerHTML = "";
+  }
+  else if (this.checked && (document.getElementById("states_add").value == "") == false) {
+    console.log(document.getElementById("states_add").value == "");
+    changing();
+  }
+  else {
     document.getElementById("D").innerHTML = "";
   }
 });
 
 
 Independent.addEventListener('change', function () {
-  if (this.checked) {
+  if (this.checked && (document.getElementById("states_add").value == "") == true) {
     for (let i = 0; i <= ID.length - 1; i++) {
       var row = document.getElementById("ID").insertRow();
       var cell = row.insertCell();
@@ -202,9 +217,16 @@ Independent.addEventListener('change', function () {
     document.getElementById("ID").innerHTML = "";
     document.getElementById("statesChangeInd").innerHTML = "";
   }
+  else if (!this.checked) {
+    document.getElementById("statesChangeInd").innerHTML = "";
+    document.getElementById("ID").innerHTML = "";
+  }
+  else if (this.checked && (document.getElementById("states_add").value == "") == false) {
+    console.log(document.getElementById("states_add").value == "");
+    changing();
+  }
   else {
     document.getElementById("ID").innerHTML = "";
-
   }
 });
 
