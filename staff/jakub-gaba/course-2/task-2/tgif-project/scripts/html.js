@@ -161,16 +161,18 @@ Republicans.addEventListener('change', function () {
       cell.innerHTML = R[i];
     }
   }
-  else if (Democrats.checked || Independent.checked) {
-    document.getElementById("R").innerHTML = "";
-    document.getElementById("statesChangeRep").innerHTML = "";
-  }
   else if (!this.checked) {
     document.getElementById("statesChangeRep").innerHTML = "";
     document.getElementById("R").innerHTML = "";
   }
   else if (this.checked && (document.getElementById("states_add").value == "") == false) {
     console.log(document.getElementById("states_add").value == "");
+    changing();
+  }
+  else if (this.checked && Democrats.checked && (document.getElementById("states_add").value == "") == false) {
+    changing();
+  }
+  else if (this.checked && Independent.checked && (document.getElementById("states_add").value == "") == false) {
     changing();
   }
   else {
@@ -187,16 +189,18 @@ Democrats.addEventListener('change', function () {
       cell.innerHTML = D[i];
     }
   }
-  else if (Republicans.checked || Independent.checked) {
-    document.getElementById("D").innerHTML = "";
-    document.getElementById("statesChangeDem").innerHTML = "";
-  }
   else if (!this.checked) {
     document.getElementById("statesChangeDem").innerHTML = "";
     document.getElementById("D").innerHTML = "";
   }
   else if (this.checked && (document.getElementById("states_add").value == "") == false) {
     console.log(document.getElementById("states_add").value == "");
+    changing();
+  }
+  else if (this.checked && Republicans.checked && (document.getElementById("states_add").value == "") == false) {
+    changing();
+  }
+  else if (this.checked && Independent.checked && (document.getElementById("states_add").value == "") == false) {
     changing();
   }
   else {
@@ -213,16 +217,18 @@ Independent.addEventListener('change', function () {
       cell.innerHTML = ID[i];
     }
   }
-  else if (Republicans.checked || Democrats.checked) {
-    document.getElementById("ID").innerHTML = "";
-    document.getElementById("statesChangeInd").innerHTML = "";
-  }
   else if (!this.checked) {
     document.getElementById("statesChangeInd").innerHTML = "";
     document.getElementById("ID").innerHTML = "";
   }
   else if (this.checked && (document.getElementById("states_add").value == "") == false) {
     console.log(document.getElementById("states_add").value == "");
+    changing();
+  }
+  else if (this.checked && Republicans.checked && (document.getElementById("states_add").value == "") == false) {
+    changing();
+  }
+  else if (this.checked && Democrats.checked && (document.getElementById("states_add").value == "") == false) {
     changing();
   }
   else {
