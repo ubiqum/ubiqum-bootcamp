@@ -1,0 +1,56 @@
+body{
+    background: #d3d3d3;
+    animation: color 10s alternate infinite;
+  }
+@keyframes color3 {
+    0%   { background: #FFFFFF; }
+    50%  { background: #E0E0E0; }
+    100%  { background: #C0C0C0; }
+  }
+@keyframes shadowBox {
+    50% {
+     bottom: 100px;
+     box-shadow: 
+     0 0 0 10px hsl(0, 0%, 50%),
+     0 0 0 15px hsl(0, 0%, 60%),
+     0 0 0 20px hsl(0, 0%, 70%),
+     0 0 0 25px hsl(0, 0%, 80%),
+     0 0 0 30px hsl(0, 0%, 90%);
+    }
+  }
+.menu{
+    animation: shadowBox 10s infinite;
+    margin-top: 50px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 12px;
+    padding: 10px;
+    color: #C0C0C0;
+}
+a, a:link, a:visited{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover{
+  animation: shadowBox2 8s infinite ;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+@keyframes shadowBox2 {
+  50% {
+   text-shadow: 0px 0px 5px #FF0000;
+   border-radius: 12px;
+  }
+  70%{
+    text-shadow: 5px 5px 5px #FF0000;
+    border-radius: 12px;
+   }
+  100%{
+   text-shadow: 0px 0px 5px #FF0000;
+   border-radius: 12px;
+  }
+}
+
+
