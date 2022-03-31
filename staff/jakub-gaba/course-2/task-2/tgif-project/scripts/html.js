@@ -1,11 +1,17 @@
 
 var API = 'werjoImcxnptmekG4oOVTHidgbQOBbmJh4gj90mn';
 var url = 'https://api.propublica.org/congress/v1/117/senate/members.json';
+var urlHouse= 'https://api.propublica.org/congress/v1/117/house/members.json';
 var D = [];
 var ID = [];
 var R = [];
 var congressData;
-
+var Republicans = document.querySelector("input[id=republicanscheckbox]");
+var Democrats = document.querySelector("input[id=democratscheckbox]");
+var Independent = document.querySelector("input[id=independentcheckbox]");
+var addStates = document.getElementById("states_add");
+document.getElementById("states_add").onchange = function () { changing() };
+//curl --request GET https://api.propublica.org/congress/v1/117/house/members.json --header "X-Api-Key:werjoImcxnptmekG4oOVTHidgbQOBbmJh4gj90mn"
 
 
 export async function fetchJson() {            //Fetching data from JSON
@@ -19,6 +25,19 @@ export async function fetchJson() {            //Fetching data from JSON
   return data;
 }
 
+export async function fetchJsonHouse() {            //Fetching data from JSON
+  const responseHouse = await fetch(urlHouse, {
+    method: "GET",
+    headers: {
+      "X-API-Key": API
+    }
+  });
+  const dataHouse = await response.json();
+  return dataHouse;
+}
+
+
+// ----------- Facebook accounts and saving data to congressData variable, which i will use many times. -------------
 export function makeMemberRows(data) {
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].facebook_account == null) { }
@@ -31,6 +50,8 @@ export function makeMemberRows(data) {
   makeStatesMenu();
 }
 
+
+// ----------- Pushing and sorting to an array Republicans, Democrats, Indepentent groups. -------------
 export function filterByParty(data) {
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].party == "D") {
@@ -46,22 +67,42 @@ export function filterByParty(data) {
 
 }
 
-export async function showStateData() {
+
+// -------------  Creates menu for states.   -------------
+export async function showStateData() {              
   const response = await fetch("./states.json");
   const data = await response.json();
   return data;
 }
 
+export function makeStatesMenu() {           
+  showStateData().then(data => {
+    const keys = Object.keys(data);
+    const value = Object.values(data);
+    for (let i = 0; i < keys.length; i++) {
+      let opt = document.createElement('option');
+      opt.value = keys[i];
+      opt.innerHTML = value[i];
+      addStates.appendChild(opt);
+    }
+  })
+};
 
-var Republicans = document.querySelector("input[id=republicanscheckbox]");
-var Democrats = document.querySelector("input[id=democratscheckbox]");
-var Independent = document.querySelector("input[id=independentcheckbox]");
-var addStates = document.getElementById("states_add");
-document.getElementById("states_add").onchange = function () { changing() };
 
-function changing() {                    //Changing states
+// -------------   State filter for changing   -------------
+function changing() {                               
   if (Republicans.checked || Democrats.checked || Independent.checked) {
-    var stateRep = "statesChangeRep";
+    filterStateChanger();
+  }
+  else {
+    document.getElementById("statesChangeRep").innerHTML = "";
+    document.getElementById("statesChangeDem").innerHTML = "";
+    document.getElementById("statesChangeInd").innerHTML = "";
+  }
+}
+
+function filterStateChanger(){
+  var stateRep = "statesChangeRep";
     var stateDem = "statesChangeDem";
     var stateInd = "statesChangeInd";
     document.getElementById("R").innerHTML = "";
@@ -93,7 +134,7 @@ function changing() {                    //Changing states
           else {
             writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
           }
-        }
+         }
         else if ((congressData.results[0].members[i].party == "R") && (congressData.results[0].members[i].party == "ID") && (Independent.checked) && (Republicans.checked)) {
           document.getElementById("ID").innerHTML = "";
           document.getElementById("R").innerHTML = "";
@@ -116,43 +157,19 @@ function changing() {                    //Changing states
 
         }
         else {
-          document.getElementById("R").innerHTML = "";
-          document.getElementById("D").innerHTML = "";
-          document.getElementById("ID").innerHTML = "";
-          document.getElementById("statesChangeRep").innerHTML = "";
-          document.getElementById("statesChangeDem").innerHTML = "";
-          document.getElementById("statesChangeInd").innerHTML = "";
+         
         }
       }
     }
-  }
-  else {
-    document.getElementById("statesChangeRep").innerHTML = "";
-    document.getElementById("statesChangeDem").innerHTML = "";
-    document.getElementById("statesChangeInd").innerHTML = "";
-  }
 }
-
 function writeToHTML(idBro, nameBud, lastNameBud, partyBro) {
   var row = document.getElementById(idBro).insertRow();
   var cell = row.insertCell();
   cell.innerHTML = nameBud + " " + lastNameBud + " " + partyBro;
 }
 
-export function makeStatesMenu() {           // Creates menu for states.
-  showStateData().then(data => {
-    const keys = Object.keys(data);
-    const value = Object.values(data);
-    for (let i = 0; i < keys.length; i++) {
-      let opt = document.createElement('option');
-      opt.value = keys[i];
-      opt.innerHTML = value[i];
-      addStates.appendChild(opt);
-    }
-  })
-};
 
-
+// Listener for checkboxes of Republicans -------------
 Republicans.addEventListener('change', function () {
   if (this.checked && (document.getElementById("states_add").value == "") == true) {
     for (let i = 0; i <= R.length - 1; i++) {
@@ -166,7 +183,6 @@ Republicans.addEventListener('change', function () {
     document.getElementById("R").innerHTML = "";
   }
   else if (this.checked && (document.getElementById("states_add").value == "") == false) {
-    console.log(document.getElementById("states_add").value == "");
     changing();
   }
   else if (this.checked && Democrats.checked && (document.getElementById("states_add").value == "") == false) {
@@ -180,7 +196,7 @@ Republicans.addEventListener('change', function () {
   }
 });
 
-
+// Listener for checkboxes of Democrats -------------
 Democrats.addEventListener('change', function () {
   if (this.checked && (document.getElementById("states_add").value == "") == true) {
     for (let i = 0; i <= D.length - 1; i++) {
@@ -208,7 +224,7 @@ Democrats.addEventListener('change', function () {
   }
 });
 
-
+// Listener for checkboxes of Indepentent -------------
 Independent.addEventListener('change', function () {
   if (this.checked && (document.getElementById("states_add").value == "") == true) {
     for (let i = 0; i <= ID.length - 1; i++) {
