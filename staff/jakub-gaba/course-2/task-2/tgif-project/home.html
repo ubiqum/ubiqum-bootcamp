@@ -2,20 +2,11 @@
 <html lang="en">
 
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TGIF</title>
-  <meta name="description" content="A simple HTML5 Template for new projects.">
-  <meta name="author" content="SitePoint">
-  <meta property="og:title" content="A Basic HTML5 Template">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/">
-  <meta property="og:description" content="A simple HTML5 Template for new projects.">
-  <meta property="og:image" content="image.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="scripts/myStyle.css">
 
 </head>
@@ -25,14 +16,24 @@
       class="ImageTextChange" src="logo.png"></h1>
 
   <body>
-    <div class="menu">
-      <a href="home.html">HOME</a>
-      
-    </div>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="home.html">HOME</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">CONGRESS-117
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu" id="membersHS" >
+              <li><a href="Members.html">House</a></li>
+              <li><a href="Members.html">Senate</a></li>
+            </ul>
+      </div>
+    </nav>
     <br>
     <table>
       <tr>
-        <td style="border-right: 1px solid black;">Openness, accountability, and honesty define government transparency.
+        <td style="box-shadow:5px 10px 8px 10px #888888;">Openness, accountability, and honesty define government
+          transparency.
           In a free society, transparency is
           government's obligation to share information with citizens. It is at the heart of how citizens hold their
           public officials accountable. Here at TGIF we believe that government should be transparent.
@@ -47,22 +48,18 @@
           TGIF works to disclose information in forms that the public can readily find and use. We solicit public
           feedback to identify information of greatest use to the public.
         </td>
-        <td style="text-align: center; background-image: url(tgif-home-image.png); background-repeat: no-repeat; background-position: center; background-size: 300px;">
+        <td
+          style="text-align: center; background-image: url(tgif-home-image.png); background-repeat: no-repeat; background-position: center; background-size: 300px;">
           <h1>ABOUT US</h1>
         </td>
-        <div class="clearfix">
-          <div class="spinner-border float-end" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-        <footer class="blockquote-footer" >
+        <footer class="blockquote-footer">
           &copy; 2021 TGIF | All Rights Reserved.
-          </footer>
+        </footer>
       <tr>
         <td style="text-align: center;">
           <h2>Background History of Government Transparency</h2>
         </td>
-        <td style="border-left: 1px solid black;">
+        <td style=" box-shadow:10px 0 30px -10px  #888888 inset;">
           In the West, the idea that government should be open to public scrutiny and susceptible to public opinion
           dates back at least to the time of the Enlightenment, when many philosophes made an attack on absolutist
           doctrine of state secrecy, a core part of their intellectual project. The passage of formal legislative
@@ -92,6 +89,11 @@
 
     </table>
     <a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment"> Read more</a>
+
+    <script type="module">
+     
+      
+  </script>
 
   </body>
 

@@ -22,17 +22,23 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" type="text/css" href="scripts/myStyle.css">
 
+    
 <body>
 
     <div class="menu">
         <a href="home.html">HOME</a>
+        <div>"\n"</div>
+        <div id="fick-dich">
+            <a href="Members.html">HOUSE</a>
+            <a href="Members.html">SENATE</a>
+        </div>
     </div>
 
     <div class="container">
         <h1 style="font-family: 'Courier New', Courier, monospace;">TGIF LOGO<img class="ImageTextChange"
                 src="logo.png"></h1>
-        <h3 class="fancy">Senators</h3>
-        <p class="trial">First convened in 1789, the composition and powers of the Senate are established in Article One
+        <h3 >Senators</h3>
+        <p >First convened in 1789, the composition and powers of the Senate are established in Article One
             of the U.S.
             Constitution. Each state is represented by two senators, regardless of population, who serve staggered
             six-year
@@ -99,7 +105,7 @@
         <br>
     </div>
     <script type="module">
-        import { fetchJson, makeMemberRows, filterByParty } from './scripts/html.js';
+        import { fetchJson, makeMemberRows, filterByParty, fetchJsonHouse} from './scripts/html.js';
         fetchJson()
             .then(data => makeMemberRows(data));
 
