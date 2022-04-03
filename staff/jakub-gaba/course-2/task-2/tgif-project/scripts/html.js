@@ -14,34 +14,38 @@ var addStates = document.getElementById("states_add");
 document.getElementById("states_add").onchange = function () { changing() };
 var fickDich = document.getElementById("fick-dich");
 //curl --request GET https://api.propublica.org/congress/v1/117/house/members.json --header "X-Api-Key:werjoImcxnptmekG4oOVTHidgbQOBbmJh4gj90mn"
-
+var searchParams = new URLSearchParams(window.location.search);
 
 fickDich.addEventListener('click', function (evt) {
   evt.preventDefault();
   if (evt.target.innerHTML == "HOUSE") {
-    console.log(evt.target.innerHTML);
+    searchParams.set("chamber", "house");
+    window.location.search = searchParams.toString();
+
   }
   else {
-    let url = new URL("http://127.0.0.1:5500/jakub-gaba/course-2/task-2/tgif-project/Members.html");
-    let params = new URLSearchParams(url.search);
-    params.append("Chamber", "Senate");
-
-    document.getElementsByClassName("container")[0].style.display = "";
-    console.log("You choose Senate");
+    searchParams.set("chamber", "senate");
+    window.location.search = searchParams.toString();
+    fetchJson();
   }
 });
 
 
 export async function fetchJson() {            //Fetching data from JSON
-
-  const response = await fetch(url, {
-    method: "GET",
-    headers: {
-      "X-API-Key": API
-    }
-  });
-  const data = await response.json();
-  return data;
+  if (window.location.search == "?chamber=senate") {
+  document.getElementsByClassName("container")[0].style.display="";
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "X-API-Key": API
+      }
+    });
+    const data = await response.json();
+    return data;
+  }
+  else{
+    
+  }
 }
 
 export async function fetchJsonHouse() {            //Fetching data from JSON house
