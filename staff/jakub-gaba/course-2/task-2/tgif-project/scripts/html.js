@@ -6,22 +6,21 @@ var D = [];
 var ID = [];
 var R = [];
 var congressData;
-var houseData;
 var Republicans = document.querySelector("input[id=republicanscheckbox]");
 var Democrats = document.querySelector("input[id=democratscheckbox]");
 var Independent = document.querySelector("input[id=independentcheckbox]");
 var addStates = document.getElementById("states_add");
 document.getElementById("states_add").onchange = function () { changing() };
-var fickDich = document.getElementById("fick-dich");
+var webChange = document.getElementById("webChange");
 //curl --request GET https://api.propublica.org/congress/v1/117/house/members.json --header "X-Api-Key:werjoImcxnptmekG4oOVTHidgbQOBbmJh4gj90mn"
 var searchParams = new URLSearchParams(window.location.search);
 
-fickDich.addEventListener('click', function (evt) {
+webChange.addEventListener('click', function (evt) {
   evt.preventDefault();
   if (evt.target.innerHTML == "HOUSE") {
     searchParams.set("chamber", "house");
     window.location.search = searchParams.toString();
-
+    fetchJson()
   }
   else {
     searchParams.set("chamber", "senate");
@@ -47,19 +46,6 @@ export async function fetchJson() {            //Fetching data from JSON
     
   }
 }
-
-export async function fetchJsonHouse() {            //Fetching data from JSON house
-  const responseHouse = await fetch(urlHouse, {
-    method: "GET",
-    headers: {
-      "X-API-Key": API
-    }
-  });
-  const data = await response.json();
-  return data;
-}
-
-
 // ----------- Facebook accounts and saving data to congressData variable, which i will use many times. -------------
 export function makeMemberRows(data) {
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
