@@ -29,8 +29,8 @@
         <a href="home.html">HOME</a>
         <div>"\n"</div>
         <div id="webChange">
-            <a href="#">HOUSE</a>
-            <a href="#">SENATE</a>
+            <a href="Members.html">HOUSE</a>
+            <a href="Members.html">SENATE</a>
         </div>
     </div>
 
@@ -105,7 +105,7 @@
           </footer>
     </div>
     <script type="module">
-        import { fetchJson, makeMemberRows, filterByParty} from './scripts/html.js';
+        import { fetchJson, makeMemberRows} from './scripts/html.js';
         fetchJson()
             .then(data => makeMemberRows(data));
 
