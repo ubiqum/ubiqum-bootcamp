@@ -25,19 +25,12 @@ if ((window.location.href == "http://127.0.0.1:5500/ubiqum-bootcamp/staff/jakub-
   var searchParams = new URLSearchParams(window.location.search);
   var chamberSave;
 
-
-// ----------- Window listener before loading check if site contains search symbol... ( ?chamber=senate... ) -------------
-  window.addEventListener("load", function () {
-  if (!window.location.search) {               // If windows browser doesn't contain search symbol, then he use the one from last session page
-      chamberSave = sessionStorage.getItem("chamber");   
-      webChange.click();
-    }
-  });
-
   // ----------- Pushing and sorting to an array Republicans, Democrats, Indepentent groups. -------------
   webChange.addEventListener("click", function (evt) {
     evt.preventDefault();
+    console.log(chamberSave + " Chamber");
     if (evt.target.innerHTML == "HOUSE" || chamberSave == "House") {
+      console.log("HOUSE CHAMBER" + chamberSave);
       searchParams.set("chamber", "house");
       window.location.search = searchParams.toString();
       fetchJson();
@@ -217,10 +210,15 @@ else {
 }
 
 export async function fetchJson() {            //Fetching data from JSON
-
+  if (!window.location.search) {               // If windows browser doesn't contain search symbol, then he use the one from last session page
+    console.log("Iam in window listener IF"); 
+    chamberSave = sessionStorage.getItem("chamber");   
+    webChange.click();
+  }
+  else{
   if (window.location.search == "?chamber=senate") {
-    console.log(sessionStorage.getItem("chamber"));
-    document.getElementsByClassName("container")[0].style.display = "";
+    console.log("Ich bin in senate chamber -> "+ window.location.search);
+    document.getElementsByClassName("hide")[0].style.display = "";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -231,15 +229,27 @@ export async function fetchJson() {            //Fetching data from JSON
     return data;
   }
   else {
-
+    console.log("Ich bin in house chamber -> "+ window.location.search);
+    document.getElementsByClassName("hide")[1].style.display = "";
+    const response = await fetch(urlHouse, {
+      method: "GET",
+      headers: {
+        "X-API-Key": API
+      }
+    });
+    const data = await response.json();
+    return data;
   }
+}
 }
 // ----------- Facebook accounts and saving data to congressData variable, which i will use many times. -------------
 export function makeMemberRows(data) {
+  console.log(data.results[0].members.length);
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].facebook_account == null) { }
     else {
       console.log('https://www.facebook.com/' + data.results[0].members[i].facebook_account);
+
     }
   }
   congressData = data;
