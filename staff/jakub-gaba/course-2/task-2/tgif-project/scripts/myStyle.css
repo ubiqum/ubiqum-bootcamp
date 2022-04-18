@@ -110,6 +110,5 @@ td {
   50% {
     transform: scale(1.1);
     font-weight: 400;
-    font-style: italic;
   }
 }
