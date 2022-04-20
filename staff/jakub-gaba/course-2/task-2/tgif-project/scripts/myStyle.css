@@ -1,19 +1,11 @@
 body {
-  background: #d3d3d3;
+  background: url("../logo.png");
+  background-repeat: repeat-y;
+  background-color: #d3d3d3;
+  background-position: left;
+  background-attachment: scroll;
+  cursor:  url("../logoMouse.png"), auto;
 }
-
-@keyframes shadowBox {
-  50% {
-    bottom: 100px;
-    box-shadow:
-      0 0 0 5px hsl(0, 0%, 50%),
-      0 0 0 7.5px hsl(0, 0%, 60%),
-      0 0 0 10px hsl(0, 0%, 70%),
-      0 0 0 12.5px hsl(0, 0%, 80%),
-      0 0 0 15px hsl(0, 0%, 90%);
-  }
-}
-
 a,
 a:link,
 a:visited {
@@ -22,59 +14,21 @@ a:visited {
   cursor: pointer;
   font-weight: bold;
 }
-
 a:hover {
   text-decoration: none;
   cursor: pointer;
   color: black;
-
 }
-
-@keyframes shadowBox2 {
-  50% {
-    text-shadow: 0px 0px 5px #FF0000;
-    border-radius: 12px;
-
-  }
-
-  70% {
-    text-shadow: 5px 5px 5px #FF0000;
-    border-radius: 12px;
-
-  }
-
-  100% {
-    text-shadow: 0px 0px 5px #FF0000;
-    border-radius: 12px;
-
-  }
-}
-
 .tableName {
   width: 50%;
   box-shadow: 5px 10px 8px 10px #888888;
 }
 
-.ImageTextChange:hover+.trial {
-  display: block;
-  box-shadow: 5px 10px 8px 10px #888888;
-  color: red;
-}
-
-.ImageTextChange {
-  width: 60px;
-}
-
 .container {
   padding-top: 30px;
+  justify-content: center;
+  align-items: center;
 }
-
-@keyframes containerBreath {
-  50% {
-    padding-top: 10px;
-  }
-}
-
 .containerHome {
   padding-top: 100px;
   margin-left: 20%;
@@ -86,25 +40,16 @@ a:hover {
 td {
   font-size: 15px;
 }
-
 .hide:hover {
   box-shadow: 2.5px 5px 4px 5px #888888;
   animation: BiggerText 10s none;
   background-color: #d3d3d3;
 }
-
 @keyframes BiggerText {
   50% {
     transform: scale(1.1);
     font-weight: 400;
   }
-}
-.primary-header{
-height: 60px;
-box-shadow: 0 10px 15px rgba(0,0,0,0,1);
-}
-.primary-navigation{
-  margin: 0 auto;
 }
 .navigation-main{
   display: flex;
