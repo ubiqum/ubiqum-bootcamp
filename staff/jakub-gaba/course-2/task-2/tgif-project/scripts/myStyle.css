@@ -14,18 +14,6 @@ body {
   }
 }
 
-.menu {
-  animation: shadowBox 10s infinite;
-  margin-top: 50px;
-  margin-left: 30%;
-  margin-right: 30%;
-  border-radius: 12px;
-  padding: 10px;
-  color: #C0C0C0;
-  display: flex;
-
-}
-
 a,
 a:link,
 a:visited {
@@ -36,7 +24,6 @@ a:visited {
 }
 
 a:hover {
-  animation: shadowBox2 8s infinite;
   text-decoration: none;
   cursor: pointer;
   color: black;
@@ -79,7 +66,7 @@ a:hover {
 }
 
 .container {
-  animation: containerBreath 10s infinite;
+  
 }
 
 @keyframes containerBreath {
@@ -111,4 +98,20 @@ td {
     transform: scale(1.1);
     font-weight: 400;
   }
+}
+.primary-header{
+height: 60px;
+box-shadow: 0 10px 15px rgba(0,0,0,0,1);
+}
+.primary-navigation{
+  margin: 0 auto;
+}
+.navigation-main{
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  box-shadow: 5px 10px 8px 10px #888888;
+  gap: var(--gap, 30px);
 }
