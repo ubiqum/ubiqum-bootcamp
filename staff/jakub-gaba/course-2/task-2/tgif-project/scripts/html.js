@@ -7,13 +7,26 @@ var urlHouse = 'https://api.propublica.org/congress/v1/117/house/members.json';
 
 
 
-if ((window.location.href == "http://127.0.0.1:5500/ubiqum-bootcamp/staff/jakub-gaba/course-2/task-2/tgif-project/Members.html")
-  || (window.location.href == "http://127.0.0.1:5500/ubiqum-bootcamp/staff/jakub-gaba/course-2/task-2/tgif-project/Members.html?chamber=senate")
-  || (window.location.href == "http://127.0.0.1:5500/ubiqum-bootcamp/staff/jakub-gaba/course-2/task-2/tgif-project/Members.html?chamber=house")) {
+if ((window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project/Members.html")
+  || (window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project/Members.html?chamber=senate")
+  || (window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project/Members.html?chamber=house")) {
 
-  var D = [];
-  var ID = [];
-  var R = [];
+
+  var dataSeparation = {
+    independent: {
+      name: [],
+      party: []
+    },
+    democrats: {
+      name: [],
+      party: []
+    },
+    republicans:
+    {
+      name: [],
+      party: []
+    }
+  };
   var congressData;
   var Republicans = document.querySelector("input[id=republicanscheckbox]");
   var Democrats = document.querySelector("input[id=democratscheckbox]");
@@ -115,18 +128,31 @@ if ((window.location.href == "http://127.0.0.1:5500/ubiqum-bootcamp/staff/jakub-
       }
     }
   }
-  function writeToHTML(idBro, nameBud, lastNameBud, partyBro) {
+  function writeToHTML(idBro, nameBud, lastNameBud, party) {
     var row = document.getElementById(idBro).insertRow();
-    var cell = row.insertCell();
-    cell.innerHTML = nameBud + " " + lastNameBud + " " + partyBro;
+    var nameCell = row.insertCell();
+    var partyCell = row.insertCell();
+    nameCell.innerHTML = nameBud + " " + lastNameBud;
+    if (party == "R") {
+      partyCell.innerHTML = "Republican";
+    }
+    else if (party == "D") {
+      partyCell.innerHTML = "Democrat";
+    }
+    else {
+      partyCell.innerHTML = "Independent";
+    }
   }
   // Listener for checkboxes of Republicans -------------
   Republicans.addEventListener('change', function () {
     if (this.checked && (document.getElementById("states_add").value == "") == true) {
-      for (let i = 0; i <= R.length - 1; i++) {
+      for (let i = 0; i <= dataSeparation.republicans.name.length - 1; i++) {
         var row = document.getElementById("R").insertRow();
         var cell = row.insertCell();
-        cell.innerHTML = R[i];
+        var partyCell = row.insertCell();
+        cell.innerHTML = dataSeparation.republicans.name[i];
+        partyCell.innerHTML = dataSeparation.republicans.party[i];
+        console.log(dataSeparation.republicans.party.length);
       }
     }
     else if (!this.checked) {
@@ -149,10 +175,13 @@ if ((window.location.href == "http://127.0.0.1:5500/ubiqum-bootcamp/staff/jakub-
   // Listener for checkboxes of Democrats -------------
   Democrats.addEventListener('change', function () {
     if (this.checked && (document.getElementById("states_add").value == "") == true) {
-      for (let i = 0; i <= D.length - 1; i++) {
+      for (let i = 0; i <= dataSeparation.democrats.name.length - 1; i++) {
         var row = document.getElementById("D").insertRow();
         var cell = row.insertCell();
-        cell.innerHTML = D[i];
+        var partyCell = row.insertCell();
+        cell.innerHTML = dataSeparation.democrats.name[i];
+        partyCell.innerHTML = dataSeparation.democrats.party[i];
+        console.log(dataSeparation.democrats.party.length);
       }
     }
     else if (!this.checked) {
@@ -176,10 +205,13 @@ if ((window.location.href == "http://127.0.0.1:5500/ubiqum-bootcamp/staff/jakub-
   // Listener for checkboxes of Indepentent -------------
   Independent.addEventListener('change', function () {
     if (this.checked && (document.getElementById("states_add").value == "") == true) {
-      for (let i = 0; i <= ID.length - 1; i++) {
+      for (let i = 0; i <= dataSeparation.independent.name.length - 1; i++) {
         var row = document.getElementById("ID").insertRow();
         var cell = row.insertCell();
-        cell.innerHTML = ID[i];
+        var partyCell = row.insertCell();
+        cell.innerHTML = dataSeparation.independent.name[i];
+        partyCell.innerHTML = dataSeparation.independent.party[i];
+        console.log(dataSeparation.independent.party.length);
       }
     }
     else if (!this.checked) {
@@ -211,36 +243,36 @@ else {
 
 export async function fetchJson() {            //Fetching data from JSON
   if (!window.location.search) {               // If windows browser doesn't contain search symbol, then he use the one from last session page
-    console.log("Iam in window listener IF"); 
-    chamberSave = sessionStorage.getItem("chamber");   
+    console.log("Iam in window listener IF");
+    chamberSave = sessionStorage.getItem("chamber");
     webChange.click();
   }
-  else{
-  if (window.location.search == "?chamber=senate") {
-    console.log("Ich bin in senate chamber -> "+ window.location.search);
-    document.getElementsByClassName("hide")[0].style.display = "";
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "X-API-Key": API
-      }
-    });
-    const data = await response.json();
-    return data;
-  }
   else {
-    console.log("Ich bin in house chamber -> "+ window.location.search);
-    document.getElementsByClassName("hide")[1].style.display = "";
-    const response = await fetch(urlHouse, {
-      method: "GET",
-      headers: {
-        "X-API-Key": API
-      }
-    });
-    const data = await response.json();
-    return data;
+    if (window.location.search == "?chamber=senate") {
+      console.log("Ich bin in senate chamber -> " + window.location.search);
+      document.getElementsByClassName("hide")[0].style.display = "";
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "X-API-Key": API
+        }
+      });
+      const data = await response.json();
+      return data;
+    }
+    else {
+      console.log("Ich bin in house chamber -> " + window.location.search);
+      document.getElementsByClassName("hide")[1].style.display = "";
+      const response = await fetch(urlHouse, {
+        method: "GET",
+        headers: {
+          "X-API-Key": API
+        }
+      });
+      const data = await response.json();
+      return data;
+    }
   }
-}
 }
 // ----------- Facebook accounts and saving data to congressData variable, which i will use many times. -------------
 export function makeMemberRows(data) {
@@ -249,7 +281,7 @@ export function makeMemberRows(data) {
     if (data.results[0].members[i].facebook_account == null) { }
     else {
       console.log('https://www.facebook.com/' + data.results[0].members[i].facebook_account);
-
+      console.log(" " + data.results[0].members[i].party);
     }
   }
   congressData = data;
@@ -271,13 +303,14 @@ function makeStatesMenu() {
 function filterByParty(data) {
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].party == "D") {
-      D.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
-
+      dataSeparation.democrats.name.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
+      dataSeparation.democrats.party.push("Democrat");
     } else if (data.results[0].members[i].party == "ID") {
-      ID.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
-
+      dataSeparation.independent.name.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
+      dataSeparation.independent.party.push("Independent");
     } else {
-      R.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
+      dataSeparation.republicans.name.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
+      dataSeparation.republicans.party.push("Republican");
     }
   }
 

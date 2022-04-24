@@ -24,7 +24,7 @@
 
 
 <body>
-    
+
     <div class="container">
         <nav class="navigation-main">
             <li>
@@ -36,8 +36,8 @@
                     CONGRESS-117
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="webChange">
-                    <li><a class="dropdown-item" href="Members.html">SENATE</a></li>
-                    <li><a class="dropdown-item" href="Members.html">HOUSE</a></li>
+                    <li><a class="dropdown-item" href="#">SENATE</a></li>
+                    <li><a class="dropdown-item" href="#">HOUSE</a></li>
                 </ul>
             </li>
         </nav>
@@ -71,7 +71,7 @@
             Each U.S. state is represented in the House in proportion to its population as measured in the census,
             but every state is entitled to at least one representative.
         </p>
-        
+
         <div class="form-check-inline">
             <p style="font-weight: bold;;">Filter by Party:</p>
         </div>
@@ -97,8 +97,11 @@
         <div class="tableName">
             <table id="productTable" class="table table-striped table-bordered">
                 <thead>
-                    <th style="text-align: center;">Name</th>
-                    </th>
+                    <th>Name</th>
+                    <th>Party</th>
+                    <th>State</th>
+                    <th>Years in office</th>
+                    <th>% Votes w/ Party</th>
                 </thead>
                 <tbody id="R">
                 </tbody>
@@ -121,7 +124,7 @@
             </div>
         </footer>
     </div>
-    
+
     <script type="module">
         import { fetchJson, makeMemberRows } from './scripts/html.js';
         fetchJson()

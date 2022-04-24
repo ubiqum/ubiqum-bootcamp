@@ -20,8 +20,11 @@ a:hover {
   color: black;
 }
 .tableName {
-  width: 50%;
   box-shadow: 5px 10px 8px 10px #888888;
+  text-align: center;
+}
+th{
+  width: 70px;
 }
 
 .container {
