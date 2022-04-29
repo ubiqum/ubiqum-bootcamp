@@ -7,25 +7,38 @@ var urlHouse = 'https://api.propublica.org/congress/v1/117/house/members.json';
 
 
 
-if ((window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project/Members.html")
-  || (window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project/Members.html?chamber=senate")
-  || (window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project/Members.html?chamber=house")) {
+if ((window.location.href == "http://127.0.0.1:5500/tgif-project/Members.html")
+  || (window.location.href == "http://127.0.0.1:5500/tgif-project/Members.html?chamber=senate")
+  || (window.location.href == "http://127.0.0.1:5500/tgif-project/Members.html?chamber=house")) {
 
 
   var dataSeparation = {
     independent: {
       name: [],
-      party: []
+      party: [],
+      state: [],
+      yearsInOffice: [],
+      years: []
     },
     democrats: {
       name: [],
-      party: []
+      party: [],
+      state: [],
+      yearsInOffice: [],
+      years: []
     },
     republicans:
     {
       name: [],
-      party: []
+      party: [],
+      state: [],
+      yearsInOffice: [],
+      years: []
     }
+  };
+  var stateFullName = {
+    shortcut: [],
+    value: []
   };
   var congressData;
   var Republicans = document.querySelector("input[id=republicanscheckbox]");
@@ -81,44 +94,44 @@ if ((window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project
       if (congressData.results[0].members[i].state.includes(document.getElementById("states_add").value) == true) { //porovnava jestli stat na indexu obsahuje stat zadanej
         if ((congressData.results[0].members[i].party == "R") && (Republicans.checked)) {
           document.getElementById("R").innerHTML = "";
-          writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Republican", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority, congressData.results[0].members[i].votes_with_party_pct);
         }
         else if ((congressData.results[0].members[i].party == "D") && (Democrats.checked)) {
           document.getElementById("D").innerHTML = "";
-          writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Democrat", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
         }
         else if ((congressData.results[0].members[i].party == "ID") && (Independent.checked)) {
           document.getElementById("ID").innerHTML = "";
-          writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+          writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Independent", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
         }
         else if ((congressData.results[0].members[i].party == "R") && (congressData.results[0].members[i].party == "D") && (Democrats.checked) && (Republicans.checked)) {
           document.getElementById("D").innerHTML = "";
           document.getElementById("R").innerHTML = "";
           if (congressData.results[0].members[i].party == "R") {
-            writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+            writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Republican", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
           }
           else {
-            writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+            writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Democrat", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
           }
         }
         else if ((congressData.results[0].members[i].party == "R") && (congressData.results[0].members[i].party == "ID") && (Independent.checked) && (Republicans.checked)) {
           document.getElementById("ID").innerHTML = "";
           document.getElementById("R").innerHTML = "";
           if (congressData.results[0].members[i].party == "R") {
-            writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+            writeToHTML(stateRep, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Republican", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
           }
           else {
-            writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+            writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Independent", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
           }
         }
         else if ((congressData.results[0].members[i].party == "D") && (congressData.results[0].members[i].party == "ID") && (Independent.checked) && (Democrats.checked)) {
           document.getElementById("D").innerHTML = "";
           document.getElementById("ID").innerHTML = "";
           if (congressData.results[0].members[i].party == "D") {
-            writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+            writeToHTML(stateDem, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Democrat", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
           }
           else {
-            writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, congressData.results[0].members[i].party);
+            writeToHTML(stateInd, congressData.results[0].members[i].first_name, congressData.results[0].members[i].last_name, "Independent", giveFullStateName(congressData.results[0].members[i].state), congressData.results[0].members[i].seniority);
           }
 
         }
@@ -128,20 +141,18 @@ if ((window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project
       }
     }
   }
-  function writeToHTML(idBro, nameBud, lastNameBud, party) {
+  function writeToHTML(idBro, nameBud, lastNameBud, party, state, YearsInOffice, Years) {
     var row = document.getElementById(idBro).insertRow();
     var nameCell = row.insertCell();
     var partyCell = row.insertCell();
+    var stateCell = row.insertCell();
+    var yearsInOffice = row.insertCell();
+    var years = row.insertCell();
     nameCell.innerHTML = nameBud + " " + lastNameBud;
-    if (party == "R") {
-      partyCell.innerHTML = "Republican";
-    }
-    else if (party == "D") {
-      partyCell.innerHTML = "Democrat";
-    }
-    else {
-      partyCell.innerHTML = "Independent";
-    }
+    partyCell.innerHTML = party;
+    stateCell.innerHTML = state;
+    yearsInOffice.innerHTML = YearsInOffice;
+    years.innerHTML = Years;
   }
   // Listener for checkboxes of Republicans -------------
   Republicans.addEventListener('change', function () {
@@ -150,9 +161,14 @@ if ((window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project
         var row = document.getElementById("R").insertRow();
         var cell = row.insertCell();
         var partyCell = row.insertCell();
+        var stateCell = row.insertCell();
+        var yearsInOffice = row.insertCell();
+        var years = row.insertCell();
         cell.innerHTML = dataSeparation.republicans.name[i];
         partyCell.innerHTML = dataSeparation.republicans.party[i];
-        console.log(dataSeparation.republicans.party.length);
+        stateCell.innerHTML = dataSeparation.republicans.state[i];
+        yearsInOffice.innerHTML = dataSeparation.republicans.yearsInOffice[i];
+        years.innerHTML = dataSeparation.republicans.years[i];
       }
     }
     else if (!this.checked) {
@@ -179,9 +195,14 @@ if ((window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project
         var row = document.getElementById("D").insertRow();
         var cell = row.insertCell();
         var partyCell = row.insertCell();
+        var stateCell = row.insertCell();
+        var yearsInOffice = row.insertCell();
+        var years = row.insertCell();
         cell.innerHTML = dataSeparation.democrats.name[i];
         partyCell.innerHTML = dataSeparation.democrats.party[i];
-        console.log(dataSeparation.democrats.party.length);
+        stateCell.innerHTML = dataSeparation.democrats.state[i];
+        yearsInOffice.innerHTML = dataSeparation.democrats.yearsInOffice[i];
+        years.innerHTML = dataSeparation.democrats.years[i];
       }
     }
     else if (!this.checked) {
@@ -209,9 +230,14 @@ if ((window.location.href == "http://127.0.0.1:5500/course-2/task-2/tgif-project
         var row = document.getElementById("ID").insertRow();
         var cell = row.insertCell();
         var partyCell = row.insertCell();
+        var stateCell = row.insertCell();
+        var yearsInOffice = row.insertCell();
+        var years = row.insertCell();
         cell.innerHTML = dataSeparation.independent.name[i];
         partyCell.innerHTML = dataSeparation.independent.party[i];
-        console.log(dataSeparation.independent.party.length);
+        stateCell.innerHTML = dataSeparation.democrats.state[i];
+        yearsInOffice.innerHTML = dataSeparation.independent.yearsInOffice[i];
+        years.innerHTML = dataSeparation.independent.years[i];
       }
     }
     else if (!this.checked) {
@@ -242,6 +268,7 @@ else {
 }
 
 export async function fetchJson() {            //Fetching data from JSON
+  console.log("Loading.....fetchJSON");
   if (!window.location.search) {               // If windows browser doesn't contain search symbol, then he use the one from last session page
     console.log("Iam in window listener IF");
     chamberSave = sessionStorage.getItem("chamber");
@@ -276,47 +303,68 @@ export async function fetchJson() {            //Fetching data from JSON
 }
 // ----------- Facebook accounts and saving data to congressData variable, which i will use many times. -------------
 export function makeMemberRows(data) {
+  console.log("Loading.....MakeMemberRows");
   console.log(data.results[0].members.length);
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].facebook_account == null) { }
     else {
       console.log('https://www.facebook.com/' + data.results[0].members[i].facebook_account);
-      console.log(" " + data.results[0].members[i].party);
     }
+
   }
   congressData = data;
-  filterByParty(data);
   makeStatesMenu();
 }
 function makeStatesMenu() {
+  console.log("Loading.....makeStatesMenu");
   showStateData().then(data => {
     const keys = Object.keys(data);
     const value = Object.values(data);
     for (let i = 0; i < keys.length; i++) {
       let opt = document.createElement('option');
       opt.value = keys[i];
+      stateFullName.shortcut.push(keys[i]);     // Save shortcut of state
       opt.innerHTML = value[i];
+      stateFullName.value.push(value[i]);        // Save value of state
       addStates.appendChild(opt);
     }
+    filterByParty(congressData);
   })
 };
 function filterByParty(data) {
+  console.log("Loading.....filterByParty");
   for (let i = 0; i <= data.results[0].members.length - 1; i++) {
     if (data.results[0].members[i].party == "D") {
       dataSeparation.democrats.name.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
       dataSeparation.democrats.party.push("Democrat");
+      dataSeparation.democrats.state.push(giveFullStateName(data.results[0].members[i].state));
+      dataSeparation.democrats.yearsInOffice.push(data.results[0].members[i].seniority);
+      dataSeparation.democrats.years.push(data.results[0].members[i].votes_with_party_pct);
     } else if (data.results[0].members[i].party == "ID") {
       dataSeparation.independent.name.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
       dataSeparation.independent.party.push("Independent");
+      dataSeparation.independent.state.push(giveFullStateName(data.results[0].members[i].state));
+      dataSeparation.independent.yearsInOffice.push(data.results[0].members[i].seniority);
+      dataSeparation.independent.years.push(data.results[0].members[i].votes_with_party_pct);
     } else {
       dataSeparation.republicans.name.push(data.results[0].members[i].first_name + " " + data.results[0].members[i].last_name);
       dataSeparation.republicans.party.push("Republican");
+      dataSeparation.republicans.state.push(giveFullStateName(data.results[0].members[i].state));
+      dataSeparation.republicans.yearsInOffice.push(data.results[0].members[i].seniority);
+      dataSeparation.republicans.years.push(data.results[0].members[i].votes_with_party_pct);
     }
   }
-
+}
+function giveFullStateName(state) {
+  for (let i = 0; i < stateFullName.shortcut.length; i++) {
+    if (state == stateFullName.shortcut[i]) {
+      return stateFullName.value[i];
+    }
+  }
 }
 // -------------  Creates menu for states.   -------------
 async function showStateData() {
+  console.log("Loading.....showStateData");
   const response = await fetch("./states.json");
   const data = await response.json();
   return data;
