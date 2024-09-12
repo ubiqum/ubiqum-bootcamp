@@ -1,0 +1,55 @@
+
+
+
+.container{
+    background-color: white;
+    padding: 3em;
+    font-family: sans-serif;
+}
+
+
+.nav-link{
+    list-style: none;
+
+}
+.nav-link li{
+    display: inline-block;
+    padding: 5px;
+    
+}
+.nav-link li a{
+    transition: all 0.3s ease 0s;
+}
+.nav-link li a:hover {
+    color: rgb(101, 226, 235);
+}
+
+
+.read-more{
+    cursor: pointer;
+}
+#more-para {
+    display: none;
+}
+
+.para{
+    
+    display:inline ;
+}
+.mailto{
+    display: inline;
+    
+
+}
+
+.mail-1{
+    content:"\2709";
+    
+   
+    
+    
+    
+    
+}
+
+
