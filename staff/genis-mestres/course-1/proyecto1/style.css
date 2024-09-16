@@ -1,0 +1,50 @@
+/*All <hr>*/
+
+hr {
+   /*  transform:rotate(90deg); */
+    height: 20px;
+    width:2px;
+    display:inline;
+    border-left:black;
+    border: 0.5px solid black;
+   /* -ms-transform:rotate(90deg);
+    /* IE 9 */
+    /*-webkit-transform:rotate(90deg);
+    /* Safari and Chrome */
+}
+
+
+
+.pictures img {
+    float:left;
+    margin-inline-start:600px;
+    padding:5px;
+    border:5px;
+    height: 10%;
+    width: 10%;
+ }
+
+.logo img {
+    float:left;
+    padding:5px;
+    border:5px;
+    height: 60px;
+}
+
+section{
+
+    margin-left: 150px;
+    font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    font-size: 10px;
+}
+
+.menu{
+    font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    font-size: 10px;
+    display:inline-block;
+}
+header{
+    margin-left: 125px;
+    font-family: "Lucida handwriting", Helvetica, Sans-serif;
+    font-size: 14px;
+}
