@@ -1,0 +1,84 @@
+body {
+    background-color: azure; 
+}
+
+h1 {
+    font-family: Verdana;
+    font-size: 50px;
+    margin: 150px 0px 25px 50px;
+}
+
+.logo {
+    float: left;
+    height: 120px;
+    margin: 0px 10px 0px 50px;
+    width: 120px;
+}
+
+nav {
+    margin: 20px 0px 15px 0px;
+}
+
+li {
+    display: inline-block;
+    font-size: 20px;
+    list-style: none;
+    padding: 10px;
+}
+
+#unlink {
+    color: black;
+    text-decoration: none;
+}
+
+h2 {
+    font-family: Verdana;
+    font-size: 35px;
+    margin: 15px 0px 0px 230px;
+    text-align: center;
+}
+
+.image1 {
+    float: left ;
+    height: 120px;
+    margin: 0px 10px 0px 50px;
+    width: 120px;
+}
+
+.image2 {
+    float: left ;
+    height: 120px;
+    margin: 20px 0px 0px 50px;
+    width: 120px;
+}
+
+.image3 {
+    float: left ;
+    height: 120px;
+    margin: 10px 10px 0px 50px;
+    width: 120px;
+}
+
+h3 {
+    font-family: Verdana;
+    margin: 25px 0px 0px 0px;
+}
+
+div {
+    margin: 35px 0px 0px 270px;
+}
+
+em {
+    font-family: sans-serif;
+    margin: 15px 0px 0px -10px;
+}
+
+p{
+    font-family: sans-serif;
+    margin: 0px 0px 0px 20px;
+}
+
+#unlink {
+    color: black;
+    text-decoration: none;
+}
