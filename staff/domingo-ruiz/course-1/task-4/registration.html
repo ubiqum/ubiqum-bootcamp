@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nysl_4.css">
+    <title>Registration</title>
+</head>
+<body>
+
+    <!--links y portada-->
+
+ <div class=header>
+    <a href="file:///Users/sunday/Desktop/ubiqum-bootcamp/staff/domingo-ruiz/course-1/task-3/upcomingevents.html">
+        <img class=leaguelogo src="https://s3.amazonaws.com/gbstool/emails/2027/nysl_logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210918T222504Z&X-Amz-SignedHeaders=host&X-Amz-Expires=180900&X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20210918%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=740adccb0ff2dbadb41e3d840e365ca645cd9db260ce86491c9cd061616708d1" alt="league´s logo">
+    </a>
+    <nav class=links>
+        <a class=estilolinks href="file:///Users/sunday/Desktop/ubiqum-bootcamp/staff/domingo-ruiz/course-1/task-4/upcomingevents.html">home</a>
+        <a class=estilolinks href="file:///Users/sunday/Desktop/ubiqum-bootcamp/staff/domingo-ruiz/course-1/task-4/about.html">about nysl</a>   
+        <a class=estilolinks href="file:///Users/sunday/Desktop/ubiqum-bootcamp/staff/domingo-ruiz/course-1/task-4/contact.html">contact</a>
+        <a class=estilolinks href="file:///Users/sunday/Desktop/ubiqum-bootcamp/staff/domingo-ruiz/course-1/task-4/rules.html">rules</a>
+        <a class=estilolinks href="file:///Users/sunday/Desktop/ubiqum-bootcamp/staff/domingo-ruiz/course-1/task-4/nyslinformation.html">nysl game information</a>
+        <a class=estilolinks href="file:///Users/sunday/Desktop/ubiqum-bootcamp/staff/domingo-ruiz/course-1/task-4/registration.html">registration</a>
+    </nav>  
+</div>
+
+    <!--form-->
+
+    <form action="show_data.html" method="get">
+        <section class=section--column>
+            <div>
+                <input type="text" id=name size=40 placeholder="Player´s first Name" name="first-name">
+            </div>
+            <div>
+                <input type="text" id=last size=40 placeholder="Last Name" name="last name">
+            </div>
+            <div>
+                <input type="text" id="street" size=40 placeholder="Street Address" name="street address">
+            </div>  
+            <div>
+                <input type="text" id="city" size=40 placeholder="City" name=city> 
+            </div>
+            <div>
+                <input type="text" id="zip" size=40 placeholder="Zip Code" maxlength="5" name="zip code"> 
+            </div> 
+            <div>   
+                <input type="text" id="date" size=40 placeholder="Birth Date (dd/mm/yyyy)" maxlength=8 name="birth date">
+            </div>
+            <div class=input--margin>
+                <label>Gender</label>
+                <input type="radio" name=gender value=female>Female</input>
+                <input type="radio" name=gender value=male>Male</input>
+            </div>
+
+        <section class=section--row>
+            <div>Grade</div>
+            <div>
+                <input  type="radio" id=pre name=grade value=pre> 
+                <label for=pre>Pre-School</label>
+            
+                <input  type="radio" id=1 name=grade value=1>
+                <label for=1>1st</label>
+            
+                <input  type="radio" id=2 name=grade value=2>
+                <label for=2>2nd</label>
+          
+                <input  type="radio" id=3 name=grade value=3>
+                <label for=3>3rd</label>
+          
+                <input  type="radio" id=4 name=grade value=4>
+                <label for=4>4th</label>
+        
+                <input  type="radio" id=5 name=grade value=5>
+                <label for=5>5th</label>
+            </div>
+        </section>
+
+        <section class=input--margin>
+            <div>
+                <input type="text" size=40 placeholder="Parent/Guardian" name="parent´s name">
+            </div>
+            <div>
+                <input type="text" size=40 placeholder="Contact Phone" name=phone>
+            </div>
+            <div>
+                <input type="text" size=40 placeholder="Contact E-mail" name=email>
+            </div>
+        </section>
+        <!--SCHOOL-->
+            <b class=input--margintop>Which elementary school do you live near?</b>
+
+        <div class=grid--columns55>    
+
+            <section class=section--grid>
+                <div>
+                  <p>First Closest School</p>
+                </div>
+                <div>
+
+                </div>
+
+                <div>
+                    <input  type="radio" id=aj name=school value="AJ Katzenmaier">
+                    <label for=aj>AJ Katzenmaier</label>
+                </div>
+                <div>
+                    <input  type="radio" id=majorie name=school value=Marjorie P Hart>
+                    <label for=majorie>Marjorie P Hart</label>
+                </div>
+                <div>
+                    <input  type="radio" id=green name=school value=Greenbay>
+                    <label for=green>Greenbay</label>
+                </div>
+                <div>
+                    <input  type="radio" id=north name=school value="North Elementary">
+                    <label for=north>North Elementary</label>
+                </div>
+                <div>
+                    <input  type="radio" id=howard name=school value="Howard A Yeager">
+                    <label for=howard>Howard A Yeager</label>
+                </div>
+                <div>
+                    <input  type="radio" id=shouth name=school value="South Elementary">
+                    <label for=shouth>South Elementary</label>
+                </div>
+            </section>
+            
+
+            <section class=section--grid>
+                <div>
+                  <p>Second Closest School</p>
+                </div>
+                <div>
+                    
+                </div>
+
+                    <div>
+                        <input  type="radio" id=aj1 name=school2 value="AJ Katzenmaier">
+                        <label for=aj1>AJ Katzenmaier</label>
+                    </div>  
+                    <div>
+                        <input  type="radio" id=majorie1 name=school2 value="Marjorie P Hart">
+                        <label for=majorie1>Marjorie P Hart</label>
+                    </div>
+                    <div>
+                        <input  type="radio" id=green1 name=school2 value=Greenbay>
+                        <label for=green1>Greenbay</label>
+                    </div>
+                    <div>
+                        <input  type="radio" id=north1 name=school2 value="North Elementary">
+                        <label for=north1>North Elementary</label>
+                    </div>
+                    <div>
+                        <input  type="radio" id=howard1 name=school2 value="Howard A Yeager">
+                        <label for=howard1>Howard A Yeager</label>
+                    </div>
+                    <div>
+                        <input  type="radio" id=shouth1 name=school2 value="South Elementary">
+                        <label for=shouth1>South Elementary</label>
+                    </div>
+            </section>
+        </div>
+            
+        <!--POSITION-->
+        <p class=input--margintop><b>What position(s) do you normally play?</b>(check all that aply)</p>
+        <div class=grid--columns55>
+            <div>
+                <input  type="radio" id=forward value=forward>
+                <label for=forward>Forward</label>
+                <input  type="radio" id=mid value=mid>
+                <label for=mid>Midfield</label>
+            </div>
+            <div>
+                <input  type="radio" id=defense value=defense>
+                <label for=defense>Defense</label>
+                <input  type="radio" id=keeper value=goalkeeper>
+                <label for=keeper>Goalkeeper</label>
+            </div>
+        </div>
+
+        <!--UNIFORM-->
+
+        <section class="grid--columns55">
+            <div class="section-row">
+                <input type="radio" id=uniform name=uniform class=input--margintop20 value="already have a unifor">
+                <label for=uniform><b>I Already have a uniform</b></label>
+            </div>
+            <div>
+            </div>
+            <div class=section--grid>
+                <div>
+                    <p><b>Jersey Size</b></p>
+                </div>
+                <div>
+                </div>
+                <div>
+                    <input  type="radio" id=ys name=uniform value="youth small">
+                    <label for=ys>Youth Small</label>
+                </div>
+                <div>
+                    <input  type="radio" id=medium name=uniform value=medium>
+                    <label for=medium>Medium</label>
+                </div>
+                <div>
+                    <input  type="radio" id=ym name=uniform value="youth medium">
+                    <label for=ym>Youth Medium</label>
+                </div>
+                <div>
+                    <input  type="radio" id=large name=uniform value=large>
+                    <label for=large>Large</label>
+                </div>
+                <div>
+                    <input  type="radio" id=yl name=uniform value="youth large">
+                    <label for=yl>Youth Large</label>
+                </div>
+                <div>
+                    <input  type="radio" id=el name=uniform value="extra large">
+                    <label for=el>Extra Large</label>
+                </div>
+                <div>
+                    <input  type="radio" id=small name=uniform value=small>
+                    <label for=small>Small</label>
+                </div>
+            </div>
+
+            <div class=section--grid>
+                <div>
+                    <p><b>Short Size</b></p>
+                </div>
+                <div>
+
+                </div>
+                <div>
+                    <input  type="radio" id=ys1 name=uniformshort value="youth small">
+                    <label for=ys1>Youth Small</label>
+                </div>
+                <div>
+                    <input  type="radio" id=medium1 name=uniformshort value=medium>
+                    <label for=medium1>Medium</label>
+                </div>
+                <div>
+                    <input  type="radio" id=ym1 name=uniformshort value="youth medium">
+                    <label for=ym1>Youth Medium</label>
+                </div>
+                <div>
+                    <input  type="radio" id=large1 name=uniformshort value=large>
+                    <label for=large1>Large</label>
+                </div>
+                <div>
+                    <input  type="radio" id=yl1 name=uniformshort value="youth large">
+                    <label for=yl1>Youth Large</label>
+                </div>
+                <div>
+                    <input  type="radio" id=el1 name=uniformshort value="extra large">
+                    <label for=el1>Extra Large</label>
+                </div>
+                <div>
+                    <input  type="radio" id=small1 name=uniformshort value=small>
+                    <label for=small1>Small</label>
+                </div>
+            </div>
+        </section>
+
+        <input type="submit" size=40 class=input--margintop>
+
+        <!--PERMISSION-->
+        <P class="input--margintop"><b><u>Permission to play</u></b></P>
+        <P>I, the parent or guardian of the minor registrant, agree that the registrant and I will abide by all the rules of the Northside Youth
+            Soccer League (NYSL). In recognizing the possibility of physical injury associated with soccer and in consideration for the “League”
+            accepting the registrant for its soccer programs and activities, I hereby release, discharge, and/or otherwise indemnify NYSL, their
+            employees and associated personnel and volunteers, including the facilities used for practices and games, against any claim by or
+            on behalf of the registrant as a result of the registrant’s participation in the program and/or being transported to or from NYSL
+            sponsored activities, which transportation.
+            By signing below, I hereby agree and authorize the above. In addition, by signing below, I also acknowledge that I have read the
+            cancellation policy and agree to its terms. 
+        </P>
+        <input type="text" id=signature size=40 placeholder="Name" name="signature-name">
+        <input type="text" id=date size=40 placeholder="Date" name="date">
+
+
+
+    </form>
+
+</body>
+</html>
+
